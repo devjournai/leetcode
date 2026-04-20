@@ -1,0 +1,50 @@
+/**
+ * Lexicographically Smallest String After Applying Operations
+ * Time Complexity: O(L * U)
+ * Space Complexity: O(L * U)
+ */
+var findLexSmallestString = function (initialString, addValue, rotateValue) {
+  const exploredStates = new Set();
+  let currentMinString = initialString;
+  const searchQueue = [initialString];
+  const stringLength = initialString.length;
+
+  const performAddOperation = (inputStr) => {
+    const digitChars = inputStr.split("");
+    for (let digitIndex = 1; digitIndex < stringLength; digitIndex += 2) {
+      const currentDigit = parseInt(digitChars[digitIndex]);
+      const newDigitVal = (currentDigit + addValue) % 10;
+      digitChars[digitIndex] = String(newDigitVal);
+    }
+    return digitChars.join("");
+  };
+
+  const performRotateOperation = (originalStr) => {
+    const slicedPartOne = originalStr.slice(-rotateValue);
+    const slicedPartTwo = originalStr.slice(0, -rotateValue);
+    return slicedPartOne + slicedPartTwo;
+  };
+
+  while (searchQueue.length > 0) {
+    const currentProcessedString = searchQueue.shift();
+
+    if (exploredStates.has(currentProcessedString)) {
+      continue;
+    }
+    exploredStates.add(currentProcessedString);
+
+    if (currentProcessedString < currentMinString) {
+      currentMinString = currentProcessedString;
+    }
+
+    const resultingStringFromAdd = performAddOperation(currentProcessedString);
+    searchQueue.push(resultingStringFromAdd);
+
+    const resultingStringFromRotate = performRotateOperation(
+      currentProcessedString,
+    );
+    searchQueue.push(resultingStringFromRotate);
+  }
+
+  return currentMinString;
+};

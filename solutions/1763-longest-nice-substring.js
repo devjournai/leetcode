@@ -1,0 +1,69 @@
+/**
+ * Longest Nice Substring
+ * Time Complexity: O(N^2)
+ * Space Complexity: O(N)
+ */
+var longestNiceSubstring = function (s) {
+  let maximalNiceSubstring = "";
+
+  function recurseFindNice(segmentBeginning, segmentEnd) {
+    if (segmentEnd - segmentBeginning < 1) {
+      return;
+    }
+
+    let segmentCharSet = new Set();
+    let firstIterIndex = segmentBeginning;
+    while (firstIterIndex <= segmentEnd) {
+      segmentCharSet.add(s[firstIterIndex]);
+      firstIterIndex++;
+    }
+
+    let currentSegmentIsNice = true;
+    let badCharRegistry = new Set();
+
+    let secondIterIndex = segmentBeginning;
+    while (secondIterIndex <= segmentEnd) {
+      let charToVerify = s[secondIterIndex];
+      let lowerVer = charToVerify.toLowerCase();
+      let upperVer = charToVerify.toUpperCase();
+
+      if (!segmentCharSet.has(lowerVer) || !segmentCharSet.has(upperVer)) {
+        currentSegmentIsNice = false;
+        badCharRegistry.add(charToVerify);
+      }
+      secondIterIndex++;
+    }
+
+    if (currentSegmentIsNice) {
+      let potentialNiceString = s.substring(segmentBeginning, segmentEnd + 1);
+      if (potentialNiceString.length > maximalNiceSubstring.length) {
+        maximalNiceSubstring = potentialNiceString;
+      }
+      return;
+    }
+
+    let splitStartPointer = segmentBeginning;
+    let splitScanPointer = segmentBeginning;
+    while (splitScanPointer <= segmentEnd) {
+      let scanningChar = s[splitScanPointer];
+      if (badCharRegistry.has(scanningChar)) {
+        if (splitScanPointer > splitStartPointer) {
+          recurseFindNice(splitStartPointer, splitScanPointer - 1);
+        }
+        splitStartPointer = splitScanPointer + 1;
+      }
+      splitScanPointer++;
+    }
+
+    if (splitStartPointer <= segmentEnd) {
+      recurseFindNice(splitStartPointer, segmentEnd);
+    }
+  }
+
+  if (s.length === 0) {
+    return "";
+  }
+
+  recurseFindNice(0, s.length - 1);
+  return maximalNiceSubstring;
+};
