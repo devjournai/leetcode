@@ -1,7 +1,7 @@
 /**
  * Minimum Adjacent Swaps To Reach The Kth Smallest Number
  * Time Complexity: O(k * N + N^2)
- * Space Complexity: O(N) where N is the length of `num`.
+ * Space Complexity: O(N)
  */
 var getMinSwaps = function (num, k) {
   const generateNextPermutation = (charArray) => {
