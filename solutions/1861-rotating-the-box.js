@@ -1,44 +1,38 @@
 /**
- * Rotating The Box
- * Time Complexity: O(M * N)
- * Space Complexity: O(M * N)
+ * Rotating the Box
+ * Time Complexity: O(m * n)
+ * Space Complexity: O(n * m)
  */
-var rotateTheBox = function (boxGrid) {
-  const initialRows = boxGrid.length;
-  const initialCols = boxGrid[0].length;
+var rotateTheBox = function (inputMatrix) {
+  const originalHeight = inputMatrix.length;
+  const originalWidth = inputMatrix[0].length;
 
-  const destinationMatrix = Array.from({ length: initialCols }, () =>
-    new Array(initialRows).fill("."),
+  const rotatedBoxState = Array.from({ length: originalWidth }, () =>
+    new Array(originalHeight).fill("."),
   );
 
-  const obstacleChar = "*";
-  const stoneChar = "#";
+  let currentOriginalRow = 0;
+  while (currentOriginalRow < originalHeight) {
+    let availablePlacementRow = originalWidth - 1;
+    let currentOriginalCol = originalWidth - 1;
 
-  for (
-    let initialRowIndex = 0;
-    initialRowIndex < initialRows;
-    initialRowIndex++
-  ) {
-    let currentLandingSpot = initialCols - 1;
-    for (
-      let initialColIndex = initialCols - 1;
-      initialColIndex >= 0;
-      initialColIndex--
-    ) {
-      if (boxGrid[initialRowIndex][initialColIndex] === obstacleChar) {
-        const targetRowForObstacle = initialColIndex;
-        const targetColForObstacle = initialRows - 1 - initialRowIndex;
-        destinationMatrix[targetRowForObstacle][targetColForObstacle] =
-          obstacleChar;
-        currentLandingSpot = initialColIndex - 1;
-      } else if (boxGrid[initialRowIndex][initialColIndex] === stoneChar) {
-        const targetRowForStone = currentLandingSpot;
-        const targetColForStone = initialRows - 1 - initialRowIndex;
-        destinationMatrix[targetRowForStone][targetColForStone] = stoneChar;
-        currentLandingSpot--;
+    while (currentOriginalCol >= 0) {
+      const currentCellContent =
+        inputMatrix[currentOriginalRow][currentOriginalCol];
+
+      if (currentCellContent === "*") {
+        const newColumnIndex = originalHeight - 1 - currentOriginalRow;
+        rotatedBoxState[currentOriginalCol][newColumnIndex] = "*";
+        availablePlacementRow = currentOriginalCol - 1;
+      } else if (currentCellContent === "#") {
+        const newColumnIndex = originalHeight - 1 - currentOriginalRow;
+        rotatedBoxState[availablePlacementRow][newColumnIndex] = "#";
+        availablePlacementRow--;
       }
+      currentOriginalCol--;
     }
+    currentOriginalRow++;
   }
 
-  return destinationMatrix;
+  return rotatedBoxState;
 };
