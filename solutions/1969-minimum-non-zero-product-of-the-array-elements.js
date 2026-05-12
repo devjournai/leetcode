@@ -24,8 +24,8 @@
  *   powerResult = 216n
  *   finalProductCalculation = (highestValue * powerResult) % MODULUS = (7n * 216n) % 1000000007n = 1512n % 1000000007n = 1512n
  *   Return Number(1512n) = 1512.
- * Time Complexity: O(log p) due to the modular exponentiation function, where p is the input parameter.
- * Space Complexity: O(1) as only a few BigInt variables are used.
+ * Time Complexity: O(log p)
+ * Space Complexity: O(1)
  */
 var minNonZeroProduct = function (p) {
   const MODULUS = 1000000007n;

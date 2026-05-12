@@ -20,8 +20,8 @@
  *      `"pie" === "pie"` is true
  *      `stringMatchPosition` becomes 8
  *      `stringMatchPosition === fullStringLength` (8 === 8) is true -> Return `true`
- * Time Complexity: O(N) where N is the length of the string `s`. In the worst case, we iterate through a portion of `words` whose total character length adds up to `s.length`. Each substring operation and comparison takes time proportional to the length of the substring. The sum of lengths of all substrings processed will not exceed N.
- * Space Complexity: O(1) as we only use a few constant-space variables.
+ * Time Complexity: O(N)
+ * Space Complexity: O(1)
  */
 var isPrefixString = function (s, words) {
   let stringMatchPosition = 0;

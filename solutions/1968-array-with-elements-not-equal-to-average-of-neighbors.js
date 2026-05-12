@@ -13,8 +13,8 @@
  *    - arrayPosition = 3 (odd): outputCollection[3] = nums[rightIndex--] (nums[3] = 4). outputCollection = [1, 5, 2, 4, undefined]. rightIndex = 2.
  *    - arrayPosition = 4 (even): outputCollection[4] = nums[leftIndex++] (nums[2] = 3). outputCollection = [1, 5, 2, 4, 3]. leftIndex = 3.
  * 5. Loop ends. Return [1, 5, 2, 4, 3].
- * Time Complexity: O(N log N) due to sorting.
- * Space Complexity: O(N) for the new array `outputCollection`.
+ * Time Complexity: O(N log N)
+ * Space Complexity: O(N)
  */
 var rearrangeArray = function (nums) {
   const arrayLength = nums.length;

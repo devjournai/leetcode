@@ -24,8 +24,8 @@
  *         ii. adjacentNode = 2. Is not in visitedNodes. Enqueue 2. traversalQueue = [2, 2].
  *      i. Dequeue currentNode = 2.
  *      j. currentNode (2) === destination (2). Return true.
- * Time Complexity: O(N + E), where N is the number of vertices and E is the number of edges. Building the adjacency list takes O(E) time. The BFS traversal visits each vertex at most once and processes each edge at most twice (once for each direction in an undirected graph).
- * Space Complexity: O(N + E), where N is the number of vertices and E is the number of edges. The adjacency list stores the graph structure, which takes O(N + E) space. The `visitedNodes` set can store up to N nodes, and the `traversalQueue` can store up to N nodes in the worst case (e.g., for a star graph).
+ * Time Complexity: O(N + E)
+ * Space Complexity: O(N + E)
  */
 var validPath = function (n, edges, source, destination) {
   const graphStructure = Array.from({ length: n }, () => []);
