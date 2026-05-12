@@ -26,8 +26,8 @@
  *     `accumulatedDescendantSum` = 6 + 4 = 10. `node.val` (10) === 10. `descendantMatchCount` becomes 2.
  *     returns `10 + 10 = 20`.
  *   Final `descendantMatchCount` = 2.
- * Time Complexity: O(N), where N is the number of nodes in the binary tree, as each node is visited exactly once.
- * Space Complexity: O(H), where H is the height of the binary tree, due to the recursion stack. In the worst case (a skewed tree), H can be N, leading to O(N) space. In the best case (a balanced tree), H is log N, leading to O(log N) space.
+ * Time Complexity: O(N)
+ * Space Complexity: O(H)
  */
 var equalToDescendants = function (root) {
   let descendantMatchCount = 0;

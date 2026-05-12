@@ -24,8 +24,8 @@
  *          - maxHeapInstance.enqueue(2) // maxHeapInstance: [4, 4, 2]
  *   4. Loop ends as operationCounter becomes 0.
  *   5. Return totalStonesSum = 10.
- * Time Complexity: O(N log N + K log N), where N is the number of piles. Initial heap construction takes O(N log N). Each of the K operations involves a dequeue and an enqueue, both O(log N).
- * Space Complexity: O(N) for storing the piles in the Max-Heap.
+ * Time Complexity: O(N log N + K log N)
+ * Space Complexity: O(N)
  */
 var minStoneSum = function (piles, k) {
   const maxHeapInstance = new PriorityQueue(

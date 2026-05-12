@@ -11,8 +11,8 @@
  *    - `currentPattern = "d"`: `word.includes("d")` is `false`. `countFound` remains `3`.
  * 3. Loop finishes.
  * 4. Return `countFound` (which is `3`).
- * Time Complexity: O(N * L_word * L_max_pattern), where N is the number of strings in `patterns`, L_word is the length of `word`, and L_max_pattern is the maximum length of a string in `patterns`. This is because each call to `includes` can take up to O(L_word * L_pattern) in the worst case (for naive string searching), and we perform this check N times.
- * Space Complexity: O(1), as only a few constant-space variables are used regardless of input size.
+ * Time Complexity: O(N * L_word * L_max_pattern)
+ * Space Complexity: O(1)
  */
 var numOfStrings = function (patterns, word) {
   let countFound = 0;

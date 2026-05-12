@@ -11,7 +11,7 @@
  * 5. currentSymbol = ']': openBracketTally > 0 (is 2), openBracketTally = 1
  * 6. currentSymbol = '[': openBracketTally = 2
  * End of string. Result: swapOperationsCount = 1.
- * Time Complexity: O(N) where N is the length of the string `s`.
+ * Time Complexity: O(N)
  * Space Complexity: O(1)
  */
 var minSwaps = function (s) {

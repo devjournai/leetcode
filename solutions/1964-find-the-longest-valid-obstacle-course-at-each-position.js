@@ -63,8 +63,8 @@
  *
  *   Return [1, 1, 2, 3, 2, 2]
  *
- * Time Complexity: O(N log N) where N is the length of the `obstacles` array. This is because we iterate through N obstacles, and for each obstacle, we perform a binary search on the `tailsOfCourses` array, which can have a maximum length of N.
- * Space Complexity: O(N) for storing the `courseLengths` array and the `tailsOfCourses` array.
+ * Time Complexity: O(N log N)
+ * Space Complexity: O(N)
  */
 var longestObstacleCourseAtEachPosition = function (obstacles) {
   const totalObstaclesCount = obstacles.length;
