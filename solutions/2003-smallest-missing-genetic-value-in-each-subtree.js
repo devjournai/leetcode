@@ -68,7 +68,7 @@
  * Time Complexity: O(N * MaxVal)
  * Space Complexity: O(N + MaxVal)
  */
-var smallestMissingGeneticValueSubtree = function (parents, nums) {
+var smallestMissingValueSubtree = function (parents, nums) {
   const nodeCount = parents.length;
   const finalAnswerArray = new Array(nodeCount).fill(1);
   const adjacencies = Array.from({ length: nodeCount }, () => []);
