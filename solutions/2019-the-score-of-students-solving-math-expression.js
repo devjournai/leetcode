@@ -40,8 +40,8 @@
  * 6. For `studentSubmittedAnswer` = 9: `9 !== exactAnswer` (7). `allMisinterpretedResults.has(9)` is true. `totalScoreAccumulator` = 5 + 2 = 7.
  * 7. For `studentSubmittedAnswer` = 1001: `1001 !== exactAnswer` (7). `allMisinterpretedResults.has(1001)` is false. `totalScoreAccumulator` remains 7.
  * 8. Return `totalScoreAccumulator` = 7.
- * Time Complexity: O(N^3 * K^2), where N is the length of the expression string (up to 30) and K is the maximum allowed value (1000). There are O(N^2) subproblems (defined by `currentStartIdx` and `currentEndIdx`). Each subproblem iterates through O(N) possible `operatorPosition`s. For each split, it iterates through up to K elements from the left sub-expression's results and up to K elements from the right sub-expression's results, leading to O(K^2) combinations. Adding to a Set is amortized O(1). Thus, O(N^2 * N * K^2) = O(N^3 * K^2).
- * Space Complexity: O(N^2 * K), where N is the length of the expression string and K is the maximum allowed value. The `memoizedResults` map stores results for O(N^2) subproblems. Each result is a Set that can contain up to K distinct numerical values.
+ * Time Complexity: O(N^3 * K^2)
+ * Space Complexity: O(N^2 * K)
  */
 var scoreOfStudents = function (s, answers) {
   const exactAnswer = eval(s.replace(/(\d)([*+])/g, "$1 $2 "));
