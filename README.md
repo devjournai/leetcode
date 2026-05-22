@@ -2088,8 +2088,18 @@
 | 2067 | [**Number Of Equal Count Substrings**](./solutions/2067-number-of-equal-count-substrings.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
 | 2068 | [**Check Whether Two Strings Are Almost Equivalent**](./solutions/2068-check-whether-two-strings-are-almost-equivalent.js) | ![Easy](https://img.shields.io/badge/-Easy-success)
 | 2069 | [**Walking Robot Simulation II**](./solutions/2069-walking-robot-simulation-ii.js)                                                                                                         | ![Medium](https://img.shields.io/badge/-Medium-yellow) |
+| 2070 | [**Most Beautiful Item For Each Query**](./solutions/2070-most-beautiful-item-for-each-query.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2071 | [**Maximum Number Of Tasks You Can Assign**](./solutions/2071-maximum-number-of-tasks-you-can-assign.js) | ![Hard](https://img.shields.io/badge/-Hard-red)
+| 2072 | [**The Winner University**](./solutions/2072-the-winner-university.sql) | ![Easy](https://img.shields.io/badge/-Easy-success)
+| 2073 | [**Time Needed To Buy Tickets**](./solutions/2073-time-needed-to-buy-tickets.js) | ![Easy](https://img.shields.io/badge/-Easy-success)
+| 2074 | [**Reverse Nodes In Even Length Groups**](./solutions/2074-reverse-nodes-in-even-length-groups.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
 | 2075 | [**Decode the Slanted Ciphertext**](./solutions/2075-decode-the-slanted-ciphertext.js)                                                                                                     | ![Medium](https://img.shields.io/badge/-Medium-yellow) |
-| 2078 | [**Two Furthest Houses With Different Colors**](./solutions/2078-two-furthest-houses-with-different-colors.js)                                                                             | ![Easy](https://img.shields.io/badge/-Easy-success)    |
+| 2076 | [**Process Restricted Friend Requests**](./solutions/2076-process-restricted-friend-requests.js) | ![Hard](https://img.shields.io/badge/-Hard-red)
+| 2077 | [**Paths In Maze That Lead To Same Room**](./solutions/2077-paths-in-maze-that-lead-to-same-room.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2078 | [**Two Furthest Houses With Different Colors**](./solutions/2078-two-furthest-houses-with-different-colors.js) | ![Easy](https://img.shields.io/badge/-Easy-success)    |
+| 2079 | [**Watering Plants**](./solutions/2079-watering-plants.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2080 | [**Range Frequency Queries**](./solutions/2080-range-frequency-queries.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2081 | [**Sum Of K Mirror Numbers**](./solutions/2081-sum-of-k-mirror-numbers.js) | ![Hard](https://img.shields.io/badge/-Hard-red)
 | 2402 | [**Meeting Rooms III**](./solutions/2402-meeting-rooms-iii.js)                                                                                                                             | ![Hard](https://img.shields.io/badge/-Hard-red)        |
 | 2452 | [**Words Within Two Edits of Dictionary**](./solutions/2452-words-within-two-edits-of-dictionary.js)                                                                                       | ![Medium](https://img.shields.io/badge/-Medium-yellow) |
 | 2463 | [**Minimum Total Distance Traveled**](./solutions/2463-minimum-total-distance-traveled.js)                                                                                                 | ![Hard](https://img.shields.io/badge/-Hard-red)        |
