@@ -2076,9 +2076,30 @@
 | 2055 | [**Plates Between Candles**](./solutions/2055-plates-between-candles.js)                                                                                                                   | ![Medium](https://img.shields.io/badge/-Medium-yellow) |
 | 2056 | [**Number Of Valid Move Combinations On Chessboard**](./solutions/2056-number-of-valid-move-combinations-on-chessboard.js)                                                                 | ![Hard](https://img.shields.io/badge/-Hard-red)        |
 | 2057 | [**Smallest Index With Equal Value**](./solutions/2057-smallest-index-with-equal-value.js)                                                                                                 | ![Easy](https://img.shields.io/badge/-Easy-success)    |
+| 2058 | [**Find The Minimum And Maximum Number Of Nodes Between Critical Points**](./solutions/2058-find-the-minimum-and-maximum-number-of-nodes-between-critical-points.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2059 | [**Minimum Operations To Convert Number**](./solutions/2059-minimum-operations-to-convert-number.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2060 | [**Check If An Original String Exists Given Two Encoded Strings**](./solutions/2060-check-if-an-original-string-exists-given-two-encoded-strings.js) | ![Hard](https://img.shields.io/badge/-Hard-red)
+| 2061 | [**Number Of Spaces Cleaning Robot Cleaned**](./solutions/2061-number-of-spaces-cleaning-robot-cleaned.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2062 | [**Count Vowel Substrings Of A String**](./solutions/2062-count-vowel-substrings-of-a-string.js) | ![Easy](https://img.shields.io/badge/-Easy-success)
+| 2063 | [**Vowels Of All Substrings**](./solutions/2063-vowels-of-all-substrings.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2064 | [**Minimized Maximum Of Products Distributed To Any Store**](./solutions/2064-minimized-maximum-of-products-distributed-to-any-store.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2065 | [**Maximum Path Quality Of A Graph**](./solutions/2065-maximum-path-quality-of-a-graph.js) | ![Hard](https://img.shields.io/badge/-Hard-red)
+| 2066 | [**Account Balance**](./solutions/2066-account-balance.sql) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2067 | [**Number Of Equal Count Substrings**](./solutions/2067-number-of-equal-count-substrings.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2068 | [**Check Whether Two Strings Are Almost Equivalent**](./solutions/2068-check-whether-two-strings-are-almost-equivalent.js) | ![Easy](https://img.shields.io/badge/-Easy-success)
 | 2069 | [**Walking Robot Simulation II**](./solutions/2069-walking-robot-simulation-ii.js)                                                                                                         | ![Medium](https://img.shields.io/badge/-Medium-yellow) |
+| 2070 | [**Most Beautiful Item For Each Query**](./solutions/2070-most-beautiful-item-for-each-query.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2071 | [**Maximum Number Of Tasks You Can Assign**](./solutions/2071-maximum-number-of-tasks-you-can-assign.js) | ![Hard](https://img.shields.io/badge/-Hard-red)
+| 2072 | [**The Winner University**](./solutions/2072-the-winner-university.sql) | ![Easy](https://img.shields.io/badge/-Easy-success)
+| 2073 | [**Time Needed To Buy Tickets**](./solutions/2073-time-needed-to-buy-tickets.js) | ![Easy](https://img.shields.io/badge/-Easy-success)
+| 2074 | [**Reverse Nodes In Even Length Groups**](./solutions/2074-reverse-nodes-in-even-length-groups.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
 | 2075 | [**Decode the Slanted Ciphertext**](./solutions/2075-decode-the-slanted-ciphertext.js)                                                                                                     | ![Medium](https://img.shields.io/badge/-Medium-yellow) |
-| 2078 | [**Two Furthest Houses With Different Colors**](./solutions/2078-two-furthest-houses-with-different-colors.js)                                                                             | ![Easy](https://img.shields.io/badge/-Easy-success)    |
+| 2076 | [**Process Restricted Friend Requests**](./solutions/2076-process-restricted-friend-requests.js) | ![Hard](https://img.shields.io/badge/-Hard-red)
+| 2077 | [**Paths In Maze That Lead To Same Room**](./solutions/2077-paths-in-maze-that-lead-to-same-room.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2078 | [**Two Furthest Houses With Different Colors**](./solutions/2078-two-furthest-houses-with-different-colors.js) | ![Easy](https://img.shields.io/badge/-Easy-success)    |
+| 2079 | [**Watering Plants**](./solutions/2079-watering-plants.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2080 | [**Range Frequency Queries**](./solutions/2080-range-frequency-queries.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2081 | [**Sum Of K Mirror Numbers**](./solutions/2081-sum-of-k-mirror-numbers.js) | ![Hard](https://img.shields.io/badge/-Hard-red)
 | 2402 | [**Meeting Rooms III**](./solutions/2402-meeting-rooms-iii.js)                                                                                                                             | ![Hard](https://img.shields.io/badge/-Hard-red)        |
 | 2452 | [**Words Within Two Edits of Dictionary**](./solutions/2452-words-within-two-edits-of-dictionary.js)                                                                                       | ![Medium](https://img.shields.io/badge/-Medium-yellow) |
 | 2463 | [**Minimum Total Distance Traveled**](./solutions/2463-minimum-total-distance-traveled.js)                                                                                                 | ![Hard](https://img.shields.io/badge/-Hard-red)        |
@@ -2102,6 +2123,7 @@
 | 2976 | [**Minimum Cost to Convert String I**](./solutions/2976-minimum-cost-to-convert-string-i.js)                                                                                               | ![Medium](https://img.shields.io/badge/-Medium-yellow) |
 | 2977 | [**Minimum Cost to Convert String II**](./solutions/2977-minimum-cost-to-convert-string-ii.js)                                                                                             | ![Hard](https://img.shields.io/badge/-Hard-red)        |
 | 3010 | [**Divide an Array Into Subarrays With Minimum Cost I**](./solutions/3010-divide-an-array-into-subarrays-with-minimum-cost-i.js)                                                           | ![Easy](https://img.shields.io/badge/-Easy-success)    |
+| 3043 | [**Find the Length of the Longest Common Prefix**](./solutions/3043-find-the-length-of-the-longest-common-prefix.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
 | 3047 | [**Find the Largest Area of Square Inside Two Rectangles**](./solutions/3047-find-the-largest-area-of-square-inside-two-rectangles.js)                                                     | ![Medium](https://img.shields.io/badge/-Medium-yellow) |
 | 3070 | [**Count Submatrices with Top-Left Element and Sum Less Than k**](./solutions/3070-count-submatrices-with-top-left-element-and-sum-less-than-k.js)                                         | ![Medium](https://img.shields.io/badge/-Medium-yellow) |
 | 3074 | [**Apple Redistribution into Boxes**](./solutions/3074-apple-redistribution-into-boxes.js)                                                                                                 | ![Easy](https://img.shields.io/badge/-Easy-success)    |
