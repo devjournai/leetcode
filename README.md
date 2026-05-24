@@ -2183,6 +2183,17 @@
 | 3761 | [**Minimum Absolute Distance Between Mirror Pairs**](./solutions/3761-minimum-absolute-distance-between-mirror-pairs.js)                                                                   | ![Medium](https://img.shields.io/badge/-Medium-yellow) |
 | 3783 | [**Mirror Distance of an Integer**](./solutions/3783-mirror-distance-of-an-integer.js)                                                                                                     | ![Easy](https://img.shields.io/badge/-Easy-success)    |
 
+| 1340 | [**Jump Game V**](./solutions/1340-jump-game-v.js) | ![Hard](https://img.shields.io/badge/-Hard-red)
+| 2095 | [**Delete The Middle Node Of A Linked List**](./solutions/2095-delete-the-middle-node-of-a-linked-list.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2094 | [**Finding 3 Digit Even Numbers**](./solutions/2094-finding-3-digit-even-numbers.js) | ![Easy](https://img.shields.io/badge/-Easy-success)
+| 2097 | [**Valid Arrangement Of Pairs**](./solutions/2097-valid-arrangement-of-pairs.js) | ![Hard](https://img.shields.io/badge/-Hard-red)
+| 2096 | [**Step By Step Directions From A Binary Tree Node To Another**](./solutions/2096-step-by-step-directions-from-a-binary-tree-node-to-another.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2099 | [**Find Subsequence Of Length K With The Largest Sum**](./solutions/2099-find-subsequence-of-length-k-with-the-largest-sum.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2098 | [**Subsequence Of Size K With The Largest Even Sum**](./solutions/2098-subsequence-of-size-k-with-the-largest-even-sum.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2101 | [**Detonate The Maximum Bombs**](./solutions/2101-detonate-the-maximum-bombs.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2100 | [**Find Good Days To Rob The Bank**](./solutions/2100-find-good-days-to-rob-the-bank.js) | ![Medium](https://img.shields.io/badge/-Medium-yellow)
+| 2103 | [**Rings And Rods**](./solutions/2103-rings-and-rods.js) | ![Easy](https://img.shields.io/badge/-Easy-success)
+| 2102 | [**Sequentially Ordinal Rank Tracker**](./solutions/2102-sequentially-ordinal-rank-tracker.js) | ![Hard](https://img.shields.io/badge/-Hard-red)
 <!-- AUTO-GENERATED-ROWS -->
 
 [MIT License](https://opensource.org/licenses/MIT)
