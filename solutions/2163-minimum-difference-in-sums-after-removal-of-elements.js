@@ -39,121 +39,6 @@
  * Time Complexity: O(N log n)
  * Space Complexity: O(N)
  */
-class PriorityQueue {
-  constructor(priorityComparator = (valA, valB) => valA - valB) {
-    this.heapInternalArray = [];
-    this.valueComparator = priorityComparator;
-  }
-
-  _parentIdx(childPosition) {
-    return Math.floor((childPosition - 1) / 2);
-  }
-  _leftChildIdx(parentPosition) {
-    return 2 * parentPosition + 1;
-  }
-  _rightChildIdx(parentPosition) {
-    return 2 * parentPosition + 2;
-  }
-
-  _hasParent(childPosition) {
-    return this._parentIdx(childPosition) >= 0;
-  }
-  _hasLeftChild(parentPosition) {
-    return this._leftChildIdx(parentPosition) < this.heapInternalArray.length;
-  }
-  _hasRightChild(parentPosition) {
-    return this._rightChildIdx(parentPosition) < this.heapInternalArray.length;
-  }
-
-  _getParent(childPosition) {
-    return this.heapInternalArray[this._parentIdx(childPosition)];
-  }
-  _getLeftChild(parentPosition) {
-    return this.heapInternalArray[this._leftChildIdx(parentPosition)];
-  }
-  _getRightChild(parentPosition) {
-    return this.heapInternalArray[this._rightChildIdx(parentPosition)];
-  }
-
-  _swapElements(indexAlpha, indexBeta) {
-    [this.heapInternalArray[indexAlpha], this.heapInternalArray[indexBeta]] = [
-      this.heapInternalArray[indexBeta],
-      this.heapInternalArray[indexAlpha],
-    ];
-  }
-
-  peekTop() {
-    if (this.heapInternalArray.length === 0) return null;
-    return this.heapInternalArray[0];
-  }
-
-  enqueueValue(itemToInsert) {
-    this.heapInternalArray.push(itemToInsert);
-    this._bubbleUpAddedElement();
-  }
-
-  dequeueValue() {
-    if (this.heapInternalArray.length === 0) return null;
-    if (this.heapInternalArray.length === 1)
-      return this.heapInternalArray.pop();
-
-    const topValue = this.heapInternalArray[0];
-    this.heapInternalArray[0] = this.heapInternalArray.pop();
-    this._bubbleDownReplacedElement();
-    return topValue;
-  }
-
-  _bubbleUpAddedElement() {
-    let currentItemIndex = this.heapInternalArray.length - 1;
-    while (
-      this._hasParent(currentItemIndex) &&
-      this.valueComparator(
-        this.heapInternalArray[currentItemIndex],
-        this._getParent(currentItemIndex),
-      ) < 0
-    ) {
-      this._swapElements(currentItemIndex, this._parentIdx(currentItemIndex));
-      currentItemIndex = this._parentIdx(currentItemIndex);
-    }
-  }
-
-  _bubbleDownReplacedElement() {
-    let currentItemIndex = 0;
-    while (this._hasLeftChild(currentItemIndex)) {
-      let preferredChildIndex = this._leftChildIdx(currentItemIndex);
-      if (
-        this._hasRightChild(currentItemIndex) &&
-        this.valueComparator(
-          this._getRightChild(currentItemIndex),
-          this._getLeftChild(currentItemIndex),
-        ) < 0
-      ) {
-        preferredChildIndex = this._rightChildIdx(currentItemIndex);
-      }
-
-      if (
-        this.valueComparator(
-          this.heapInternalArray[currentItemIndex],
-          this.heapInternalArray[preferredChildIndex],
-        ) < 0
-      ) {
-        break;
-      } else {
-        this._swapElements(currentItemIndex, preferredChildIndex);
-      }
-      currentItemIndex = preferredChildIndex;
-    }
-  }
-
-  currentSize() {
-    return this.heapInternalArray.length;
-  }
-
-  clearHeap() {
-    this.heapInternalArray = [];
-  }
-}
-
 var minimumDifference = function (nums) {
   const groupSize = nums.length / 3;
   const firstPartSums = new Array(nums.length).fill(0);
@@ -163,15 +48,15 @@ var minimumDifference = function (nums) {
   let sumForFirstPart = 0;
 
   for (let loopIndexA = 0; loopIndexA < groupSize; loopIndexA++) {
-    firstHeap.enqueueValue(nums[loopIndexA]);
+    firstHeap.enqueue(nums[loopIndexA]);
     sumForFirstPart += nums[loopIndexA];
   }
   firstPartSums[groupSize - 1] = sumForFirstPart;
 
   for (let loopIndexB = groupSize; loopIndexB < 2 * groupSize; loopIndexB++) {
-    firstHeap.enqueueValue(nums[loopIndexB]);
+    firstHeap.enqueue(nums[loopIndexB]);
     sumForFirstPart += nums[loopIndexB];
-    const valueRemovedFromFirstHeap = firstHeap.dequeueValue();
+    const valueRemovedFromFirstHeap = firstHeap.dequeue();
     sumForFirstPart -= valueRemovedFromFirstHeap;
     firstPartSums[loopIndexB] = sumForFirstPart;
   }
@@ -184,7 +69,7 @@ var minimumDifference = function (nums) {
     loopIndexC < 3 * groupSize;
     loopIndexC++
   ) {
-    secondHeap.enqueueValue(nums[loopIndexC]);
+    secondHeap.enqueue(nums[loopIndexC]);
     sumForSecondPart += nums[loopIndexC];
   }
   secondPartSums[2 * groupSize] = sumForSecondPart;
@@ -194,9 +79,9 @@ var minimumDifference = function (nums) {
     loopIndexD >= groupSize;
     loopIndexD--
   ) {
-    secondHeap.enqueueValue(nums[loopIndexD]);
+    secondHeap.enqueue(nums[loopIndexD]);
     sumForSecondPart += nums[loopIndexD];
-    const valueRemovedFromSecondHeap = secondHeap.dequeueValue();
+    const valueRemovedFromSecondHeap = secondHeap.dequeue();
     sumForSecondPart -= valueRemovedFromSecondHeap;
     secondPartSums[loopIndexD] = sumForSecondPart;
   }
