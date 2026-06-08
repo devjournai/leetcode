@@ -67,7 +67,7 @@
  * Time Complexity: O(E log V)
  * Space Complexity: O(V + E)
  */
-class PriorityQueue {
+class CustomPriorityQueue {
   constructor(
     comparatorFunction = (firstElement, secondElement) =>
       firstElement - secondElement,
@@ -196,7 +196,7 @@ var minimumWeight = function (
 
   const distancesFromSourceOne = new Array(nodeCount).fill(Infinity);
   distancesFromSourceOne[sourceNodeOne] = 0;
-  const pqFromSourceOne = new PriorityQueue((a, b) => a[0] - b[0]);
+  const pqFromSourceOne = new CustomPriorityQueue((a, b) => a[0] - b[0]);
   pqFromSourceOne.enqueueItem([0, sourceNodeOne]);
 
   while (!pqFromSourceOne.isQueueEmpty()) {
@@ -221,7 +221,7 @@ var minimumWeight = function (
 
   const distancesFromSourceTwo = new Array(nodeCount).fill(Infinity);
   distancesFromSourceTwo[sourceNodeTwo] = 0;
-  const pqFromSourceTwo = new PriorityQueue((a, b) => a[0] - b[0]);
+  const pqFromSourceTwo = new CustomPriorityQueue((a, b) => a[0] - b[0]);
   pqFromSourceTwo.enqueueItem([0, sourceNodeTwo]);
 
   let processLoopTwo = true;
@@ -254,7 +254,8 @@ var minimumWeight = function (
 
   const distancesToDestination = new Array(nodeCount).fill(Infinity);
   distancesToDestination[destinationNode] = 0;
-  const pqToDestination = new PriorityQueue((a, b) => a[0] - b[0]);
+  // Renamed to CustomPriorityQueue
+  const pqToDestination = new CustomPriorityQueue((a, b) => a[0] - b[0]);
   pqToDestination.enqueueItem([0, destinationNode]);
 
   let iterationFlag = true;
