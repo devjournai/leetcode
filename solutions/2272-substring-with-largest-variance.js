@@ -29,6 +29,11 @@
  * Space Complexity: O(C)
  */
 var largestVariance = function (s) {
+  const freq = new Map();
+  for (const char of s) {
+    freq.set(char, (freq.get(char) || 0) + 1);
+  }
+
   const uniqueCharacterSet = new Set(s);
   let overallMaximumVariance = 0;
 
@@ -40,8 +45,9 @@ var largestVariance = function (s) {
 
       let currentMajorCountValue = 0;
       let currentMinorCountValue = 0;
-      let potentialMaximumVariance = 0;
       let minorCharFoundInSegment = false;
+
+      let remainingMinor = freq.get(minorChar);
 
       for (const charCurrentIteration of s) {
         if (charCurrentIteration === majorChar) {
@@ -49,26 +55,26 @@ var largestVariance = function (s) {
         }
         if (charCurrentIteration === minorChar) {
           currentMinorCountValue++;
+          remainingMinor--;
           minorCharFoundInSegment = true;
         }
 
         if (minorCharFoundInSegment) {
-          potentialMaximumVariance = Math.max(
-            potentialMaximumVariance,
+          overallMaximumVariance = Math.max(
+            overallMaximumVariance,
             currentMajorCountValue - currentMinorCountValue,
           );
         }
 
-        if (currentMajorCountValue < currentMinorCountValue) {
+        if (
+          currentMajorCountValue < currentMinorCountValue &&
+          remainingMinor > 0
+        ) {
           currentMajorCountValue = 0;
           currentMinorCountValue = 0;
           minorCharFoundInSegment = false;
         }
       }
-      overallMaximumVariance = Math.max(
-        overallMaximumVariance,
-        potentialMaximumVariance,
-      );
     }
   }
 
