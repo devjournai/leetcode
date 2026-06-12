@@ -51,59 +51,48 @@
  * Space Complexity: O(M * N)
  */
 var minimumObstacles = function (grid) {
-  const gridHeight = grid.length;
-  const gridWidth = grid[0].length;
+  const m = grid.length;
+  const n = grid[0].length;
 
-  const minimumObstaclesToCell = new Array(gridHeight)
-    .fill(null)
-    .map(() => new Array(gridWidth).fill(Number.MAX_SAFE_INTEGER));
-  const coordinateDeque = [];
+  const dist = new Int32Array(m * n).fill(2147483647);
 
-  const rowOffsets = [0, 0, 1, -1];
-  const colOffsets = [1, -1, 0, 0];
+  const deque = new Int32Array(m * n * 2);
+  let head = m * n;
+  let tail = m * n;
 
-  minimumObstaclesToCell[0][0] = grid[0][0];
-  coordinateDeque.unshift([0, 0]);
+  dist[0] = grid[0][0];
+  deque[tail++] = 0;
 
-  const targetRow = gridHeight - 1;
-  const targetCol = gridWidth - 1;
+  const dr = [0, 0, 1, -1];
+  const dc = [1, -1, 0, 0];
 
-  while (coordinateDeque.length > 0) {
-    const currentPosition = coordinateDeque.shift();
-    const currentRowCoord = currentPosition[0];
-    const currentColCoord = currentPosition[1];
-    const currentObstacleCost =
-      minimumObstaclesToCell[currentRowCoord][currentColCoord];
+  while (head < tail) {
+    const curr = deque[head++];
+    const r = (curr / n) | 0;
+    const c = curr % n;
 
-    if (currentRowCoord === targetRow && currentColCoord === targetCol) {
-      return currentObstacleCost;
-    }
+    if (r === m - 1 && c === n - 1) return dist[curr];
 
-    for (let directionIndex = 0; directionIndex < 4; directionIndex++) {
-      const nextRowCoord = currentRowCoord + rowOffsets[directionIndex];
-      const nextColCoord = currentColCoord + colOffsets[directionIndex];
+    for (let i = 0; i < 4; i++) {
+      const nr = r + dr[i];
+      const nc = c + dc[i];
 
-      const isValidRow = nextRowCoord >= 0 && nextRowCoord < gridHeight;
-      const isValidCol = nextColCoord >= 0 && nextColCoord < gridWidth;
+      if (nr >= 0 && nr < m && nc >= 0 && nc < n) {
+        const weight = grid[nr][nc];
+        const nextIdx = nr * n + nc;
 
-      if (isValidRow && isValidCol) {
-        const obstacleValue = grid[nextRowCoord][nextColCoord];
-        const potentialNewCost = currentObstacleCost + obstacleValue;
+        if (dist[curr] + weight < dist[nextIdx]) {
+          dist[nextIdx] = dist[curr] + weight;
 
-        if (
-          potentialNewCost < minimumObstaclesToCell[nextRowCoord][nextColCoord]
-        ) {
-          minimumObstaclesToCell[nextRowCoord][nextColCoord] = potentialNewCost;
-          if (obstacleValue === 0) {
-            coordinateDeque.unshift([nextRowCoord, nextColCoord]);
+          if (weight === 0) {
+            deque[--head] = nextIdx;
           } else {
-            coordinateDeque.push([nextRowCoord, nextColCoord]);
+            deque[tail++] = nextIdx;
           }
         }
       }
     }
   }
 
-  // Should not be reached if a path always exists, but good practice for unreachable code
-  return minimumObstaclesToCell[targetRow][targetCol];
+  return dist[m * n - 1];
 };
