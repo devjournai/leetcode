@@ -47,121 +47,107 @@
  *    Loop terminates.
  *    `relevantIndexHeap.isHeapEmpty() ? -1 : relevantIndexHeap.peekMinimum()` -> `relevantIndexHeap.peekMinimum()` -> `1`. Returns 1.
  * Time Complexity: O(logN)
- * Space Complexity: O(N)
+ * Space Complexity: O(M)
  */
-class MinPriorityQueue {
+class CustomMinHeap {
   constructor() {
-    this.heapElements = [];
+    this.heap = [];
   }
 
-  insertElement(valueToInsert) {
-    this.heapElements.push(valueToInsert);
-    this.bubbleUpElement();
+  insert(val) {
+    this.heap.push(val);
+    this.bubbleUp();
   }
 
-  extractMinimum() {
-    if (this.isHeapEmpty()) return undefined;
-    if (this.heapElements.length === 1) return this.heapElements.pop();
-    const minimumValue = this.heapElements[0];
-    this.heapElements[0] = this.heapElements.pop();
-    this.sinkDownElement();
-    return minimumValue;
+  extractMin() {
+    if (this.heap.length === 0) return undefined;
+    if (this.heap.length === 1) return this.heap.pop();
+
+    const min = this.heap[0];
+    this.heap[0] = this.heap.pop();
+    this.sinkDown();
+    return min;
   }
 
-  peekMinimum() {
-    return this.isHeapEmpty() ? undefined : this.heapElements[0];
+  peek() {
+    return this.heap.length === 0 ? undefined : this.heap[0];
   }
 
-  isHeapEmpty() {
-    return this.heapElements.length === 0;
+  isEmpty() {
+    return this.heap.length === 0;
   }
 
-  getHeapSize() {
-    return this.heapElements.length;
-  }
+  bubbleUp() {
+    let idx = this.heap.length - 1;
+    const val = this.heap[idx];
 
-  bubbleUpElement() {
-    let currentElementIndex = this.heapElements.length - 1;
-    const currentElementValue = this.heapElements[currentElementIndex];
-    while (currentElementIndex > 0) {
-      let parentElementIndex = Math.floor((currentElementIndex - 1) / 2);
-      let parentElementValue = this.heapElements[parentElementIndex];
-      if (currentElementValue >= parentElementValue) break;
-      this.heapElements[parentElementIndex] = currentElementValue;
-      this.heapElements[currentElementIndex] = parentElementValue;
-      currentElementIndex = parentElementIndex;
+    while (idx > 0) {
+      const pIdx = (idx - 1) >> 1;
+      const pVal = this.heap[pIdx];
+
+      if (val >= pVal) break;
+      this.heap[idx] = pVal;
+      idx = pIdx;
     }
+    this.heap[idx] = val;
   }
 
-  sinkDownElement() {
-    let currentElementPosition = 0;
-    const elementToPercolate = this.heapElements[0];
-    const lastValidIndex = this.heapElements.length - 1;
+  sinkDown() {
+    let idx = 0;
+    const len = this.heap.length;
+    const val = this.heap[0];
 
     while (true) {
-      let leftChildPosition = 2 * currentElementPosition + 1;
-      let rightChildPosition = 2 * currentElementPosition + 2;
-      let indexToSwap = null;
+      let left = (idx << 1) + 1;
+      let right = left + 1;
+      let smallest = idx;
 
-      if (leftChildPosition <= lastValidIndex) {
-        if (this.heapElements[leftChildPosition] < elementToPercolate) {
-          indexToSwap = leftChildPosition;
+      if (left < len) {
+        smallest = left;
+        if (right < len && this.heap[right] < this.heap[left]) {
+          smallest = right;
         }
-      }
-
-      if (rightChildPosition <= lastValidIndex) {
-        if (
-          (indexToSwap === null &&
-            this.heapElements[rightChildPosition] < elementToPercolate) ||
-          (indexToSwap !== null &&
-            this.heapElements[rightChildPosition] <
-              this.heapElements[leftChildPosition])
-        ) {
-          indexToSwap = rightChildPosition;
+        if (this.heap[smallest] < val) {
+          this.heap[idx] = this.heap[smallest];
+          idx = smallest;
+        } else {
+          break;
         }
+      } else {
+        break;
       }
-
-      if (indexToSwap === null) break;
-
-      this.heapElements[currentElementPosition] =
-        this.heapElements[indexToSwap];
-      this.heapElements[indexToSwap] = elementToPercolate;
-      currentElementPosition = indexToSwap;
     }
+    this.heap[idx] = val;
   }
 }
 
-var NumberContainers = function () {
-  this.indexToNumberRecord = new Map();
-  this.numberToSmallestIndices = new Map();
-};
-
-NumberContainers.prototype.change = function (index, number) {
-  this.indexToNumberRecord.set(index, number);
-
-  let currentNumberHeap;
-  if (this.numberToSmallestIndices.has(number)) {
-    currentNumberHeap = this.numberToSmallestIndices.get(number);
-  } else {
-    currentNumberHeap = new MinPriorityQueue();
-    this.numberToSmallestIndices.set(number, currentNumberHeap);
+class NumberContainers {
+  constructor() {
+    this.indexToNumber = new Map();
+    this.numberToIndices = new Map();
   }
-  currentNumberHeap.insertElement(index);
-};
 
-NumberContainers.prototype.find = function (number) {
-  const relevantIndexHeap = this.numberToSmallestIndices.get(number);
+  change(index, number) {
+    this.indexToNumber.set(index, number);
 
-  if (!relevantIndexHeap) {
+    if (!this.numberToIndices.has(number)) {
+      this.numberToIndices.set(number, new CustomMinHeap());
+    }
+    this.numberToIndices.get(number).insert(index);
+  }
+
+  find(number) {
+    const heap = this.numberToIndices.get(number);
+    if (!heap) return -1;
+
+    while (!heap.isEmpty()) {
+      const minIndex = heap.peek();
+      if (this.indexToNumber.get(minIndex) === number) {
+        return minIndex;
+      }
+      heap.extractMin();
+    }
+
     return -1;
   }
-
-  while (
-    !relevantIndexHeap.isHeapEmpty() &&
-    this.indexToNumberRecord.get(relevantIndexHeap.peekMinimum()) !== number
-  ) {
-    relevantIndexHeap.extractMinimum();
-  }
-
-  return relevantIndexHeap.isHeapEmpty() ? -1 : relevantIndexHeap.peekMinimum();
-};
+}
