@@ -15,8 +15,8 @@
  *         - `innerIndex = 0`: `digitCharacter = "2"`, `convertedDigit = Number("2")` which is `2`. `resultantArray.push(2)`. `resultantArray` is now `[1, 3, 2]`.
  *         - `innerIndex = 1`: `digitCharacter = "5"`, `convertedDigit = Number("5")` which is `5`. `resultantArray.push(5)`. `resultantArray` is now `[1, 3, 2, 5]`.
  *   4. All numbers processed. Return `resultantArray` which is `[1, 3, 2, 5]`.
- * Time Complexity: O(S), where S is the total number of digits across all numbers in the input array. If N is the number of elements and D is the maximum number of digits in any element, this is O(N * D). Each number conversion to string takes O(D) and iterating its digits takes O(D).
- * Space Complexity: O(S), where S is the total number of digits across all numbers in the input array, for storing the `resultantArray`. O(D) for the temporary `stringRepresentation` per number.
+ * Time Complexity: O(S)
+ * Space Complexity: O(S)
  */
 var separateDigits = function (nums) {
   const resultantArray = [];
