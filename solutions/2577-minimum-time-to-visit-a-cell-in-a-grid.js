@@ -233,13 +233,7 @@ var minimumTime = function (grid) {
       let nextTime = time + 1;
 
       if (nextTime < grid[nr][nc]) {
-        const wait = grid[nr][nc] - nextTime;
-
-        if (wait % 2 === 0) {
-          nextTime = grid[nr][nc] + 1;
-        } else {
-          nextTime = grid[nr][nc];
-        }
+        nextTime = grid[nr][nc] + ((grid[nr][nc] - nextTime) % 2);
       }
 
       if (nextTime < dist[nr][nc]) {
