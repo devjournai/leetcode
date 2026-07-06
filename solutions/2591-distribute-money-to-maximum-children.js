@@ -114,23 +114,22 @@
  */
 
 var distMoney = function (money, children) {
-  if (money < children) {
+  money -= children;
+
+  if (money < 0) {
     return -1;
   }
 
-  let remaining = money - children;
+  const count7 = Math.floor(money / 7);
+  const remaining = money % 7;
 
-  let count = Math.min(children, Math.floor(remaining / 7));
-
-  remaining -= count * 7;
-
-  if (count === children && remaining > 0) {
-    count--;
+  if (count7 === children && remaining === 0) {
+    return children;
   }
 
-  if (count === children - 1 && remaining === 3) {
-    count--;
+  if (count7 === children - 1 && remaining === 3) {
+    return children - 2;
   }
 
-  return count;
+  return Math.min(children - 1, count7);
 };
