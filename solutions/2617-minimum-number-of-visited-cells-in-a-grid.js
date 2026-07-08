@@ -101,99 +101,68 @@ var minimumVisitedCells = function (grid) {
   const m = grid.length;
   const n = grid[0].length;
 
-  const rowSets = Array.from({ length: m }, () => []);
-  const colSets = Array.from({ length: n }, () => []);
+  if (m === 1 && n === 1) return 1;
 
-  for (let i = 0; i < m; i++) {
-    for (let j = 0; j < n; j++) {
-      rowSets[i].push(j);
-      colSets[j].push(i);
+  const rowNext = Array.from({ length: m }, () => {
+    const arr = new Int32Array(n + 1);
+    for (let i = 0; i <= n; i++) arr[i] = i;
+    return arr;
+  });
+
+  const colNext = Array.from({ length: n }, () => {
+    const arr = new Int32Array(m + 1);
+    for (let i = 0; i <= m; i++) arr[i] = i;
+    return arr;
+  });
+
+  const find = (parent, i) => {
+    let root = i;
+    while (root !== parent[root]) {
+      root = parent[root];
     }
-  }
-
-  const removeValue = (arr, value) => {
-    let left = 0;
-    let right = arr.length;
-
-    while (left < right) {
-      const mid = (left + right) >> 1;
-
-      if (arr[mid] < value) {
-        left = mid + 1;
-      } else {
-        right = mid;
-      }
+    let curr = i;
+    while (curr !== root) {
+      let next = parent[curr];
+      parent[curr] = root;
+      curr = next;
     }
-
-    if (left < arr.length && arr[left] === value) {
-      arr.splice(left, 1);
-    }
+    return root;
   };
 
-  const lowerBound = (arr, target) => {
-    let left = 0;
-    let right = arr.length;
-
-    while (left < right) {
-      const mid = (left + right) >> 1;
-
-      if (arr[mid] < target) {
-        left = mid + 1;
-      } else {
-        right = mid;
-      }
-    }
-
-    return left;
-  };
-
-  const distance = Array.from({ length: m }, () => Array(n).fill(-1));
-
-  const queue = [[0, 0]];
+  const queue = [[0, 0, 1]];
   let head = 0;
 
-  distance[0][0] = 1;
-
-  removeValue(rowSets[0], 0);
-  removeValue(colSets[0], 0);
+  rowNext[0][0] = 1;
+  colNext[0][0] = 1;
 
   while (head < queue.length) {
-    const [row, col] = queue[head++];
+    const [r, c, d] = queue[head++];
 
-    if (row === m - 1 && col === n - 1) {
-      return distance[row][col];
+    const maxCol = Math.min(n - 1, c + grid[r][c]);
+    let nextC = find(rowNext[r], c + 1);
+
+    while (nextC <= maxCol) {
+      if (r === m - 1 && nextC === n - 1) return d + 1;
+
+      queue.push([r, nextC, d + 1]);
+
+      rowNext[r][nextC] = nextC + 1;
+      colNext[nextC][r] = r + 1;
+
+      nextC = find(rowNext[r], nextC + 1);
     }
 
-    const rightLimit = Math.min(n - 1, col + grid[row][col]);
+    const maxRow = Math.min(m - 1, r + grid[r][c]);
+    let nextR = find(colNext[c], r + 1);
 
-    let index = lowerBound(rowSets[row], col + 1);
+    while (nextR <= maxRow) {
+      if (nextR === m - 1 && c === n - 1) return d + 1;
 
-    while (index < rowSets[row].length && rowSets[row][index] <= rightLimit) {
-      const nextCol = rowSets[row][index];
+      queue.push([nextR, c, d + 1]);
+      colNext[c][nextR] = nextR + 1;
+      rowNext[nextR][c] = c + 1;
 
-      distance[row][nextCol] = distance[row][col] + 1;
-
-      queue.push([row, nextCol]);
-
-      removeValue(colSets[nextCol], row);
-
-      rowSets[row].splice(index, 1);
-    }
-
-    const downLimit = Math.min(m - 1, row + grid[row][col]);
-
-    index = lowerBound(colSets[col], row + 1);
-
-    while (index < colSets[col].length && colSets[col][index] <= downLimit) {
-      const nextRow = colSets[col][index];
-
-      distance[nextRow][col] = distance[row][col] + 1;
-
-      queue.push([nextRow, col]);
-
-      removeValue(rowSets[nextRow], col);
-
-      colSets[col].splice(index, 1);
+      nextR = find(colNext[c], nextR + 1);
     }
   }
 
