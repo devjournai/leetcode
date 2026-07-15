@@ -80,20 +80,20 @@
  */
 var modifiedGraphEdges = function (n, edges, source, destination, target) {
   const INF = 2000000000;
+  const graph = Array.from({ length: n }, () => []);
+
+  for (let i = 0; i < edges.length; i++) {
+    const [u, v] = edges[i];
+    graph[u].push([v, i]);
+    graph[v].push([u, i]);
+  }
+
+  const dist = new Array(n);
+  const visited = new Array(n);
 
   const dijkstra = () => {
-    const graph = Array.from({ length: n }, () => []);
-
-    for (let i = 0; i < edges.length; i++) {
-      const [u, v, w] = edges[i];
-
-      graph[u].push([v, w]);
-      graph[v].push([u, w]);
-    }
-
-    const dist = new Array(n).fill(Infinity);
-    const visited = new Array(n).fill(false);
-
+    dist.fill(Infinity);
+    visited.fill(false);
     dist[source] = 0;
 
     for (let i = 0; i < n; i++) {
@@ -105,13 +105,14 @@ var modifiedGraphEdges = function (n, edges, source, destination, target) {
         }
       }
 
-      if (u === -1) {
+      if (u === -1 || dist[u] === Infinity) {
         break;
       }
 
       visited[u] = true;
 
-      for (const [v, w] of graph[u]) {
+      for (const [v, edgeIndex] of graph[u]) {
+        const w = edges[edgeIndex][2];
         if (dist[u] + w < dist[v]) {
           dist[v] = dist[u] + w;
         }
@@ -121,9 +122,11 @@ var modifiedGraphEdges = function (n, edges, source, destination, target) {
     return dist[destination];
   };
 
-  for (const edge of edges) {
-    if (edge[2] === -1) {
-      edge[2] = INF;
+  const modifiable = [];
+  for (let i = 0; i < edges.length; i++) {
+    if (edges[i][2] === -1) {
+      edges[i][2] = INF;
+      modifiable.push(i);
     }
   }
 
@@ -135,33 +138,21 @@ var modifiedGraphEdges = function (n, edges, source, destination, target) {
 
   let finished = distance === target;
 
-  for (const edge of edges) {
-    if (edge[2] !== INF) {
-      continue;
-    }
-
+  for (const edgeIndex of modifiable) {
     if (finished) {
-      edge[2] = INF;
-
       continue;
     }
 
-    edge[2] = 1;
-
+    edges[edgeIndex][2] = 1;
     distance = dijkstra();
 
     if (distance <= target) {
-      edge[2] += target - distance;
-
+      edges[edgeIndex][2] += target - distance;
       finished = true;
     }
   }
 
   if (!finished) {
-    return [];
-  }
-
-  if (dijkstra() !== target) {
     return [];
   }
 

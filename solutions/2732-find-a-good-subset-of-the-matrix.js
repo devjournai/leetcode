@@ -43,36 +43,39 @@
  *     Sort resultIndices => [0, 1].
  *     Return [0, 1].
  *
- * Time Complexity: O(m * n + (min(m, 2^n))^2) where m is the number of rows and n is the number of columns. Since n <= 5, 2^n <= 32. The term (min(m, 2^n))^2 is bounded by 32^2 = 1024, which is a small constant. Thus, the dominant factor is O(m * n).
- * Space Complexity: O(min(m, 2^n)) for storing unique row masks in the map. Since n <= 5, this is bounded by O(2^n) which is O(32), effectively constant space relative to m.
-*/
-var goodSubsetofBinaryMatrix = function(grid) {
-    const numRows = grid.length;
-    const numCols = grid[0].length;
-    const rowPatternToOriginalIndex = new Map();
+ * Time Complexity: O(m * n + (min(m, 2^n))^2)
+ * Space Complexity: O(min(m, 2^n))
+ */
+var goodSubsetofBinaryMatrix = function (grid) {
+  const numRows = grid.length;
+  const numCols = grid[0].length;
+  const rowPatternToOriginalIndex = new Map();
 
-    for (let rowIterator = 0; rowIterator < numRows; rowIterator++) {
-        let currentMask = 0;
-        for (let colIterator = 0; colIterator < numCols; colIterator++) {
-            if (grid[rowIterator][colIterator] === 1) {
-                currentMask |= (1 << colIterator);
-            }
-        }
-        if (currentMask === 0) {
-            return [rowIterator];
-        }
-        rowPatternToOriginalIndex.set(currentMask, rowIterator);
+  for (let rowIterator = 0; rowIterator < numRows; rowIterator++) {
+    let currentMask = 0;
+    for (let colIterator = 0; colIterator < numCols; colIterator++) {
+      if (grid[rowIterator][colIterator] === 1) {
+        currentMask |= 1 << colIterator;
+      }
     }
-
-    for (const [firstMaskValue, firstMaskIndex] of rowPatternToOriginalIndex) {
-        for (const [secondMaskValue, secondMaskIndex] of rowPatternToOriginalIndex) {
-            if ((firstMaskValue & secondMaskValue) === 0) {
-                const resultIndices = [firstMaskIndex, secondMaskIndex];
-                resultIndices.sort((a, b) => a - b);
-                return resultIndices;
-            }
-        }
+    if (currentMask === 0) {
+      return [rowIterator];
     }
+    rowPatternToOriginalIndex.set(currentMask, rowIterator);
+  }
 
-    return [];
+  for (const [firstMaskValue, firstMaskIndex] of rowPatternToOriginalIndex) {
+    for (const [
+      secondMaskValue,
+      secondMaskIndex,
+    ] of rowPatternToOriginalIndex) {
+      if ((firstMaskValue & secondMaskValue) === 0) {
+        const resultIndices = [firstMaskIndex, secondMaskIndex];
+        resultIndices.sort((a, b) => a - b);
+        return resultIndices;
+      }
+    }
+  }
+
+  return [];
 };

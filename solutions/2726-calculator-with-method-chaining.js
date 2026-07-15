@@ -19,68 +19,42 @@
  * 4. `calc1.getResult()`:
  *    - Returns `this.currentComputationValue`, which is 12.
  * Output: 12
- * Time Complexity: O(1) - Each method performs a constant number of operations.
- * Space Complexity: O(1) - The class instance stores a single number.
-*/
+ * Time Complexity: O(1)
+ * Space Complexity: O(1)
+ */
 class Calculator {
-  /**
-   * @param {number} initialOperand
-   */
   constructor(initialOperand) {
     this.currentComputationValue = initialOperand;
   }
 
-  /**
-   * @param {number} value
-   * @return {Calculator}
-   */
   add(value) {
     this.currentComputationValue += value;
     return this;
   }
 
-  /**
-   * @param {number} value
-   * @return {Calculator}
-   */
   subtract(value) {
     this.currentComputationValue -= value;
     return this;
   }
 
-  /**
-   * @param {number} value
-   * @return {Calculator}
-   */
   multiply(value) {
     this.currentComputationValue *= value;
     return this;
   }
 
-  /**
-   * @param {number} value
-   * @return {Calculator}
-   */
   divide(value) {
     if (value === 0) {
-      throw new Error('Division by zero is not allowed');
+      throw new Error("Division by zero is not allowed");
     }
     this.currentComputationValue /= value;
     return this;
   }
 
-  /**
-   * @param {number} value
-   * @return {Calculator}
-   */
   power(value) {
     this.currentComputationValue **= value;
     return this;
   }
 
-  /**
-   * @return {number}
-   */
   getResult() {
     return this.currentComputationValue;
   }

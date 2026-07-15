@@ -43,10 +43,10 @@
  *
  *    - Return `houseTotal` (which is 3).
  *
- * Time Complexity: O(K + N), where K is the given maximum bound and N is the actual number of houses. Since N <= K, this simplifies to O(K). The first two loops run K times each. The final counting loop runs N times.
- * Space Complexity: O(1). Only a few integer variables are used.
-*/
-var houseCount = function(street, k) {
+ * Time Complexity: O(K + N)
+ * Space Complexity: O(1)
+ */
+var houseCount = function (street, k) {
   street.closeDoor();
 
   let doorCloser = 0;
