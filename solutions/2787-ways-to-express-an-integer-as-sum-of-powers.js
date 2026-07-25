@@ -99,8 +99,6 @@ var numberOfWays = function (targetN, powerX) {
   const moduloConstant = 1e9 + 7;
   const memoCache = new Map();
 
-  const maxBaseForPower = Math.floor(Math.pow(targetN, 1 / powerX));
-
   function calculateCombinations(remainingSumTarget, currentIntegerBase) {
     const cacheKey = `${remainingSumTarget}-${currentIntegerBase}`;
 
@@ -112,7 +110,9 @@ var numberOfWays = function (targetN, powerX) {
       return 1;
     }
 
-    if (currentIntegerBase > maxBaseForPower) {
+    const computedPowerValue = Math.pow(currentIntegerBase, powerX);
+
+    if (computedPowerValue > remainingSumTarget) {
       return 0;
     }
 
@@ -123,16 +123,13 @@ var numberOfWays = function (targetN, powerX) {
         calculateCombinations(remainingSumTarget, currentIntegerBase + 1)) %
       moduloConstant;
 
-    const computedPowerValue = Math.pow(currentIntegerBase, powerX);
-    if (computedPowerValue <= remainingSumTarget) {
-      numWaysFound =
-        (numWaysFound +
-          calculateCombinations(
-            remainingSumTarget - computedPowerValue,
-            currentIntegerBase + 1,
-          )) %
-        moduloConstant;
-    }
+    numWaysFound =
+      (numWaysFound +
+        calculateCombinations(
+          remainingSumTarget - computedPowerValue,
+          currentIntegerBase + 1
+        )) %
+      moduloConstant;
 
     memoCache.set(cacheKey, numWaysFound);
     return numWaysFound;
