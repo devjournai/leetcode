@@ -143,7 +143,6 @@ var getMaxFunctionValue = function (receiver, k) {
   const LOG = Math.floor(Math.log2(k)) + 1;
 
   const next = Array.from({ length: LOG }, () => new Array(n));
-
   const sum = Array.from({ length: LOG }, () => new Array(n));
 
   for (let i = 0; i < n; i++) {
@@ -156,7 +155,6 @@ var getMaxFunctionValue = function (receiver, k) {
       const mid = next[p - 1][i];
 
       next[p][i] = next[p - 1][mid];
-
       sum[p][i] = sum[p - 1][i] + sum[p - 1][mid];
     }
   }
@@ -185,5 +183,5 @@ var getMaxFunctionValue = function (receiver, k) {
     }
   }
 
-  return answer;
+  return Number(answer);
 };
