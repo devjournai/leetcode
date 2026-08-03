@@ -1,144 +1,106 @@
 /**
- * Minimum Moves to Spread Stones Over Grid
- *
- * Intuition:
- * Every cell must finally contain exactly one stone.
- *
- * Cells with:
- *
- *      value > 1
- *
- * have extra stones that must be moved.
- *
- * Cells with:
- *
- *      value = 0
- *
- * need one stone.
- *
- * Since moving a stone to an adjacent cell costs one move, the cost of moving
- * a stone from:
- *
- *      (r1, c1)
- *
- * to
- *
- *      (r2, c2)
- *
- * is simply the Manhattan distance:
- *
- *      |r1 - r2| + |c1 - c2|
- *
- * The number of extra stones is at most 8, so we can try every possible
- * assignment of extra stones to empty cells using backtracking.
- *
- * -----------------------------------------------------------------------
- *
- * Approach:
- *
- * 1. Collect all extra stones.
- *
- *      If a cell has x stones,
- *      it contributes (x - 1) extra stones.
- *
- * 2. Collect all empty cells.
- *
- * 3. Use DFS/backtracking.
- *
- *      For each empty cell:
- *
- *          Try assigning every unused extra stone.
- *
- *          Cost =
- *
- *              Manhattan distance
- *              +
- *              recursive cost
- *
- *      Keep the minimum.
- *
- * 4. Return the minimum total cost.
- *
- * -----------------------------------------------------------------------
- *
+ * Minimum Moves To Spread Stones Over Grid
+ * Intuition: The problem requires moving excess stones to empty cells to achieve one stone per cell. Since the grid is 3x3 and has exactly 9 stones, the total number of excess stones will precisely match the total number of empty cells. Given the small grid size (maximum 8 excess stones/empty cells), a brute-force approach trying all permutations of matching excess stones to empty cells is feasible. The cost of moving a stone is its Manhattan distance.
+ * Approach: 1. **Identify Sources and Targets**: Iterate through the 3x3 grid. If a cell `(r, c)` has `k > 1` stones, it contributes `k-1` "excess" stones. Store the coordinates `(r, c)` `k-1` times in a `excessSources` list. If a cell `(r, c)` has `0` stones, it is an "empty" cell. Store `(r, c)` once in an `emptyTargets` list. Cells with exactly one stone are ignored as they are already correctly placed. 2. **Permutation via Backtracking**: Implement a recursive function, `recurseAndCalculate(currentSourceIndex, accumulatedMoves)`, to explore all possible assignments. 3. **Base Case**: If `currentSourceIndex` equals the total number of excess stones (i.e., `excessSources.length`), all stones have been assigned. Update the `minTotalMoves` with `accumulatedMoves` and return. 4. **Recursive Step**: For the stone at `excessSources[currentSourceIndex]`, iterate through each available target cell in `emptyTargets`. 5. **Assignment and Recurse**: For an available target cell, calculate the Manhattan distance from the current source stone's location. Mark the target cell as unavailable (e.g., set its entry in `emptyTargets` to `null`). Recursively call `recurseAndCalculate` for the next source stone (`currentSourceIndex + 1`) and updated `accumulatedMoves`. 6. **Backtrack**: After the recursive call returns, unmark the target cell (restore its coordinates in `emptyTargets`) to allow other permutations to use it.
  * Dry Run:
+ * Input: `grid = [[1,1,1], [1,0,1], [1,2,1]]`
  *
- * grid =
- * [
- *   [1,1,0],
- *   [1,1,1],
- *   [1,2,1]
- * ]
+ * 1. **Initialization**:
+ *    - `excessSources = []`
+ *    - `emptyTargets = []`
+ *    - `rowPointer = 0, columnPointer = 0` to `2,2`:
+ *      - `grid[1][1]` is 0: `emptyTargets.push([1,1])`
+ *      - `grid[2][1]` is 2: `excessCount = 1`. `tempExcessAdder = 0` to `0`. `excessSources.push([2,1])`.
+ *    - After loops: `excessSources = [[2,1]]`, `emptyTargets = [[1,1]]`
+ *    - `minTotalMoves = Infinity`
  *
- * Extra stones:
+ * 2. **Call `recurseAndCalculate(0, 0)`**:
+ *    - `currentSourceIndex = 0`, `accumulatedMoves = 0`
+ *    - `currentSourceCoords = [2,1]` (`excessSources[0]`)
+ *    - Loop `targetIterationIndex = 0` to `emptyTargets.length - 1` (i.e., `0`):
+ *      - `targetIterationIndex = 0`
+ *      - `currentTargetCoords = emptyTargets[0]` which is `[1,1]` (not `null`).
+ *      - `sourceRowCoord = 2`, `sourceColCoord = 1`
+ *      - `targetRowCoord = 1`, `targetColCoord = 1`
+ *      - `manhattanDistance = Math.abs(2-1) + Math.abs(1-1) = 1 + 0 = 1`
+ *      - `savedTargetData = [1,1]`
+ *      - `emptyTargets[0] = null` (marks `[1,1]` as used)
+ *      - **Recursive Call: `recurseAndCalculate(1, 0 + 1)`**
+ *        - `currentSourceIndex = 1`. This equals `excessSources.length`.
+ *        - **Base Case Hit!** `minTotalMoves = Math.min(Infinity, 1) = 1`
+ *        - Return.
+ *      - **Backtrack**: `emptyTargets[0] = savedTargetData` (restores `[1,1]`)
+ *    - Loop finishes.
  *
- *      [(2,1)]
- *
- * Empty cells:
- *
- *      [(0,2)]
- *
- * Distance:
- *
- *      |2-0| + |1-2|
- *      = 3
- *
- * Answer:
- *
- *      3
- *
- * -----------------------------------------------------------------------
- *
- * Time Complexity: O(m!)
- * Space Complexity: O(m)
+ * 3. Initial `recurseAndCalculate` call returns.
+ * 4. `minimumMoves` returns `minTotalMoves`.
+ * Result: 1
+ * Time Complexity: O(N! * N)
+ * Space Complexity: O(N)
  */
-
 var minimumMoves = function (grid) {
-  const extraStones = [];
-  const emptyCells = [];
+  const excessSources = [];
+  const emptyTargets = [];
 
-  for (let row = 0; row < 3; row++) {
-    for (let col = 0; col < 3; col++) {
-      if (grid[row][col] === 0) {
-        emptyCells.push([row, col]);
-      } else if (grid[row][col] > 1) {
-        for (let count = 1; count < grid[row][col]; count++) {
-          extraStones.push([row, col]);
+  let rowPointer = 0;
+  while (rowPointer < 3) {
+    let columnPointer = 0;
+    while (columnPointer < 3) {
+      if (grid[rowPointer][columnPointer] > 1) {
+        let excessCount = grid[rowPointer][columnPointer] - 1;
+        let tempExcessAdder = 0;
+        while (tempExcessAdder < excessCount) {
+          excessSources.push([rowPointer, columnPointer]);
+          tempExcessAdder++;
         }
+      } else if (grid[rowPointer][columnPointer] === 0) {
+        emptyTargets.push([rowPointer, columnPointer]);
+      }
+      columnPointer++;
+    }
+    rowPointer++;
+  }
+
+  let minTotalMoves = Infinity;
+
+  function recurseAndCalculate(currentSourceIndex, accumulatedMoves) {
+    if (currentSourceIndex === excessSources.length) {
+      minTotalMoves = Math.min(minTotalMoves, accumulatedMoves);
+      return;
+    }
+
+    const currentSourceCoords = excessSources[currentSourceIndex];
+    const sourceRowCoord = currentSourceCoords[0];
+    const sourceColCoord = currentSourceCoords[1];
+
+    for (
+      let targetIterationIndex = 0;
+      targetIterationIndex < emptyTargets.length;
+      targetIterationIndex++
+    ) {
+      const currentTargetCoords = emptyTargets[targetIterationIndex];
+
+      if (currentTargetCoords) {
+        const targetRowCoord = currentTargetCoords[0];
+        const targetColCoord = currentTargetCoords[1];
+
+        const manhattanDistance =
+          Math.abs(sourceRowCoord - targetRowCoord) +
+          Math.abs(sourceColCoord - targetColCoord);
+
+        const savedTargetData = emptyTargets[targetIterationIndex];
+        emptyTargets[targetIterationIndex] = null;
+
+        recurseAndCalculate(
+          currentSourceIndex + 1,
+          accumulatedMoves + manhattanDistance,
+        );
+
+        emptyTargets[targetIterationIndex] = savedTargetData;
       }
     }
   }
 
-  const used = new Array(extraStones.length).fill(false);
-
-  const dfs = (index) => {
-    if (index === emptyCells.length) {
-      return 0;
-    }
-
-    let minimumCost = Infinity;
-
-    const [targetRow, targetCol] = emptyCells[index];
-
-    for (let i = 0; i < extraStones.length; i++) {
-      if (used[i]) {
-        continue;
-      }
-
-      used[i] = true;
-
-      const [stoneRow, stoneCol] = extraStones[i];
-
-      const distance =
-        Math.abs(stoneRow - targetRow) + Math.abs(stoneCol - targetCol);
-
-      minimumCost = Math.min(minimumCost, distance + dfs(index + 1));
-
-      used[i] = false;
-    }
-
-    return minimumCost;
-  };
-
-  return dfs(0);
+  recurseAndCalculate(0, 0);
+  return minTotalMoves;
 };
