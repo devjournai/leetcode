@@ -1,0 +1,255 @@
+/**
+ * Number of Strings Which Can Be Rearranged to Contain Substring
+ *
+ * Intuition:
+ * A string is good if its characters can be rearranged to contain
+ * "leet" as a substring.
+ *
+ * The word "leet" requires:
+ *
+ *     l -> at least 1
+ *     e -> at least 2
+ *     t -> at least 1
+ *
+ * Therefore, a string is good if it contains at least:
+ *
+ *     1 'l'
+ *     2 'e'
+ *     1 't'
+ *
+ * The remaining characters can be anything.
+ *
+ * Instead of directly counting good strings, it is easier to count
+ * ALL strings and subtract the BAD strings.
+ *
+ * Total strings of length n:
+ *
+ *     26^n
+ *
+ * A string is BAD if it does not contain enough characters to form
+ * "leet".
+ *
+ * Since we only need:
+ *
+ *     l >= 1
+ *     e >= 2
+ *     t >= 1
+ *
+ * we can use inclusion-exclusion.
+ *
+ * ------------------------------------------------------------
+ *
+ * Define these bad conditions:
+ *
+ * A = no 'l'
+ * B = fewer than 2 'e'
+ * C = no 't'
+ *
+ * We want:
+ *
+ *     Good = Total - |A ∪ B ∪ C|
+ *
+ * Using inclusion-exclusion:
+ *
+ *     Good =
+ *       Total
+ *       - |A|
+ *       - |B|
+ *       - |C|
+ *       + |A ∩ B|
+ *       + |A ∩ C|
+ *       + |B ∩ C|
+ *       - |A ∩ B ∩ C|
+ *
+ * ------------------------------------------------------------
+ *
+ * Counting each case:
+ *
+ * 1. No 'l':
+ *
+ *    Every position has 25 choices.
+ *
+ *    |A| = 25^n
+ *
+ *
+ * 2. No 't':
+ *
+ *    Same:
+ *
+ *    |C| = 25^n
+ *
+ *
+ * 3. Fewer than 2 'e':
+ *
+ *    There are two possibilities:
+ *
+ *    - 0 occurrences of 'e':
+ *
+ *          25^n
+ *
+ *    - Exactly 1 occurrence of 'e':
+ *
+ *          n * 25^(n - 1)
+ *
+ *    Therefore:
+ *
+ *          |B| = 25^n + n * 25^(n - 1)
+ *
+ * ------------------------------------------------------------
+ *
+ * Pair intersections:
+ *
+ * A ∩ C:
+ *
+ * No 'l' and no 't'.
+ *
+ * Each position has 24 choices:
+ *
+ *     |A ∩ C| = 24^n
+ *
+ *
+ * A ∩ B:
+ *
+ * No 'l' and fewer than 2 'e'.
+ *
+ * We have:
+ *
+ *     0 e:
+ *         24^n
+ *
+ *     exactly 1 e:
+ *         n * 24^(n - 1)
+ *
+ * Therefore:
+ *
+ *     |A ∩ B|
+ *       = 24^n + n * 24^(n - 1)
+ *
+ *
+ * B ∩ C:
+ *
+ * No 't' and fewer than 2 'e':
+ *
+ *     24^n + n * 24^(n - 1)
+ *
+ * ------------------------------------------------------------
+ *
+ * Triple intersection:
+ *
+ * No 'l', no 't', and fewer than 2 'e'.
+ *
+ * Available characters:
+ *
+ *     26 - 3 = 23
+ *
+ * because l, e, t are restricted.
+ *
+ * 0 e:
+ *
+ *     23^n
+ *
+ * exactly 1 e:
+ *
+ *     n * 23^(n - 1)
+ *
+ * Therefore:
+ *
+ *     |A ∩ B ∩ C|
+ *       = 23^n + n * 23^(n - 1)
+ *
+ * ------------------------------------------------------------
+ *
+ * We can simplify the final formula:
+ *
+ * Good =
+ *
+ * 26^n
+ * - 2 * 25^n
+ * - (25^n + n * 25^(n-1))
+ * + 24^n
+ * + (24^n + n * 24^(n-1))
+ * + (24^n + n * 24^(n-1))
+ * - (23^n + n * 23^(n-1))
+ *
+ * ------------------------------------------------------------
+ *
+ * Dry Run:
+ *
+ * n = 4
+ *
+ * We need exactly the four required characters:
+ *
+ *     l, e, e, t
+ *
+ * Since length = 4, every good string must contain exactly:
+ *
+ *     1 l
+ *     2 e
+ *     1 t
+ *
+ * Number of arrangements:
+ *
+ *     4! / 2!
+ *     = 12
+ *
+ * Therefore:
+ *
+ *     answer = 12
+ *
+ * ------------------------------------------------------------
+ *
+ * Time Complexity: O(log n)
+ * Space Complexity: O(1)
+ */
+var stringCount = function (n) {
+  const MOD = 1000000007;
+
+  const power = (base, exponent) => {
+    let result = 1;
+
+    base %= MOD;
+
+    while (exponent > 0) {
+      if (exponent % 2 === 1) {
+        result = (result * base) % MOD;
+      }
+
+      base = (base * base) % MOD;
+
+      exponent = Math.floor(exponent / 2);
+    }
+
+    return result;
+  };
+
+  const p26 = power(26, n);
+  const p25 = power(25, n);
+  const p25Prev = power(25, n - 1);
+
+  const p24 = power(24, n);
+  const p24Prev = power(24, n - 1);
+
+  const p23 = power(23, n);
+  const p23Prev = power(23, n - 1);
+
+  let answer = p26;
+
+  answer -= p25;
+  answer -= p25;
+  answer -= p25;
+  answer -= n * p25Prev;
+  answer += p24;
+  answer += p24;
+  answer += n * p24Prev;
+  answer += p24;
+  answer += n * p24Prev;
+  answer -= p23;
+  answer -= n * p23Prev;
+  answer %= MOD;
+
+  if (answer < 0) {
+    answer += MOD;
+  }
+
+  return answer;
+};
