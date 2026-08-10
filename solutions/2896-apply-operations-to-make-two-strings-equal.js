@@ -123,14 +123,38 @@ var minOperations = function (s1, s2, x) {
   }
 
   const dp = new Array(m + 1).fill(Infinity);
-
   dp[0] = 0;
+  dp[1] = x;
 
-  for (let i = 2; i <= m; i += 2) {
-    dp[i] = Math.min(dp[i], dp[i - 2] + x);
+  for (let i = 1; i <= m; i++) {
+    if (i >= 2) {
+      dp[i] = Math.min(dp[i], dp[i - 2] + x);
+      dp[i] = Math.min(
+        dp[i],
+        dp[i - 2] + (positions[i - 1] - positions[i - 2]),
+      );
+    }
 
-    dp[i] = Math.min(dp[i], dp[i - 2] + (positions[i - 1] - positions[i - 2]));
+    if (i >= 1) {
+      dp[i] = Math.min(dp[i], dp[i - 1] + x / 2);
+    }
   }
 
-  return dp[m];
+  const memo = new Map();
+
+  function dfs(i, j) {
+    if (i > j) return 0;
+    const key = `${i},${j}`;
+    if (memo.has(key)) return memo.get(key);
+
+    let res = dfs(i + 1, j - 1) + x;
+
+    res = Math.min(res, dfs(i + 2, j) + (positions[i + 1] - positions[i]));
+    res = Math.min(res, dfs(i, j - 2) + (positions[j] - positions[j - 1]));
+
+    memo.set(key, res);
+    return res;
+  }
+
+  return dfs(0, m - 1);
 };

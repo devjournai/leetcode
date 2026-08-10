@@ -44,48 +44,39 @@ var minimumChanges = function (s, k) {
 
   const cost = Array.from({ length: n }, () => Array(n).fill(Infinity));
 
-  for (let l = 0; l < n; l++) {
-    for (let r = l + 1; r < n; r++) {
-      const len = r - l + 1;
+  for (let len = 2; len <= n; len++) {
+    for (let l = 0; l <= n - len; l++) {
+      const r = l + len - 1;
 
       for (let d = 1; d < len; d++) {
         if (len % d !== 0) continue;
 
         let changes = 0;
-
         for (let offset = 0; offset < d; offset++) {
-          let left = l + offset;
-          let right = l + offset + ((len - 1 - offset) / d) * d;
+          let leftIdx = l + offset;
+          let rightIdx = l + offset + Math.floor((len - 1 - offset) / d) * d;
 
-          while (left < right) {
-            if (s[left] !== s[right]) {
+          while (leftIdx < rightIdx) {
+            if (s[leftIdx] !== s[rightIdx]) {
               changes++;
             }
-
-            left += d;
-            right -= d;
+            leftIdx += d;
+            rightIdx -= d;
           }
         }
-
         cost[l][r] = Math.min(cost[l][r], changes);
       }
     }
   }
 
   const dp = Array.from({ length: k + 1 }, () => Array(n + 1).fill(Infinity));
-
   dp[0][0] = 0;
 
   for (let group = 1; group <= k; group++) {
     for (let end = 1; end <= n; end++) {
-      for (let start = group - 1; start <= end - 2; start++) {
-        if (dp[group - 1][start] === Infinity) {
-          continue;
-        }
-
-        if (cost[start][end - 1] === Infinity) {
-          continue;
-        }
+      for (let start = group - 1; start < end; start++) {
+        if (dp[group - 1][start] === Infinity) continue;
+        if (cost[start][end - 1] === Infinity) continue;
 
         dp[group][end] = Math.min(
           dp[group][end],

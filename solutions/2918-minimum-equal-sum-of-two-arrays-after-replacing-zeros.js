@@ -51,16 +51,14 @@ var minSum = function (nums1, nums2) {
     }
   }
 
-  const minPossibleSumOne =
-    currentSumOne + (zeroCountOne > 0 ? zeroCountOne : 0);
-  const minPossibleSumTwo =
-    currentSumTwo + (zeroCountTwo > 0 ? zeroCountTwo : 0);
+  const minPossibleSumOne = currentSumOne + zeroCountOne;
+  const minPossibleSumTwo = currentSumTwo + zeroCountTwo;
 
-  if (zeroCountOne === 0 && minPossibleSumOne > minPossibleSumTwo) {
+  if (minPossibleSumOne > minPossibleSumTwo && zeroCountTwo === 0) {
     return -1;
   }
 
-  if (zeroCountTwo === 0 && minPossibleSumTwo > minPossibleSumOne) {
+  if (minPossibleSumTwo > minPossibleSumOne && zeroCountOne === 0) {
     return -1;
   }
 
