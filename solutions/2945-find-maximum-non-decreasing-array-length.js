@@ -1,5 +1,5 @@
 /**
- * 2945. Find Maximum Non-decreasing Array Length
+ * Find Maximum Non-decreasing Array Length
  *
  * Intuition:
  *
@@ -144,40 +144,38 @@
  * Time Complexity: O(n log n)
  * Space Complexity: O(n)
  */
-var maxNonDecreasingLength = function (nums) {
+var findMaximumLength = function (nums) {
   const n = nums.length;
-  const prefix = new Array(n + 1).fill(0);
+  const s = new Array(n + 1).fill(0);
 
   for (let i = 0; i < n; i++) {
-    prefix[i + 1] = prefix[i] + nums[i];
+    s[i + 1] = s[i] + nums[i];
   }
 
-  const dp = new Array(n + 1).fill(0);
-  const best = new Array(n + 1).fill(Infinity);
-  dp[0] = 0;
-  best[0] = 0;
+  const f = new Array(n + 1).fill(0);
+  const pre = new Array(n + 2).fill(0);
 
-  for (let i = 1; i <= n; i++) {
-    let low = 0;
-    let high = i - 1;
-    let previous = 0;
-
-    while (low <= high) {
-      const mid = Math.floor((low + high) / 2);
-
-      if (best[mid] <= prefix[i] - prefix[mid]) {
-        previous = mid;
-        high = mid - 1;
+  const search = (arr, x) => {
+    let l = 0,
+      r = arr.length;
+    while (l < r) {
+      const mid = (l + r) >> 1;
+      if (arr[mid] >= x) {
+        r = mid;
       } else {
-        low = mid + 1;
+        l = mid + 1;
       }
     }
+    return l;
+  };
 
-    if (previous !== 0 || best[0] <= prefix[i]) {
-      dp[i] = dp[previous] + 1;
-      best[i] = prefix[i] - prefix[previous];
-    }
+  for (let i = 1; i <= n; i++) {
+    pre[i] = Math.max(pre[i], pre[i - 1]);
+    f[i] = f[pre[i]] + 1;
+
+    const j = search(s, s[i] * 2 - s[pre[i]]);
+    pre[j] = i;
   }
 
-  return dp[n];
+  return f[n];
 };

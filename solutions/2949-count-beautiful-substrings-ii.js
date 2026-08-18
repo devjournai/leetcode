@@ -1,5 +1,5 @@
 /**
- * 2949. Count Beautiful Substrings II
+ * Count Beautiful Substrings II
  *
  * Intuition:
  *

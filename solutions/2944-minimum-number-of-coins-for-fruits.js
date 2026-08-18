@@ -1,5 +1,5 @@
 /**
- * 2944. Minimum Number of Coins for Fruits
+ * Minimum Number of Coins for Fruits
  *
  * Intuition:
  *
@@ -144,19 +144,19 @@
  * Time Complexity: O(n²)
  * Space Complexity: O(n)
  */
+
 var minimumCoins = function (prices) {
   const n = prices.length;
-
   const dp = new Array(n).fill(0);
 
   for (let i = n - 1; i >= 0; i--) {
-    if (2 * i + 1 >= n) {
+    if (2 * i + 2 >= n) {
       dp[i] = prices[i];
       continue;
     }
 
     let minNext = Infinity;
-    for (let j = i + 1; j <= 2 * i + 1 && j < n; j++) {
+    for (let j = i + 1; j <= 2 * i + 2 && j < n; j++) {
       minNext = Math.min(minNext, dp[j]);
     }
 
