@@ -160,5 +160,5 @@ var maxSpending = function (values) {
     answer += value * day;
   }
 
-  return answer;
+  return Number(answer);
 };

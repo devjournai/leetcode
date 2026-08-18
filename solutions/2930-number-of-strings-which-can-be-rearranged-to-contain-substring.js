@@ -203,53 +203,26 @@
  */
 var stringCount = function (n) {
   const MOD = 1000000007;
+  const memo = new Map();
 
-  const power = (base, exponent) => {
-    let result = 1;
-
-    base %= MOD;
-
-    while (exponent > 0) {
-      if (exponent % 2 === 1) {
-        result = (result * base) % MOD;
-      }
-
-      base = (base * base) % MOD;
-
-      exponent = Math.floor(exponent / 2);
+  function dfs(i, l, e, t) {
+    if (i === 0) {
+      return l === 1 && e === 2 && t === 1 ? 1 : 0;
     }
 
-    return result;
-  };
+    const key = `${i},${l},${e},${t}`;
+    if (memo.has(key)) {
+      return memo.get(key);
+    }
 
-  const p26 = power(26, n);
-  const p25 = power(25, n);
-  const p25Prev = power(25, n - 1);
+    let res = (dfs(i - 1, l, e, t) * 23) % MOD;
+    res = (res + dfs(i - 1, Math.min(1, l + 1), e, t)) % MOD;
+    res = (res + dfs(i - 1, l, Math.min(2, e + 1), t)) % MOD;
+    res = (res + dfs(i - 1, l, e, Math.min(1, t + 1))) % MOD;
 
-  const p24 = power(24, n);
-  const p24Prev = power(24, n - 1);
-
-  const p23 = power(23, n);
-  const p23Prev = power(23, n - 1);
-
-  let answer = p26;
-
-  answer -= p25;
-  answer -= p25;
-  answer -= p25;
-  answer -= n * p25Prev;
-  answer += p24;
-  answer += p24;
-  answer += n * p24Prev;
-  answer += p24;
-  answer += n * p24Prev;
-  answer -= p23;
-  answer -= n * p23Prev;
-  answer %= MOD;
-
-  if (answer < 0) {
-    answer += MOD;
+    memo.set(key, res);
+    return res;
   }
 
-  return answer;
+  return dfs(n, 0, 0, 0);
 };

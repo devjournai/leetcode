@@ -1,5 +1,5 @@
 /**
- * 2946. Matrix Similarity After Cyclic Shifts
+ * Matrix Similarity After Cyclic Shifts
  *
  * Intuition:
  *

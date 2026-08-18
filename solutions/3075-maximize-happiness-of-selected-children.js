@@ -2,7 +2,7 @@
  * Maximize Happiness of Selected Children
  * Time Complexity: O(N log N)
  * Space Complexity: O(1)
-*/
+ */
 var maximumHappinessSum = function (happiness, k) {
   happiness.sort((firstValue, secondValue) => secondValue - firstValue);
 

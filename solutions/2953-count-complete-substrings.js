@@ -1,5 +1,5 @@
 /**
- * 2953. Count Complete Substrings
+ * Count Complete Substrings
  *
  * Intuition:
  *

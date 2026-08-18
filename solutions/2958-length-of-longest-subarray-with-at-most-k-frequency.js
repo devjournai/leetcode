@@ -114,7 +114,6 @@ var maxSubarrayLength = function (numsArray, maxFrequencyLimit) {
     );
 
     if (midpointLength === 0) {
-      // Edge case: length 0 is technically valid, but problem asks for non-empty. Maximize length, so 0 won't be the answer unless nums is empty.
       minimumLengthPossible = 1;
       continue;
     }
