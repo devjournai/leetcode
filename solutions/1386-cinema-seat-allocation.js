@@ -1,5 +1,95 @@
 /**
  * Cinema Seat Allocation
+ *
+ * Intuition:
+ *
+ * Each family needs 4 consecutive seats.
+ *
+ * The possible groups of 4 seats are:
+ *
+ *     Left:
+ *     [2, 3, 4, 5]
+ *
+ *     Middle:
+ *     [4, 5, 6, 7]
+ *
+ *     Right:
+ *     [6, 7, 8, 9]
+ *
+ * ------------------------------------------------------------
+ *
+ * A row without any reserved seats can always accommodate
+ * 2 families:
+ *
+ *     [2,3,4,5] + [6,7,8,9]
+ *
+ * Therefore, we first assume every row can accommodate 2
+ * families.
+ *
+ * For rows containing reserved seats, we need to check the
+ * three possible groups.
+ *
+ * ------------------------------------------------------------
+ *
+ * If both the left and right groups are available:
+ *
+ *     [2,3,4,5] [6,7,8,9]
+ *
+ * We can place 2 families.
+ *
+ * Otherwise, if at least one of:
+ *
+ *     left
+ *     middle
+ *     right
+ *
+ * is available, we can place 1 family.
+ *
+ * Otherwise, we cannot place any family in that row.
+ *
+ * ------------------------------------------------------------
+ *
+ * Important:
+ *
+ * We only need to process rows that actually contain reserved
+ * seats.
+ *
+ * If there are R reserved rows, the remaining:
+ *
+ *     totalRows - R
+ *
+ * rows are completely empty and contribute:
+ *
+ *     2 * (totalRows - R)
+ *
+ * families.
+ *
+ * ------------------------------------------------------------
+ *
+ * Example:
+ *
+ *     n = 3
+ *
+ *     reserved = [[1,2]]
+ *
+ * Row 1:
+ *
+ *     left group -> unavailable
+ *     middle      -> available
+ *     right       -> available
+ *
+ * We can place 1 family in row 1.
+ *
+ * Rows 2 and 3 are empty:
+ *
+ *     2 + 2 = 4 families
+ *
+ * Total:
+ *
+ *     5
+ *
+ * ------------------------------------------------------------
+ *
  * Time Complexity: O(R)
  * Space Complexity: O(R)
  */
