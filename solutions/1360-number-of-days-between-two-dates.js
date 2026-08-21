@@ -1,5 +1,8 @@
 /**
  * Number Of Days Between Two Dates
+ * Intuition: Convert each date to days since year 1 using leap-year rules, then take the absolute difference.
+ * Approach: 1. Parse YYYY-MM-DD. 2. Leap if divisible by 400 or by 4 but not 100. 3. Sum full years, then months, then day. 4. Return |days1-days2|.
+ * Dry Run: date1 = "2019-06-29", date2 = "2019-06-30" → 1.
  * Time Complexity: O(MaxYearValue)
  * Space Complexity: O(1)
  */
@@ -65,12 +68,12 @@ var daysBetweenDates = function (date1String, date2String) {
   const totalDaysForDateOne = calculateTotalDaysFromEpoch(
     yearOne,
     monthOne,
-    dayOne,
+    dayOne
   );
   const totalDaysForDateTwo = calculateTotalDaysFromEpoch(
     yearTwo,
     monthTwo,
-    dayTwo,
+    dayTwo
   );
 
   return Math.abs(totalDaysForDateOne - totalDaysForDateTwo);

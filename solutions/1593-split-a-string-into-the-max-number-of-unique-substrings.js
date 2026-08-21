@@ -1,5 +1,9 @@
 /**
  * Split A String Into The Max Number Of Unique Substrings
+ * Intuition: Backtracking: try every next unique piece and keep the max set size.
+ * Approach: 1. DFS from i with a Set. 2. For each end, if the slice is unseen, recurse. 3. Return max size.
+ * Dry Run: s = "ababccc".
+ *   - One optimal split has 5 unique pieces.
  * Time Complexity: O(N^2 * 2^N)
  * Space Complexity: O(N^2)
  */
@@ -25,7 +29,7 @@ var maxUniqueSplit = function (s) {
         currentSetOfUniqueSegments.add(potentialSegment);
         currentPathMaxCount = Math.max(
           currentPathMaxCount,
-          calculateMaxSplits(segmentEndIndex, currentSetOfUniqueSegments),
+          calculateMaxSplits(segmentEndIndex, currentSetOfUniqueSegments)
         );
         currentSetOfUniqueSegments.delete(potentialSegment);
       }

@@ -1,5 +1,8 @@
 /**
  * Maximum Amount of Money Robot Can Earn
+ * Intuition: The robot walks only right/down and may neutralize up to two robberies, so DP can track position plus how many neutralizations already used.
+ * Approach: dp[i][j][k] = best profit at (i,j) after using k (0..2) skips. Transition from above/left adding coins[i][j], or if the cell is negative and k>0, skip it (add 0) from k-1. Seed (0,0) with taking the cell and optionally skipping if negative. Answer is max over k at the bottom-right.
+ * Dry Run: coins = [[0,1],[1,0]] all non-negative, path sum 1, skips unused.
  * Time Complexity: O(m * n)
  * Space Complexity: O(m * n)
  */
@@ -12,7 +15,7 @@ var maximumAmount = function (coins) {
     .map(() =>
       Array(n)
         .fill(null)
-        .map(() => Array(3).fill(-Infinity)),
+        .map(() => Array(3).fill(-Infinity))
     );
 
   const initialCoins = coins[0][0];
@@ -36,21 +39,21 @@ var maximumAmount = function (coins) {
         if (i > 0 && dp[i - 1][j][k] !== -Infinity) {
           profitWithoutNeutralizingCurrent = Math.max(
             profitWithoutNeutralizingCurrent,
-            dp[i - 1][j][k],
+            dp[i - 1][j][k]
           );
         }
 
         if (j > 0 && dp[i][j - 1][k] !== -Infinity) {
           profitWithoutNeutralizingCurrent = Math.max(
             profitWithoutNeutralizingCurrent,
-            dp[i][j - 1][k],
+            dp[i][j - 1][k]
           );
         }
 
         if (profitWithoutNeutralizingCurrent !== -Infinity) {
           dp[i][j][k] = Math.max(
             dp[i][j][k],
-            profitWithoutNeutralizingCurrent + currentVal,
+            profitWithoutNeutralizingCurrent + currentVal
           );
         }
 
@@ -60,21 +63,21 @@ var maximumAmount = function (coins) {
           if (i > 0 && dp[i - 1][j][k - 1] !== -Infinity) {
             profitWithNeutralizingCurrent = Math.max(
               profitWithNeutralizingCurrent,
-              dp[i - 1][j][k - 1],
+              dp[i - 1][j][k - 1]
             );
           }
 
           if (j > 0 && dp[i][j - 1][k - 1] !== -Infinity) {
             profitWithNeutralizingCurrent = Math.max(
               profitWithNeutralizingCurrent,
-              dp[i][j - 1][k - 1],
+              dp[i][j - 1][k - 1]
             );
           }
 
           if (profitWithNeutralizingCurrent !== -Infinity) {
             dp[i][j][k] = Math.max(
               dp[i][j][k],
-              profitWithNeutralizingCurrent + 0,
+              profitWithNeutralizingCurrent + 0
             );
           }
         }
@@ -85,6 +88,6 @@ var maximumAmount = function (coins) {
   return Math.max(
     dp[m - 1][n - 1][0],
     dp[m - 1][n - 1][1],
-    dp[m - 1][n - 1][2],
+    dp[m - 1][n - 1][2]
   );
 };

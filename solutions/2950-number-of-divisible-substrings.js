@@ -72,7 +72,7 @@ var countDivisibleSubstrings = function (word) {
       totalDivisibleSubstrings += sumOccurrences.get(currentRunningSum) || 0;
       sumOccurrences.set(
         currentRunningSum,
-        (sumOccurrences.get(currentRunningSum) || 0) + 1,
+        (sumOccurrences.get(currentRunningSum) || 0) + 1
       );
     }
   }

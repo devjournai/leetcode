@@ -1,5 +1,9 @@
 /**
  * Campus Bikes
+ * Intuition: Greedy matching by (Manhattan distance, worker index, bike index) assigns the globally closest unused pair first.
+ * Approach: 1. Emit every worker-bike triple (dist, worker, bike). 2. Sort by those three keys. 3. Scan; if both worker and bike are free, assign and mark taken. 4. Stop after all workers are paired.
+ * Dry Run: workers=[[0,0],[2,1]], bikes=[[1,2],[3,3]].
+ *   - Distances: w0-b0=3, w0-b1=6, w1-b0=2, w1-b1=3. First assign w1->b0, then w0->b1. [1,0].
  * Time Complexity: O(N * M * log(N * M))
  * Space Complexity: O(N * M)
  */

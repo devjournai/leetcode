@@ -1,5 +1,9 @@
 /**
  * Count Servers That Communicate
+ * Intuition: A server communicates if its row or column has another server. Count servers per row and column, then recount cells that sit on a row or col with tally > 1.
+ * Approach: 1. First pass fills rowServerTracker and columnServerTracker. 2. Second pass counts grid 1s where row tally > 1 or col tally > 1.
+ * Dry Run: grid = [[1,0],[1,1]]
+ *   rows [1,2], cols [2,1]. All three 1s have row or col > 1. Return 3.
  * Time Complexity: O(m * n)
  * Space Complexity: O(m + n)
  */

@@ -1,5 +1,8 @@
 /**
  * Sort Array By Increasing Frequency
+ * Intuition: Count frequencies, then sort by ascending count and, on ties, descending value.
+ * Approach: 1. Build a frequency map. 2. Sort nums with a comparator: freq(a)-freq(b), else b-a. 3. Return the mutated array.
+ * Dry Run: [1,1,2,2,2,3] → freqs 1:2, 2:3, 3:1 → [3,1,1,2,2,2].
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */

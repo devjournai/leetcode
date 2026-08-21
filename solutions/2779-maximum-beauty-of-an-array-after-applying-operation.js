@@ -32,7 +32,7 @@ var maximumBeauty = function (nums, k) {
     }
     maximumAchievableLength = Math.max(
       maximumAchievableLength,
-      endWindowIndex - startWindowIndex + 1,
+      endWindowIndex - startWindowIndex + 1
     );
   }
 

@@ -1,5 +1,9 @@
 /**
  * Special Positions in a Binary Matrix
+ * Intuition: A 1 is special if its row and column each contain exactly one 1.
+ * Approach: 1. Count 1s per row and column. 2. For rows with count 1, if that 1's column also has count 1, tally.
+ * Dry Run: mat = [[1,0,0],[0,0,1],[1,0,0]].
+ *   - Only (1,2) has unique row and column 1 → 1.
  * Time Complexity: O(m*n)
  * Space Complexity: O(m+n)
  */

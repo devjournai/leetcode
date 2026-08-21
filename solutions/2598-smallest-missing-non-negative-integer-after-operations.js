@@ -25,7 +25,7 @@ var findSmallestInteger = function (nums, value) {
     const computedRemainder = ((singleNumber % value) + value) % value;
     remainderMap.set(
       computedRemainder,
-      (remainderMap.get(computedRemainder) || 0) + 1,
+      (remainderMap.get(computedRemainder) || 0) + 1
     );
   });
 

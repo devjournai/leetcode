@@ -68,7 +68,7 @@ var maxTaxiEarnings = function (n, rides) {
 
         earningsTracker[currentPointIdx] = Math.max(
           earningsTracker[currentPointIdx],
-          updatedMaxEarnings,
+          updatedMaxEarnings
         );
       }
     }

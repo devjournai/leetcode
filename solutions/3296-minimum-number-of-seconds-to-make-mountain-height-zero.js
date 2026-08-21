@@ -1,5 +1,8 @@
 /**
  * Minimum Number of Seconds to Make Mountain Height Zero
+ * Intuition: Time to remove x height units for a worker is triangular: workerTime * x*(x+1)/2, so we can binary-search the minimum feasible time.
+ * Approach: Binary search time in BigInt. For a candidate time, each worker binary-searches the max x they can reduce; if the sum of x covers mountainHeight, the time works.
+ * Dry Run: mountainHeight=4, workerTimes=[2,1,1] -> time 3 lets workers reduce enough; smaller times fail.
  * Time Complexity: O(log(MaxTime) * N * log(mountainHeight))
  * Space Complexity: O(1)
  */

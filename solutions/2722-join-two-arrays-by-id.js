@@ -65,7 +65,7 @@ var join = function (arr1, arr2) {
 
   const mapValuesArray = Array.from(idToRecordMap.values());
   const finalSortedArray = mapValuesArray.sort(
-    (recordA, recordB) => recordA.id - recordB.id,
+    (recordA, recordB) => recordA.id - recordB.id
   );
 
   return finalSortedArray;

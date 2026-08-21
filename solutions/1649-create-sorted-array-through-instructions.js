@@ -1,5 +1,9 @@
 /**
  * Create Sorted Array Through Instructions
+ * Intuition: Cost of inserting x is min(#strictly smaller, #strictly greater) already in the stream. A Fenwick tree of frequencies answers those counts in log M.
+ * Approach: 1. Size a BIT up to max(instructions). 2. For each value, smaller = query(x-1), larger = i - query(x). 3. Add min of those to cost (mod 1e9+7). 4. update(x).
+ * Dry Run: [1,5,6,2].
+ *   - Insert 1 cost 0; 5 cost 0; 6 cost 0; 2 cost min(1,2)=1. Total 1.
  * Time Complexity: O(N log M)
  * Space Complexity: O(M)
  */

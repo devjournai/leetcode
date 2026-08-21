@@ -1,5 +1,9 @@
 /**
  * Maximum Number Of Balls In A Box
+ * Intuition: Ball i goes to the box numbered by the sum of i's digits. Count occupancy over [lowLimit, highLimit] and return the max.
+ * Approach: 1. For each `currentBallNumber`, sum digits into `boxIdentifier`. 2. Increment `boxTallies` and track `maxBallsInBox`. 3. Return the max.
+ * Dry Run: lowLimit = 1, highLimit = 10
+ * boxes: 1..9 each 1, 10 → box 1 has 2. Max = 2.
  * Time Complexity: O((highLimit - lowLimit + 1) * log(highLimit))
  * Space Complexity: O(log(highLimit))
  */

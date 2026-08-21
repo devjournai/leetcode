@@ -1,5 +1,9 @@
 /**
  * Domino And Tromino Tiling
+ * Intuition: Fully tiling a 2×n board with dominos and L-trominos satisfies dp[n] = 2*dp[n-1] + dp[n-3] (mod 10^9+7), with base 1, 2, 5 for n=1,2,3.
+ * Approach: 1. If n is 1, 2, or 3, return those bases. 2. Fill `tilingCounts[1..3]`, then for `currentDimension` from 4 to n set `(2 * tilingCounts[n-1] + tilingCounts[n-3]) % moduloCeiling`. 3. Return `tilingCounts[n]`.
+ * Dry Run: n = 4.
+ *   - dp[1]=1, dp[2]=2, dp[3]=5. dp[4] = (2*5 + 1) % MOD = 11. Return 11.
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */

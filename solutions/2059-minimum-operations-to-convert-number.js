@@ -17,7 +17,7 @@
  * Output: 1
  * Time Complexity: O(M * N)
  * Space Complexity: O(M)
-*/
+ */
 var minimumOperations = function (nums, start, goal) {
   const operationSequence = [[start, 0]];
   const exploredNodes = new Set([start]);
@@ -31,7 +31,7 @@ var minimumOperations = function (nums, start, goal) {
       const operationOutcomes = [
         presentNumber + currentOperand,
         presentNumber - currentOperand,
-        presentNumber ^ currentOperand
+        presentNumber ^ currentOperand,
       ];
 
       for (let jdx = 0; jdx < operationOutcomes.length; jdx++) {
@@ -41,7 +41,11 @@ var minimumOperations = function (nums, start, goal) {
           return currentDepth + 1;
         }
 
-        if (nextCandidateValue >= 0 && nextCandidateValue <= 1000 && !exploredNodes.has(nextCandidateValue)) {
+        if (
+          nextCandidateValue >= 0 &&
+          nextCandidateValue <= 1000 &&
+          !exploredNodes.has(nextCandidateValue)
+        ) {
           exploredNodes.add(nextCandidateValue);
           operationSequence.push([nextCandidateValue, currentDepth + 1]);
         }

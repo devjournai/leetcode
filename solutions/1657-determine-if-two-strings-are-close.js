@@ -1,5 +1,8 @@
 /**
  * Determine If Two Strings Are Close
+ * Intuition: Operations preserve length, the set of characters, and the multiset of frequencies (you can restage counts among existing letters). Check those three.
+ * Approach: 1. Reject unequal lengths. 2. Count 26 frequencies for both words. 3. Fail if a letter appears in only one word. 4. Sort both frequency arrays and compare element-wise.
+ * Dry Run: word1="abc", word2="bca" → same charset, freqs [1,1,1] → true.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

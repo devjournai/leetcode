@@ -1,5 +1,9 @@
 /**
  * Maximum Subarray Min Product
+ * Intuition: For each index as the exclusive minimum of some range, min × range-sum is a candidate. A monotonic stack finds the next-smaller boundary; prefix sums give the range total.
+ * Approach: 1. Build `prefixTotals`. 2. Scan with `monotonicStackStorage` of {storedIndex, storedValue}; pop when current is smaller (sentinel 0 at the end). 3. For each pop, range is (leftBoundIndex, currentTraversalPosition). 4. Return max product mod 1e9+7.
+ * Dry Run: nums=[1,2,3,2].
+ *   - Subarray [2,3,2] min=2 sum=7 product=14 is best among candidates. Return 14.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -12,7 +16,7 @@ var maxSumMinProduct = function (nums) {
   let indexForPrefixSum = 0;
   while (indexForPrefixSum < nums.length) {
     prefixTotals.push(
-      prefixTotals[indexForPrefixSum] + BigInt(nums[indexForPrefixSum]),
+      prefixTotals[indexForPrefixSum] + BigInt(nums[indexForPrefixSum])
     );
     indexForPrefixSum++;
   }

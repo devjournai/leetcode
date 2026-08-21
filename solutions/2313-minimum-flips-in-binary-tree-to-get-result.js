@@ -77,7 +77,7 @@ var minimumFlips = function (root, result) {
       const orTrueResultCost = Math.min(
         orTrueOptionOne,
         orTrueOptionTwo,
-        orTrueOptionThree,
+        orTrueOptionThree
       );
       return [orTrueResultCost, orFalseResultCost];
     }
@@ -90,7 +90,7 @@ var minimumFlips = function (root, result) {
       const andFalseResultCost = Math.min(
         andFalseOptionOne,
         andFalseOptionTwo,
-        andFalseOptionThree,
+        andFalseOptionThree
       );
       return [andTrueResultCost, andFalseResultCost];
     }

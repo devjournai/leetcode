@@ -29,7 +29,7 @@ var minOperations = function (nums) {
   for (const currentNumber of nums) {
     numberFrequencies.set(
       currentNumber,
-      (numberFrequencies.get(currentNumber) || 0) + 1,
+      (numberFrequencies.get(currentNumber) || 0) + 1
     );
   }
 

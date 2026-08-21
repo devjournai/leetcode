@@ -24,6 +24,8 @@
  *
  * ------------------------------------------------------------
  *
+ * Approach: Unique original/changed strings as nodes; Floyd-Warshall min transform costs. Insert all strings into two tries. DP: keep matching chars for free; from i walk both tries up to maxLen and relax dp[i+len] with dist[wordIdS][wordIdT]. Return dp[n] or -1.
+ *
  * Step 1:
  *
  * Collect every string that appears in `original` or `changed`.
@@ -164,7 +166,7 @@
  *
  * ------------------------------------------------------------
  *
- * Example:
+ * Dry Run:
  *
  *     source = "abc"
  *     target = "xyz"

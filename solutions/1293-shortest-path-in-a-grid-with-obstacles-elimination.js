@@ -1,5 +1,9 @@
 /**
  * Shortest Path In A Grid With Obstacles Elimination
+ * Intuition: BFS state is (row, col, remaining eliminations). Record the best remaining k seen at each cell so worse visits are skipped.
+ * Approach: 1. Queue [0,0,k], maxKVisitedGrid[0][0]=k. 2. Level BFS; at the exit cell return currentSteps. 3. Move 4-way; if the cell is an obstacle decrement k; skip if k<0 or a prior visit had >= remaining k. 4. Return -1 if the queue empties.
+ * Dry Run: grid all zeros 3x3, k=1
+ *   Reach (2,2) in 4 steps without using k. Return 4.
  * Time Complexity: O(R * C * K)
  * Space Complexity: O(R * C * K)
  */
@@ -13,7 +17,7 @@ var shortestPath = function (grid, k) {
 
   const bfsQueue = [[0, 0, k]];
   const maxKVisitedGrid = Array.from({ length: gridRowCount }, () =>
-    Array(gridColCount).fill(-1),
+    Array(gridColCount).fill(-1)
   );
   maxKVisitedGrid[0][0] = k;
 

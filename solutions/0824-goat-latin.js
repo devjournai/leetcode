@@ -1,5 +1,8 @@
 /**
  * Goat Latin
+ * Intuition: Split on spaces. Vowels keep the word; consonants rotate first letter to the end; then add "ma" plus i+1 a's.
+ * Approach: 1. Vowel set aeiou (case-insensitive). 2. For each word index i, append "ma" and `"a".repeat(i+1)`. 3. Join with spaces.
+ * Dry Run: "I speak Goat Latin" → "Imaa peaksmaaa oatGmaaaa atinLmaaaaa".
  * Time Complexity: O(N + W^2)
  * Space Complexity: O(N + W^2)
  */

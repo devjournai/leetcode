@@ -1,5 +1,10 @@
 /**
  * Minimum Remove To Make Valid Parentheses
+ * Intuition: Drop extra closing parentheses on a left-to-right pass, then drop leftover opening parentheses on a right-to-left pass. Letters always stay.
+ * Approach: 1. Split s. 2. Forward: keep '(', count opens; keep ')' only if an open is unmatched; always keep letters. 3. Backward: keep ')', count closes; keep '(' only while closes remain. 4. Reverse the second list and join.
+ * Dry Run: s = "lee(t(c)o)de)"
+ *   Forward keeps all letters and matched pairs, drops the last ')'. Remaining still balanced.
+ *   Backward finds no extra '('. Result "lee(t(c)o)de".
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */

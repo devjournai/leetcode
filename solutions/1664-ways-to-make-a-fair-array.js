@@ -1,5 +1,9 @@
 /**
  * Ways To Make A Fair Array
+ * Intuition: Removing index i swaps the parity of every later index. Prefix even/odd sums and suffix even/odd sums let you recompute the two parities in O(1).
+ * Approach: 1. Build prefix even/odd sums left-to-right. 2. Build suffix even/odd sums right-to-left. 3. For each i, even' = leftEven + rightOdd, odd' = leftOdd + rightEven. 4. Count indices where even' == odd'.
+ * Dry Run: nums=[2,1,6,4].
+ *   - Removing 0 or 3 makes even==odd; answer 2.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

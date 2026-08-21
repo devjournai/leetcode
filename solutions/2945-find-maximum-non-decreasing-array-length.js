@@ -109,6 +109,8 @@
  *
  * ------------------------------------------------------------
  *
+ * Approach: Prefix sums `s`. Arrays `f` (max groups ending at i) and `pre` (best previous end). For i=1..n: take pre[i]=max(pre[i], pre[i-1]), set f[i]=f[pre[i]]+1, binary-search first j with s[j] >= 2*s[i]-s[pre[i]], then pre[j]=i. Return f[n].
+ *
  * We maintain:
  *
  *     dp[i] = maximum number of groups whose final boundary is i

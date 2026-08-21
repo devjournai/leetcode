@@ -1,5 +1,8 @@
 /**
  * String Without Aaa Or Bbb
+ * Intuition: Greedily append the letter that still has more remaining count, unless the last two chars already match it (`possibleToAppendA`/`possibleToAppendB`).
+ * Approach: 1. While a or b remain, compute whether a/b would make "aaa"/"bbb". 2. If counts equal, prefer a after b (or start). 3. If a>b pick a if allowed else b; symmetrically if b>a. 4. Join `finalSequence`.
+ * Dry Run: a=1, b=2. More b's: append b, b, then a (cannot third b). Result "bba".
  * Time Complexity: O(a + b)
  * Space Complexity: O(a + b)
  */

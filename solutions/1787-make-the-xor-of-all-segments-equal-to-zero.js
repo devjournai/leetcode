@@ -1,5 +1,9 @@
 /**
  * Make The Xor Of All Segments Equal To Zero
+ * Intuition: Every length-k window XOR being 0 forces the array to be periodic with period k and the k residues XOR to 0. DP over columns chooses a value (or a full rewrite) to reach each prefix XOR.
+ * Approach: 1. Group indices i%k into `frequencyMaps`. 2. `minimumChangesDp[xor]` is min changes to reach that XOR after processed columns. 3. For each column, try keeping existing values (cost = column size minus frequency) or changing everything using the previous min. 4. Answer is `minimumChangesDp[0]`.
+ * Dry Run: nums = [1,2,0,3,0], k = 1.
+ *   - One column; make every value 0. Frequencies of 0 already 2 of 5 → 3 changes.
  * Time Complexity: O(N * (1 << 10))
  * Space Complexity: O(N + (1 << 10))
  */
@@ -18,7 +22,7 @@ var minChanges = function (nums, k) {
     const currentNumber = nums[currentElementIndex];
     frequencyMaps[columnIdentifier].set(
       currentNumber,
-      (frequencyMaps[columnIdentifier].get(currentNumber) || 0) + 1,
+      (frequencyMaps[columnIdentifier].get(currentNumber) || 0) + 1
     );
   }
 
@@ -61,7 +65,7 @@ var minChanges = function (nums, k) {
           valueFrequency;
         minimumChangesDp[newXorResult] = Math.min(
           minimumChangesDp[newXorResult],
-          costForThisOption,
+          costForThisOption
         );
       }
     });
@@ -73,7 +77,7 @@ var minChanges = function (nums, k) {
     ) {
       minimumChangesDp[targetXorValue] = Math.min(
         minimumChangesDp[targetXorValue],
-        smallestPreviousChangeCount + columnElementCount,
+        smallestPreviousChangeCount + columnElementCount
       );
     }
   }

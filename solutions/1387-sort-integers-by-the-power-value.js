@@ -1,5 +1,9 @@
 /**
  * Sort Integers By The Power Value
+ * Intuition: Collatz power of x is steps to reach 1. Memoize those steps, sort [lo, hi] by power then by value, and pick the k-th.
+ * Approach: 1. obtainPower(x): 0 if x==1; else 1 + power of x/2 or 3x+1, cached in a map. 2. Put every integer from lo to hi in an array. 3. Sort by power, then by number. 4. Return index k-1.
+ * Dry Run: lo = 12, hi = 15, k = 2.
+ *   - Powers: 12→9, 13→9, 14→17, 15→17. Sorted [12,13,14,15]. k=2 → 13.
  * Time Complexity: O(M_max * L_max + (hi - lo) * log(hi - lo))
  * Space Complexity: O(M_max + L_max)
  */

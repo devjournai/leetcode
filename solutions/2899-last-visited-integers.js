@@ -28,7 +28,7 @@ var lastVisitedIntegers = function (nums) {
       finalOutput.push(
         negativeStreakCount <= visitedNumbers.length
           ? visitedNumbers[negativeStreakCount - 1]
-          : -1,
+          : -1
       );
     }
   }

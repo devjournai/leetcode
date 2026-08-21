@@ -38,7 +38,7 @@ var minOperations = function (initialNumber) {
   let totalOperations = 0;
   let currentNumber = initialNumber;
 
-  for (; currentNumber > 0; ) {
+  for (; currentNumber > 0;) {
     const lastTwoBits = currentNumber & 3;
 
     switch (lastTwoBits) {

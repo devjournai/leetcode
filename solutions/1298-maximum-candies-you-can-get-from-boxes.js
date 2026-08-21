@@ -1,5 +1,9 @@
 /**
  * Maximum Candies You Can Get From Boxes
+ * Intuition: Process found boxes in a queue. Open ones add candies, keys, and nested boxes; closed ones wait until a key appears, then re-queue.
+ * Approach: 1. Queue initialBoxes. 2. If status is open, add candies, record keys, enqueue contained boxes. 3. Else store in pendingClosedBoxes. 4. After each dequeue, reopen any pending box whose key was obtained. 5. Return accumulatedCandies.
+ * Dry Run: status=[1,0,1], candies=[7,5,4], keys=[[],[],[]], contained=[[1,2],[],[]], initial=[0]
+ *   Open 0 get 7 and boxes 1,2. 1 is closed no key stays pending. Open 2 get 4. Total 11.
  * Time Complexity: O(N^2 + E_k + E_c)
  * Space Complexity: O(N)
  */
@@ -8,7 +12,7 @@ var maxCandies = function (
   candies,
   keys,
   containedBoxes,
-  initialBoxes,
+  initialBoxes
 ) {
   let accumulatedCandies = 0;
   const boxDiscoveryQueue = [...initialBoxes];

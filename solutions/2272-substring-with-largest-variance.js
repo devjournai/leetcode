@@ -62,7 +62,7 @@ var largestVariance = function (s) {
         if (minorCharFoundInSegment) {
           overallMaximumVariance = Math.max(
             overallMaximumVariance,
-            currentMajorCountValue - currentMinorCountValue,
+            currentMajorCountValue - currentMinorCountValue
           );
         }
 

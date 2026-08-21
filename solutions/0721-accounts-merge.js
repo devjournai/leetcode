@@ -1,5 +1,8 @@
 /**
  * Accounts Merge
+ * Intuition: Emails that appear in the same account belong together; union-find merges overlapping accounts. Each connected component is one person; sort emails and prefix the stored name.
+ * Approach: 1. For each account, `retrieveRoot` with path compression unions every email to the first email (`primaryEmail`) and records `emailNameMap`. 2. Group emails by ultimate root into `mergedGroups` sets. 3. For each group, sort emails and emit `[name, ...emails]`.
+ * Dry Run: John has johnsmith@ and johnny@; another John has johnsmith@ and john00@. Union links all three emails under one root → one merged account.
  * Time Complexity: O(K * α(M) + M log M)
  * Space Complexity: O(K)
  */

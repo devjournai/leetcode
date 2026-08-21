@@ -1,5 +1,8 @@
 /**
  * Magic Squares In Grid
+ * Intuition: Every 3×3 magic square of 1–9 has center 5 and line sums 15. Slide a 3×3 window, reject duplicates/out-of-range, then check all 8 lines.
+ * Approach: 1. If grid < 3×3 return 0. 2. For each top-left (r,c), call `verifyMagicSubgrid`. 3. Helper: center must be 5; collect 9 cells, require unique 1–9; row/col/diag sums == 15.
+ * Dry Run: grid with [[4,3,8],[9,5,1],[2,7,6]] at (0,0): center 5, unique 1–9, all sums 15 → count 1.
  * Time Complexity: O(R * C)
  * Space Complexity: O(1)
  */

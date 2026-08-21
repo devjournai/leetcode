@@ -17,6 +17,8 @@
  *
  * ------------------------------------------------------------
  *
+ * Approach: Sort nums and build BigInt prefix sums. Two pointers: expand right, shrink left while median-window cost > k. Cost uses prefix on left of mid and right of mid. Track max window length.
+ *
  * Step 1:
  *
  * Sort the array.
@@ -106,7 +108,7 @@
  *
  * ------------------------------------------------------------
  *
- * Example:
+ * Dry Run:
  *
  * nums = [1,2,4,6]
  * k = 3

@@ -63,7 +63,7 @@ var Encrypter = function (keysInput, valuesInput, dictionaryInput) {
   ) {
     this.charToMappedString.set(
       keysInput[keyMappingIndex],
-      valuesInput[keyMappingIndex],
+      valuesInput[keyMappingIndex]
     );
   }
 
@@ -72,7 +72,7 @@ var Encrypter = function (keysInput, valuesInput, dictionaryInput) {
     if (generatedEncryptedWord !== "") {
       this.encryptedDictionaryCounts.set(
         generatedEncryptedWord,
-        (this.encryptedDictionaryCounts.get(generatedEncryptedWord) || 0) + 1,
+        (this.encryptedDictionaryCounts.get(generatedEncryptedWord) || 0) + 1
       );
     }
   }

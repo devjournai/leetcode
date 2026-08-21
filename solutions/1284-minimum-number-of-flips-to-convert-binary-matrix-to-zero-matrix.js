@@ -1,5 +1,9 @@
 /**
  * Minimum Number Of Flips To Convert Binary Matrix To Zero Matrix
+ * Intuition: Each matrix is a bit mask. Flipping a cell xors it and its neighbors. BFS over masks finds the fewest flips to 0.
+ * Approach: 1. Pack mat into initialMatrixValue. 2. Queue [state, flips], visited set. 3. For every cell, xor the cell plus 4-neighbors into a new mask. 4. Return flips at state 0, else -1.
+ * Dry Run: mat = [[0]]
+ *   initial mask 0 already target. BFS returns 0 flips.
  * Time Complexity: O(2^(M*N) * M*N)
  * Space Complexity: O(2^(M*N))
  */

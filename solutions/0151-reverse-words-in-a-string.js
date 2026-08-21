@@ -1,5 +1,10 @@
 /**
  * Reverse Words In A String
+ * Intuition: Reverse the whole cleaned character array, then reverse each word so word order flips while letters stay in order. Collapse spaces first so leading/trailing/duplicate spaces vanish.
+ * Approach: 1. Scan `s` into `processedCharacters`, pushing a space only when leaving a word (`previousCharWasSpace`). 2. Pop a trailing space if present. 3. If empty, return "". 4. Reverse the whole array with `reverseSegment`. 5. Reverse each word between spaces. 6. `join("")`.
+ * Dry Run: s = "  hello world  "
+ * After collapse: ['h','e','l','l','o',' ','w','o','r','l','d']
+ * Reverse all: "dlrow olleh" then reverse words: "world hello"
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -60,7 +65,7 @@ var reverseWords = function (s) {
       reverseSegment(
         processedCharacters,
         wordBeginIndex,
-        wordEndCheckIndex - 1,
+        wordEndCheckIndex - 1
       );
       wordBeginIndex = wordEndCheckIndex + 1;
     }

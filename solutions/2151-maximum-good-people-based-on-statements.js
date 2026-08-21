@@ -104,7 +104,7 @@ var maximumGood = function (statements) {
       }
       maximumAchievedGood = Math.max(
         maximumAchievedGood,
-        bitCountForAssignment,
+        bitCountForAssignment
       );
     }
   }

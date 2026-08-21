@@ -1,5 +1,9 @@
 /**
  * Count Ways To Distribute Candies
+ * Intuition: The nth candy either opens a new bag (`dp[n-1][k-1]`) or goes into one of `k` existing bags (`k * dp[n-1][k]`). Bags are indistinguishable in the first case and labeled in the second per the recurrence used here.
+ * Approach: 1. `dpTable[c][1] = 1`. 2. For `candiesIter` and `bagsIter`, set `optionOne + optionTwo` mod `1e9+7`. 3. Return `dpTable[n][k]`.
+ * Dry Run: n = 3, k = 2
+ * dp[1][1]=1; dp[2][1]=1, dp[2][2]=1; dp[3][2] = dp[2][1] + 2*dp[2][2] = 1+2 = 3.
  * Time Complexity: O(n * k)
  * Space Complexity: O(n * k)
  */

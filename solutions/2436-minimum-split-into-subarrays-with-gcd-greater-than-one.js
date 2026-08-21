@@ -28,7 +28,7 @@ var minimumSplits = function (nums) {
   for (let elementIndex = 1; elementIndex < totalElements; elementIndex++) {
     const potentialNextGcd = calculateGcd(
       currentSegmentGcd,
-      nums[elementIndex],
+      nums[elementIndex]
     );
     if (potentialNextGcd === 1) {
       minSplitCount++;

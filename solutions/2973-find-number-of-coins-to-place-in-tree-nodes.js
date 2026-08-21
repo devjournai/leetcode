@@ -38,6 +38,8 @@
  *
  * ------------------------------------------------------------
  *
+ * Approach: Iterative DFS from 0 records parent/order. Bottom-up merge each subtree's 2 smallest and 3 largest costs. If subtree size < 3, coin=1; else max of three largest product vs two smallest * largest, or 0 if that product is not positive.
+ *
  * DFS:
  *
  * We root the tree at node 0.
@@ -55,7 +57,7 @@
  *
  * ------------------------------------------------------------
  *
- * Example:
+ * Dry Run:
  *
  * cost = [1,4,2,3,5,7,8,-4,2]
  *

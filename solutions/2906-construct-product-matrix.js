@@ -1,5 +1,8 @@
 /**
  * Construct Product Matrix
+ * Intuition: Each result cell is the product of every other cell modulo 12345, so flatten the grid and combine prefix and suffix products around index k.
+ * Approach: 1. Flatten `grid` into `flatGrid`. 2. Build `prefixProducts[k]` and `suffixProducts[k]` modulo 12345. 3. For each k, multiply prefix[k-1] (if k>0) by suffix[k+1] (if k<N-1). 4. Write that product back into `result[row][col]`.
+ * Dry Run: grid = [[1,2],[3,4]], MOD=12345. prefix=[1,2,6,24], suffix=[24,24,12,4]. k=0 → 24; k=1 → 1*12=12; k=2 → 2*4=8; k=3 → 6. Result [[24,12],[8,6]].
  * Time Complexity: O(n * m)
  * Space Complexity: O(n * m)
  */

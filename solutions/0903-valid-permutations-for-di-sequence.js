@@ -1,5 +1,9 @@
 /**
  * Valid Permutations For Di Sequence
+ * Intuition: `dp[rank]` is ways to permute 0..i so the last value's rank among them is `rank` and s[0..i-1] is satisfied. Prefix sums turn 'D'/'I' transitions into range sums. 'D' needs a previous last rank ≥ current rank; 'I' needs previous rank < current rank.
+ * Approach: 1. Seed `previousDpRow`/`previousPrefixSums` as [1]. 2. For length 1..s.length, char = s[len-1]; for each new rank, if 'D' take suffix of previous row, if 'I' take prefix. 3. Rebuild prefix sums. 4. Return `previousPrefixSums[sLength]` (total ways), mod 1e9+7.
+ * Dry Run: s = "DID".
+ *   - After D,I,D the prefix total is 5 valid permutations of 0..3.
  * Time Complexity: O(n^2)
  * Space Complexity: O(n)
  */

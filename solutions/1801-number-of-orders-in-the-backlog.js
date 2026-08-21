@@ -1,5 +1,9 @@
 /**
  * Number Of Orders In The Backlog
+ * Intuition: Buys match the cheapest sell with price ≤ buy price; sells match the highest buy with price ≥ sell price. Unmatched remainder goes to the corresponding heap.
+ * Approach: 1. Max-buy heap via negated `priorityPrice` and min-sell heap. 2. Type 0: while a sell ≤ current price, match quantities. Leftover buy is enqueued. 3. Type 1: match against buys with originalPrice ≥ sell price. 4. Sum remaining amounts modulo 1e9+7.
+ * Dry Run: orders = [[10,5,0],[15,2,1],[25,1,1],[30,4,0]].
+ *   - Buy 5@10 stays. Sells 15 and 25 do not match that buy. Buy 4@30 consumes both sells (quantity 3) and leaves 1. Backlog 5+1=6.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */
@@ -28,7 +32,7 @@ var getNumberOfBacklogOrders = function (allIncomingTrades) {
         const availableSellOffer = backlogSellOffers.dequeue();
         const matchedQuantity = Math.min(
           currentOrderQuantity,
-          availableSellOffer.orderAmount,
+          availableSellOffer.orderAmount
         );
         currentOrderQuantity -= matchedQuantity;
         availableSellOffer.orderAmount -= matchedQuantity;
@@ -53,7 +57,7 @@ var getNumberOfBacklogOrders = function (allIncomingTrades) {
         const pendingBuyRequest = backlogBuyRequests.dequeue();
         const processedQuantity = Math.min(
           currentOrderQuantity,
-          pendingBuyRequest.orderAmount,
+          pendingBuyRequest.orderAmount
         );
         currentOrderQuantity -= processedQuantity;
         pendingBuyRequest.orderAmount -= processedQuantity;

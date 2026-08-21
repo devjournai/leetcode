@@ -53,7 +53,7 @@ var waysToPartition = function (nums, k) {
     const leftSumCandidate = prefixSumValues[loopIndexOne - 1];
     rightPartitionSumsCount.set(
       leftSumCandidate,
-      (rightPartitionSumsCount.get(leftSumCandidate) || 0) + 1,
+      (rightPartitionSumsCount.get(leftSumCandidate) || 0) + 1
     );
     loopIndexOne++;
   }
@@ -82,7 +82,7 @@ var waysToPartition = function (nums, k) {
         rightPartitionSumsCount.get(originalSumForRightCheck) || 0;
       maxPartitionWays = Math.max(
         maxPartitionWays,
-        leftSideWays + rightSideWays,
+        leftSideWays + rightSideWays
       );
     }
 
@@ -91,7 +91,7 @@ var waysToPartition = function (nums, k) {
 
       leftPartitionSumsCount.set(
         currentElementPrefixSum,
-        (leftPartitionSumsCount.get(currentElementPrefixSum) || 0) + 1,
+        (leftPartitionSumsCount.get(currentElementPrefixSum) || 0) + 1
       );
 
       const currentRightCount =
@@ -99,7 +99,7 @@ var waysToPartition = function (nums, k) {
       if (currentRightCount > 0) {
         rightPartitionSumsCount.set(
           currentElementPrefixSum,
-          currentRightCount - 1,
+          currentRightCount - 1
         );
       }
     }

@@ -1,5 +1,9 @@
 /**
  * Minimum Domino Rotations For Equal Row
+ * Intuition: If a uniform row exists, its value must be tops[0] or bottoms[0]. Count rotations to make that value appear on top vs bottom.
+ * Approach: 1. For a target, scan each tile: if neither face is the target, fail. 2. Count how many tops (and bottoms) need a flip. 3. Return min of those two. 4. Try tops[0] and, if different, bottoms[0]; take the feasible min.
+ * Dry Run: tops = [2,1,2,4,2,2], bottoms = [5,2,6,2,3,2].
+ *   - Target 2: some tops already 2, rest have 2 on bottom; min rotations is 2.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

@@ -56,7 +56,7 @@ var maxNumberOfBalloons = function (text) {
     potentialBalloonsA,
     potentialBalloonsL,
     potentialBalloonsO,
-    potentialBalloonsN,
+    potentialBalloonsN
   );
 
   return totalBalloons;

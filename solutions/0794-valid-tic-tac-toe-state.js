@@ -1,5 +1,8 @@
 /**
  * Valid Tic Tac Toe State
+ * Intuition: X starts, so counts must be equal or X one ahead. Both cannot win; X-win needs one extra X; O-win needs equal counts.
+ * Approach: 1. Count X and O; reject unless `x === o` or `x === o+1`. 2. `checkPlayerWinStatus` tests 3 rows, 3 cols, 2 diagonals. 3. Reject both winners, X win without `x === o+1`, O win without `x === o`.
+ * Dry Run: ["XOX"," X ","   "]. x=2 o=1, neither wins → true. ["XXX","   ","OOO"] both win → false.
  * Time Complexity: O(1)
  * Space Complexity: O(1)
  */

@@ -1,5 +1,8 @@
 /**
  * Valid Mountain Array
+ * Intuition: A mountain strictly climbs from the left then strictly falls to the end, with the peak not at either end, and length ≥ 3.
+ * Approach: 1. Length < 3 → false. 2. Walk while strictly increasing. 3. Peak cannot be index 0 or last. 4. Walk while strictly decreasing. 5. True iff descent reaches the last index.
+ * Dry Run: [0,3,2,1] climb to 3, descend to end → true. [3,2,1] peak at 0 → false.
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */

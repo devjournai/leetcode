@@ -1,5 +1,10 @@
 /**
  * Minimum Interval To Include Each Query
+ * Intuition: Sort queries left-to-right and add intervals that have already started. A min-heap of (size, end) keeps the smallest interval that still covers the query after popping expired ends.
+ * Approach: 1. Sort `intervals` by start. 2. Sort queries with original indices. 3. For each query, enqueue intervals with start ≤ query as [size, end]. 4. Pop heap entries whose end < query. 5. Answer is heap top size or -1.
+ * Dry Run: intervals=[[1,4],[2,4],[3,6]], queries=[2,3,4,5].
+ *   - query 2: intervals [1,4],[2,4] in heap; smallest size 3.
+ *   - query 5: [3,6] remains; size 4.
  * Time Complexity: O(N log N + M log M)
  * Space Complexity: O(N + M)
  */
@@ -76,12 +81,12 @@ var minInterval = function (intervals, queries) {
         this.hasParent(currentHeapIdx) &&
         this.comparisonFunction(
           this.heapElements[currentHeapIdx],
-          this.heapElements[this.getParentIndex(currentHeapIdx)],
+          this.heapElements[this.getParentIndex(currentHeapIdx)]
         ) < 0
       ) {
         this.swapHeapElements(
           currentHeapIdx,
-          this.getParentIndex(currentHeapIdx),
+          this.getParentIndex(currentHeapIdx)
         );
         currentHeapIdx = this.getParentIndex(currentHeapIdx);
       }
@@ -95,7 +100,7 @@ var minInterval = function (intervals, queries) {
           this.hasRightChild(currentHeapIdx) &&
           this.comparisonFunction(
             this.heapElements[this.getRightChildIndex(currentHeapIdx)],
-            this.heapElements[smallerChildIdx],
+            this.heapElements[smallerChildIdx]
           ) < 0
         ) {
           smallerChildIdx = this.getRightChildIndex(currentHeapIdx);
@@ -104,7 +109,7 @@ var minInterval = function (intervals, queries) {
         if (
           this.comparisonFunction(
             this.heapElements[currentHeapIdx],
-            this.heapElements[smallerChildIdx],
+            this.heapElements[smallerChildIdx]
           ) < 0
         ) {
           break;
@@ -122,14 +127,14 @@ var minInterval = function (intervals, queries) {
     (singleQueryValue, originalPosition) => ({
       queryVal: singleQueryValue,
       initialIdx: originalPosition,
-    }),
+    })
   );
   indexedQueryData.sort(
-    (queryOne, queryTwo) => queryOne.queryVal - queryTwo.queryVal,
+    (queryOne, queryTwo) => queryOne.queryVal - queryTwo.queryVal
   );
 
   const activeIntervalMinHeap = new PriorityQueue(
-    (tupleA, tupleB) => tupleA[0] - tupleB[0],
+    (tupleA, tupleB) => tupleA[0] - tupleB[0]
   );
   const outputAnswers = new Array(queries.length).fill(-1);
 

@@ -58,7 +58,7 @@ var countFairPairs = function (nums, lower, upper) {
     const lowBound = findBoundaryIndex(firstElementIndex + 1, minValForSecond);
     const highBound = findBoundaryIndex(
       firstElementIndex + 1,
-      maxValForSecond + 1,
+      maxValForSecond + 1
     );
 
     if (lowBound < highBound) {

@@ -1,11 +1,15 @@
 /**
  * Single Threaded Cpu
+ * Intuition: The CPU always runs the available task with shortest processing time (then smallest index). Sort by enqueue time and use a min-heap of ready tasks, jumping time forward when idle.
+ * Approach: 1. Decorate tasks with `originalIndex` and sort by `enqueueTimestamp`. 2. Heap-compare by processingDuration then index. 3. While work remains, push newly arrived tasks, extract the min ready task or jump `currentCpuMoment` to the next enqueue. 4. Return `executionSequence`.
+ * Dry Run: tasks = [[1,2],[2,4],[3,2],[4,1]].
+ *   - Order of original indices [0,2,3,1].
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */
 class MinPriorityQueueStructure {
   constructor(
-    comparisonRoutine = (firstVal, secondVal) => firstVal - secondVal,
+    comparisonRoutine = (firstVal, secondVal) => firstVal - secondVal
   ) {
     this.heapElements = [];
     this.comparisonRoutine = comparisonRoutine;
@@ -78,12 +82,12 @@ class MinPriorityQueueStructure {
       this.hasSuperio(elementIndexCurrent) &&
       this.comparisonRoutine(
         this.heapElements[elementIndexCurrent],
-        this.getSuperio(elementIndexCurrent),
+        this.getSuperio(elementIndexCurrent)
       ) < 0
     ) {
       this.exchangePositions(
         elementIndexCurrent,
-        this.getParentPosition(elementIndexCurrent),
+        this.getParentPosition(elementIndexCurrent)
       );
       elementIndexCurrent = this.getParentPosition(elementIndexCurrent);
     }
@@ -97,7 +101,7 @@ class MinPriorityQueueStructure {
         this.hasRightSuccessor(elementIndexCurrent) &&
         this.comparisonRoutine(
           this.getRightSuccessor(elementIndexCurrent),
-          this.getLeftSuccessor(elementIndexCurrent),
+          this.getLeftSuccessor(elementIndexCurrent)
         ) < 0
       ) {
         smallerSubchildIndex = this.getRightPupilPosition(elementIndexCurrent);
@@ -106,7 +110,7 @@ class MinPriorityQueueStructure {
       if (
         this.comparisonRoutine(
           this.heapElements[elementIndexCurrent],
-          this.heapElements[smallerSubchildIndex],
+          this.heapElements[smallerSubchildIndex]
         ) < 0
       ) {
         break;
@@ -129,14 +133,14 @@ var getOrder = function (incomingTasks) {
     }))
     .sort(
       (firstItem, secondItem) =>
-        firstItem.enqueueTimestamp - secondItem.enqueueTimestamp,
+        firstItem.enqueueTimestamp - secondItem.enqueueTimestamp
     );
 
   const executionSequence = [];
   const activeTasksPriorityQueue = new MinPriorityQueueStructure(
     (taskA, taskB) =>
       taskA.processingDuration - taskB.processingDuration ||
-      taskA.originalIndex - taskB.originalIndex,
+      taskA.originalIndex - taskB.originalIndex
   );
   let currentCpuMoment = augmentedTaskDetails[0].enqueueTimestamp;
   let nextTaskToProcessIndex = 0;
@@ -148,7 +152,7 @@ var getOrder = function (incomingTasks) {
         currentCpuMoment
     ) {
       activeTasksPriorityQueue.insertElement(
-        augmentedTaskDetails[nextTaskToProcessIndex],
+        augmentedTaskDetails[nextTaskToProcessIndex]
       );
       nextTaskToProcessIndex++;
     }

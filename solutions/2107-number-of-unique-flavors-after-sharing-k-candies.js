@@ -47,7 +47,7 @@ var shareCandies = function (candies, k) {
     const currentCandyFlavor = candies[currentCandyIndex];
     allCandyFlavorAmounts.set(
       currentCandyFlavor,
-      (allCandyFlavorAmounts.get(currentCandyFlavor) || 0) + 1,
+      (allCandyFlavorAmounts.get(currentCandyFlavor) || 0) + 1
     );
   }
 
@@ -64,7 +64,7 @@ var shareCandies = function (candies, k) {
       windowContentsAmount.get(presentCandyInWindow) || 0;
     windowContentsAmount.set(
       presentCandyInWindow,
-      initialWindowFlavorCount + 1,
+      initialWindowFlavorCount + 1
     );
 
     if (

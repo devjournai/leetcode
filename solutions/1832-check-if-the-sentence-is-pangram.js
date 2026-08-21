@@ -1,5 +1,9 @@
 /**
  * Check If The Sentence Is Pangram
+ * Intuition: A pangram contains every letter a–z at least once. A 26-slot boolean array records presence.
+ * Approach: 1. Mark `alphabetPresence[c-'a']` for each letter. 2. Return false if any slot is still false. 3. Otherwise true.
+ * Dry Run: sentence = "thequickbrownfoxjumpsoverthelazydog".
+ *   - All 26 flags true → true.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

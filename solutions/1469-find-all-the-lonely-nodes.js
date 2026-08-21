@@ -1,5 +1,9 @@
 /**
  * Find All The Lonely Nodes
+ * Intuition: A lonely node is the only child of its parent. DFS and record a child whenever the other sibling is missing.
+ * Approach: 1. Recurse processNodeChildren. 2. If only left exists, push left.val; if only right exists, push right.val. 3. Recurse into both children. 4. Return the collection.
+ * Dry Run: root 1 with only left 2, and 2 has only right 4
+ *   - 2 is lonely, 4 is lonely. Return [2,4] (order of DFS).
  * Time Complexity: O(N)
  * Space Complexity: O(H)
  */

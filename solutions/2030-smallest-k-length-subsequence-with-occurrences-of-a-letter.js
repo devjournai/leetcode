@@ -74,7 +74,7 @@ var smallestSubsequence = function (
   stringS,
   integerK,
   charLetter,
-  numRepetitions,
+  numRepetitions
 ) {
   const stringLength = stringS.length;
   let initialLetterCount = 0;

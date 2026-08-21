@@ -1,5 +1,9 @@
 /**
  * Change Minimum Characters To Satisfy One Of Three Conditions
+ * Intuition: Three goals: all of a strictly < all of b (pick split letter), the reverse, or both strings become one letter. Prefix counts let each split/letter cost be computed in O(1).
+ * Approach: 1. Frequency and prefix arrays for a and b. 2. `findMinOperationsThreshold` for a < b and b < a. 3. `findMinOperationsSingleDistinct` for both becoming the same character. 4. Return the min of the three.
+ * Dry Run: a = "aba", b = "caa"
+ * Condition 1/2/3 min is 2 (e.g. change one char in each string so a is strictly below b).
  * Time Complexity: O(N + M)
  * Space Complexity: O(1)
  */
@@ -29,7 +33,7 @@ var minCharacters = function (a, b) {
     lenPrimary,
     lenSecondary,
     primaryPrefixSums,
-    secondaryPrefixSums,
+    secondaryPrefixSums
   ) => {
     let minOpsForThreshold = Infinity;
     for (let boundaryIndex = 0; boundaryIndex < 25; boundaryIndex++) {
@@ -49,7 +53,7 @@ var minCharacters = function (a, b) {
     lenOne,
     lenTwo,
     freqOne,
-    freqTwo,
+    freqTwo
   ) => {
     let minOpsForDistinct = Infinity;
     for (
@@ -78,21 +82,21 @@ var minCharacters = function (a, b) {
     stringALength,
     stringBLength,
     prefixSumA,
-    prefixSumB,
+    prefixSumB
   );
 
   const resultConditionTwo = findMinOperationsThreshold(
     stringBLength,
     stringALength,
     prefixSumB,
-    prefixSumA,
+    prefixSumA
   );
 
   const resultConditionThree = findMinOperationsSingleDistinct(
     stringALength,
     stringBLength,
     freqA,
-    freqB,
+    freqB
   );
 
   return Math.min(resultConditionOne, resultConditionTwo, resultConditionThree);

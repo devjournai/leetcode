@@ -1,5 +1,9 @@
 /**
  * Solve The Equation
+ * Intuition: Parse each side into an x-coefficient and a constant, move all x to the left and constants to the right, then divide (or report infinite/no solution).
+ * Approach: 1. Split on `=`. 2. `processEquationPart` scans digits, signs, and `x` (implicit 1 after +/− or at start). 3. `combinedXCoeff = lhsX - rhsX`, `combinedNumberValue = rhsNum - lhsNum`. 4. If coeff is 0, return Infinite/No solution; else `x=${number/coeff}`.
+ * Dry Run: "x+5-3+x=6+x-2".
+ *   - Left: 2x + 2. Right: 1x + 4. Coeff 1, number 2 → "x=2".
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

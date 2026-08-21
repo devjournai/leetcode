@@ -1,5 +1,8 @@
 /**
  * Day Of The Week
+ * Intuition: Zeller's congruence maps a calendar date to a weekday index without iterating days.
+ * Approach: 1. Treat January/February as months 13/14 of the previous year. 2. Plug day, month, year-in-century, and century into Zeller's formula. 3. Adjust the modulo-7 result to Sunday-based indexing and look up the name.
+ * Dry Run: day=31, month=8, year=2019. Formula yields Saturday.
  * Time Complexity: O(1)
  * Space Complexity: O(1)
  */

@@ -1,5 +1,8 @@
 /**
  * Brace Expansion
+ * Intuition: The string is a product of option groups ({a,b} or a single letter). Cartesian product of those groups, then sort, lists every word in lexicographic order.
+ * Approach: 1. Parse: on '{', split until '}' by commas; else a singleton group. 2. Backtrack concatenating one choice per group. 3. Sort the generated words.
+ * Dry Run: {a,b}c{d,e} → groups [a,b], [c], [d,e] → acd, ace, bcd, bce after sort.
  * Time Complexity: O(N + W * N_word * logW)
  * Space Complexity: O(W * N_word)
  */
@@ -16,7 +19,7 @@ var expand = function (stringInput) {
       }
       const subExpression = stringInput.substring(
         braceContentStart,
-        groupEndPos,
+        groupEndPos
       );
       const parsedOptions = subExpression.split(",");
       allOptionSets.push(parsedOptions);

@@ -1,5 +1,9 @@
 /**
  * Sum Of Special Evenly Spaced Elements In Array
+ * Intuition: Query (start, step) sums nums[start], nums[start+step], … Precompute suffix sums for every step ≤ √n; larger steps are summed on the fly.
+ * Approach: 1. For `loopStep` 1..sqrt, fill `currentSuffixStorage[i] = nums[i] + storage[i+step]`. 2. Small-step queries read the map; large-step walk the arithmetic sequence mod 1e9+7. 3. Return `resultCollection`.
+ * Dry Run: nums = [0,1,2,3,4], queries = [[0,1],[1,2]]
+ * step 1 suffix from 0 is 10; from 1 step 2: 1+3=4.
  * Time Complexity: O(N * sqrt(N) + Q * sqrt(N))
  * Space Complexity: O(N * sqrt(N))
  */

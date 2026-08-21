@@ -1,5 +1,8 @@
 /**
  * Divide Chocolate
+ * Intuition: Maximize the minimum chunk sweetness with k cuts (k+1 pieces) by binary-searching that minimum and greedily packing prefix sums.
+ * Approach: 1. Lo=min bar, hi=total. 2. Mid is feasible if we can form ≥ k+1 pieces each summing to ≥ mid. 3. Raise lo on success, else lower hi.
+ * Dry Run: sweetness=[1,2,3,4,5,6,7,8,9], k=5. Feasible min 6 → 6.
  * Time Complexity: O(N * log(S_total))
  * Space Complexity: O(1)
  */
@@ -22,7 +25,7 @@ var maximizeSweetness = function (sweetness, k) {
 
   while (sweetnessRangeStart <= sweetnessRangeEnd) {
     const currentSweetnessCandidate = Math.floor(
-      (sweetnessRangeStart + sweetnessRangeEnd) / 2,
+      (sweetnessRangeStart + sweetnessRangeEnd) / 2
     );
 
     if (canAchieveMinSweetness(currentSweetnessCandidate)) {

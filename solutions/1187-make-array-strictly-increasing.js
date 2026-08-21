@@ -1,11 +1,14 @@
 /**
  * Make Array Strictly Increasing
+ * Intuition: At each arr1 index keep possible last values after a minimum number of replacements from a sorted unique arr2.
+ * Approach: 1. Sort unique arr2. 2. DP map lastValue → ops. 3. For each arr1[i], keep it if larger than last, or replace with the smallest arr2 values strictly above last. 4. Prune dominated states; return min ops or -1.
+ * Dry Run: arr1=[1,5,3], arr2=[4,2]. Keep 1. At 5 keep 5 (0 ops) or replace with 2/4. At 3 cannot keep after 5; replace with a value > last from arr2. Min ops = 1.
  * Time Complexity: O(N * M * log M)
  * Space Complexity: O(M)
  */
 var makeArrayIncreasing = function (arr1, arr2) {
   const deduplicatedSortedSecondArray = [...new Set(arr2)].sort(
-    (firstVal, secondVal) => firstVal - secondVal,
+    (firstVal, secondVal) => firstVal - secondVal
   );
   let dynamicProgrammingStates = new Map([[-Infinity, 0]]);
 
@@ -25,17 +28,17 @@ var makeArrayIncreasing = function (arr1, arr2) {
         updateMinimumValue(
           currentIterationDpStates,
           arr1[arrayOneIndex],
-          operationsTaken,
+          operationsTaken
         );
         minimumOperationsConsidered = Math.min(
           minimumOperationsConsidered,
-          operationsTaken,
+          operationsTaken
         );
       }
 
       const startSearchIndex = findInsertionIndex(
         deduplicatedSortedSecondArray,
-        previousArrayValue,
+        previousArrayValue
       );
       for (
         let secondArraySearchIndex = startSearchIndex;
@@ -50,11 +53,11 @@ var makeArrayIncreasing = function (arr1, arr2) {
         updateMinimumValue(
           currentIterationDpStates,
           secondArraySelectedValue,
-          operationsTaken + 1,
+          operationsTaken + 1
         );
         minimumOperationsConsidered = Math.min(
           minimumOperationsConsidered,
-          operationsTaken + 1,
+          operationsTaken + 1
         );
         if (secondArraySelectedValue >= arr1[arrayOneIndex]) {
           break;
@@ -97,7 +100,7 @@ function filterAndSortStates(inputMap) {
   const processedMap = new Map();
   let currentMinimumSteps = Infinity;
   const sortedEntries = [...inputMap].sort(
-    (entryA, entryB) => entryA[0] - entryB[0],
+    (entryA, entryB) => entryA[0] - entryB[0]
   );
 
   for (const [entryValue, entrySteps] of sortedEntries) {

@@ -91,7 +91,7 @@ var isThereAPath = function (grid) {
       foundPossiblePath = traversePath(
         nextRowCoord,
         currentGridCol,
-        balanceAfterMoveDown,
+        balanceAfterMoveDown
       );
     }
 
@@ -104,7 +104,7 @@ var isThereAPath = function (grid) {
         foundPossiblePath = traversePath(
           currentGridRow,
           nextColCoord,
-          balanceAfterMoveRight,
+          balanceAfterMoveRight
         );
       }
     }

@@ -12,7 +12,7 @@ var maximumTotalDamage = function (power) {
   for (const damageValue of power) {
     damageFrequency.set(
       damageValue,
-      (damageFrequency.get(damageValue) || 0) + 1,
+      (damageFrequency.get(damageValue) || 0) + 1
     );
   }
   const uniqueDamages = [...damageFrequency.keys()].sort((a, b) => a - b);

@@ -70,7 +70,7 @@ var minimumTime = function (power) {
       if (!isMonsterDefeated) {
         const monsterPowerValue = power[monsterIndex];
         const daysToAcquirePower = Math.ceil(
-          monsterPowerValue / currentManaGain,
+          monsterPowerValue / currentManaGain
         );
 
         const nextMonstersMask = defeatedMonstersMask | (1 << monsterIndex);

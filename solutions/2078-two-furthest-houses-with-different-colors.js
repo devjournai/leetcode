@@ -28,32 +28,38 @@
  * Space Complexity: O(1)
  */
 var maxDistance = function (colors) {
-    const totalHouses = colors.length;
-    let maximumAchievedDistance = 0;
+  const totalHouses = colors.length;
+  let maximumAchievedDistance = 0;
 
-    const initialHouseColor = colors[0];
-    let backwardIteration = totalHouses - 1;
+  const initialHouseColor = colors[0];
+  let backwardIteration = totalHouses - 1;
 
-    while (backwardIteration > 0) {
-        if (colors[backwardIteration] !== initialHouseColor) {
-            let currentCalculatedDistance = backwardIteration - 0;
-            maximumAchievedDistance = Math.max(maximumAchievedDistance, currentCalculatedDistance);
-            break;
-        }
-        backwardIteration--;
+  while (backwardIteration > 0) {
+    if (colors[backwardIteration] !== initialHouseColor) {
+      let currentCalculatedDistance = backwardIteration - 0;
+      maximumAchievedDistance = Math.max(
+        maximumAchievedDistance,
+        currentCalculatedDistance
+      );
+      break;
     }
+    backwardIteration--;
+  }
 
-    const finalHouseColor = colors[totalHouses - 1];
-    let forwardIteration = 0;
+  const finalHouseColor = colors[totalHouses - 1];
+  let forwardIteration = 0;
 
-    while (forwardIteration < totalHouses - 1) {
-        if (colors[forwardIteration] !== finalHouseColor) {
-            let potentialDistance = (totalHouses - 1) - forwardIteration;
-            maximumAchievedDistance = Math.max(maximumAchievedDistance, potentialDistance);
-            break;
-        }
-        forwardIteration++;
+  while (forwardIteration < totalHouses - 1) {
+    if (colors[forwardIteration] !== finalHouseColor) {
+      let potentialDistance = totalHouses - 1 - forwardIteration;
+      maximumAchievedDistance = Math.max(
+        maximumAchievedDistance,
+        potentialDistance
+      );
+      break;
     }
+    forwardIteration++;
+  }
 
-    return maximumAchievedDistance;
+  return maximumAchievedDistance;
 };

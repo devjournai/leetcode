@@ -1,5 +1,10 @@
 /**
  * Describe The Painting
+ * Intuition: Overlapping color segments mix by summing color ids. Sweep line: +color at starts and -color at ends; between consecutive event x-coordinates the mix is constant, so emit a segment whenever that mix is positive.
+ * Approach: 1. For each `[start,end,color]` push `[start,+color]` and `[end,-color]`. 2. Sort by position, then by color delta. 3. Walk events: if mix > 0 and x advanced, push `[lastX, x, mix]`. Apply the delta and update `lastX`. 4. Return the list.
+ * Dry Run: segments = [[1,4,5],[4,7,7],[1,7,9]].
+ *   - Events: (1,+5),(1,+9),(4,-5),(4,+7),(7,-7),(7,-9)
+ *   - [1,4] mix 14; [4,7] mix 16. Return those two mixed segments.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */

@@ -1,5 +1,9 @@
 /**
  * Check If One String Swap Can Make Strings Equal
+ * Intuition: Equal strings already work. Otherwise exactly two mismatch positions must be a swap of each other.
+ * Approach: 1. Collect mismatch indices; abort if more than two. 2. Zero mismatches → true. 3. Two mismatches: check s1[i]==s2[j] and s1[j]==s2[i]. 4. One mismatch → false.
+ * Dry Run: s1 = "bank", s2 = "kanb".
+ *   - Mismatches at 0 and 3: b/k and k/b. Swap works → true.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

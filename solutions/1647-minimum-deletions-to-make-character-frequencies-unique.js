@@ -1,5 +1,8 @@
 /**
  * Minimum Deletions To Make Character Frequencies Unique
+ * Intuition: After counting, greedily lower any frequency that collides with an already used one until it is unique or zero.
+ * Approach: 1. Count 26 letters. 2. Sort frequencies descending. 3. Keep a set of used frequencies. 4. While freq is in the set and > 0, decrement it (each step is a deletion). 5. Add the remaining freq if > 0.
+ * Dry Run: "aaabbbcc" → freqs 3,3,2; second 3 becomes 1 after two deletions → 2.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

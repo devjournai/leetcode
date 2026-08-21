@@ -1,5 +1,8 @@
 /**
  * Statistics From A Large Sample
+ * Intuition: count[v] is a histogram of values 0–255, so min, max, mean, mode, and median are all scans of 256 buckets using running totals for the middle rank(s).
+ * Approach: 1. One pass: min/max, sum, n, mode (highest frequency). 2. Mean = sum/n. 3. Walk frequencies until covering n/2 (and n/2−1 if even) for the median. 4. Return [min,max,mean,median,mode].
+ * Dry Run: count with 1 at index 1 and 1 at index 4 (n=2 even). min=1, max=4, mean=2.5, median=2.5, mode=1 (first peak).
  * Time Complexity: O(1)
  * Space Complexity: O(1)
  */

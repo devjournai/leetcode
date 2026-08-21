@@ -1,5 +1,9 @@
 /**
  * Minimum Index Sum Of Two Lists
+ * Intuition: Common restaurants with the smallest `index1+index2` are the answer (ties keep all). Map list1 names to indices, then scan list2 and track the running min sum.
+ * Approach: 1. Fill `restaurantIndexMap` from `list1`. 2. `minTotalIndex = Infinity`, `finalRestaurantList = []`. 3. For each `candidateRestaurantName` in `list2`, if mapped, `calculatedIndexTotal = firstListPosition + candidateRestaurantIndex`. 4. Smaller sum replaces the list; equal sum pushes. 5. Return `finalRestaurantList`.
+ * Dry Run: list1=["Shogun","Tapioca"], list2=["Piatti","Shogun"].
+ *   - Shogun at 0 and 1, sum 1. Only common. Return ["Shogun"].
  * Time Complexity: O(L1 + L2)
  * Space Complexity: O(L1)
  */

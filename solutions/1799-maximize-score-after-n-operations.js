@@ -1,5 +1,9 @@
 /**
  * Maximize Score After N Operations
+ * Intuition: There are n/2 operations pairing unused numbers; score adds opIndex * gcd(pair). Bitmask DP over used indices plus precomputed pairwise gcds finds the maximum assignment.
+ * Approach: 1. Fill `pairwiseGcdResults`. 2. `solveOperations(operationNumber, bitmask)` tries every unused pair, adds `operationNumber * gcd`, and recurses. 3. Memoize by bitmask. 4. Start at operation 1 with mask 0.
+ * Dry Run: nums = [1,2].
+ *   - One pair, gcd 1, score 1*1=1.
  * Time Complexity: O(N^2 * logM + 2^N * N^2)
  * Space Complexity: O(N^2 + 2^N)
  */
@@ -14,7 +18,7 @@ var maxScore = function (numsInput) {
     for (let indexTwo = indexOne + 1; indexTwo < elementCount; ++indexTwo) {
       pairwiseGcdResults[indexOne][indexTwo] = calculateGreatestCommonDivisor(
         numsInput[indexOne],
-        numsInput[indexTwo],
+        numsInput[indexTwo]
       );
     }
   }
@@ -35,7 +39,7 @@ var maxScore = function (numsInput) {
     operationNumber,
     currentBitmask,
     memoStorage,
-    gcdValues,
+    gcdValues
   ) {
     if (operationNumber > targetOperations) {
       return 0;
@@ -70,12 +74,12 @@ var maxScore = function (numsInput) {
           operationNumber + 1,
           nextBitmask,
           memoStorage,
-          gcdValues,
+          gcdValues
         );
         const totalOperationScore = currentPairScore + remainingScore;
         maximumAchievableScore = Math.max(
           maximumAchievableScore,
-          totalOperationScore,
+          totalOperationScore
         );
       }
     }

@@ -37,10 +37,10 @@ var sumImbalanceNumbers = function (nums) {
 
       if (alreadyProcessed === false) {
         const checkGreaterNeighbor = distinctElements.has(
-          currentElementValue + 1,
+          currentElementValue + 1
         );
         const checkLesserNeighbor = distinctElements.has(
-          currentElementValue - 1,
+          currentElementValue - 1
         );
 
         const shouldDecrement = checkGreaterNeighbor && checkLesserNeighbor;

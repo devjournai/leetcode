@@ -53,7 +53,7 @@ var recoverArray = function (n, sums) {
     for (const currentSumValue of sums) {
       sumFrequencies.set(
         currentSumValue,
-        (sumFrequencies.get(currentSumValue) || 0) + 1,
+        (sumFrequencies.get(currentSumValue) || 0) + 1
       );
     }
 
@@ -61,13 +61,13 @@ var recoverArray = function (n, sums) {
       if (sumFrequencies.get(iteratedSumValue) > 0) {
         sumFrequencies.set(
           iteratedSumValue,
-          sumFrequencies.get(iteratedSumValue) - 1,
+          sumFrequencies.get(iteratedSumValue) - 1
         );
 
         if (sumFrequencies.get(iteratedSumValue + currentDifference) > 0) {
           sumFrequencies.set(
             iteratedSumValue + currentDifference,
-            sumFrequencies.get(iteratedSumValue + currentDifference) - 1,
+            sumFrequencies.get(iteratedSumValue + currentDifference) - 1
           );
           subsetSumsExcludingCurrent.push(iteratedSumValue);
           subsetSumsIncludingCurrent.push(iteratedSumValue + currentDifference);

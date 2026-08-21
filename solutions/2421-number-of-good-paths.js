@@ -89,7 +89,7 @@ var numberOfGoodPaths = function (vals, edges) {
       return nodeIdentifier;
     }
     parentArray[nodeIdentifier] = findSetRepresentative(
-      parentArray[nodeIdentifier],
+      parentArray[nodeIdentifier]
     );
     return parentArray[nodeIdentifier];
   };
@@ -126,12 +126,12 @@ var numberOfGoodPaths = function (vals, edges) {
 
   let totalGoodPaths = 0;
   const distinctValues = [...nodesGroupedByValue.keys()].sort(
-    (valA, valB) => valA - valB,
+    (valA, valB) => valA - valB
   );
 
   for (const currentValueForProcessing of distinctValues) {
     const nodesWithCurrentValue = nodesGroupedByValue.get(
-      currentValueForProcessing,
+      currentValueForProcessing
     );
 
     for (const currentNodeIndex of nodesWithCurrentValue) {
@@ -147,7 +147,7 @@ var numberOfGoodPaths = function (vals, edges) {
       const componentRoot = findSetRepresentative(nodeConsidered);
       rootComponentCounts.set(
         componentRoot,
-        (rootComponentCounts.get(componentRoot) || 0) + 1,
+        (rootComponentCounts.get(componentRoot) || 0) + 1
       );
     }
 

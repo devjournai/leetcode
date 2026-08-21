@@ -1,5 +1,8 @@
 /**
  * Find the Largest Area of Square Inside Two Rectangles
+ * Intuition: A square that sits in two rectangles must fit in their overlap, so the side is the min of the intersection width and height.
+ * Approach: Check every pair of rectangles, compute the axis-aligned intersection, take min(width, height) as the square side, and keep the maximum side; return side squared.
+ * Dry Run: Rectangles overlapping in a 2x3 region -> side 2, area 4.
  * Time Complexity: O(n^2)
  * Space Complexity: O(1)
  */

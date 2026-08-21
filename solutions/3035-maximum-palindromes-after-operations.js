@@ -49,7 +49,7 @@ var maxPalindromesAfterOperations = function (words) {
   }
 
   const wordLengthsCollection = words.map(
-    (currentString) => currentString.length,
+    (currentString) => currentString.length
   );
   wordLengthsCollection.sort((lenA, lenB) => lenA - lenB);
 

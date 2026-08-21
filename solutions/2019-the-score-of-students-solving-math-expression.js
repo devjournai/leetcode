@@ -69,11 +69,11 @@ var scoreOfStudents = function (s, answers) {
     ) {
       const leftValuesSet = calculateAllPossibleResults(
         currentStartIdx,
-        operatorPosition - 1,
+        operatorPosition - 1
       );
       const rightValuesSet = calculateAllPossibleResults(
         operatorPosition + 1,
-        currentEndIdx,
+        currentEndIdx
       );
       const operationChar = s[operatorPosition];
 
@@ -99,7 +99,7 @@ var scoreOfStudents = function (s, answers) {
 
   const allMisinterpretedResults = calculateAllPossibleResults(
     0,
-    expressionLength - 1,
+    expressionLength - 1
   );
   let totalScoreAccumulator = 0;
 

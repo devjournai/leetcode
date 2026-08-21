@@ -1,5 +1,8 @@
 /**
  * Super Pow
+ * Intuition: For a digit array b, a^b = (((a^{d0})^10 * a^{d1})^10 * …) mod 1337, so walk digits left to right combining `result^10` and `a^digit` under modular exponentiation.
+ * Approach: 1. Reduce a mod 1337. 2. Binary-exponentiate with BigInt: square the base and multiply in when the exponent bit is odd. 3. For each digit d, set result = (pow(result,10) * pow(a,d)) % 1337.
+ * Dry Run: a = 2, b = [3]. result starts 1; digit 3 → (1^10 * 2^3) % 1337 = 8.
  * Time Complexity: O(L)
  * Space Complexity: O(L)
  */
@@ -13,7 +16,7 @@ var superPow = function (a, b) {
   const calculateModularExponentiation = (
     baseParameter,
     exponentParameter,
-    modulusParameter,
+    modulusParameter
   ) => {
     let currentPowerAccumulator = 1n;
     let workingBase = BigInt(baseParameter);
@@ -37,12 +40,12 @@ var superPow = function (a, b) {
     let resultFromTenPower = calculateModularExponentiation(
       accumulatedResult,
       10,
-      primeModulus,
+      primeModulus
     );
     let resultFromDigitPower = calculateModularExponentiation(
       baseValue,
       currentDigit,
-      primeModulus,
+      primeModulus
     );
 
     accumulatedResult =

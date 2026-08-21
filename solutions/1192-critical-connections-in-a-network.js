@@ -1,5 +1,8 @@
 /**
  * Critical Connections In A Network
+ * Intuition: A bridge is an edge whose child cannot reach an ancestor except through that edge (Tarjan low-link).
+ * Approach: 1. Build the undirected graph. 2. DFS assigning discovery time and low[v]. 3. After recursing a child, if low[child] > disc[u] the edge is critical. 4. Back-edges update low with the neighbor's discovery time.
+ * Dry Run: n=4, edges [[0,1],[1,2],[2,0],[1,3]]. Cycle 0-1-2 has no bridges; 1-3 has low[3]>disc[1] → [[1,3]].
  * Time Complexity: O(N + M)
  * Space Complexity: O(N + M)
  */
@@ -33,7 +36,7 @@ var criticalConnections = function (totalNodes, serverConnections) {
 
         lowestReachTimes[currentNode] = Math.min(
           lowestReachTimes[currentNode],
-          lowestReachTimes[adjacentNode],
+          lowestReachTimes[adjacentNode]
         );
 
         if (lowestReachTimes[adjacentNode] > nodeDiscoveryTimes[currentNode]) {
@@ -42,7 +45,7 @@ var criticalConnections = function (totalNodes, serverConnections) {
       } else {
         lowestReachTimes[currentNode] = Math.min(
           lowestReachTimes[currentNode],
-          nodeDiscoveryTimes[adjacentNode],
+          nodeDiscoveryTimes[adjacentNode]
         );
       }
     }

@@ -78,7 +78,7 @@ var maximumScore = function (nodeScoresArray, edgeConnections) {
     nodeAdjacenciesMap[currentNodeIdentifier].sort(
       (neighborOne, neighborTwo) => {
         return nodeScoresArray[neighborTwo] - nodeScoresArray[neighborOne];
-      },
+      }
     );
     if (nodeAdjacenciesMap[currentNodeIdentifier].length > 3) {
       nodeAdjacenciesMap[currentNodeIdentifier] = nodeAdjacenciesMap[

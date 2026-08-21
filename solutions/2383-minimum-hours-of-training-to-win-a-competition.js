@@ -30,7 +30,7 @@ var minNumberOfHours = function (
   initialEnergy,
   initialExperience,
   energyOpponents,
-  experienceOpponents,
+  experienceOpponents
 ) {
   let trainingHoursForEnergy = 0;
   let trainingHoursForExperience = 0;

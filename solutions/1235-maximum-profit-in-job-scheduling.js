@@ -1,5 +1,8 @@
 /**
  * Maximum Profit In Job Scheduling
+ * Intuition: After sorting by start, dp[i] is max profit from jobs i..end: skip job i, or take it plus dp of the first job starting at/after its end.
+ * Approach: 1. Pack (start,end,profit) and sort by start. 2. From the back, binary-search the next non-overlapping job. 3. dp[i]=max(dp[i+1], profit+dp[next]).
+ * Dry Run: jobs (1,3,50),(2,4,10),(3,5,40). Take first+third = 90 vs skip → 90.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */
@@ -42,7 +45,7 @@ var jobScheduling = function (startTime, endTime, profit) {
 
     while (searchLowBoundary <= searchHighBoundary) {
       const searchMidpoint = Math.floor(
-        (searchLowBoundary + searchHighBoundary) / 2,
+        (searchLowBoundary + searchHighBoundary) / 2
       );
       if (allJobs[searchMidpoint][0] >= currentJobEnding) {
         nextAvailableJobIndex = searchMidpoint;
@@ -57,7 +60,7 @@ var jobScheduling = function (startTime, endTime, profit) {
 
     dynamicProgrammingTable[currentJobPosition] = Math.max(
       profitSkippingCurrent,
-      profitIncludingCurrent,
+      profitIncludingCurrent
     );
   }
 

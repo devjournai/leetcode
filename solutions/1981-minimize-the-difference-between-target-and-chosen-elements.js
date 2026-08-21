@@ -55,7 +55,7 @@ var minimizeTheDifference = function (mat, target) {
     let currentDifferenceValue = Math.abs(finalSumCandidate - target);
     overallMinimumDifference = Math.min(
       overallMinimumDifference,
-      currentDifferenceValue,
+      currentDifferenceValue
     );
   }
 

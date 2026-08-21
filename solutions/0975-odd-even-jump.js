@@ -1,5 +1,8 @@
 /**
  * Odd Even Jump
+ * Intuition: Odd jumps go to the least larger-or-equal later index; even jumps to the greatest smaller-or-equal. Precompute next indices with sorted order + monotonic stacks, then DP from the right.
+ * Approach: 1. Last index is good for both parities; `goodStartCount = 1`. 2. Sort indices ascending for odd next, descending for even next; stack pops smaller indices. 3. For i from n-2 down: odd-good if even-good at next odd jump; even-good if odd-good at next even jump. 4. Count odd-good starts.
+ * Dry Run: arr = [10,13,12,14,13]. Index 0 odd-jumps to 2 (12), even from 2 to 3, odd from 3 done. Several starts reach the end. Answer 2.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */
@@ -19,7 +22,7 @@ var oddEvenJumps = function (arr) {
 
   const originalIndicesForOdd = Array.from(
     { length: arraySize },
-    (_, idx) => idx,
+    (_, idx) => idx
   );
   originalIndicesForOdd.sort((firstIdx, secondIdx) => {
     if (arr[firstIdx] !== arr[secondIdx]) {
@@ -41,7 +44,7 @@ var oddEvenJumps = function (arr) {
 
   const originalIndicesForEven = Array.from(
     { length: arraySize },
-    (_, idx) => idx,
+    (_, idx) => idx
   );
   originalIndicesForEven.sort((firstIdxElement, secondIdxElement) => {
     if (arr[firstIdxElement] !== arr[secondIdxElement]) {

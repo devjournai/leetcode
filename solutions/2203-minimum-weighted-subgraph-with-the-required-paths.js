@@ -70,7 +70,7 @@
 class CustomPriorityQueue {
   constructor(
     comparatorFunction = (firstElement, secondElement) =>
-      firstElement - secondElement,
+      firstElement - secondElement
   ) {
     this._heapElements = [];
     this._comparisonFunction = comparatorFunction;
@@ -130,12 +130,12 @@ class CustomPriorityQueue {
       currentElementIndex > 0 &&
       this._comparisonFunction(
         this._heapElements[currentElementIndex],
-        this._heapElements[this._getParentIndex(currentElementIndex)],
+        this._heapElements[this._getParentIndex(currentElementIndex)]
       ) < 0
     ) {
       this._exchangeElements(
         currentElementIndex,
-        this._getParentIndex(currentElementIndex),
+        this._getParentIndex(currentElementIndex)
       );
       currentElementIndex = this._getParentIndex(currentElementIndex);
     }
@@ -153,7 +153,7 @@ class CustomPriorityQueue {
         leftPosition <= lastPosition &&
         this._comparisonFunction(
           this._heapElements[leftPosition],
-          this._heapElements[smallestPosition],
+          this._heapElements[smallestPosition]
         ) < 0
       ) {
         smallestPosition = leftPosition;
@@ -162,7 +162,7 @@ class CustomPriorityQueue {
         rightPosition <= lastPosition &&
         this._comparisonFunction(
           this._heapElements[rightPosition],
-          this._heapElements[smallestPosition],
+          this._heapElements[smallestPosition]
         ) < 0
       ) {
         smallestPosition = rightPosition;
@@ -183,7 +183,7 @@ var minimumWeight = function (
   graphEdges,
   sourceNodeOne,
   sourceNodeTwo,
-  destinationNode,
+  destinationNode
 ) {
   const adjacencyForward = Array.from({ length: nodeCount }, () => []);
   const adjacencyBackward = Array.from({ length: nodeCount }, () => []);

@@ -1,5 +1,9 @@
 /**
  * Sum Of Subarray Minimums
+ * Intuition: Each `arr[i]` is the minimum of `leftBounds[i] * rightBounds[i]` subarrays: distance to the previous strictly smaller element (left) and to the next smaller-or-equal (right), so equal minima are attributed once.
+ * Approach: 1. Left pass with increasing stack: pop strictly greater, `leftBounds[i] = i - previousSmaller` (or i-(-1)). 2. Right pass: pop `>= arr[i]`, `rightBounds[i] = nextSmallerOrEqual - i` (or n-i). 3. Sum `arr[i]*left*right % 1e9+7`.
+ * Dry Run: arr = [3, 1, 2, 4].
+ *   - leftBounds [1,2,1,1], rightBounds [1,3,2,1]. Contributions 3+6+4+4=17.
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */

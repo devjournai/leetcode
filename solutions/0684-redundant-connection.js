@@ -1,5 +1,8 @@
 /**
  * Redundant Connection
+ * Intuition: An undirected tree plus one extra edge has a cycle. Union-Find: the first edge whose endpoints already share a root is the redundant one.
+ * Approach: 1. Init `parentArray`/`rankArray` for nodes 1..n. 2. `findRoot` with path compression. 3. `combineSets` by rank; return false if already united. 4. Process edges; return the first that fails union.
+ * Dry Run: edges=[[1,2],[1,3],[2,3]]. Union 1-2, 1-3; 2 and 3 already same root → return [2,3].
  * Time Complexity: O(N*α(N))
  * Space Complexity: O(N)
  */

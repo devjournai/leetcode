@@ -1,5 +1,8 @@
 /**
  * Confusing Number II
+ * Intuition: Only digits 0,1,6,8,9 rotate into a valid number. DFS-build numbers from those digits up to n, then count those whose 180° rotation (mapped digits reversed) differs from the original.
+ * Approach: 1. Recurse appending 0/1/6/8/9, skip leading zeros, stop when > n. 2. For each value in (0,n], reverse with the rotation map. 3. Increment if rotated ≠ original.
+ * Dry Run: n=20. Confusing: 6,9,10,16,18,19 (10 rotates to 1). 8 and 11 rotate to themselves. Count 6.
  * Time Complexity: O(5^L * L)
  * Space Complexity: O(L)
  */

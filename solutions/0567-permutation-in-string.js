@@ -1,5 +1,9 @@
 /**
  * Permutation In String
+ * Intuition: A permutation of s1 is any window of s2 with the same letter counts. Slide a window of length |s1| and compare 26-length frequency arrays.
+ * Approach: 1. If s1 is longer than s2, false. 2. Count s1 and the first |s1| chars of s2. 3. Slide: if maps match, true; else decrement leaving char, increment entering char. 4. After the loop, compare once more.
+ * Dry Run: s1 = "ab", s2 = "eidbaooo".
+ *   - Window "ei" no; "id" no; "db" no; "ba" matches {a:1,b:1}. Return true.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

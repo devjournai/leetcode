@@ -53,7 +53,7 @@ var putMarbles = function (weights, k) {
   const maxCostElements = adjacentPairCosts.slice(startSliceIndex);
   maximumTotalCost = maxCostElements.reduce(
     (accumTwo, valTwo) => accumTwo + valTwo,
-    0,
+    0
   );
 
   return maximumTotalCost - minimumTotalCost;

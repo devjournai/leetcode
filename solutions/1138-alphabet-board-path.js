@@ -1,5 +1,10 @@
 /**
  * Alphabet Board Path
+ * Intuition: Letters sit on a 5-wide board (z hangs at (5,0)). Path from current cell is U/L before D/R so we never step off the board at z.
+ * Approach: 1. Map char to (row,col) via (code/5, code%5). 2. Emit U then L then D then R for the deltas, then '!'. 3. Update current position.
+ * Dry Run: target = "leet".
+ *   - a(0,0)->l(2,1): DDR!. l->e(0,4): UURRR!. e->e: !. e->t(3,4): DDD!.
+ *   - Answer DDR!UURRR!!DDD!.
  * Time Complexity: O(N * (R + C))
  * Space Complexity: O(N * (R + C))
  */

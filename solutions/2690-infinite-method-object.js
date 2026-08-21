@@ -24,6 +24,6 @@ var createInfiniteObject = function () {
       get(targetObject, propertyName) {
         return () => propertyName;
       },
-    },
+    }
   );
 };

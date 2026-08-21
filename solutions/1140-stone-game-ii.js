@@ -64,7 +64,7 @@ var stoneGameII = function (piles) {
       const nextMValueLimit = Math.max(currentMValueLimit, choicesForPiles);
       const opponentBestResponse = computeMaxStones(
         nextPileOffset,
-        nextMValueLimit,
+        nextMValueLimit
       );
 
       const totalRemainingStoneSum = precomputedSuffixSums[currentPileOffset];
@@ -73,7 +73,7 @@ var stoneGameII = function (piles) {
 
       optimalScoreForCurrentPlayer = Math.max(
         optimalScoreForCurrentPlayer,
-        currentPlayersScoreThisTurn,
+        currentPlayersScoreThisTurn
       );
     }
 

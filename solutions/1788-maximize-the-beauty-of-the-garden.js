@@ -1,5 +1,9 @@
 /**
  * Maximize The Beauty Of The Garden
+ * Intuition: A valid garden starts and ends with the same flower type. Beauty is 2 * that type plus the sum of positive flowers strictly inside. For each type, the first and last occurrence maximize the interior.
+ * Approach: 1. Map each beauty value to all indices. 2. Prefix-sum positive values in `precomputedPositiveSum`. 3. For types with ≥2 occurrences, beauty = 2*type + positives between first and last. 4. Return `maxGardenBeauty`.
+ * Dry Run: flowers = [1,2,3,1,2,3].
+ *   - Type 1 from 0 to 3: 2*1 + max(0,2)+max(0,3)=2+2+3=7. Type 2: 2*2+3+1=8. Type 3: 2*3+1+2=8. Max 8.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

@@ -67,7 +67,7 @@ var closestNode = function (n, edges, query) {
   const executeDfsTraversal = (
     currentNodeIdentifier,
     pathTracker,
-    currentLevel,
+    currentLevel
   ) => {
     nodeDepths[currentNodeIdentifier] = currentLevel;
     for (
@@ -127,7 +127,7 @@ var closestNode = function (n, edges, query) {
 
     nodeB = retrieveKthAncestorNode(
       nodeB,
-      nodeDepths[nodeB] - nodeDepths[nodeA],
+      nodeDepths[nodeB] - nodeDepths[nodeA]
     );
 
     if (nodeA === nodeB) {
@@ -159,15 +159,15 @@ var closestNode = function (n, edges, query) {
 
     const lcaPathEnds = findLowestCommonAncestorNode(
       pathStartNode,
-      pathEndNode,
+      pathEndNode
     );
     const lcaStartTarget = findLowestCommonAncestorNode(
       pathStartNode,
-      queryTargetNode,
+      queryTargetNode
     );
     const lcaEndTarget = findLowestCommonAncestorNode(
       pathEndNode,
-      queryTargetNode,
+      queryTargetNode
     );
 
     let deepestNodeCandidate = lcaPathEnds;

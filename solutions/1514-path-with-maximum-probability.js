@@ -1,5 +1,9 @@
 /**
  * Path With Maximum Probability
+ * Intuition: Maximize the product of success probabilities. Relax like a queue-based Bellman-Ford: push a neighbor when a better product is found.
+ * Approach: 1. Build undirected adj with edge probs. 2. best[start]=1. 3. If best[u]*w > best[v], update and enqueue. 4. Return best[end].
+ * Dry Run: n=3, edges=[[0,1],[1,2],[0,2]], succProb=[0.5,0.5,0.2], start=0, end=2.
+ *   - 0→1:0.5 then 1→2:0.25 vs 0→2:0.2 → 0.25.
  * Time Complexity: O(N * E)
  * Space Complexity: O(N + E)
  */

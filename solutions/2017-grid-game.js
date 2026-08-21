@@ -35,7 +35,7 @@ var gridGame = function (gridParam) {
   let minimumSecondRobotPoints = Infinity;
   let firstRowTotalPoints = gridParam[0].reduce(
     (accumulatorValue, currentValue) => accumulatorValue + currentValue,
-    0,
+    0
   );
   let secondRowAccumulatedPoints = 0;
   let numberOfGridColumns = gridParam[0].length;
@@ -48,11 +48,11 @@ var gridGame = function (gridParam) {
     firstRowTotalPoints -= gridParam[0][currentColumnIndex];
     let currentMaxPointsForSecondRobot = Math.max(
       firstRowTotalPoints,
-      secondRowAccumulatedPoints,
+      secondRowAccumulatedPoints
     );
     minimumSecondRobotPoints = Math.min(
       minimumSecondRobotPoints,
-      currentMaxPointsForSecondRobot,
+      currentMaxPointsForSecondRobot
     );
     secondRowAccumulatedPoints += gridParam[1][currentColumnIndex];
   }

@@ -1,5 +1,10 @@
 /**
  * Couples Holding Hands
+ * Intuition: Seats come in pairs (0-1, 2-3, …). Person `2k` belongs with `2k+1`. For each even seat, if the neighbor is not that partner, swap the partner into place using `personSeatLocation`.
+ * Approach: 1. Build `personPartnerMap` (even→+1, odd→-1) and `personSeatLocation` from `rowInput`. 2. For `currentPosition` = 0,2,… if `personAtRightSeat !== expectedPartnerForLeft`, increment `totalSwapsCount`, swap those two people in `rowInput`, and update both seat indices. 3. Return `totalSwapsCount`.
+ * Dry Run: rowInput = [0,2,1,3].
+ *   - Pair 0-1: left 0 wants 1, right is 2 → swap 2 with 1 at index 2. Row [0,1,2,3], swaps = 1.
+ *   - Pair 2-3: 2 and 3 already partners. Return 1.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -49,4 +54,4 @@ var minSwapsCouples = function (rowInput) {
   }
 
   return totalSwapsCount;
-}
+};

@@ -1,7 +1,10 @@
 /**
  * Find Elements in a Contaminated Binary Tree
- * Time Complexity (constructor): O(N)
- * Time Complexity (find): O(1)
+ * Intuition: Recover values with the given rules (root 0, left 2x+1, right 2x+2) while BFS, store them in a set, then find is a set lookup.
+ * Approach: 1. Constructor sets root.val=0, adds 0 to recoveredValuesSet, BFS assigns children and records values. 2. find returns recoveredValuesSet.has(target).
+ * Dry Run: tree [-1,null,-1] (root with right child)
+ *   root=0 in set. Right gets 2. find(2) true, find(1) false.
+ * Time Complexity: O(N) constructor, O(1) find
  * Space Complexity: O(N)
  */
 var FindElements = function (root) {

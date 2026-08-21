@@ -1,5 +1,8 @@
 /**
  * Time Based Key Value Store
+ * Intuition: Store each key's `(time, value)` list in insertion order. `get` binary-searches the rightmost timestamp ≤ `requestTime`.
+ * Approach: 1. `set` appends `[requestTime, storedValue]` to `dataStorage`. 2. `get` binary-searches: if `currentPointTime > requestTime` shrink `searchEnd`, else `searchStart = mid+1`. 3. If `searchStart===0` return ""; else return the pair at `searchStart-1`.
+ * Dry Run: set("foo","bar",1); get("foo",1) → search lands after index 0 → "bar". get("foo",0) → searchStart 0 → "".
  * Time Complexity: O(1)
  * Space Complexity: O(N)
  */

@@ -69,7 +69,7 @@ var maxGcdSum = function (nums, k) {
 
   for (let currentIndex = 0; currentIndex < nums.length; currentIndex++) {
     prefixSumsArray.push(
-      prefixSumsArray[prefixSumsArray.length - 1] + nums[currentIndex],
+      prefixSumsArray[prefixSumsArray.length - 1] + nums[currentIndex]
     );
 
     const potentialGcdUpdates = [];
@@ -84,7 +84,7 @@ var maxGcdSum = function (nums, k) {
     ] of candidateInfoCollection) {
       const calculatedGcdForSegment = calculateGcd(
         currentAggregateGcd,
-        nums[currentIndex],
+        nums[currentIndex]
       );
       if (
         potentialGcdUpdates.length === 0 ||
@@ -106,7 +106,7 @@ var maxGcdSum = function (nums, k) {
         prefixSumsArray[segmentStartingIndex];
       maximumGcdSumValue = Math.max(
         maximumGcdSumValue,
-        currentSubarraySum * segmentGcdValue,
+        currentSubarraySum * segmentGcdValue
       );
     }
   }

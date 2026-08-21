@@ -64,6 +64,6 @@ var minimumDistance = function (points) {
   const pairExcludingSecond = farthestPairExcluding(farthestPair[1]);
   return Math.min(
     manhattanDistance(pairExcludingFirst[0], pairExcludingFirst[1]),
-    manhattanDistance(pairExcludingSecond[0], pairExcludingSecond[1]),
+    manhattanDistance(pairExcludingSecond[0], pairExcludingSecond[1])
   );
 };

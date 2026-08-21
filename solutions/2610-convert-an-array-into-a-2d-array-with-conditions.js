@@ -36,7 +36,7 @@ var findMatrix = function (nums) {
   for (const currentNumber of nums) {
     itemFrequencies.set(
       currentNumber,
-      (itemFrequencies.get(currentNumber) || 0) + 1,
+      (itemFrequencies.get(currentNumber) || 0) + 1
     );
   }
 

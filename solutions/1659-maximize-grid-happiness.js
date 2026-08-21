@@ -1,5 +1,9 @@
 /**
  * Maximize Grid Happiness
+ * Intuition: Place introverts/extroverts/empty cell by cell. Encode the previous n cells as a base-3 mask so left and up neighbors are known. Happiness is 120/40 plus ±30/±20 neighbor adjustments. Memoize on (row,col,intro left,extro left,mask).
+ * Approach: 1. Recurse along the grid; wrap to the next row at column n. 2. Always try leaving the cell empty (shift mask). 3. If introverts remain, add 120 and neighbor penalties, recurse with mask+1. 4. Same for extroverts with 40 and bonuses, mask+2. 5. Memoize the max.
+ * Dry Run: m=2, n=1, introverts=1, extroverts=0.
+ *   - Place one introvert anywhere, no neighbor → 120.
  * Time Complexity: O(m * n * introvertsCount * extrovertsCount * 3^n)
  * Space Complexity: O(m * n * introvertsCount * extrovertsCount * 3^n)
  */
@@ -28,7 +32,7 @@ var getMaxGridHappiness = function (m, n, introvertsCount, extrovertsCount) {
     currentGridColumn,
     remainingIntroverts,
     remainingExtroverts,
-    priorConfigurationState,
+    priorConfigurationState
   ) {
     if (
       currentGridRow === m ||
@@ -42,7 +46,7 @@ var getMaxGridHappiness = function (m, n, introvertsCount, extrovertsCount) {
         0,
         remainingIntroverts,
         remainingExtroverts,
-        priorConfigurationState,
+        priorConfigurationState
       );
     }
 
@@ -58,7 +62,7 @@ var getMaxGridHappiness = function (m, n, introvertsCount, extrovertsCount) {
       currentGridColumn + 1,
       remainingIntroverts,
       remainingExtroverts,
-      nextProfileConfiguration,
+      nextProfileConfiguration
     );
 
     if (remainingIntroverts > 0) {
@@ -93,8 +97,8 @@ var getMaxGridHappiness = function (m, n, introvertsCount, extrovertsCount) {
             currentGridColumn + 1,
             remainingIntroverts - 1,
             remainingExtroverts,
-            nextConfigurationWithIntrovert,
-          ),
+            nextConfigurationWithIntrovert
+          )
       );
     }
 
@@ -130,8 +134,8 @@ var getMaxGridHappiness = function (m, n, introvertsCount, extrovertsCount) {
             currentGridColumn + 1,
             remainingIntroverts,
             remainingExtroverts - 1,
-            nextConfigurationWithExtrovert,
-          ),
+            nextConfigurationWithExtrovert
+          )
       );
     }
 

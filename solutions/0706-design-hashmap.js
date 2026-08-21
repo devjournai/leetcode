@@ -1,5 +1,8 @@
 /**
  * Design Hashmap
+ * Intuition: Separate chaining: 1000 buckets, each a list of [key,value] pairs. Hash is key % 1000.
+ * Approach: 1. Ctor fills `hashBuckets` with empty arrays. 2. `put` scans the bucket, updates matching key or pushes. 3. `get` returns the pair’s value or -1. 4. `remove` splices the matching pair.
+ * Dry Run: put(1,1), put(2,2), get(1)=1, get(3)=-1, put(2,1) overwrites, get(2)=1, remove(2), get(2)=-1.
  * Time Complexity: O(1)
  * Space Complexity: O(M + N)
  */

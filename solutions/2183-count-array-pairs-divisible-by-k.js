@@ -65,7 +65,7 @@ var countPairs = function (nums, k) {
 
     gcdFrequenciesMap.set(
       primaryGCD,
-      (gcdFrequenciesMap.get(primaryGCD) || 0) + 1,
+      (gcdFrequenciesMap.get(primaryGCD) || 0) + 1
     );
   }
 

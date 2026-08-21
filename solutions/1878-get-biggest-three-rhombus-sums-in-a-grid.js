@@ -1,5 +1,8 @@
 /**
  * Get Biggest Three Rhombus Sums in a Grid
+ * Intuition: Every cell is a radius-0 rhombus. Larger rhombi are diamonds centered at a cell; sum the four sides and keep the top 3 distinct sums.
+ * Approach: 1. For each center, add grid[r][c] to a Set. 2. For radius 1..max, add the four vertices plus the four edges. 3. Sort descending and return up to three values.
+ * Dry Run: grid=[[3]]. Only sum 3. Return [3].
  * Time Complexity: O(rows * cols * min(rows, cols)^2)
  * Space Complexity: O(rows * cols * min(rows, cols))
  */
@@ -24,7 +27,7 @@ var getBiggestThree = function (grid) {
         currentGridRow,
         gridRowsCount - 1 - currentGridRow,
         currentGridColumn,
-        gridColumnsCount - 1 - currentGridColumn,
+        gridColumnsCount - 1 - currentGridColumn
       );
 
       for (

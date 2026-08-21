@@ -140,7 +140,7 @@ var minimumCost = function (start, target, specialRoads) {
 
     answer = Math.min(
       answer,
-      dist[current] + manhattan(endX, endY, target[0], target[1]),
+      dist[current] + manhattan(endX, endY, target[0], target[1])
     );
 
     for (let next = 0; next < m; next++) {

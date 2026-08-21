@@ -1,5 +1,9 @@
 /**
  * Stream Of Characters
+ * Intuition: Queries append letters to a stream. A reversed trie of words lets us walk the stream backward and stop at the first word end.
+ * Approach: 1. Insert each word reversed into a nested-object trie, marking ends. 2. On query, push the letter. 3. Walk from the newest letter backward through the trie. 4. Return true on an end marker; false if a child is missing.
+ * Dry Run: words = ["cd","f"], queries c,d.
+ *   - Trie has d->c and f. After "c" no word. After "d" walk d then c, hit end -> true.
  * Time Complexity: O(sum(word.length) + Q * MaxStreamLength)
  * Space Complexity: O(sum(word.length) + MaxStreamLength)
  */

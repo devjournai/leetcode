@@ -40,7 +40,7 @@ var minimumDistance = function (n, edges, s, marked) {
 
   const nodeDistances = new Array(n).fill(Infinity);
   const minPQueue = new PriorityQueue(
-    (elementA, elementB) => elementA[0] - elementB[0],
+    (elementA, elementB) => elementA[0] - elementB[0]
   );
 
   nodeDistances[s] = 0;

@@ -1,5 +1,8 @@
 /**
  * Regions Cut By Slashes
+ * Intuition: Scale each cell to a 3×3 block so `/` and `\\` become walls, then count 4-connected empty regions with DFS.
+ * Approach: 1. Build `processedMap` of size `3N`. 2. Paint `/` on the anti-diagonal of each 3×3 and `\\` on the main diagonal. 3. Scan zeros, each time `exploreComponents` floods and increment `regionCounter`. 4. Return the count.
+ * Dry Run: grid = [" /","/ "]. Two slashes form an X in the 6×6 map, splitting empty cells into 2 regions. Answer 2.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N^2)
  */

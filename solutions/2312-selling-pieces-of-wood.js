@@ -46,7 +46,7 @@
  */
 var sellingWood = function (m, n, prices) {
   const maximumValueGrid = Array.from({ length: m + 1 }, () =>
-    new Array(n + 1).fill(0),
+    new Array(n + 1).fill(0)
   );
 
   for (const pieceData of prices) {
@@ -55,7 +55,7 @@ var sellingWood = function (m, n, prices) {
     const pieceSalePrice = pieceData[2];
     maximumValueGrid[pieceHeight][pieceWidth] = Math.max(
       maximumValueGrid[pieceHeight][pieceWidth],
-      pieceSalePrice,
+      pieceSalePrice
     );
   }
 
@@ -69,7 +69,7 @@ var sellingWood = function (m, n, prices) {
         maximumValueGrid[currentHeight][currentWidth] = Math.max(
           maximumValueGrid[currentHeight][currentWidth],
           maximumValueGrid[horizontalDivider][currentWidth] +
-            maximumValueGrid[currentHeight - horizontalDivider][currentWidth],
+            maximumValueGrid[currentHeight - horizontalDivider][currentWidth]
         );
       }
       for (
@@ -80,7 +80,7 @@ var sellingWood = function (m, n, prices) {
         maximumValueGrid[currentHeight][currentWidth] = Math.max(
           maximumValueGrid[currentHeight][currentWidth],
           maximumValueGrid[currentHeight][verticalDivider] +
-            maximumValueGrid[currentHeight][currentWidth - verticalDivider],
+            maximumValueGrid[currentHeight][currentWidth - verticalDivider]
         );
       }
     }

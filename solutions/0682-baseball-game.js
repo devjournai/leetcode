@@ -1,5 +1,8 @@
 /**
  * Baseball Game
+ * Intuition: Scores are a stack: integers push, "C" pops, "D" doubles the last, "+" sums the last two. The answer is the final stack sum.
+ * Approach: 1. Walk `operationsList` mutating `scoreRecord`. 2. After all ops, sum every remaining score.
+ * Dry Run: ops=["5","2","C","D","+"]. stack: [5]→[5,2]→[5]→[5,10]→[5,10,15]. totalScore=30.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

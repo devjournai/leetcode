@@ -1,5 +1,9 @@
 /**
  * Min Cost To Connect All Points
+ * Intuition: MST of the complete graph with Manhattan weights: Kruskal sorts edges and union-finds.
+ * Approach: 1. Emit all pairs with |dx|+|dy|. 2. Sort by weight. 3. Union until n-1 edges; sum weights.
+ * Dry Run: points = [[0,0],[2,2],[3,10],[5,2],[7,0]].
+ *   - MST cost 20.
  * Time Complexity: O(N^2 log N)
  * Space Complexity: O(N^2)
  */
@@ -34,7 +38,7 @@ var minCostConnectPoints = function (points) {
   }
 
   allEdges.sort(
-    (firstEdge, secondEdge) => firstEdge.weightValue - secondEdge.weightValue,
+    (firstEdge, secondEdge) => firstEdge.weightValue - secondEdge.weightValue
   );
 
   const parentTracking = Array(numPoints)
@@ -47,7 +51,7 @@ var minCostConnectPoints = function (points) {
       return memberNode;
     }
     parentTracking[memberNode] = findSetRepresentative(
-      parentTracking[memberNode],
+      parentTracking[memberNode]
     );
     return parentTracking[memberNode];
   }

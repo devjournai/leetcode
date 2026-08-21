@@ -19,7 +19,7 @@ var sumOfPowers = function (nums, k) {
     currentIndex,
     remainingToPick,
     lastPickedIndex,
-    minimumDifference,
+    minimumDifference
   ) => {
     if (remainingToPick === 0) {
       return minimumDifference;
@@ -38,19 +38,19 @@ var sumOfPowers = function (nums, k) {
         ? minimumDifference
         : Math.min(
             minimumDifference,
-            sortedValues[currentIndex] - sortedValues[lastPickedIndex],
+            sortedValues[currentIndex] - sortedValues[lastPickedIndex]
           );
     const pickCurrent = computePowerSum(
       currentIndex + 1,
       remainingToPick - 1,
       currentIndex,
-      updatedMinimumDifference,
+      updatedMinimumDifference
     );
     const skipCurrent = computePowerSum(
       currentIndex + 1,
       remainingToPick,
       lastPickedIndex,
-      minimumDifference,
+      minimumDifference
     );
     const combined = (pickCurrent + skipCurrent) % MODULO;
     memoizedPowerSums.set(memoKey, combined);

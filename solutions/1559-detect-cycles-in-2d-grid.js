@@ -1,5 +1,9 @@
 /**
  * Detect Cycles In 2d Grid
+ * Intuition: BFS each unvisited cell; a same-letter neighbor already visited and not the parent means a cycle of length ≥4.
+ * Approach: 1. 4-dir BFS with parent. 2. Skip parent and different letters. 3. If neighbor visited, return true. 4. Else enqueue.
+ * Dry Run: grid = [["a","a"],["a","a"]].
+ *   - Visiting the last 'a' finds a visited neighbor → true.
  * Time Complexity: O(R * C)
  * Space Complexity: O(R * C)
  */

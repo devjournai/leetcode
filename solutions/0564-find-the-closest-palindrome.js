@@ -1,5 +1,9 @@
 /**
  * Find The Closest Palindrome
+ * Intuition: Nearest palindrome besides n itself comes from mirroring the left half (and left-1 / left+1) plus power-of-ten boundaries (999… and 100…001). Pick the closest by absolute difference, smaller on a tie. Handle tiny and all-9s/10^k specials first.
+ * Approach: 1. BigInt `n`; early cases ≤10, 11, 10…0, all 9s. 2. `constructPalindrome` mirrors a left half for even/odd length. 3. Candidates: 10^{L-1}-1, mirror(left-1), mirror(left), mirror(left+1), 10^L+1, excluding n. 4. Scan for min |diff|, then smaller value. 5. Return that string.
+ * Dry Run: n = "123".
+ *   - Left 12; candidates include 121, 111, 131, 99, 1001. Closest ≠123 is 121.
  * Time Complexity: O(L)
  * Space Complexity: O(L)
  */
@@ -31,15 +35,15 @@ var nearestPalindromic = function (n) {
   const firstBoundaryCandidate = String(10n ** BigInt(stringLength - 1) - 1n);
   const secondCentralCandidate = constructPalindrome(
     initialLeftValue - 1n,
-    stringLength,
+    stringLength
   );
   const thirdCentralCandidate = constructPalindrome(
     initialLeftValue,
-    stringLength,
+    stringLength
   );
   const fourthCentralCandidate = constructPalindrome(
     initialLeftValue + 1n,
-    stringLength,
+    stringLength
   );
   const fifthBoundaryCandidate = String(10n ** BigInt(stringLength) + 1n);
 

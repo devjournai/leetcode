@@ -1,5 +1,9 @@
 /**
  * Lonely Pixel I
+ * Intuition: A black `'B'` is lonely iff its row and column each contain exactly one black. Count blacks per row/col, then scan stored black coordinates.
+ * Approach: 1. Tally `rowBlackPixelCounts` / `colBlackPixelCounts` and collect black positions. 2. For each black, if both counts are 1, increment `totalLonelyBlackPixels`.
+ * Dry Run: picture = [["W","B","W"],["B","W","W"],["W","W","B"]].
+ *   - Each B is alone in its row and column. Return 3.
  * Time Complexity: O(R * C)
  * Space Complexity: O(R * C)
  */

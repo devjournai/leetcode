@@ -42,7 +42,7 @@ var maxPartitionsAfterOperations = function (s, k) {
       for (let letterIndex = 0; letterIndex < 26; letterIndex++) {
         bestPartitions = Math.max(
           bestPartitions,
-          getResult(1 << letterIndex, false),
+          getResult(1 << letterIndex, false)
         );
       }
     }

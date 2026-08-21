@@ -28,10 +28,10 @@ var StockPrice = function () {
   this.priceRecords = new Map();
   this.latestKnownTimestamp = 0;
   this.minPriceHeap = new PriorityQueue(
-    (firstItem, secondItem) => firstItem[0] - secondItem[0],
+    (firstItem, secondItem) => firstItem[0] - secondItem[0]
   );
   this.maxPriceHeap = new PriorityQueue(
-    (firstItem, secondItem) => secondItem[0] - firstItem[0],
+    (firstItem, secondItem) => secondItem[0] - firstItem[0]
   );
 };
 
@@ -39,7 +39,7 @@ StockPrice.prototype.update = function (timestampValue, priceValue) {
   this.priceRecords.set(timestampValue, priceValue);
   this.latestKnownTimestamp = Math.max(
     this.latestKnownTimestamp,
-    timestampValue,
+    timestampValue
   );
 
   this.minPriceHeap.enqueue([priceValue, timestampValue]);
@@ -59,7 +59,7 @@ StockPrice.prototype.maximum = function () {
     [highestPriceCandidate, candidateTimestampIdentifier] =
       this.maxPriceHeap.dequeue();
     let actualPriceForThisTimestamp = this.priceRecords.get(
-      candidateTimestampIdentifier,
+      candidateTimestampIdentifier
     );
 
     if (highestPriceCandidate === actualPriceForThisTimestamp) {

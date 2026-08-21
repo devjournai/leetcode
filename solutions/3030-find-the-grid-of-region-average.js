@@ -41,19 +41,19 @@ var resultGrid = function (image, threshold) {
   const totalRows = image.length;
   const totalColumns = image[0].length;
   const finalResultGrid = Array.from({ length: totalRows }, () =>
-    new Array(totalColumns).fill(0),
+    new Array(totalColumns).fill(0)
   );
   const averageSumsAccumulator = Array.from({ length: totalRows }, () =>
-    new Array(totalColumns).fill(0),
+    new Array(totalColumns).fill(0)
   );
   const regionParticipationCount = Array.from({ length: totalRows }, () =>
-    new Array(totalColumns).fill(0),
+    new Array(totalColumns).fill(0)
   );
 
   function checkRegionValidity(
     currentStartRow,
     currentStartCol,
-    comparisonThreshold,
+    comparisonThreshold
   ) {
     for (
       let rowIndexIteration = currentStartRow;
@@ -111,13 +111,13 @@ var resultGrid = function (image, threshold) {
       const isValidWindow = checkRegionValidity(
         mainGridRow,
         mainGridColumn,
-        threshold,
+        threshold
       );
 
       if (isValidWindow) {
         const currentWindowAverage = calculateRegionValue(
           mainGridRow,
-          mainGridColumn,
+          mainGridColumn
         );
 
         for (
@@ -161,7 +161,7 @@ var resultGrid = function (image, threshold) {
       } else {
         finalResultGrid[finalProcessingRow][finalProcessingColumn] = Math.floor(
           averageSumsAccumulator[finalProcessingRow][finalProcessingColumn] /
-            regionParticipationCount[finalProcessingRow][finalProcessingColumn],
+            regionParticipationCount[finalProcessingRow][finalProcessingColumn]
         );
       }
     }

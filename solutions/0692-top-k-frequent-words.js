@@ -1,5 +1,8 @@
 /**
  * Top K Frequent Words
+ * Intuition: Count frequencies, then sort unique words by count descending and lexicographic ascending, then take the first k.
+ * Approach: 1. Fill `wordFrequencyMap`. 2. Sort `frequencyEntriesArray` with `secondFrequency - firstFrequency` else `localeCompare`. 3. `slice(0,k)` and map to words.
+ * Dry Run: words=["i","love","leetcode","i","love","coding"], k=2. counts i:2 love:2 leetcode:1 coding:1. Sorted i, love, coding, leetcode → ["i","love"].
  * Time Complexity: O(S + U log U * L)
  * Space Complexity: O(S)
  */

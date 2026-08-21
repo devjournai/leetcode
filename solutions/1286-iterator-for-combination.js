@@ -1,5 +1,9 @@
 /**
  * Iterator For Combination
+ * Intuition: Combinations of a sorted string correspond to increasing index tuples. next emits the current tuple then increments it like a mixed-radix counter.
+ * Approach: 1. Constructor stores characters, length, and indices 0..L-1, hasMore=true. 2. next builds the string from current indices, then from the right finds a slot that can increment, resets the tail to consecutive indices, and clears hasMore if none. 3. hasNext returns the flag.
+ * Dry Run: characters="abc", combinationLength=2
+ *   start indices [0,1] -> "ab"; increment to [0,2] "ac"; then [1,2] "bc"; then no more, hasNext false.
  * Time Complexity: O(N*L).
  * Space Complexity: O(L)
  */

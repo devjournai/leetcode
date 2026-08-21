@@ -77,7 +77,7 @@ var maxSum = function (nums, k) {
       }
     }
     const squareModulo = Number(
-      (BigInt(valueToSquare) * BigInt(valueToSquare)) % BigInt(moduloValue),
+      (BigInt(valueToSquare) * BigInt(valueToSquare)) % BigInt(moduloValue)
     );
     resultantSum = (resultantSum + squareModulo) % moduloValue;
   }

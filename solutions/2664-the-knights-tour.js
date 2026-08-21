@@ -80,7 +80,7 @@ var tourOfKnight = function (m, n, r, c) {
       if (checkValidity(nextCandidateRow, nextCandidateCol)) {
         const degreeOfCandidate = calculateDegree(
           nextCandidateRow,
-          nextCandidateCol,
+          nextCandidateCol
         );
         candidatesWithDegrees.push([
           nextCandidateRow,
@@ -91,7 +91,7 @@ var tourOfKnight = function (m, n, r, c) {
     }
 
     candidatesWithDegrees.sort(
-      (compareA, compareB) => compareA[2] - compareB[2],
+      (compareA, compareB) => compareA[2] - compareB[2]
     );
 
     for (const candidateInfo of candidatesWithDegrees) {
@@ -101,7 +101,7 @@ var tourOfKnight = function (m, n, r, c) {
       const recursiveResult = backtrackKnightsTour(
         chosenNextRow,
         chosenNextCol,
-        moveStepCount + 1,
+        moveStepCount + 1
       );
       if (recursiveResult) {
         return true;

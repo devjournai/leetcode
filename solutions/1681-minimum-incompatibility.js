@@ -1,5 +1,9 @@
 /**
  * Minimum Incompatibility
+ * Intuition: Split `nums` into `k` groups of size `n/k` with distinct values; incompatibility of a group is max−min. If any value appears more than `k` times the split is impossible. Enumerate valid group bitmasks, then DP over subsets to cover all indices with minimum total incompatibility.
+ * Approach: 1. Count frequencies in `numberCounts`; return -1 if any count exceeds `k`. 2. Sort a copy `numsCopy` and `generateCombinations` of size `groupSize` with unique values, storing `possibleSubsets` mask → (max−min). 3. `memoizationTable[state]` = min cost to cover `state`; iterate masks and try disjoint subgroup bitmasks. 4. Return the full-mask cost, or -1 if still Infinity.
+ * Dry Run: nums = [1,2,1,4], k = 2
+ * n=4, groupSize=2; counts OK. Valid pairs (unique): {1,2} cost 1, {1,4} cost 3, {2,4} cost 2. DP covers all 4 indices with two groups summing to 4 (e.g. {1,2}+{1,4}).
  * Time Complexity: O(N log N + 2^N * C(N, N/k))
  * Space Complexity: O(2^N + C(N, N/k))
  */
@@ -25,7 +29,7 @@ var minimumIncompatibility = function (nums, k) {
     currentCount,
     minimumElement,
     maximumElement,
-    currentElements,
+    currentElements
   ) {
     if (currentCount === groupSize) {
       possibleSubsets.set(currentMask, maximumElement - minimumElement);
@@ -45,7 +49,7 @@ var minimumIncompatibility = function (nums, k) {
       currentCount,
       minimumElement,
       maximumElement,
-      currentElements,
+      currentElements
     );
 
     const nextValue = numsCopy[currentIdx];
@@ -62,7 +66,7 @@ var minimumIncompatibility = function (nums, k) {
         currentCount + 1,
         newMin,
         newMax,
-        nextElements,
+        nextElements
       );
     }
   }
@@ -82,7 +86,7 @@ var minimumIncompatibility = function (nums, k) {
         const nextState = state | subgroupBitmask;
         memoizationTable[nextState] = Math.min(
           memoizationTable[nextState],
-          memoizationTable[state] + subgroupValue,
+          memoizationTable[state] + subgroupValue
         );
       }
     }

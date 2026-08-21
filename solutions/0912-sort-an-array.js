@@ -1,5 +1,8 @@
 /**
  * Sort An Array
+ * Intuition: Merge sort splits the array, sorts each half, then merges with a stable ≤ comparison so equal values keep relative order from the temp buffers.
+ * Approach: 1. Length ≤1 → return as-is. 2. `recurseAndSort` on [firstIdx, lastIdx]: midpoint, recurse left then right. 3. `combineSortedHalves` copies both halves to temps, then writes the smaller head back (left wins ties). 4. Drain leftovers. 5. Sort [0, n-1] in place and return `nums`.
+ * Dry Run: [5,2,3,1] → split [5,2]|[3,1] → [2,5]|[1,3] → merge 1,2,3,5.
  * Time Complexity: O(n log n)
  * Space Complexity: O(n)
  */
@@ -24,7 +27,7 @@ var sortArray = function (nums) {
       leftStartPoint,
       leftEndPoint,
       rightStartPoint,
-      rightEndPoint,
+      rightEndPoint
     ) => {
       const leftSegmentLength = leftEndPoint - leftStartPoint + 1;
       const rightSegmentLength = rightEndPoint - rightStartPoint + 1;
@@ -86,7 +89,7 @@ var sortArray = function (nums) {
       firstIdx,
       dividingPoint,
       dividingPoint + 1,
-      lastIdx,
+      lastIdx
     );
   };
 

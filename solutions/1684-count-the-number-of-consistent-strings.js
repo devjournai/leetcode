@@ -1,5 +1,9 @@
 /**
  * Count The Number Of Consistent Strings
+ * Intuition: A word is consistent iff every character appears in `allowed`. Put allowed letters in a set, then test each word with a membership check.
+ * Approach: 1. Fill `permittedChars` from `allowed`. 2. For each `currentWord` in `words`, split into characters and `every` against `permittedChars`. 3. Increment `consistentCount` when valid. 4. Return `consistentCount`.
+ * Dry Run: allowed = "ab", words = ["ad","bd","aaab","baa","badab"]
+ * Set {a,b}. "ad" has d → skip; "bd" has d → skip; "aaab"/"baa" OK; "badab" has d → skip. Count = 2.
  * Time Complexity: O(L + N * W)
  * Space Complexity: O(L + W)
  */
@@ -16,7 +20,7 @@ var countConsistentStrings = function (allowed, words) {
     const wordCharacters = currentWord.split("");
 
     const isCurrentWordValid = wordCharacters.every((singleChar) =>
-      permittedChars.has(singleChar),
+      permittedChars.has(singleChar)
     );
 
     if (isCurrentWordValid) {

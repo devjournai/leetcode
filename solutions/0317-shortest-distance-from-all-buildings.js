@@ -1,5 +1,10 @@
 /**
  * Shortest Distance From All Buildings
+ * Intuition: Empty land that can reach every building has the sum of BFS distances from all buildings. BFS from each building onto 0-cells, then pick the empty cell with full reachability and smallest total.
+ * Approach: 1. For each cell with value 1, BFS through 0-cells, adding the level distance into totalDistances and incrementing reachableCounts. 2. Count buildings. 3. Scan 0-cells whose reachableCounts equals the building count; track the min totalDistances. 4. Return that min, or -1 if none.
+ * Dry Run: grid = [[1, 0], [0, 0]] (one building at [0][0]).
+ *   - BFS marks [0][1] dist 1 and [1][0] dist 1, then [1][1] dist 2.
+ *   - All empty cells reach the one building; min is 1.
  * Time Complexity: O((R * C)^2)
  * Space Complexity: O(R * C)
  */
@@ -74,7 +79,7 @@ var shortestDistance = function (grid) {
       ) {
         minimumOverallDistance = Math.min(
           minimumOverallDistance,
-          totalDistances[rIndex][cIndex],
+          totalDistances[rIndex][cIndex]
         );
       }
     }

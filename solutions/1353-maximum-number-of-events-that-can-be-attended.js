@@ -1,11 +1,14 @@
 /**
  * Maximum Number Of Events That Can Be Attended
+ * Intuition: Attend at most one event per day. Always pick the eligible event that ends soonest (min-heap of end days).
+ * Approach: 1. Sort events by start. 2. Day by day, push newly started ends onto a min-heap, drop expired, pop one end if any. 3. Increment attended. 4. Return the count.
+ * Dry Run: events = [[1,2],[2,3],[3,4]]. Attend one per day → 3.
  * Time Complexity: O(N log N + D)
  * Space Complexity: O(N)
  */
 var maxEvents = function (events) {
   const sortedEventSchedule = events.sort(
-    (eventA, eventB) => eventA[0] - eventB[0],
+    (eventA, eventB) => eventA[0] - eventB[0]
   );
 
   const eventEndDatesMinHeap = [];
@@ -24,7 +27,7 @@ var maxEvents = function (events) {
     ) {
       heapAddValue(
         eventEndDatesMinHeap,
-        sortedEventSchedule[schedulePointer][1],
+        sortedEventSchedule[schedulePointer][1]
       );
       schedulePointer++;
     }

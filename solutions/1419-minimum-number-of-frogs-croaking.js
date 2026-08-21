@@ -1,5 +1,9 @@
 /**
  * Minimum Number Of Frogs Croaking
+ * Intuition: Each 'c' starts a frog and each 'k' finishes one. Counts of c,r,o,a,k must stay non-increasing along the word croak, and all frogs must finish.
+ * Approach: 1. On 'c' increment active frogs and track the peak. On 'k' decrement. 2. Reject unknown letters or a letter whose count exceeds the previous letter in "croak". 3. At the end, active must be 0 and c-count == k-count; return the peak (or -1).
+ * Dry Run: croakOfFrogs = "croakcroak".
+ *   - First croak: active 1 then 0, peak 1. Second croak same. Return 1.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

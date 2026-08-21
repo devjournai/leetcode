@@ -1,5 +1,8 @@
 /**
  * K Closest Points To Origin
+ * Intuition: Keep a max-heap of size k keyed by squared distance. A farther point than the heap max is ignored; a closer one replaces the max.
+ * Approach: 1. `MaxPriorityQueue` compares the first tuple field (`itemA[0] - itemB[0]`). 2. For each point, compute `computeSquaredDistance`. 3. Offer while size < k; else if closer than peek, poll then offer. 4. Drain the heap into `resultingClosestPoints`.
+ * Dry Run: points = [[1,3],[-2,2]], k=1. Distances 10 and 8. Heap holds 8 then 10 is skipped. Return [[-2,2]].
  * Time Complexity: O(N log K)
  * Space Complexity: O(K)
  */
@@ -87,15 +90,15 @@ var kClosest = function (points, k) {
         this.isParentPresent(currentElementPosition) &&
         this.comparisonFunction(
           this.heapStorage[currentElementPosition],
-          this.getParentValue(currentElementPosition),
+          this.getParentValue(currentElementPosition)
         ) > 0
       ) {
         this.exchangeElements(
           currentElementPosition,
-          this.retrieveParentIndex(currentElementPosition),
+          this.retrieveParentIndex(currentElementPosition)
         );
         currentElementPosition = this.retrieveParentIndex(
-          currentElementPosition,
+          currentElementPosition
         );
       }
     }
@@ -108,7 +111,7 @@ var kClosest = function (points, k) {
           this.isRightChildPresent(rootPosition) &&
           this.comparisonFunction(
             this.getRightChildValue(rootPosition),
-            this.getLeftChildValue(rootPosition),
+            this.getLeftChildValue(rootPosition)
           ) > 0
         ) {
           dominantChildPosition = this.retrieveRightChildIndex(rootPosition);
@@ -117,7 +120,7 @@ var kClosest = function (points, k) {
         if (
           this.comparisonFunction(
             this.heapStorage[rootPosition],
-            this.heapStorage[dominantChildPosition],
+            this.heapStorage[dominantChildPosition]
           ) > 0
         ) {
           break;
@@ -133,7 +136,7 @@ var kClosest = function (points, k) {
     xDimension * xDimension + yDimension * yDimension;
 
   const maxHeapForPoints = new MaxPriorityQueue(
-    (itemA, itemB) => itemA[0] - itemB[0],
+    (itemA, itemB) => itemA[0] - itemB[0]
   );
 
   const totalInputPoints = points.length;
@@ -147,7 +150,7 @@ var kClosest = function (points, k) {
     const pointYCoordinate = individualPoint[1];
     const pointSquaredDistanceValue = computeSquaredDistance(
       pointXCoordinate,
-      pointYCoordinate,
+      pointYCoordinate
     );
 
     if (maxHeapForPoints.getCurrentSize() < k) {

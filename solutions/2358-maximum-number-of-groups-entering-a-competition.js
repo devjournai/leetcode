@@ -47,7 +47,7 @@ var maximumGroups = function (grades) {
     // though for N=10^5, k is ~447, so it won't overflow standard JS numbers.
     // Explicit cast to Number for comparison.
     let currentStudentsNeeded = Number(
-      (BigInt(midPoint) * (BigInt(midPoint) + 1n)) / 2n,
+      (BigInt(midPoint) * (BigInt(midPoint) + 1n)) / 2n
     );
 
     if (currentStudentsNeeded <= totalAvailableStudents) {

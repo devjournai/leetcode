@@ -17,6 +17,8 @@
  * Therefore, the best palindromic target must be close to the
  * median.
  *
+ * Approach: Sort nums and take the median. Generate nearby palindromes from mirroring leftHalf-1/leftHalf/leftHalf+1 plus 10^len-1 and 10^len+1. Pick the closest palindrome <= median and >= median, then return the cheaper sum of |nums[i]-target|.
+ *
  * ------------------------------------------------------------
  *
  * Since nums[i] <= 10^9, we can generate all palindromic
@@ -38,7 +40,7 @@
  *
  * ------------------------------------------------------------
  *
- * Example:
+ * Dry Run:
  *
  * nums = [1,2,3,4,5]
  *

@@ -1,5 +1,9 @@
 /**
  * Last Stone Weight
+ * Intuition: Always smash the two heaviest stones; a max-heap makes those extracts cheap.
+ * Approach: 1. Build a binary max-heap of all weights. 2. While two stones remain, extract both. 3. If they differ, insert the difference. 4. Return the last stone or 0.
+ * Dry Run: stones = [2,7,4,1,8,1].
+ *   - Smash 8 and 7 -> 1. Heap continues until one stone of weight 1 remains.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */

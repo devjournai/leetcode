@@ -1,5 +1,8 @@
 /**
  * Verifying An Alien Dictionary
+ * Intuition: Map each alien letter to its rank in `order`, then every adjacent pair of words must be nondecreasing under that order (and a longer word cannot precede its prefix).
+ * Approach: 1. Fill `characterRankings` from `order`. 2. For each adjacent pair, `compareAlienWords` walks characters until ranks differ. 3. Smaller rank first is OK; larger rank first fails. 4. If one word is a prefix, require `lengthA <= lengthB`.
+ * Dry Run: words = ["hello","leetcode"], order = "hlabcdefgijkmnopqrstuvwxyz". 'h' ranks before 'l', so the pair is sorted. Return true.
  * Time Complexity: O(N * L)
  * Space Complexity: O(1)
  */
@@ -20,7 +23,7 @@ var isAlienSorted = function (words, order) {
       !compareAlienWords(
         firstComparedWord,
         secondComparedWord,
-        characterRankings,
+        characterRankings
       )
     ) {
       return false;

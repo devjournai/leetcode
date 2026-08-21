@@ -1,5 +1,8 @@
 /**
  * Smallest String With Swaps
+ * Intuition: Swappable indices form connected components; characters may be freely rearranged inside each component, so sort them into the sorted positions.
+ * Approach: 1. Union-find on all pairs. 2. Group indices and characters by root. 3. Sort chars and indices; write sorted chars back into sorted index order.
+ * Dry Run: s="dcab", pairs=[[0,3],[1,2]]. Components {0,3}:"da"→"ad", {1,2}:"cb"→"bc" → "bacd".
  * Time Complexity: O((N + M) * α(N) + N log N)
  * Space Complexity: O(N)
  */

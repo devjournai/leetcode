@@ -1,5 +1,8 @@
 /**
  * Sentence Similarity Ii
+ * Intuition: Similarity is now transitive, so union-find on words. Sentences match iff they have equal length and each aligned pair is the same word or in the same component.
+ * Approach: 1. Assign integer ids via `wordIdentityMap`. 2. Initialize `parentNodes` / `groupSizes`. 3. Union each similar pair with union-by-size and path compression. 4. For each index, if words differ and `findRepresentative` differs, return false.
+ * Dry Run: "great acting" vs "fine drama" with pairs great-good, fine-good, acting-drama. great and fine share a root → true.
  * Time Complexity: O(W + P * α(W) + S * α(W))
  * Space Complexity: O(W)
  */

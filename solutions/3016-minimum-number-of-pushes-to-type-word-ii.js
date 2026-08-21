@@ -31,7 +31,7 @@ var minimumPushes = function (word) {
     const characterKey = word[currentCharacterIndex];
     letterFrequencies.set(
       characterKey,
-      (letterFrequencies.get(characterKey) || 0) + 1,
+      (letterFrequencies.get(characterKey) || 0) + 1
     );
   }
 

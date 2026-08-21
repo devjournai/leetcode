@@ -1,5 +1,8 @@
 /**
  * Maximum Product Of Splitted Binary Tree
+ * Intuition: Splitting one edge yields subtreeSum * (total-subtreeSum). Record every subtree sum in one DFS.
+ * Approach: 1. Post-order collect all subtree sums and the total. 2. For each subtree sum compute the product with the complement. 3. Return the max product modulo 10^9+7.
+ * Dry Run: tree [1,2,3,4,5,6]. Total 21; split under 3 (sum 9) gives 9*12=108.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

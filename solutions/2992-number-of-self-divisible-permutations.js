@@ -69,7 +69,7 @@ var selfDivisiblePermutationCount = function (inputN) {
         const updatedBitmask = recursiveUsedMask | (1 << nextPermutationValue);
         currentPermutationCount += findPermutations(
           recursivePosition + 1,
-          updatedBitmask,
+          updatedBitmask
         );
       }
     }

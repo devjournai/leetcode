@@ -34,7 +34,7 @@ var distributeCandies = function (n, limit) {
   const exceedTwoChildrenAdjustment =
     3 * combinationsOfTwo(currentN - 2 * maxLimit);
   const exceedThreeChildrenAdjustment = combinationsOfTwo(
-    currentN - 3 * maxLimit - 1,
+    currentN - 3 * maxLimit - 1
   );
 
   let finalResult =

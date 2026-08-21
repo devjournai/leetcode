@@ -1,5 +1,8 @@
 /**
  * Minimum Number of Flips to Make the Binary String Alternating
+ * Intuition: Type-1 moves rotate the string. Compare s+s windows of length n against 0101… and 1010… by maintaining mismatch counts as the window slides (even/odd expected bits).
+ * Approach: 1. Count flips of original s vs both patterns. 2. For each rotation, remove the front char’s mismatch and add it at the end index n+rotationStep. 3. Track `minimumFlipsResult`.
+ * Dry Run: s="111000". After trying rotations, minimum is 2.
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */
@@ -30,7 +33,7 @@ var minFlips = function (s) {
   minimumFlipsResult = Math.min(
     minimumFlipsResult,
     flipsForZeroPattern,
-    flipsForOnePattern,
+    flipsForOnePattern
   );
 
   for (let rotationStep = 0; rotationStep < stringLength - 1; rotationStep++) {
@@ -65,7 +68,7 @@ var minFlips = function (s) {
     minimumFlipsResult = Math.min(
       minimumFlipsResult,
       flipsForZeroPattern,
-      flipsForOnePattern,
+      flipsForOnePattern
     );
   }
 

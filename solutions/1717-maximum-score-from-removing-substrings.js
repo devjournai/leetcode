@@ -1,5 +1,9 @@
 /**
  * Maximum Score From Removing Substrings
+ * Intuition: Non-overlapping "ab"/"ba" removals: always remove the higher-scoring pair first with a stack, then the other pair on the leftover.
+ * Approach: 1. If `x>=y` first pair is "ab" else "ba". 2. Scan `s` with `processingStack`, popping a match for `firstPair` and adding `firstScore`. 3. Repeat on the remainder for `secondPair`. 4. Return `totalScore`.
+ * Dry Run: s = "cdbcbbaa", x = 4, y = 5
+ * Prefer "ba": remove ba twice (positions in "cbbaa" etc.) score 10, leftover no "ab" → 10.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

@@ -1,5 +1,9 @@
 /**
  * Diet Plan Performance
+ * Intuition: Score each consecutive k-day calorie window: -1 if below lower, +1 if above upper, else 0. A sliding window maintains the k-sum.
+ * Approach: 1. Expand the right end adding calories. 2. When the window length is k, adjust points, subtract the left calorie, and advance left. 3. Return the total points.
+ * Dry Run: calories = [1,2,3,4,5], k = 1, lower = 3, upper = 3.
+ *   - Windows: 1->-1, 2->-1, 3->0, 4->+1, 5->+1. Answer 0.
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */

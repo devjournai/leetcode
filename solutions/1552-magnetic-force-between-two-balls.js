@@ -1,5 +1,9 @@
 /**
  * Magnetic Force Between Two Balls
+ * Intuition: Maximize the min gap: binary search force F and greedily place m balls at least F apart on sorted positions.
+ * Approach: 1. Sort positions. 2. lo=1, hi=max-min. 3. If feasible, try larger F. 4. Return the last good F.
+ * Dry Run: position = [1,2,3,4,7], m = 3.
+ *   - Max min-force is 3 (place at 1,4,7).
  * Time Complexity: O(N log N + N log D)
  * Space Complexity: O(1)
  */
@@ -9,7 +13,7 @@ var maxDistance = function (position, m) {
   const checkFeasibility = (
     forceThreshold,
     basketLocations,
-    desiredBallCount,
+    desiredBallCount
   ) => {
     let placedBallQuantity = 1;
     let previousBallLocation = basketLocations[0];

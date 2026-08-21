@@ -1,5 +1,9 @@
 /**
  * Merge Bsts To Create Single Bst
+ * Intuition: Each tree is a 2- or 3-node BST. Leaves that equal another tree's root can be replaced by that tree. There must be exactly one root that is never a child; after grafting every other tree exactly once, the result must still be a BST with unique values.
+ * Approach: 1. Map root values to trees; collect all child values. Duplicate roots → null. 2. The unique tree whose root is not a child is the candidate global root (none or two → null). 3. Recursively replace a leaf whose value is a remaining tree root (referenced once) with that tree. 4. Require exactly one unused map entry (the global root) and a valid BST; otherwise null.
+ * Dry Run: trees = [root 3 with left leaf 2, root 2 with left leaf 1].
+ *   - Child set {2,1}; unique non-child root is 3. Graft tree 2 under 3, then tree 1 under 2. Map leftover size 1 and BST inorder 1,2,3 → return that tree.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -34,13 +38,13 @@ var canMerge = function (trees) {
     if (currentTreeIterated.left) {
       childReferenceCounts.set(
         currentTreeIterated.left.val,
-        (childReferenceCounts.get(currentTreeIterated.left.val) || 0) + 1,
+        (childReferenceCounts.get(currentTreeIterated.left.val) || 0) + 1
       );
     }
     if (currentTreeIterated.right) {
       childReferenceCounts.set(
         currentTreeIterated.right.val,
-        (childReferenceCounts.get(currentTreeIterated.right.val) || 0) + 1,
+        (childReferenceCounts.get(currentTreeIterated.right.val) || 0) + 1
       );
     }
   }
@@ -52,7 +56,7 @@ var canMerge = function (trees) {
   function processTreeNodes(
     currentProcessingNode,
     nodeValueMapArg,
-    childReferenceCountsArg,
+    childReferenceCountsArg
   ) {
     if (!currentProcessingNode) {
       return null;
@@ -69,19 +73,19 @@ var canMerge = function (trees) {
       return processTreeNodes(
         subtreeToAttach,
         nodeValueMapArg,
-        childReferenceCountsArg,
+        childReferenceCountsArg
       );
     }
 
     currentProcessingNode.left = processTreeNodes(
       currentProcessingNode.left,
       nodeValueMapArg,
-      childReferenceCountsArg,
+      childReferenceCountsArg
     );
     currentProcessingNode.right = processTreeNodes(
       currentProcessingNode.right,
       nodeValueMapArg,
-      childReferenceCountsArg,
+      childReferenceCountsArg
     );
     return currentProcessingNode;
   }
@@ -99,12 +103,12 @@ var canMerge = function (trees) {
     const leftSubtreeValid = validateBstIntegrity(
       validationNode.left,
       minimumBound,
-      validationNode.val,
+      validationNode.val
     );
     const rightSubtreeValid = validateBstIntegrity(
       validationNode.right,
       validationNode.val,
-      maximumBound,
+      maximumBound
     );
     return leftSubtreeValid && rightSubtreeValid;
   }
@@ -112,7 +116,7 @@ var canMerge = function (trees) {
   const fullyMergedTree = processTreeNodes(
     finalRootCandidate,
     nodeValueMap,
-    childReferenceCounts,
+    childReferenceCounts
   );
 
   if (

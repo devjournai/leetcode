@@ -1,5 +1,8 @@
 /**
  * Most Common Word
+ * Intuition: Tokenize letters into lowercase words; skip banned; keep a running max count.
+ * Approach: 1. Banned Set. 2. Scan paragraph plus one past the end; accumulate a–z/A–Z, else flush the buffer. 3. If not banned, bump Map and maybe update `finalWord`.
+ * Dry Run: paragraph = "Bob hit a ball, the hit BALL flew far after it was hit.", banned = ["hit"]. "ball" appears twice → "ball".
  * Time Complexity: O(P + B)
  * Space Complexity: O(U + B)
  */

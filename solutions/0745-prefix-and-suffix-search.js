@@ -1,5 +1,8 @@
 /**
  * Prefix And Suffix Search
+ * Intuition: Precompute every prefix/suffix pair of each word as `prefix#suffix` in a map. Later words overwrite earlier indices, so `f` returns the largest index matching both prefix and suffix.
+ * Approach: 1. For each word (in order), for every prefix length and suffix start, `dictionaryMap.set(formedPrefix + "#" + formedSuffix, wordIndex)`. 2. `f` looks up `queryPrefix#querySuffix` or returns -1.
+ * Dry Run: words = ["apple"]. Keys include "a#e" and "apple#apple". f("a","e") → 0. A later word "ace" would overwrite "a#e".
  * Time Complexity: O(N * L^3)
  * Space Complexity: O(N * L^3)
  */
@@ -18,7 +21,7 @@ var WordFilter = function (inputWords) {
     ) {
       let formedPrefix = currentProcessingWord.slice(
         0,
-        prefixGenerationIterator,
+        prefixGenerationIterator
       );
 
       for (
@@ -27,7 +30,7 @@ var WordFilter = function (inputWords) {
         suffixGenerationIterator++
       ) {
         let formedSuffix = currentProcessingWord.slice(
-          suffixGenerationIterator,
+          suffixGenerationIterator
         );
         let combinedKey = formedPrefix + "#" + formedSuffix;
         this.dictionaryMap.set(combinedKey, wordIndex);

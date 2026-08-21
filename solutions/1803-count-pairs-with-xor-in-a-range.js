@@ -1,5 +1,9 @@
 /**
  * Count Pairs With Xor In A Range
+ * Intuition: Count pairs with XOR ≤ high minus pairs with XOR ≤ low-1. A binary trie of inserted numbers, walking limit bits, counts how many existing values XOR to a value below the threshold.
+ * Approach: 1. Insert numbers bit-by-bit (bit 14..0) into `TrieNodeDefinition` with `totalPathCount`. 2. `queryTrieForXorCount` follows the limit bits, adding whole subtrees when the limit bit is 1. 3. For each number, add query(high)-query(low-1) then insert. 4. Return `totalNicePairs`.
+ * Dry Run: nums = [1,4,2,7], low=2, high=6.
+ *   - Valid XOR pairs: (1,4)=5, (1,2)=3, (1,7)=6, (4,2)=6. Count 4.
  * Time Complexity: O(N * MaxBits)
  * Space Complexity: O(N * MaxBits)
  */
@@ -26,7 +30,7 @@ function insertIntoTrie(incomingNumericValue, trieStartNode) {
 function queryTrieForXorCount(
   targetNumericValue,
   xorLimitThreshold,
-  searchTrieEntry,
+  searchTrieEntry
 ) {
   if (xorLimitThreshold < 0) {
     return 0;

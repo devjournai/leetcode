@@ -1,5 +1,11 @@
 /**
  * People Whose List Of Favorite Companies Is Not A Subset Of Another List
+ * Intuition: Convert each list to a Set. A person is kept if their set is not a subset of any other person's set.
+ * Approach: 1. Map each favorite list to a Set. 2. For person i, scan j != i and test subset. 3. If no superset is found, push i. 4. Return those indexes.
+ * Dry Run: favoriteCompanies = [["leetcode","google","facebook"],["google","microsoft"],["google","facebook"]]
+ *   - person 2 is a subset of person 0, so drop 2
+ *   - persons 0 and 1 are not subsets of any other list
+ *   - return [0, 1]
  * Time Complexity: O(N^2 * M)
  * Space Complexity: O(N * M)
  */
@@ -7,7 +13,7 @@ var peopleIndexes = function (favoriteCompanies) {
   const totalPeople = favoriteCompanies.length;
 
   const companySetRepository = favoriteCompanies.map(
-    (individualCompanies) => new Set(individualCompanies),
+    (individualCompanies) => new Set(individualCompanies)
   );
 
   const resultList = [];

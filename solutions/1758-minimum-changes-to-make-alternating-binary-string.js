@@ -1,5 +1,9 @@
 /**
  * Minimum Changes To Make Alternating Binary String
+ * Intuition: An alternating string is either 0101… or 1010…. Count mismatches against both patterns and take the min.
+ * Approach: 1. For each index, expected bits for zero-start and one-start. 2. Increment `operationsForZeroStart` / `operationsForOneStart` on mismatch. 3. Return the min.
+ * Dry Run: s = "0100"
+ * vs 0101: last bit 1 change → 1; vs 1010: three changes. Min = 1.
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */

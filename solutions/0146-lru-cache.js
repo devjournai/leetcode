@@ -1,5 +1,9 @@
 /**
  * Lru Cache
+ * Intuition: A JavaScript `Map` keeps insertion order. Deleting and re-inserting a key moves it to most-recent; the first key is the least recently used and can be evicted in O(1).
+ * Approach: 1. Construct with `cacheLimit` and empty `dataStore`. 2. `get`: if missing return -1; else `delete` then `set` the same value so it is newest, then return it. 3. `put`: if the key exists, delete it; `set` the new value. 4. If `dataStore.size` exceeds `cacheLimit`, delete `dataStore.keys().next().value` (oldest).
+ * Dry Run: capacity=2; put(1,1), put(2,2), get(1)→1, put(3,3) evicts key 2, get(2)→-1
+ * After get(1), order is 2 then 1; put(3) drops 2.
  * Time Complexity: O(1)
  * Space Complexity: O(N)
  */

@@ -1,5 +1,9 @@
 /**
  * Furthest Building You Can Reach
+ * Intuition: Assign ladders to the largest climbs. A min-heap of climbs so far; when it exceeds ladderCount, pay the smallest climb with bricks. Stop when bricks go negative.
+ * Approach: 1. For each positive height gap, push it on the min-heap. 2. If heap size > ladders, pop the smallest gap and subtract it from bricks. 3. If bricks < 0, return the current index. 4. If the loop finishes, return n-1.
+ * Dry Run: heights=[4,2,7,6,9], bricks=10, ladders=1.
+ *   - Climbs 5 then 3; ladder takes 5, bricks cover 3 → reach the end (index 4).
  * Time Complexity: O(N * log L)
  * Space Complexity: O(L)
  */

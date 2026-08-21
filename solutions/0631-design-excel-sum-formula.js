@@ -1,5 +1,8 @@
 /**
  * Design Excel Sum Formula
+ * Intuition: Store cell values in a grid and keep formula sources plus reverse dependencies. After a `set` or `sum`, recompute each dependent formula from current grid values and recurse.
+ * Approach: 1. Constructor builds `valueGrid`, `formulaDefinitions`, and `cellDependencies`. 2. `set` drops any formula on the cell, writes `val`, then `propagateCellUpdates`. 3. `get` reads the grid. 4. `sum` expands ranges/`A1` tokens into source coords, rewires dependencies, writes `computeFormulaValue`, and propagates. 5. Propagation recomputes every dependent formula from its sources.
+ * Dry Run: Excel(2,'B'); set(1,'A',2); set(1,'B',3); sum(2,'A',['A1','B1']) → 5. Then set(1,'A',4) → cell 2A recomputes to 7 via `cellDependencies`.
  * Time Complexity: O(H * W)
  * Space Complexity: O((H * W)^2)
  */
@@ -19,7 +22,7 @@ var Excel = function (height, width) {
 
   this.getCellIdentifier = function (rowIndex, colIndex) {
     const charRepresentation = String.fromCharCode(
-      colIndex + this.charAToNumOffset,
+      colIndex + this.charAToNumOffset
     );
     const rowRepresentation = rowIndex + 1;
     return `${rowRepresentation}:${charRepresentation}`;
@@ -46,14 +49,14 @@ var Excel = function (height, width) {
   this.propagateCellUpdates = function (sourceRow, sourceColumnChar) {
     const sourceCellId = this.getCellIdentifier(
       sourceRow - 1,
-      this.getColumnIndex(sourceColumnChar),
+      this.getColumnIndex(sourceColumnChar)
     );
     if (!this.cellDependencies.has(sourceCellId)) {
       return;
     }
 
     const dependentCellIds = Array.from(
-      this.cellDependencies.get(sourceCellId),
+      this.cellDependencies.get(sourceCellId)
     );
     for (const dependentId of dependentCellIds) {
       const parsedDependentCoords = this.parseCellIdentifier(dependentId);
@@ -65,7 +68,7 @@ var Excel = function (height, width) {
         this.formulaDefinitions.get(dependentId);
       if (dependentCellFormulaSources) {
         const newComputedSum = this.computeFormulaValue(
-          dependentCellFormulaSources,
+          dependentCellFormulaSources
         );
         this.valueGrid[dependentCellRow - 1][dependentCellColIndex] =
           newComputedSum;
@@ -86,7 +89,7 @@ Excel.prototype.set = function (row, column, val) {
       const oldSourceColIdx = oldFormulaSource[1];
       const oldSourceCellId = this.getCellIdentifier(
         oldSourceRowIdx,
-        oldSourceColIdx,
+        oldSourceColIdx
       );
       if (this.cellDependencies.has(oldSourceCellId)) {
         this.cellDependencies.get(oldSourceCellId).delete(targetCellId);
@@ -151,7 +154,7 @@ Excel.prototype.sum = function (row, column, numbers) {
       const prevSourceColIdx = previousSourceCoord[1];
       const prevSourceCellId = this.getCellIdentifier(
         prevSourceRowIdx,
-        prevSourceColIdx,
+        prevSourceColIdx
       );
       if (this.cellDependencies.has(prevSourceCellId)) {
         this.cellDependencies.get(prevSourceCellId).delete(sumTargetCellId);
@@ -166,7 +169,7 @@ Excel.prototype.sum = function (row, column, numbers) {
     const newSourceColIdx = newSourceCoord[1];
     const newSourceCellId = this.getCellIdentifier(
       newSourceRowIdx,
-      newSourceColIdx,
+      newSourceColIdx
     );
     if (!this.cellDependencies.has(newSourceCellId)) {
       this.cellDependencies.set(newSourceCellId, new Set());

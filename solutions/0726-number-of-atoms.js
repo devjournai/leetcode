@@ -1,5 +1,8 @@
 /**
  * Number Of Atoms
+ * Intuition: Recursively parse nested parentheses. Each group’s atom map is multiplied by the following integer (default 1). Flatten into a sorted formula string, omitting count 1.
+ * Approach: 1. `parseChemicalString` from an index until `")"` or end. 2. `"("` recurses; `retrieveNumber` gets the multiplier and merges into `currentLevelAtoms`. 3. Else `identifyAtom` plus optional count. 4. Sort keys and append counts > 1.
+ * Dry Run: "K4(ON(SO3)2)2" → inner SO3×2, then ON(SO3)2 ×2, then K4 → "K4N2O14S4".
  * Time Complexity: O(N + U log U)
  * Space Complexity: O(N)
  */
@@ -30,11 +33,11 @@ var countOfAtoms = function (chemicalExpression) {
       if (charAtCurrent === "(") {
         const [innerMap, closingParenthesisIndex] = parseChemicalString(
           currentFormulaSegment,
-          currentProcessingIndex + 1,
+          currentProcessingIndex + 1
         );
         const [groupFactor, postGroupIndex] = retrieveNumber(
           currentFormulaSegment,
-          closingParenthesisIndex + 1,
+          closingParenthesisIndex + 1
         );
         const effectiveFactor = groupFactor === null ? 1 : groupFactor;
 
@@ -42,24 +45,24 @@ var countOfAtoms = function (chemicalExpression) {
           currentLevelAtoms.set(
             innerAtomSymbol,
             (currentLevelAtoms.get(innerAtomSymbol) || 0) +
-              innerAtomQuantity * effectiveFactor,
+              innerAtomQuantity * effectiveFactor
           );
         }
         currentProcessingIndex = postGroupIndex;
       } else {
         const [atomIdentifier, nextAtomPosition] = identifyAtom(
           currentFormulaSegment,
-          currentProcessingIndex,
+          currentProcessingIndex
         );
         const [atomCountValue, nextCountPosition] = retrieveNumber(
           currentFormulaSegment,
-          nextAtomPosition,
+          nextAtomPosition
         );
         const actualCount = atomCountValue === null ? 1 : atomCountValue;
 
         currentLevelAtoms.set(
           atomIdentifier,
-          (currentLevelAtoms.get(atomIdentifier) || 0) + actualCount,
+          (currentLevelAtoms.get(atomIdentifier) || 0) + actualCount
         );
         currentProcessingIndex = nextCountPosition;
       }

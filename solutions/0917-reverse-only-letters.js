@@ -1,5 +1,8 @@
 /**
  * Reverse Only Letters
+ * Intuition: Only A–Z/a–z reverse; other characters stay put, so two pointers skip non-letters then swap.
+ * Approach: 1. Split to `stringChars`. 2. `isAlphabetical` via char codes 65–90 or 97–122. 3. pointerOne from left, pointerTwo from right: skip non-letters, else swap and both move. 4. Join.
+ * Dry Run: "ab-cd" → swap a/d then b/c → "dc-ba".
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

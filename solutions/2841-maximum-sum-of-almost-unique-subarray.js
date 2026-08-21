@@ -34,7 +34,7 @@ var maxSum = function (nums, m, k) {
     const currentNumber = nums[initialWindowIdx];
     valueCountsMap.set(
       currentNumber,
-      (valueCountsMap.get(currentNumber) || 0) + 1,
+      (valueCountsMap.get(currentNumber) || 0) + 1
     );
     currentWindowSum += currentNumber;
   }

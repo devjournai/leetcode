@@ -33,11 +33,11 @@ var maximumTripletValue = function (nums) {
   for (let currentKIndex = 1; currentKIndex < nums.length; currentKIndex++) {
     maxOverallTripletResult = Math.max(
       maxOverallTripletResult,
-      maxDifferencePriorToK * nums[currentKIndex],
+      maxDifferencePriorToK * nums[currentKIndex]
     );
     maxDifferencePriorToK = Math.max(
       maxDifferencePriorToK,
-      maxElementPriorToJ - nums[currentKIndex],
+      maxElementPriorToJ - nums[currentKIndex]
     );
     maxElementPriorToJ = Math.max(maxElementPriorToJ, nums[currentKIndex]);
   }

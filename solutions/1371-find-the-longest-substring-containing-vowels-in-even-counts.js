@@ -1,5 +1,9 @@
 /**
  * Find The Longest Substring Containing Vowels In Even Counts
+ * Intuition: Even/odd vowel counts are a 5-bit parity mask. The longest even-parity substring between two equal masks is the distance from the first time that mask appeared.
+ * Approach: 1. Map a,e,i,o,u to bits 0–4. 2. XOR the mask as each vowel is seen. 3. Store the first index of each mask (0 at -1). 4. When a mask repeats, update max length as i - firstIndex.
+ * Dry Run: s = "eleetminicoworoep".
+ *   - Mask starts 0 at -1. After enough vowels the same mask reappears spanning the whole string. Max length 13.
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */

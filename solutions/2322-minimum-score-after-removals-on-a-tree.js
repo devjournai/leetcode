@@ -212,7 +212,7 @@ var minimumScore = function (nums, edges) {
 
       minimumOverallScore = Math.min(
         minimumOverallScore,
-        maximumComponentXor - minimumComponentXor,
+        maximumComponentXor - minimumComponentXor
       );
     }
   }

@@ -32,7 +32,7 @@ var findLonely = function (nums) {
   for (const currentInput of nums) {
     numberFrequencies.set(
       currentInput,
-      (numberFrequencies.get(currentInput) || 0) + 1,
+      (numberFrequencies.get(currentInput) || 0) + 1
     );
   }
 

@@ -61,7 +61,7 @@ var minimumFuelCost = function (inputRoads, carSeats) {
       if (neighborNodeId !== previousNodeId) {
         const childSubtreePeople = depthFirstSearch(
           neighborNodeId,
-          currentNodeId,
+          currentNodeId
         );
         peopleInSubtree += childSubtreePeople;
       }

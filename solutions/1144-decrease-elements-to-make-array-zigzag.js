@@ -1,5 +1,10 @@
 /**
  * Decrease Elements To Make Array Zigzag
+ * Intuition: Only decreases are allowed, so either even indices are peaks or odd indices are peaks. Compute both by shrinking neighbors (or the valley itself) just below the peak, and take the cheaper plan.
+ * Approach: 1. Copy nums and for even-index peaks, lower adjacent values (and valleys if needed) so each even index is strictly greater than neighbors. 2. Repeat with odd-index peaks. 3. Return the min total decrease.
+ * Dry Run: nums = [1,2,3].
+ *   - Even-index peaks: decrease 2 to 0 (cost 2) so [1,0,3]. Odd-index peaks: decrease 3 to 1 (cost 2) so [1,2,1].
+ *   - Answer 2.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

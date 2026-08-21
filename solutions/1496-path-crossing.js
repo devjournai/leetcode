@@ -1,5 +1,10 @@
 /**
  * Path Crossing
+ * Intuition: Simulate moves on a grid and store visited "x,y" keys. A repeat means the path crossed.
+ * Approach: 1. Start at (0,0) in a Set. 2. For each char, move N/S/E/W. 3. If the new key is already in the set, return true. 4. Add it; if the path finishes, return false.
+ * Dry Run: path = "NES"
+ *   - (0,1), (1,1), (1,0) all new. Return false.
+ *   - path "NESWW" revisits (0,0). Return true.
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */
@@ -11,7 +16,7 @@ var isPathCrossing = function (path) {
 
   const previouslyVisitedCoords = new Set();
   previouslyVisitedCoords.add(
-    generateCoordKey(currentXPosition, currentYPosition),
+    generateCoordKey(currentXPosition, currentYPosition)
   );
 
   const travelPathLength = path.length;
@@ -35,7 +40,7 @@ var isPathCrossing = function (path) {
 
     const presentLocationKey = generateCoordKey(
       currentXPosition,
-      currentYPosition,
+      currentYPosition
     );
 
     if (previouslyVisitedCoords.has(presentLocationKey)) {

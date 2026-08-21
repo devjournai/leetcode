@@ -1,8 +1,11 @@
 /**
  * Rearrange String K Distance Apart
+ * Intuition: Place the most frequent letters first in greedy k-sized batches so identical letters cannot sit closer than k, then scan every window of length k to reject any leftover collision.
+ * Approach: 1. k <= 1 returns the string. 2. Count a–z frequencies; heap-sort as `[count, char]`. 3. If max frequency > ceil(n / k), return "". 4. Repeatedly take up to k letters from the sorted queue, write each into the next empty slot (wrapping to 0 if needed), and requeue leftover counts. 5. Sliding windows of size k that contain a duplicate return "".
+ * Dry Run: s = "aabbcc", k = 3. Freqs a,b,c = 2; place a,b,c then a,b,c → "abcabc"; windows of 3 are unique → "abcabc".
  * Time Complexity: O(N * K)
  * Space Complexity: O(N)
-*/
+ */
 var rearrangeString = function (inputString, distanceConstraint) {
   if (distanceConstraint <= 1) {
     return inputString;
@@ -16,31 +19,48 @@ var rearrangeString = function (inputString, distanceConstraint) {
   let charPriorityQueue = [];
   for (let alphabetPosition = 0; alphabetPosition < 26; alphabetPosition++) {
     if (characterFrequencies[alphabetPosition] > 0) {
-      charPriorityQueue.push([characterFrequencies[alphabetPosition], String.fromCharCode(alphabetPosition + 97)]);
+      charPriorityQueue.push([
+        characterFrequencies[alphabetPosition],
+        String.fromCharCode(alphabetPosition + 97),
+      ]);
     }
   }
   charPriorityQueue.sort((entryOne, entryTwo) => entryTwo[0] - entryOne[0]);
 
-  let highestFrequency = charPriorityQueue.length > 0 ? charPriorityQueue[0][0] : 0;
+  let highestFrequency =
+    charPriorityQueue.length > 0 ? charPriorityQueue[0][0] : 0;
   if (highestFrequency > Math.ceil(inputString.length / distanceConstraint)) {
     return "";
   }
 
-  let finalArrangement = new Array(inputString.length).fill('');
+  let finalArrangement = new Array(inputString.length).fill("");
   let placementPointer = 0;
 
   while (charPriorityQueue.length > 0) {
     let requeueBuffer = [];
     let elementsFilledInCycle = 0;
 
-    while (elementsFilledInCycle < distanceConstraint && charPriorityQueue.length > 0) {
+    while (
+      elementsFilledInCycle < distanceConstraint &&
+      charPriorityQueue.length > 0
+    ) {
       let [currentCount, characterToPlace] = charPriorityQueue.shift();
 
-      for (; placementPointer < inputString.length && finalArrangement[placementPointer] !== ''; placementPointer++);
+      for (
+        ;
+        placementPointer < inputString.length &&
+        finalArrangement[placementPointer] !== "";
+        placementPointer++
+      );
 
       if (placementPointer >= inputString.length) {
         placementPointer = 0;
-        for (; placementPointer < inputString.length && finalArrangement[placementPointer] !== ''; placementPointer++);
+        for (
+          ;
+          placementPointer < inputString.length &&
+          finalArrangement[placementPointer] !== "";
+          placementPointer++
+        );
       }
 
       finalArrangement[placementPointer] = characterToPlace;
@@ -66,7 +86,8 @@ var rearrangeString = function (inputString, distanceConstraint) {
     let windowElementCounter = 0;
 
     while (windowElementCounter < distanceConstraint) {
-      let currentWindowChar = finalArrangement[validationWindowStart + windowElementCounter];
+      let currentWindowChar =
+        finalArrangement[validationWindowStart + windowElementCounter];
       if (encounteredCharsInWindow.has(currentWindowChar)) {
         return "";
       }
@@ -76,5 +97,5 @@ var rearrangeString = function (inputString, distanceConstraint) {
     validationWindowStart++;
   } while (true);
 
-  return finalArrangement.join('');
+  return finalArrangement.join("");
 };

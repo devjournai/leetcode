@@ -23,19 +23,19 @@ var maxOperations = function (nums) {
     if (nums[leftIndex] + nums[leftIndex + 1] === targetScore) {
       maxOps = Math.max(
         maxOps,
-        1 + dfs(leftIndex + 2, rightIndex, targetScore),
+        1 + dfs(leftIndex + 2, rightIndex, targetScore)
       );
     }
     if (nums[rightIndex] + nums[rightIndex - 1] === targetScore) {
       maxOps = Math.max(
         maxOps,
-        1 + dfs(leftIndex, rightIndex - 2, targetScore),
+        1 + dfs(leftIndex, rightIndex - 2, targetScore)
       );
     }
     if (nums[leftIndex] + nums[rightIndex] === targetScore) {
       maxOps = Math.max(
         maxOps,
-        1 + dfs(leftIndex + 1, rightIndex - 1, targetScore),
+        1 + dfs(leftIndex + 1, rightIndex - 1, targetScore)
       );
     }
     memoByState.set(stateKey, maxOps);
@@ -46,7 +46,7 @@ var maxOperations = function (nums) {
     Math.max(
       dfs(2, arrayLength - 1, nums[0] + nums[1]),
       dfs(0, arrayLength - 3, nums[arrayLength - 2] + nums[arrayLength - 1]),
-      dfs(1, arrayLength - 2, nums[0] + nums[arrayLength - 1]),
+      dfs(1, arrayLength - 2, nums[0] + nums[arrayLength - 1])
     ) + 1
   );
 };

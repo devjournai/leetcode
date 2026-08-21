@@ -51,6 +51,10 @@ class TrieStructure {
 
 /**
  * Replace Words
+ * Intuition: A trie of dictionary roots lets each sentence word stop at the first complete root along its path, which is the shortest prefix successor.
+ * Approach: 1. `insertWord` every dictionary root. 2. Split the sentence. 3. `findShortestRoot` walks until `isRootTerminus` or a missing child. 4. Replace with that stem or keep the token; join with spaces.
+ * Dry Run: dictionary=["cat","bat"], sentence="the cattle was rattled".
+ *   - "cattle" hits "cat" at terminus. "rattled" has no root. Result "the cat was rattled".
  * Time Complexity: O(Sum(L_root) + Total_Sentence_Length)
  * Space Complexity: O(Sum(L_root) + Total_Sentence_Length)
  */

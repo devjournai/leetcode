@@ -1,5 +1,9 @@
 /**
  * Checking Existence Of Edge Length Limited Paths
+ * Intuition: A query (u,v,limit) is true iff u and v are connected using only edges with weight < limit. Sort edges and queries by weight and union-find incrementally so each query sees exactly the eligible edges.
+ * Approach: 1. `findRoot`/`uniteSets` on `parentNodes`. 2. Sort `edgeList` by weight; attach original indices to queries and sort by limit. 3. Two-pointer: union edges with weight < `currentLimit`, then set `finalResults[idx]` if same root. 4. Return `finalResults`.
+ * Dry Run: n=3, edges=[[0,1,2],[1,2,4],[2,0,8],[1,0,16]], queries=[[0,1,2],[0,2,5]]
+ * Query limit 2: no edge <2 → false. Limit 5: union 0-1 (w=2) and 1-2 (w=4) → 0 and 2 connected → true.
  * Time Complexity: O((M + Q) * α(N) + M log M + Q log Q)
  * Space Complexity: O(N + M + Q)
  */

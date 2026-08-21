@@ -1,5 +1,8 @@
 /**
  * Smallest Subtree With All The Deepest Nodes
+ * Intuition: Postorder: if left and right depths match, this node is the LCA of deepest leaves; else the deeper child's recorded root wins.
+ * Approach: 1. `calculateSubtreeInfo` returns `{currentHeight, smallestDeepestRoot}`. Null → height 0, root null. 2. Equal heights → this node. 3. Else take the deeper child's root and height+1. 4. Return root field of the tree result.
+ * Dry Run: Balanced children of 3 (5 and 1) same height → answer 3. If 5's subtree is deeper, answer is 5's deepest LCA (node 2 in the classic example).
  * Time Complexity: O(N)
  * Space Complexity: O(H)
  */

@@ -50,7 +50,7 @@ var FoodRatings = function (foodsArray, cuisinesArray, ratingsArray) {
             return itemB.rating - itemA.rating;
           }
           return itemA.food.localeCompare(itemB.food);
-        }),
+        })
       );
     }
     this.cuisineToRatingHeaps
@@ -61,7 +61,7 @@ var FoodRatings = function (foodsArray, cuisinesArray, ratingsArray) {
 
 FoodRatings.prototype.changeRating = function (
   foodToModify,
-  modifiedRatingValue,
+  modifiedRatingValue
 ) {
   const cuisineAssociated = this.foodToCuisineMapping.get(foodToModify);
   this.foodToActualRating.set(foodToModify, modifiedRatingValue);

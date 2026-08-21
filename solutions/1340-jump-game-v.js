@@ -101,7 +101,7 @@ var maxJumps = function (arr, d) {
       ) {
         currentMaxJumps = Math.max(
           currentMaxJumps,
-          1 + calculateMaxJumpsFrom(targetRightIndex),
+          1 + calculateMaxJumpsFrom(targetRightIndex)
         );
       } else {
         break;
@@ -114,7 +114,7 @@ var maxJumps = function (arr, d) {
       if (targetLeftIndex >= 0 && arr[currentIndex] > arr[targetLeftIndex]) {
         currentMaxJumps = Math.max(
           currentMaxJumps,
-          1 + calculateMaxJumpsFrom(targetLeftIndex),
+          1 + calculateMaxJumpsFrom(targetLeftIndex)
         );
       } else {
         break;
@@ -128,7 +128,7 @@ var maxJumps = function (arr, d) {
   for (let startIndex = 0; startIndex < totalLength; startIndex++) {
     overallMaxJumps = Math.max(
       overallMaxJumps,
-      calculateMaxJumpsFrom(startIndex),
+      calculateMaxJumpsFrom(startIndex)
     );
   }
 

@@ -1,5 +1,9 @@
 /**
  * Minimum Number Of People To Teach
+ * Intuition: Only users in friendships with no shared language need teaching. Pick one language that minimizes how many of those users do not already know it.
+ * Approach: 1. Build `userLanguageSetsCollection`. 2. Collect `usersWithCommunicationIssues` from pairs with empty intersection. 3. For each language 1..n, count how many issue-users lack it; take the min. 4. Return 0 if nobody has issues.
+ * Dry Run: n=2, languages=[[1],[2],[1,2]], friendships=[[1,2],[1,3],[2,3]]
+ * Pair 1-2 cannot talk; users {1,2}. Teach language 1: user 2; teach 2: user 1. Min = 1.
  * Time Complexity: O(M * N + F * L_max + N * M)
  * Space Complexity: O(M * N + M)
  */
@@ -10,7 +14,7 @@ var minimumTeachings = function (n, languages, friendships) {
 
   const userLanguageSetsCollection = Array.from(
     { length: userLanguagesList.length },
-    () => new Set(),
+    () => new Set()
   );
   for (let userIndex = 0; userIndex < userLanguagesList.length; userIndex++) {
     for (const singleLanguageKnown of userLanguagesList[userIndex]) {
@@ -56,7 +60,7 @@ var minimumTeachings = function (n, languages, friendships) {
     for (const uncommunicativeUser of usersWithCommunicationIssues) {
       if (
         !userLanguageSetsCollection[uncommunicativeUser - 1].has(
-          chosenTeachingLanguageId,
+          chosenTeachingLanguageId
         )
       ) {
         currentLanguageTeachingCost++;
@@ -64,7 +68,7 @@ var minimumTeachings = function (n, languages, friendships) {
     }
     minimumUsersToEducate = Math.min(
       minimumUsersToEducate,
-      currentLanguageTeachingCost,
+      currentLanguageTeachingCost
     );
   }
 

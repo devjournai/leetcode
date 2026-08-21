@@ -64,7 +64,7 @@ var earliestFinishTime = function (
   landStartTime,
   landDuration,
   waterStartTime,
-  waterDuration,
+  waterDuration
 ) {
   const calculateMinFinishForOrder = (firstCategory, secondCategory) => {
     if (firstCategory.length === 0 || secondCategory.length === 0) {
@@ -86,7 +86,7 @@ var earliestFinishTime = function (
       for (let i = 1; i < n2; i++) {
         prefixMinDuration[i] = Math.min(
           prefixMinDuration[i - 1],
-          secondParsed[i].duration,
+          secondParsed[i].duration
         );
       }
     }
@@ -97,7 +97,7 @@ var earliestFinishTime = function (
       for (let i = n2 - 2; i >= 0; i--) {
         suffixMinFinish[i] = Math.min(
           suffixMinFinish[i + 1],
-          secondParsed[i].finish,
+          secondParsed[i].finish
         );
       }
     }
@@ -126,14 +126,14 @@ var earliestFinishTime = function (
       if (k > 0) {
         currentCandidateFinish = Math.min(
           currentCandidateFinish,
-          firstFinishTime + prefixMinDuration[k - 1],
+          firstFinishTime + prefixMinDuration[k - 1]
         );
       }
 
       if (k < n2) {
         currentCandidateFinish = Math.min(
           currentCandidateFinish,
-          suffixMinFinish[k],
+          suffixMinFinish[k]
         );
       }
 
@@ -154,11 +154,11 @@ var earliestFinishTime = function (
 
   const minFinishLandThenWater = calculateMinFinishForOrder(
     landRides,
-    waterRides,
+    waterRides
   );
   const minFinishWaterThenLand = calculateMinFinishForOrder(
     waterRides,
-    landRides,
+    landRides
   );
 
   return Math.min(minFinishLandThenWater, minFinishWaterThenLand);

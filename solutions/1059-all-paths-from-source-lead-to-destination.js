@@ -1,5 +1,9 @@
 /**
  * All Paths From Source Lead To Destination
+ * Intuition: Every path from source must end at destination with no cycles. 3-color DFS: visiting (1) detects cycles; done (2) is memoized success; a node with no outgoing edges must be destination.
+ * Approach: 1. Build adjacency lists. 2. DFS: if state is 1 return false; if 2 return true. 3. Mark visiting; if no neighbors, success iff node==destination. 4. All neighbors must succeed; then mark done.
+ * Dry Run: n=3, edges=[[0,1],[0,2]], source=0, destination=2.
+ *   - From 0, neighbor 1 is a dead end that is not dest -> false.
  * Time Complexity: O(N + E)
  * Space Complexity: O(N + E)
  */

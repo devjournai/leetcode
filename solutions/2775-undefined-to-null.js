@@ -66,7 +66,7 @@ var undefinedToNull = function (obj) {
     if (Object.prototype.hasOwnProperty.call(obj, objectPropertyKey)) {
       const originalObjectPropertyValue = obj[objectPropertyKey];
       const convertedObjectPropertyValue = undefinedToNull(
-        originalObjectPropertyValue,
+        originalObjectPropertyValue
       );
       newObjectResult[objectPropertyKey] = convertedObjectPropertyValue;
     }

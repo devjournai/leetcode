@@ -1,5 +1,8 @@
 /**
  * Short Encoding Of Words
+ * Intuition: In a `#`-joined encoding, a word that is a suffix of another is already included. Keep only words that are not suffixes of some remaining word.
+ * Approach: 1. Put words in a Set. 2. For each word, delete every proper suffix. 3. Sum `length+1` for leftover words (`#` terminator).
+ * Dry Run: ["time","me","bell"]. "me" is a suffix of "time" and is deleted. Remaining time+bell → 10.
  * Time Complexity: O(N * L^2)
  * Space Complexity: O(N * L)
  */
@@ -13,7 +16,7 @@ var minimumLengthEncoding = function (words) {
       currentSuffixStartingIndex++
     ) {
       const extractedSuffix = currentReferenceWord.slice(
-        currentSuffixStartingIndex,
+        currentSuffixStartingIndex
       );
       uniqueStringsSet.delete(extractedSuffix);
     }

@@ -1,5 +1,8 @@
 /**
  * Number Of Steps To Reduce A Number To Zero
+ * Intuition: Even → divide by 2; odd → subtract 1. Recurse until 0.
+ * Approach: 1. Base 0 is 0 steps. 2. Recurse: even halves, odd decrements, incrementing the step count. 3. Return the count.
+ * Dry Run: num = 14 → 7 → 6 → 3 → 2 → 1 → 0, six steps.
  * Time Complexity: O(log(num))
  * Space Complexity: O(log(num))
  */

@@ -52,7 +52,7 @@ var minimumIndex = function (nums) {
   for (const currentNumber of nums) {
     elementFrequency.set(
       currentNumber,
-      (elementFrequency.get(currentNumber) || 0) + 1,
+      (elementFrequency.get(currentNumber) || 0) + 1
     );
   }
 

@@ -1,5 +1,8 @@
 /**
  * High Five
+ * Intuition: Group scores by student, then the top five after a descending sort give the truncated average. Sorting the (id, avg) pairs yields the required id order.
+ * Approach: 1. Map id → score list. 2. Sort each list descending and average the first five (floor). 3. Collect [id, avg] and sort by id.
+ * Dry Run: id 1 scores 91,92,93,94,95 → avg 93; id 2 similar. Output [[1,93],[2,...]] by id.
  * Time Complexity: O(N log K)
  * Space Complexity: O(N)
  */
@@ -19,13 +22,13 @@ var highFive = function (items) {
   const finalAveragesResult = [];
   for (const [studentIDValue, studentScoresCollection] of studentScoresMap) {
     studentScoresCollection.sort(
-      (firstScoreItem, secondScoreItem) => secondScoreItem - firstScoreItem,
+      (firstScoreItem, secondScoreItem) => secondScoreItem - firstScoreItem
     );
 
     const topFiveScoresArray = studentScoresCollection.slice(0, 5);
     const sumOfTopFive = topFiveScoresArray.reduce(
       (currentAccumulator, currentScore) => currentAccumulator + currentScore,
-      0,
+      0
     );
 
     const calculatedAverage = Math.floor(sumOfTopFive / 5);
@@ -34,7 +37,7 @@ var highFive = function (items) {
 
   finalAveragesResult.sort(
     (firstResultPair, secondResultPair) =>
-      firstResultPair[0] - secondResultPair[0],
+      firstResultPair[0] - secondResultPair[0]
   );
 
   return finalAveragesResult;

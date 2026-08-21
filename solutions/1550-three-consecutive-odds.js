@@ -1,5 +1,9 @@
 /**
  * Three Consecutive Odds
+ * Intuition: A window of three odds exists iff some i,i+1,i+2 are all odd.
+ * Approach: 1. If n<3 return false. 2. Slide triples checking %2. 3. Return true on the first hit.
+ * Dry Run: arr = [2,6,4,1].
+ *   - No triple of odds → false.
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */

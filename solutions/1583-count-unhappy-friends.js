@@ -1,5 +1,9 @@
 /**
  * Count Unhappy Friends
+ * Intuition: x is unhappy if some preferred y (over x's partner) also prefers x over y's partner.
+ * Approach: 1. Rank matrix from preferences. 2. Store pairs. 3. For each x, scan prefs until partner; if any y ranks x better than y's partner, count x once.
+ * Dry Run: n = 4, pairs = [[0,1],[2,3]] with the standard preference tables.
+ *   - Two people have a mutually preferred alternative → 2.
  * Time Complexity: O(n^2)
  * Space Complexity: O(n^2)
  */

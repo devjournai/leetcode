@@ -12,7 +12,7 @@
 var waysToReachStair = function (k) {
   const MAX_JUMP = 29;
   const comb = Array.from({ length: MAX_JUMP + 2 }, () =>
-    new Array(MAX_JUMP + 2).fill(0),
+    new Array(MAX_JUMP + 2).fill(0)
   );
   for (let i = 0; i <= MAX_JUMP + 1; i++) {
     comb[i][0] = 1;

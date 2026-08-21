@@ -77,9 +77,9 @@ var totalWaviness = function (num1, num2) {
               .map(() =>
                 Array(11)
                   .fill(0)
-                  .map(() => Array(11).fill(null)),
-              ),
-          ),
+                  .map(() => Array(11).fill(null))
+              )
+          )
       );
 
     function dp(idx, tight, started, prevDigitVal, prevPrevDigitVal) {

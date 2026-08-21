@@ -27,7 +27,7 @@ var findGCD = function (nums) {
     }
     return computeGreatestCommonDivisor(
       secondNumber,
-      firstNumber % secondNumber,
+      firstNumber % secondNumber
     );
   }
 

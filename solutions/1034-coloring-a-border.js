@@ -1,5 +1,9 @@
 /**
  * Coloring A Border
+ * Intuition: The connected component of the start cell has a border if a cell is on the grid edge or touches a different color. BFS the component, collect those cells, then recolor.
+ * Approach: 1. BFS from (row,col) through equal-color neighbors. 2. Mark a cell as border if it is on the edge or has an unlike neighbor. 3. Recolor collected border cells to `color`.
+ * Dry Run: grid [[1,1],[1,2]], row=0,col=0,color=3.
+ *   - Component of 1s: (0,0) and (0,1)/(1,0) on the edge. Those become 3. (1,1) stays 2.
  * Time Complexity: O(M*N)
  * Space Complexity: O(M*N)
  */

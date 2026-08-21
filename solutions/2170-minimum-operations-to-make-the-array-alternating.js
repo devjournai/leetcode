@@ -50,12 +50,12 @@ var minimumOperations = function (nums) {
     if (currentNumberIndex % 2 === 0) {
       evenIndexFrequencyMap.set(
         currentElementValue,
-        (evenIndexFrequencyMap.get(currentElementValue) || 0) + 1,
+        (evenIndexFrequencyMap.get(currentElementValue) || 0) + 1
       );
     } else {
       oddIndexFrequencyMap.set(
         currentElementValue,
-        (oddIndexFrequencyMap.get(currentElementValue) || 0) + 1,
+        (oddIndexFrequencyMap.get(currentElementValue) || 0) + 1
       );
     }
   }
@@ -88,7 +88,7 @@ var minimumOperations = function (nums) {
           (totalOddPositions - oddChoiceCount);
         minimumOperationsCount = Math.min(
           minimumOperationsCount,
-          currentOperations,
+          currentOperations
         );
       }
     }

@@ -1,5 +1,8 @@
 /**
  * Sum Of Floored Pairs
+ * Intuition: For each possible divisor d, floor(nums[j]/d) is constant on ranges [k*d, (k+1)*d−1]. Count frequencies and prefix counts to add freq(d)*k*count(range) for each k.
+ * Approach: 1. Count `elementCounts` up to `maximumElement`. 2. Build `cumulativeCounts`. 3. For each d with positive count, for each multiplier, add the modular product into `finalSum`.
+ * Dry Run: nums=[2,5,9]. Pairs floors sum to 10 (including i,j both ways per problem). Return 10.
  * Time Complexity: O(N + M log M)
  * Space Complexity: O(M)
  */

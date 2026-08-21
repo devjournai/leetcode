@@ -1,5 +1,8 @@
 /**
  * Tweet Counts Per Frequency
+ * Intuition: Store timestamps per tweet name. A frequency query buckets [start,end] into minute/hour/day bins.
+ * Approach: 1. recordTweet appends time to a name list. 2. getTweetCountsPerFrequency sizes buckets by freq seconds. 3. For each stored time in range, increment floor((t-start)/chunk). 4. Return the bucket array.
+ * Dry Run: record tweet3 at 0,60,10. get minute 0..59 → [2]; hour 0..59 → [2]; minute 0..60 → [2,1].
  * Time Complexity: O((endTime - startTime) / freq_interval + M)
  * Space Complexity: O(N)
  */
@@ -20,7 +23,7 @@ TweetCounts.prototype.getTweetCountsPerFrequency = function (
   freq,
   tweetName,
   startTime,
-  endTime,
+  endTime
 ) {
   const durationMap = { minute: 60, hour: 3600, day: 86400 };
   let periodGranularity = durationMap[freq];
@@ -36,7 +39,7 @@ TweetCounts.prototype.getTweetCountsPerFrequency = function (
       const tweetTimestamp = relevantTweets[tweetIndex];
       if (tweetTimestamp >= startTime && tweetTimestamp <= endTime) {
         const targetBucket = Math.floor(
-          (tweetTimestamp - startTime) / periodGranularity,
+          (tweetTimestamp - startTime) / periodGranularity
         );
         resultBuckets[targetBucket]++;
       }

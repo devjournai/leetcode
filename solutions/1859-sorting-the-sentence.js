@@ -1,5 +1,9 @@
 /**
  * Sorting The Sentence
+ * Intuition: Each token ends with its 1-based position. Place the word (without the digit) into that slot and join with spaces.
+ * Approach: 1. Split `s`. 2. For each `currentWordSegment`, index = last char − 1, store `pureWord` in `correctlyPlacedWords`. 3. Join.
+ * Dry Run: s = "is2 sentence4 This1 a3".
+ *   - slots: This, is, a, sentence. Return "This is a sentence".
  * Time Complexity: O(L)
  * Space Complexity: O(L)
  */

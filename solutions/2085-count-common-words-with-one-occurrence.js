@@ -23,7 +23,7 @@ var countWords = function (words1, words2) {
   for (const currentWord of words1) {
     frequencyMapOne.set(
       currentWord,
-      (frequencyMapOne.get(currentWord) || 0) + 1,
+      (frequencyMapOne.get(currentWord) || 0) + 1
     );
   }
 

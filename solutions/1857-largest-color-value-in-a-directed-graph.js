@@ -1,5 +1,9 @@
 /**
  * Largest Color Value In A Directed Graph
+ * Intuition: Kahn topological order with DP: `dpColorCounts[u][c]` is the max count of color c on any path ending at u. A cycle means not all nodes process → -1.
+ * Approach: 1. Build `adjList` and `nodeInDegree`. 2. Queue sources. 3. On dequeue, increment this node’s color, push max counts to neighbors, enqueue when indegree hits 0. 4. Track `maximumColorValue`.
+ * Dry Run: colors="ab", edges=[[0,1]].
+ *   - Process 0 (a:1), then 1 (a:1,b:1). Max=1. Return 1.
  * Time Complexity: O(N + M)
  * Space Complexity: O(N + M)
  */
@@ -8,7 +12,7 @@ var largestPathValue = function (colors, edges) {
   const adjList = Array.from({ length: totalNodes }, () => []);
   const nodeInDegree = new Array(totalNodes).fill(0);
   const dpColorCounts = Array.from({ length: totalNodes }, () =>
-    new Array(26).fill(0),
+    new Array(26).fill(0)
   );
   const processingQueue = [];
   let maximumColorValue = 0;
@@ -37,7 +41,7 @@ var largestPathValue = function (colors, edges) {
       for (let colorType = 0; colorType < 26; colorType++) {
         dpColorCounts[neighborNode][colorType] = Math.max(
           dpColorCounts[neighborNode][colorType],
-          dpColorCounts[currentNode][colorType],
+          dpColorCounts[currentNode][colorType]
         );
       }
       nodeInDegree[neighborNode]--;
@@ -48,7 +52,7 @@ var largestPathValue = function (colors, edges) {
 
     maximumColorValue = Math.max(
       maximumColorValue,
-      ...dpColorCounts[currentNode],
+      ...dpColorCounts[currentNode]
     );
   }
 

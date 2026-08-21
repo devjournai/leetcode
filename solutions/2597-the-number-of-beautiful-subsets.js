@@ -88,7 +88,7 @@ var beautifulSubsets = function (nums, k) {
     if (!isViolating) {
       currentSubsetFrequencies.set(
         currentNumber,
-        (currentSubsetFrequencies.get(currentNumber) || 0) + 1,
+        (currentSubsetFrequencies.get(currentNumber) || 0) + 1
       );
 
       exploreSubsets(currentIndex + 1);

@@ -133,7 +133,7 @@ var canTraverseAllPairs = function (numbersInput) {
 
   for (let elementIndex = 0; elementIndex < arraySize; elementIndex++) {
     const currentNumberFactors = computePrimeDivisors(
-      numbersInput[elementIndex],
+      numbersInput[elementIndex]
     );
     for (const primeCandidate of currentNumberFactors) {
       if (primeFactorMap.has(primeCandidate)) {

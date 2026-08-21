@@ -1,5 +1,10 @@
 /**
  * Implement Stack Using Queues
+ * Intuition: Two queues keep the newest element at the front of primaryStorage. Push enqueues into the empty secondary, then drains primary behind it and swaps the arrays.
+ * Approach: 1. push(x): enqueue x on secondary, shift every primary item onto secondary, then swap the two arrays. 2. pop: shift primary front. 3. top: read primary[0]. 4. empty: primary length === 0.
+ * Dry Run: push(1), push(2), top(), pop().
+ *   - After push(1): primary = [1]. After push(2): secondary [2,1], swap → primary [2,1].
+ *   - top = 2; pop shifts 2. Stack top behaves as LIFO.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

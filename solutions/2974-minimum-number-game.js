@@ -34,9 +34,11 @@
  *
  *     nums[i + 1], nums[i]
  *
+ * Approach: Sort nums ascending. For i = 0, 2, 4, ... push nums[i+1] then nums[i] into arr.
+ *
  * ------------------------------------------------------------
  *
- * Example:
+ * Dry Run:
  *
  *     nums = [5,4,2,3]
  *

@@ -107,7 +107,7 @@ var longestRepeating = function (s, queryCharacters, queryIndices) {
   function buildSegmentTree(
     currentNodeIdx,
     segmentRangeStart,
-    segmentRangeEnd,
+    segmentRangeEnd
   ) {
     if (segmentRangeStart === segmentRangeEnd) {
       treeArray[currentNodeIdx].leftConsecutive = 1;
@@ -166,7 +166,7 @@ var longestRepeating = function (s, queryCharacters, queryIndices) {
 
     treeArray[nodeToMergeIdx].maxConsecutive = Math.max(
       treeArray[leftMergeChildIdx].maxConsecutive,
-      treeArray[rightMergeChildIdx].maxConsecutive,
+      treeArray[rightMergeChildIdx].maxConsecutive
     );
 
     if (
@@ -177,7 +177,7 @@ var longestRepeating = function (s, queryCharacters, queryIndices) {
       treeArray[nodeToMergeIdx].maxConsecutive = Math.max(
         treeArray[nodeToMergeIdx].maxConsecutive,
         treeArray[leftMergeChildIdx].rightConsecutive +
-          treeArray[rightMergeChildIdx].leftConsecutive,
+          treeArray[rightMergeChildIdx].leftConsecutive
       );
     }
   }
@@ -186,7 +186,7 @@ var longestRepeating = function (s, queryCharacters, queryIndices) {
     updateRootIdx,
     updateRangeStart,
     updateRangeEnd,
-    targetIdx,
+    targetIdx
   ) {
     if (targetIdx < updateRangeStart || targetIdx > updateRangeEnd) {
       return;
@@ -205,7 +205,7 @@ var longestRepeating = function (s, queryCharacters, queryIndices) {
       childRight,
       updateMidValue + 1,
       updateRangeEnd,
-      targetIdx,
+      targetIdx
     );
 
     mergeNodeData(updateRootIdx, updateRangeStart, updateRangeEnd);

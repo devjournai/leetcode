@@ -1,5 +1,8 @@
 /**
  * Design Circular Deque
+ * Intuition: A fixed ring buffer plus `headPtr`, `tailPtr`, and `itemCount` gives O(1) inserts/deletes at both ends via modular wrap.
+ * Approach: 1. `insertFront` decrements head modulo capacity; if first item, set tail = head. 2. `insertLast` increments tail. 3. `deleteFront`/`deleteLast` move the opposite pointer. 4. `getFront`/`getRear` read those indices or -1. 5. Full/empty compare `itemCount` to `maxSize`.
+ * Dry Run: k=3; insertLast(1), insertLast(2), insertFront(3) → buffer [3,1,2], getFront=3, getRear=2; deleteLast → getRear=1.
  * Time Complexity: O(1)
  * Space Complexity: O(k)
  */

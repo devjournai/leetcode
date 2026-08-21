@@ -1,5 +1,8 @@
 /**
  * Guess The Word
+ * Intuition: Minimax: guess the word whose worst-case match-count bucket is smallest, then keep only words with the same match count as master's reply.
+ * Approach: 1. `calculateMatchCount` over 6 chars. 2. Up to 30 rounds: for each candidate count match frequencies vs others, pick min of max bucket. 3. `master.guess`; 6 → done. 4. Filter remaining by that score.
+ * Dry Run: words=["acckzz","ccbazz"], secret acckzz. Guess with smaller worst bucket; score 6 returns immediately, else filter to words matching that score.
  * Time Complexity: O(A * N^2 * L)
  * Space Complexity: O(N * L)
  */
@@ -27,7 +30,7 @@ var findSecretWord = function (words, master) {
         if (currentEvaluationWord !== comparisonTargetWord) {
           const scoreFromComparison = calculateMatchCount(
             currentEvaluationWord,
-            comparisonTargetWord,
+            comparisonTargetWord
           );
           matchCountFrequency[scoreFromComparison]++;
         }
@@ -48,7 +51,7 @@ var findSecretWord = function (words, master) {
     currentPossibleWords = currentPossibleWords.filter(
       (wordToFilterCheck) =>
         calculateMatchCount(wordToFilterCheck, bestGuessCandidate) ===
-        actualGuessScore,
+        actualGuessScore
     );
   }
 };

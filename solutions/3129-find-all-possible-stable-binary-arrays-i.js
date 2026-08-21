@@ -1,5 +1,8 @@
 /**
  * Find All Possible Stable Binary Arrays I
+ * Intuition: A stable array never has more than `limit` consecutive 0s or 1s, so count arrays by last bit and current run length.
+ * Approach: dp[zeros][ones][lastBit][run] stores ways; sumDp aggregates over run. Seed all-0 and all-1 prefixes up to limit, then append a flipped bit (run=1) or extend the same bit (run+1) while run < limit. Answer is sumDp at (zero, one) for both last bits.
+ * Dry Run: zero=1, one=1, limit=2 -> arrays 01 and 10, answer 2.
  * Time Complexity: O(zero * one * limit)
  * Space Complexity: O(zero * one * limit)
  */
@@ -14,8 +17,8 @@ var numberOfStableArrays = function (zero, one, limit) {
         .map(() =>
           Array(2)
             .fill(0)
-            .map(() => Array(limit + 1).fill(0)),
-        ),
+            .map(() => Array(limit + 1).fill(0))
+        )
     );
 
   const sumDp = Array(zero + 1)
@@ -23,7 +26,7 @@ var numberOfStableArrays = function (zero, one, limit) {
     .map(() =>
       Array(one + 1)
         .fill(0)
-        .map(() => Array(2).fill(0)),
+        .map(() => Array(2).fill(0))
     );
 
   for (let i = 1; i <= limit; i++) {

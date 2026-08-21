@@ -67,10 +67,10 @@ var longestSubsequenceRepeatedK = function (s, k) {
   let characterPool = "";
   for (let characterCode = 0; characterCode < 26; characterCode++) {
     const totalPossibleCount = Math.floor(
-      characterFrequencies[characterCode] / k,
+      characterFrequencies[characterCode] / k
     );
     characterPool += String.fromCharCode(97 + characterCode).repeat(
-      totalPossibleCount,
+      totalPossibleCount
     );
   }
 
@@ -130,7 +130,7 @@ var longestSubsequenceRepeatedK = function (s, k) {
         availableCharacters.substring(charSelectionIndex + 1);
       generateSequences(
         currentBuiltSequence + nextCharacterToAppend,
-        remainingForNextCall,
+        remainingForNextCall
       );
     }
   };

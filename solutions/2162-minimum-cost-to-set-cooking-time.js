@@ -50,7 +50,7 @@ var minCostSetTime = function (startAt, moveCost, pushCost, targetSeconds) {
     digitArrayForCost,
     initialFingerPosition,
     movementPrice,
-    pressPrice,
+    pressPrice
   ) {
     let totalFatigueUnits = 0;
     let currentFingerLocation = initialFingerPosition;
@@ -71,13 +71,13 @@ var minCostSetTime = function (startAt, moveCost, pushCost, targetSeconds) {
   if (firstMinutesOption <= 99) {
     const sequenceOfDigits1 = obtainDigits(
       firstMinutesOption,
-      firstSecondsOption,
+      firstSecondsOption
     );
     const costForOption1 = calculateInputCost(
       sequenceOfDigits1,
       startAt,
       moveCost,
-      pushCost,
+      pushCost
     );
     minimumPossibleCost = Math.min(minimumPossibleCost, costForOption1);
   }
@@ -92,13 +92,13 @@ var minCostSetTime = function (startAt, moveCost, pushCost, targetSeconds) {
   ) {
     const sequenceOfDigits2 = obtainDigits(
       secondMinutesOption,
-      secondSecondsOption,
+      secondSecondsOption
     );
     const costForOption2 = calculateInputCost(
       sequenceOfDigits2,
       startAt,
       moveCost,
-      pushCost,
+      pushCost
     );
     minimumPossibleCost = Math.min(minimumPossibleCost, costForOption2);
   }

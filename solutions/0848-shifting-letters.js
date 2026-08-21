@@ -1,5 +1,8 @@
 /**
  * Shifting Letters
+ * Intuition: Operation i shifts s[0..i] by shifts[i], so index j gets sum(shifts[j..n-1]) mod 26. Suffix-sum the shifts from the right, then rotate each letter.
+ * Approach: 1. `totalShiftPerPosition[n-1] = shifts[n-1]%26`. 2. For i from n-2 down: `(shifts[i] + next)%26`. 3. For each char, `(code-'a' + shift)%26 + 'a'`. Join.
+ * Dry Run: s="abc", shifts=[3,5,9]. Suffix mods [17,14,9]. a+17=r, b+14=p, c+9=l → "rpl".
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

@@ -145,7 +145,7 @@ var Graph = function (n, edges) {
 
         this.dist[i][j] = Math.min(
           this.dist[i][j],
-          this.dist[i][k] + this.dist[k][j],
+          this.dist[i][k] + this.dist[k][j]
         );
       }
     }
@@ -175,7 +175,7 @@ Graph.prototype.addEdge = function (edge) {
 
       this.dist[i][j] = Math.min(
         this.dist[i][j],
-        this.dist[i][u] + w + this.dist[v][j],
+        this.dist[i][u] + w + this.dist[v][j]
       );
     }
   }

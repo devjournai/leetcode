@@ -1,5 +1,8 @@
 /**
  * Binary Trees With Factors
+ * Intuition: After sorting, a value r can be root iff some smaller factor L exists and R=r/L is in the set; ways(r) = 1 (leaf) plus ways(L)*ways(R) for each such pair.
+ * Approach: 1. Sort; mark presence. 2. For each root, start ways=1; for each smaller L dividing r, if R in map add product of ways mod 1e9+7. 3. Store and accumulate totals.
+ * Dry Run: [2,4]. 2 has 1 way; 4 has 1 + ways(2)*ways(2) = 2. Total 3.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N)
  */
@@ -9,7 +12,7 @@ var numFactoredBinaryTrees = function (inputNumbers) {
   const numberPresenceMap = new Map();
 
   inputNumbers.sort(
-    (firstElement, secondElement) => firstElement - secondElement,
+    (firstElement, secondElement) => firstElement - secondElement
   );
 
   for (

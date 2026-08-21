@@ -1,5 +1,8 @@
 /**
  * Number Of Music Playlists
+ * Intuition: dp[len][unique] = playlists of length `len` using exactly `unique` songs. A new song has (n−unique+1) choices; a replay is allowed only when unique > k, with (unique−k) choices.
+ * Approach: 1. `dpGrid[0][0]=1`. 2. For playlistIterator 1..goal and uniqueIterator 1..min(len,n): add new-song term from dp[len-1][unique-1]. 3. If unique > k, add replay term from dp[len-1][unique]. 4. Mod 1e9+7. Return dp[goal][n].
+ * Dry Run: n=3, goal=3, k=1. Only permutations of all 3 songs: dp[3][3]=6.
  * Time Complexity: O(goal * n)
  * Space Complexity: O(goal * n)
  */

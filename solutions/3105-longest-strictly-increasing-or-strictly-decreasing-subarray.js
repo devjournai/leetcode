@@ -65,7 +65,7 @@ var longestMonotonicSubarray = function (nums) {
     currentMaxLength = Math.max(
       currentMaxLength,
       currentIncreasingCount,
-      currentDecreasingCount,
+      currentDecreasingCount
     );
   }
 

@@ -76,7 +76,7 @@ var maximumScore = function (nums, k) {
   }
 
   const sortedElementContributions = elementDetailsList.sort(
-    (firstElem, secondElem) => secondElem[0] - firstElem[0],
+    (firstElem, secondElem) => secondElem[0] - firstElem[0]
   );
 
   let finalScore = 1n;
@@ -95,7 +95,7 @@ var maximumScore = function (nums, k) {
 
     const operationsToUse = Math.min(
       operationsRemaining,
-      availableOperationsForElement,
+      availableOperationsForElement
     );
     operationsRemaining -= operationsToUse;
 

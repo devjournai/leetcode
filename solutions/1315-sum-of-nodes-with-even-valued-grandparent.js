@@ -1,5 +1,8 @@
 /**
  * Sum Of Nodes With Even Valued Grandparent
+ * Intuition: Carry parent and grandparent down BFS so each node can add itself when the grandparent value is even.
+ * Approach: 1. Queue triples [node, parent, grandparent]. 2. If grandparent exists and is even, add node.val. 3. Enqueue children with updated parent/grandparent. 4. Return the sum.
+ * Dry Run: tree [6,7,8,2,7,1,3,9]. Nodes under even grandparents: 2+7+1+3+9 = 22.
  * Time Complexity: O(N)
  * Space Complexity: O(W)
  */

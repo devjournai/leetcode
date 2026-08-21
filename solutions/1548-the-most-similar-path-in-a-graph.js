@@ -1,5 +1,9 @@
 /**
  * The Most Similar Path In A Graph
+ * Intuition: DP min edit distance to match targetPath[i] while standing at city v, coming from a neighbor.
+ * Approach: 1. Build adj. 2. dp[0][v]=0 if names[v]==target[0] else 1. 3. Relax along edges. 4. Backtrack previousCityPath from the best last city.
+ * Dry Run: two cities A,B with target ["A","B"].
+ *   - Path follows the cheapest name mismatches along edges.
  * Time Complexity: O(targetPath.length * (n + roads.length))
  * Space Complexity: O(n + roads.length + targetPath.length * n)
  */

@@ -1,5 +1,9 @@
 /**
  * Number Of Rectangles That Can Form The Largest Square
+ * Intuition: Each rectangle can cut a square of side min(l,w). Count how many rectangles achieve the global maximum of that side.
+ * Approach: 1. Scan all rectangles for `maximumAchievableSide`. 2. Count how many have `min(l,w) === maximumAchievableSide`. 3. Return `goodRectangleCounter`.
+ * Dry Run: rectangles = [[5,8],[3,9],[5,12],[16,5]]
+ * sides 5,3,5,5; max 5; count 3.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

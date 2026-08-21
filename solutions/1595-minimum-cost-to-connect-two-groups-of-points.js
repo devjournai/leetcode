@@ -1,5 +1,9 @@
 /**
  * Minimum Cost To Connect Two Groups Of Points
+ * Intuition: DP over first-group index and bitmask of connected second-group points; leftover second points attach at their cheapest edge.
+ * Approach: 1. Precompute min cost to each second point. 2. dfs(i,mask): try all edges from i, or if i done add mins for unset bits. 3. Memo.
+ * Dry Run: cost = [[1,3,5],[4,1,1],[1,5,3]].
+ *   - Minimum connection cost 4.
  * Time Complexity: O(size1 * size2 * 2^size2)
  * Space Complexity: O(size1 * 2^size2)
  */
@@ -8,7 +12,7 @@ var connectTwoGroups = function (cost) {
   const secondGroupCount = cost[0].length;
 
   const minimumCostForSecondGroupPoint = new Array(secondGroupCount).fill(
-    Infinity,
+    Infinity
   );
   for (
     let firstOuterLoopIndex = 0;
@@ -22,7 +26,7 @@ var connectTwoGroups = function (cost) {
     ) {
       minimumCostForSecondGroupPoint[firstOuterLoopIndex] = Math.min(
         minimumCostForSecondGroupPoint[firstOuterLoopIndex],
-        cost[firstInnerLoopIndex][firstOuterLoopIndex],
+        cost[firstInnerLoopIndex][firstOuterLoopIndex]
       );
     }
   }
@@ -65,8 +69,8 @@ var connectTwoGroups = function (cost) {
         cost[firstGroupCurrentIndex][secondGroupConnectionIndex] +
           findMinimumTotalCost(
             firstGroupCurrentIndex + 1,
-            connectionMask | (1 << secondGroupConnectionIndex),
-          ),
+            connectionMask | (1 << secondGroupConnectionIndex)
+          )
       );
     }
 

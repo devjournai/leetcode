@@ -47,14 +47,14 @@ var repairCars = function (mechanicRanksInput, requiredCarQuantity) {
 
   while (currentMinTime < currentMaxTime) {
     const potentialRepairTime = Math.floor(
-      (currentMinTime + currentMaxTime) / 2,
+      (currentMinTime + currentMaxTime) / 2
     );
 
     if (
       canAllCarsBeRepaired(
         potentialRepairTime,
         mechanicRanksInput,
-        requiredCarQuantity,
+        requiredCarQuantity
       )
     ) {
       currentMaxTime = potentialRepairTime;
@@ -70,7 +70,7 @@ var repairCars = function (mechanicRanksInput, requiredCarQuantity) {
     for (let idx = 0; idx < mechanics.length; ++idx) {
       const rankValue = mechanics[idx];
       const carsByThisMechanic = Math.floor(
-        Math.sqrt(durationLimit / rankValue),
+        Math.sqrt(durationLimit / rankValue)
       );
       actualCarsRepaired += carsByThisMechanic;
       if (actualCarsRepaired >= totalNeeded) {

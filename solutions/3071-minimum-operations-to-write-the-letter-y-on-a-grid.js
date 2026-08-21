@@ -97,7 +97,7 @@ var minimumOperationsToWriteY = function (gridParam) {
         const currentComputedOperations = opsForY + opsForNonY;
         minTotalOperations = Math.min(
           minTotalOperations,
-          currentComputedOperations,
+          currentComputedOperations
         );
       }
     }

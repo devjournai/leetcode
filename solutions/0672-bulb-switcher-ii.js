@@ -1,5 +1,8 @@
 /**
  * Bulb Switcher II
+ * Intuition: Four flips generate few distinct states. Only the first 1–3 bulbs matter, and extra presses beyond 3 do not add new reachable patterns, so the answer is a small closed table on `n` and `presses`.
+ * Approach: 1. `presses === 0` → 1. 2. `n === 1` → 2. 3. `n === 2`: 3 if one press else 4. 4. `n >= 3`: 4 / 7 / 8 for 1 / 2 / ≥3 presses.
+ * Dry Run: n=3, presses=2 → n>=3 and presses===2 → return 7.
  * Time Complexity: O(1)
  * Space Complexity: O(1)
  */

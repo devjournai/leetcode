@@ -62,7 +62,7 @@ var sumScores = function (stringInput) {
       const matchOffset = zScoreArray[iterIndex - currentWindowStart];
       zScoreArray[iterIndex] = Math.min(
         currentWindowEnd - iterIndex + 1,
-        matchOffset,
+        matchOffset
       );
     }
     while (
@@ -80,6 +80,6 @@ var sumScores = function (stringInput) {
 
   return zScoreArray.reduce(
     (accumulatedSum, scoreEntry) => accumulatedSum + scoreEntry,
-    stringLength,
+    stringLength
   );
 };

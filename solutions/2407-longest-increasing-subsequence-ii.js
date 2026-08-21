@@ -73,16 +73,16 @@ var lengthOfLIS = function (nums, k) {
     segmentStartRange,
     segmentEndRange,
     targetPosition,
-    newSubsequenceLength,
+    newSubsequenceLength
   ) {
     if (segmentStartRange === segmentEndRange) {
       segmentTreeData[treeNodeIndex] = Math.max(
         segmentTreeData[treeNodeIndex],
-        newSubsequenceLength,
+        newSubsequenceLength
       );
     } else {
       const segmentMidpoint = Math.floor(
-        (segmentStartRange + segmentEndRange) / 2,
+        (segmentStartRange + segmentEndRange) / 2
       );
       const leftChildIdentifier = 2 * treeNodeIndex;
       const rightChildIdentifier = 2 * treeNodeIndex + 1;
@@ -93,7 +93,7 @@ var lengthOfLIS = function (nums, k) {
           segmentStartRange,
           segmentMidpoint,
           targetPosition,
-          newSubsequenceLength,
+          newSubsequenceLength
         );
       } else {
         updateTreeValue(
@@ -101,12 +101,12 @@ var lengthOfLIS = function (nums, k) {
           segmentMidpoint + 1,
           segmentEndRange,
           targetPosition,
-          newSubsequenceLength,
+          newSubsequenceLength
         );
       }
       segmentTreeData[treeNodeIndex] = Math.max(
         segmentTreeData[leftChildIdentifier],
-        segmentTreeData[rightChildIdentifier],
+        segmentTreeData[rightChildIdentifier]
       );
     }
   }
@@ -116,7 +116,7 @@ var lengthOfLIS = function (nums, k) {
     nodeRangeStart,
     nodeRangeEnd,
     requestStartValue,
-    requestEndValue,
+    requestEndValue
   ) {
     if (requestEndValue < nodeRangeStart || nodeRangeEnd < requestStartValue) {
       return 0;
@@ -133,14 +133,14 @@ var lengthOfLIS = function (nums, k) {
       nodeRangeStart,
       queryMidpoint,
       requestStartValue,
-      requestEndValue,
+      requestEndValue
     );
     const rightSubtreeResult = queryMaximumLength(
       2 * queryNodeIndex + 1,
       queryMidpoint + 1,
       nodeRangeEnd,
       requestStartValue,
-      requestEndValue,
+      requestEndValue
     );
     return Math.max(leftSubtreeResult, rightSubtreeResult);
   }
@@ -156,7 +156,7 @@ var lengthOfLIS = function (nums, k) {
         1,
         maximumElementValue,
         minimumAllowedPrevious,
-        maximumAllowedPrevious,
+        maximumAllowedPrevious
       );
     }
     updateTreeValue(
@@ -164,7 +164,7 @@ var lengthOfLIS = function (nums, k) {
       1,
       maximumElementValue,
       processedNumber,
-      previousSubsequenceLength + 1,
+      previousSubsequenceLength + 1
     );
   }
 

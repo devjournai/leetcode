@@ -1,5 +1,10 @@
 /**
  * Find Critical And Pseudo Critical Edges In Minimum Spanning Tree
+ * Intuition: Kruskal MST cost is the baseline. An edge is critical if omitting it raises MST cost (or disconnects). It is pseudo-critical if forcing it in still matches the baseline cost.
+ * Approach: 1. Tag edges with original indexes and sort by weight. 2. Union-find Kruskal helper can omit or force an edge. 3. Compute baseline MST. 4. For each edge, if omit cost > baseline it is critical; else if force cost equals baseline it is pseudo-critical.
+ * Dry Run: n=5, edges forming two equal-weight spanning options
+ *   - unique bridges become critical
+ *   - interchangeable equal-weight edges become pseudo-critical
  * Time Complexity: O(E^2 * α(N))
  * Space Complexity: O(N + E)
  */
@@ -16,7 +21,7 @@ var findCriticalAndPseudoCriticalEdges = function (totalNodes, initialEdges) {
     }
     parentMap[childNode] = findSetRepresentative(
       parentMap,
-      parentMap[childNode],
+      parentMap[childNode]
     );
     return parentMap[childNode];
   }
@@ -46,11 +51,11 @@ var findCriticalAndPseudoCriticalEdges = function (totalNodes, initialEdges) {
     numGraphNodes,
     allGraphEdgesSorted,
     omitEdgeIndex = -1,
-    forceIncludeEdgeIndex = -1,
+    forceIncludeEdgeIndex = -1
   ) {
     const currentParentsArray = Array.from(
       { length: numGraphNodes },
-      (_, idx) => idx,
+      (_, idx) => idx
     );
     const currentRanksArray = new Array(numGraphNodes).fill(0);
     let currentAccumulatedWeight = 0;
@@ -87,7 +92,7 @@ var findCriticalAndPseudoCriticalEdges = function (totalNodes, initialEdges) {
           currentParentsArray,
           currentRanksArray,
           firstConnectedNode,
-          secondConnectedNode,
+          secondConnectedNode
         )
       ) {
         currentAccumulatedWeight += currentEdgeWeight;
@@ -102,7 +107,7 @@ var findCriticalAndPseudoCriticalEdges = function (totalNodes, initialEdges) {
 
   const minSpanningTreeWeight = calculateMstCost(
     totalNodes,
-    indexedAndSortedEdges,
+    indexedAndSortedEdges
   );
 
   const criticalEdgeResults = [];
@@ -116,7 +121,7 @@ var findCriticalAndPseudoCriticalEdges = function (totalNodes, initialEdges) {
     const weightExcludingCurrent = calculateMstCost(
       totalNodes,
       indexedAndSortedEdges,
-      edgeExaminationIndex,
+      edgeExaminationIndex
     );
     if (weightExcludingCurrent > minSpanningTreeWeight) {
       criticalEdgeResults.push(indexedAndSortedEdges[edgeExaminationIndex][3]);
@@ -125,11 +130,11 @@ var findCriticalAndPseudoCriticalEdges = function (totalNodes, initialEdges) {
         totalNodes,
         indexedAndSortedEdges,
         -1,
-        edgeExaminationIndex,
+        edgeExaminationIndex
       );
       if (weightIncludingCurrent === minSpanningTreeWeight) {
         pseudoCriticalEdgeResults.push(
-          indexedAndSortedEdges[edgeExaminationIndex][3],
+          indexedAndSortedEdges[edgeExaminationIndex][3]
         );
       }
     }

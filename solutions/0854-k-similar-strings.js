@@ -1,5 +1,8 @@
 /**
  * K Similar Strings
+ * Intuition: Each swap that places a letter into its s2 position is one BFS edge. From the first mismatch, only swap with a later index that holds the needed letter and is itself mismatched.
+ * Approach: 1. s1===s2 → 0. 2. BFS strings; skip visited. 3. Find first mismatch vs s2; try swaps via `createSwappedString`. 4. Return level when s2 reached.
+ * Dry Run: s1="ab", s2="ba". First mismatch 0, swap with 1 → "ba" in 1 swap.
  * Time Complexity: O(N! * N^2)
  * Space Complexity: O(N! * N)
  */
@@ -44,7 +47,7 @@ var kSimilarity = function (s1, s2) {
           const nextStateString = createSwappedString(
             currentTransformation,
             firstMismatchIndex,
-            nextSwapTargetIndex,
+            nextSwapTargetIndex
           );
 
           if (!visitedSet.has(nextStateString)) {

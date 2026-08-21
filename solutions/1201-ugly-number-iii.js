@@ -1,5 +1,8 @@
 /**
  * Ugly Number Iii
+ * Intuition: The n-th number divisible by a, b, or c can be found by binary-searching the value and counting with inclusion-exclusion.
+ * Approach: 1. Compute LCMs of a,b,c pairs and all three. 2. Count(x) = x/a + x/b + x/c − x/lcm(ab) − … + x/lcm(abc). 3. Binary search the smallest x with count(x) ≥ n.
+ * Dry Run: n=3, a=2, b=3, c=5. Numbers 2,3,4 → answer 4.
  * Time Complexity: O(log(upperBoundValue) * log(maxValuesA_B_C))
  * Space Complexity: O(log(maxValuesA_B_C))
  */

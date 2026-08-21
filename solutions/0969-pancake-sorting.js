@@ -1,5 +1,8 @@
 /**
  * Pancake Sorting
+ * Intuition: Place n, then n-1, … by flipping the next-largest value to the front then to its final suffix position (`reverseSubarray`).
+ * Approach: 1. For `currentUnsortedLength` from n down to 2, find `targetValue`. 2. If not already last, flip it to index 0 (unless already there) then flip the prefix of length `currentUnsortedLength`. 3. Record k values in `flipOperations`. 4. Return that list.
+ * Dry Run: arr = [3,2,4,1]. 4 is at index 2 → flip 3 → [4,2,3,1], flip 4 → [1,3,2,4]. Place 3 similarly. Flips recorded, array sorted.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N)
  */

@@ -1,5 +1,9 @@
 /**
  * Reverse Integer
+ * Intuition: Peel digits from the absolute value with `% 10` and rebuild them into `processedResult`, then restore the original sign and clamp to 32-bit range (return 0 on overflow).
+ * Approach: 1. Store MAX_INT / MIN_INT. 2. Set `tempValue = abs(value)` and `processedResult = 0`. 3. While `tempValue > 0`, append `digit = tempValue % 10` and floor-divide `tempValue`. 4. Negate if `value < 0`. 5. Return 0 if outside [MIN_INT, MAX_INT], else `finalResult`.
+ * Dry Run: value = -123.
+ *   - tempValue=123 → 3, then 32, then 321. finalResult=-321, in range → -321.
  * Time Complexity: O(log10(n))
  * Space Complexity: O(log10(n))
  */

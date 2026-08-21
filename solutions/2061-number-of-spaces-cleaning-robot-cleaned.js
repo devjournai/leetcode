@@ -16,49 +16,55 @@
  *   Return cleanedLocations.size, which is 3 (cells "0,0", "0,1", "0,2").
  * Time Complexity: O(R * C)
  * Space Complexity: O(R * C)
-*/
+ */
 var numberOfCleanRooms = function (roomMatrix) {
-    const totalRows = roomMatrix.length;
-    const totalColumns = roomMatrix[0].length;
+  const totalRows = roomMatrix.length;
+  const totalColumns = roomMatrix[0].length;
 
-    const directionDeltas = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+  const directionDeltas = [
+    [0, 1],
+    [1, 0],
+    [0, -1],
+    [-1, 0],
+  ];
 
-    const cleanedLocations = new Set();
-    const robotStatesSeen = new Set();
+  const cleanedLocations = new Set();
+  const robotStatesSeen = new Set();
 
-    let currentRowPosition = 0;
-    let currentColPosition = 0;
-    let currentDirectionIndex = 0;
+  let currentRowPosition = 0;
+  let currentColPosition = 0;
+  let currentDirectionIndex = 0;
 
-    while (true) {
-        const currentRobotStateKey = `${currentRowPosition},${currentColPosition},${currentDirectionIndex}`;
+  while (true) {
+    const currentRobotStateKey = `${currentRowPosition},${currentColPosition},${currentDirectionIndex}`;
 
-        if (robotStatesSeen.has(currentRobotStateKey)) {
-            break;
-        }
-
-        robotStatesSeen.add(currentRobotStateKey);
-        cleanedLocations.add(`${currentRowPosition},${currentColPosition}`);
-
-        const deltaRowStep = directionDeltas[currentDirectionIndex][0];
-        const deltaColStep = directionDeltas[currentDirectionIndex][1];
-
-        const nextPotentialRow = currentRowPosition + deltaRowStep;
-        const nextPotentialColumn = currentColPosition + deltaColStep;
-
-        const isNextStepBlocked = (
-            nextPotentialRow < 0 || nextPotentialRow >= totalRows ||
-            nextPotentialColumn < 0 || nextPotentialColumn >= totalColumns ||
-            roomMatrix[nextPotentialRow][nextPotentialColumn] === 1
-        );
-
-        if (isNextStepBlocked) {
-            currentDirectionIndex = (currentDirectionIndex + 1) % 4;
-        } else {
-            currentRowPosition = nextPotentialRow;
-            currentColPosition = nextPotentialColumn;
-        }
+    if (robotStatesSeen.has(currentRobotStateKey)) {
+      break;
     }
 
-    return cleanedLocations.size;
+    robotStatesSeen.add(currentRobotStateKey);
+    cleanedLocations.add(`${currentRowPosition},${currentColPosition}`);
+
+    const deltaRowStep = directionDeltas[currentDirectionIndex][0];
+    const deltaColStep = directionDeltas[currentDirectionIndex][1];
+
+    const nextPotentialRow = currentRowPosition + deltaRowStep;
+    const nextPotentialColumn = currentColPosition + deltaColStep;
+
+    const isNextStepBlocked =
+      nextPotentialRow < 0 ||
+      nextPotentialRow >= totalRows ||
+      nextPotentialColumn < 0 ||
+      nextPotentialColumn >= totalColumns ||
+      roomMatrix[nextPotentialRow][nextPotentialColumn] === 1;
+
+    if (isNextStepBlocked) {
+      currentDirectionIndex = (currentDirectionIndex + 1) % 4;
+    } else {
+      currentRowPosition = nextPotentialRow;
+      currentColPosition = nextPotentialColumn;
+    }
+  }
+
+  return cleanedLocations.size;
 };

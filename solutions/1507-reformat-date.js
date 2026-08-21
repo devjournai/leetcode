@@ -1,5 +1,9 @@
 /**
  * Reformat Date
+ * Intuition: The input is day-month-year in words; map the month token and zero-pad the numeric day.
+ * Approach: 1. Split on spaces. 2. Strip the ordinal suffix from the day and pad to 2 digits. 3. Map Jan..Dec to 01..12. 4. Return YYYY-MM-DD.
+ * Dry Run: date = "20th Oct 2052".
+ *   - day=20, month=10, year=2052 → "2052-10-20".
  * Time Complexity: O(1)
  * Space Complexity: O(1)
  */
@@ -12,7 +16,7 @@ var reformatDate = function (date) {
 
   const numericDayExtractor = initialDayString.slice(
     0,
-    initialDayString.length - 2,
+    initialDayString.length - 2
   );
   const parsedDayNumber = parseInt(numericDayExtractor, 10);
   const twoDigitDay = String(parsedDayNumber).padStart(2, "0");

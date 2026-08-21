@@ -16,7 +16,7 @@ var scoreOfString = function (s) {
   let adjacentDifferenceScore = 0;
   for (let charIndex = 1; charIndex < s.length; charIndex++) {
     adjacentDifferenceScore += Math.abs(
-      s.charCodeAt(charIndex) - s.charCodeAt(charIndex - 1),
+      s.charCodeAt(charIndex) - s.charCodeAt(charIndex - 1)
     );
   }
   return adjacentDifferenceScore;

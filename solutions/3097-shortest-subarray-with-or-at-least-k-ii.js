@@ -70,7 +70,7 @@ var minimumSubarrayLength = function (nums, k) {
     while (currentWindowOr >= k && leftBoundary <= rightBoundary) {
       shortestLengthFound = Math.min(
         shortestLengthFound,
-        rightBoundary - leftBoundary + 1,
+        rightBoundary - leftBoundary + 1
       );
       const leftBoundaryValue = nums[leftBoundary];
       for (

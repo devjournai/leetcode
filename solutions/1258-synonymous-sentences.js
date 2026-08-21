@@ -1,5 +1,9 @@
 /**
  * Synonymous Sentences
+ * Intuition: Synonym pairs are an undirected graph. Connected components are interchangeable words. DFS over positions substituting every synonym (including the original) yields all sentences, then sort.
+ * Approach: 1. Build equivalenceStructure adjacency. 2. Split the sentence. 3. fetchWordEquivalents BFS-collects the component and sorts it, or returns [word] if isolated. 4. Recurse joining choices. 5. Sort allPossibleSentences and return.
+ * Dry Run: synonyms [["happy","joy"]], text "I am happy"
+ *   "I","am" stay. happy -> happy,joy. Sentences: "I am happy", "I am joy" then sorted.
  * Time Complexity: O(|V| + |E| + K^W * W * log(K^W))
  * Space Complexity: O(|V| + |E| + K^W * W)
  */
@@ -65,7 +69,7 @@ var generateSentences = function (synonymGroups, initialText) {
 
   const buildSentencesRecursive = (
     currentIndexInSentence,
-    currentSentenceFragments,
+    currentSentenceFragments
   ) => {
     if (currentIndexInSentence === inputSentenceWords.length) {
       allPossibleSentences.push(currentSentenceFragments.join(" "));
@@ -79,7 +83,7 @@ var generateSentences = function (synonymGroups, initialText) {
       currentSentenceFragments.push(selectedOptionWord);
       buildSentencesRecursive(
         currentIndexInSentence + 1,
-        currentSentenceFragments,
+        currentSentenceFragments
       );
       currentSentenceFragments.pop();
     }

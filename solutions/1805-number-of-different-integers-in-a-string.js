@@ -1,5 +1,9 @@
 /**
  * Number Of Different Integers In A String
+ * Intuition: Integers are maximal digit runs; leading zeros do not create new values. Parse each run as BigInt and store its canonical string in a set.
+ * Approach: 1. Append a letter sentinel to `word`. 2. Accumulate digits in `buildingNumber`. 3. On a non-digit, if the buffer is nonempty add `String(BigInt(buffer))` to the set. 4. Return set size.
+ * Dry Run: word = "a123bc34d8ef34".
+ *   - Tokens 123, 34, 8, 34 → unique {123,34,8} size 3.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

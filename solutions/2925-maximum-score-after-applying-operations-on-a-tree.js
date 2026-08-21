@@ -60,7 +60,7 @@ var maximumScoreAfterOperations = function (edgeData, initialValues) {
 
   const calculateMinimumNeeded = (
     currentProcessingNode,
-    parentOfCurrentNode,
+    parentOfCurrentNode
   ) => {
     let temporaryChildrenList = [];
     let iterationIndexForChildren = 0;
@@ -85,7 +85,7 @@ var maximumScoreAfterOperations = function (edgeData, initialValues) {
     temporaryChildrenList.map((childToProcess) => {
       descendantSubtreeSum += calculateMinimumNeeded(
         childToProcess,
-        currentProcessingNode,
+        currentProcessingNode
       );
       return null;
     });

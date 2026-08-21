@@ -1,5 +1,9 @@
 /**
  * Closest Subsequence Sum
+ * Intuition: Meet-in-the-middle: all subsequence sums of each half. For each left sum, binary-search the right sum nearest to `goal - left`.
+ * Approach: 1. Split at `midpointIndex`; DFS fill `firstHalfSums` and `secondHalfSums`. 2. Sort the second set. 3. For each left sum, binary search and track `minimumDifference`. 4. Return it.
+ * Dry Run: nums = [5,-7,3,5], goal = 6
+ * First half [5,-7] sums {0,5,-7,-2}; second [3,5] sums {0,3,5,8}. Pair -2+8=6 → difference 0.
  * Time Complexity: O(N * 2^(N/2))
  * Space Complexity: O(2^(N/2))
  */
@@ -17,7 +21,7 @@ var minAbsDifference = function (nums, goal) {
     currentIndex,
     stopIndex,
     sumCollection,
-    currentSumAccumulator,
+    currentSumAccumulator
   ) => {
     if (currentIndex === stopIndex) {
       sumCollection.add(currentSumAccumulator);
@@ -27,13 +31,13 @@ var minAbsDifference = function (nums, goal) {
       currentIndex + 1,
       stopIndex,
       sumCollection,
-      currentSumAccumulator,
+      currentSumAccumulator
     );
     calculateSubsequenceSums(
       currentIndex + 1,
       stopIndex,
       sumCollection,
-      currentSumAccumulator + inputNumbers[currentIndex],
+      currentSumAccumulator + inputNumbers[currentIndex]
     );
   };
 
@@ -41,7 +45,7 @@ var minAbsDifference = function (nums, goal) {
   calculateSubsequenceSums(midpointIndex, arrayLength, secondHalfSums, 0);
 
   const sortedSecondHalfSums = [...secondHalfSums].sort(
-    (valA, valB) => valA - valB,
+    (valA, valB) => valA - valB
   );
 
   let minimumDifference = Infinity;
@@ -59,7 +63,7 @@ var minAbsDifference = function (nums, goal) {
 
       minimumDifference = Math.min(
         minimumDifference,
-        Math.abs(totalSubsequenceSum - targetSum),
+        Math.abs(totalSubsequenceSum - targetSum)
       );
 
       if (totalSubsequenceSum < targetSum) {

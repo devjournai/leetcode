@@ -69,16 +69,16 @@ var maxIntersectionCount = function (y) {
 
     verticalEventsMap.set(
       currentIntervalMin,
-      (verticalEventsMap.get(currentIntervalMin) || 0) + 1,
+      (verticalEventsMap.get(currentIntervalMin) || 0) + 1
     );
     verticalEventsMap.set(
       currentIntervalMax + 1,
-      (verticalEventsMap.get(currentIntervalMax + 1) || 0) - 1,
+      (verticalEventsMap.get(currentIntervalMax + 1) || 0) - 1
     );
   }
 
   const orderedEventsList = [...verticalEventsMap.entries()].sort(
-    (entryA, entryB) => entryA[0] - entryB[0],
+    (entryA, entryB) => entryA[0] - entryB[0]
   );
   let currentActiveCount = 0;
   let maximumIntersectionCount = 0;
@@ -87,7 +87,7 @@ var maxIntersectionCount = function (y) {
     currentActiveCount += countChange;
     maximumIntersectionCount = Math.max(
       maximumIntersectionCount,
-      currentActiveCount,
+      currentActiveCount
     );
   }
 

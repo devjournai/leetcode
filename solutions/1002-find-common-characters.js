@@ -1,5 +1,10 @@
 /**
  * Find Common Characters
+ * Intuition: A common character can appear only as often as it appears in every word, so keep a running min frequency of each letter.
+ * Approach: 1. Count letters in the first word into a 26-slot min array. 2. For each later word, count its letters. 3. Pointwise min those counts into the running array. 4. Emit each letter that many times.
+ * Dry Run: words = ["bella","label","roller"].
+ *   - First: b1 e1 l2 a1. After "label": a1 b1 e1 l2. After "roller": e1 l2.
+ *   - Result: ["e","l","l"].
  * Time Complexity: O(N * L)
  * Space Complexity: O(L)
  */
@@ -32,7 +37,7 @@ var commonChars = function (words) {
     ) {
       minCharacterCounts[comparisonIterator] = Math.min(
         minCharacterCounts[comparisonIterator],
-        currentWordCharacterCounts[comparisonIterator],
+        currentWordCharacterCounts[comparisonIterator]
       );
     }
   }
@@ -45,7 +50,7 @@ var commonChars = function (words) {
   ) {
     const charCountForElement = minCharacterCounts[charIteratorForResult];
     const charToAdd = String.fromCharCode(
-      asciiOffsetForA + charIteratorForResult,
+      asciiOffsetForA + charIteratorForResult
     );
     let appendLoopCounter = 0;
     while (appendLoopCounter < charCountForElement) {

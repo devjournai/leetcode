@@ -53,14 +53,14 @@ var minimumCosts = function (regularSegments, expressSegments, transferCost) {
     const nextCostExpressRoute =
       Math.min(
         costRegularRouteCurrent + transferCost,
-        costExpressRouteCurrent,
+        costExpressRouteCurrent
       ) + expressSegments[stopIndex];
 
     costRegularRouteCurrent = nextCostRegularRoute;
     costExpressRouteCurrent = nextCostExpressRoute;
     allCosts[stopIndex] = Math.min(
       costRegularRouteCurrent,
-      costExpressRouteCurrent,
+      costExpressRouteCurrent
     );
   }
 

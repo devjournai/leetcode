@@ -67,13 +67,13 @@ var maxTrailingZeros = function (grid) {
         {
           length: gridWidth,
         },
-        () => [0, 0],
-      ),
+        () => [0, 0]
+      )
   );
   for (let rowScanner = 0; rowScanner < gridHeight; rowScanner++) {
     for (let colScanner = 0; colScanner < gridWidth; colScanner++) {
       cellFactorsStore[rowScanner][colScanner] = calculateFactors(
-        grid[rowScanner][colScanner],
+        grid[rowScanner][colScanner]
       );
     }
   }
@@ -87,8 +87,8 @@ var maxTrailingZeros = function (grid) {
         {
           length: gridWidth + 1,
         },
-        () => [0, 0],
-      ),
+        () => [0, 0]
+      )
   );
   for (let rIndex = 0; rIndex < gridHeight; rIndex++) {
     for (let cIndex = 0; cIndex < gridWidth; cIndex++) {
@@ -110,8 +110,8 @@ var maxTrailingZeros = function (grid) {
         {
           length: gridWidth,
         },
-        () => [0, 0],
-      ),
+        () => [0, 0]
+      )
   );
   for (let currentColumn = 0; currentColumn < gridWidth; currentColumn++) {
     for (let currentRow = 0; currentRow < gridHeight; currentRow++) {
@@ -172,7 +172,7 @@ var maxTrailingZeros = function (grid) {
       for (const pathPair of allPathSums) {
         maximumTrailingZeros = Math.max(
           maximumTrailingZeros,
-          Math.min(pathPair[0], pathPair[1]),
+          Math.min(pathPair[0], pathPair[1])
         );
       }
     }

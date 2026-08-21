@@ -1,5 +1,8 @@
 /**
  * Expressive Words
+ * Intuition: Group runs of the same letter. Query runs must match letters, cannot be longer than S, and S may stretch only if that S-run length is ≥ 3.
+ * Approach: 1. For each word call `checkStretchy`. 2. Walk both strings; on mismatch false. 3. Measure both run lengths; reject if query > source or source > query but source < 3. 4. Both pointers must finish.
+ * Dry Run: S = "heeellooo", word = "hello". Groups h/eee/ll/ooo vs h/e/ll/o; e and o stretch (len≥3) → true.
  * Time Complexity: O(W * (N + K_max))
  * Space Complexity: O(1)
  */

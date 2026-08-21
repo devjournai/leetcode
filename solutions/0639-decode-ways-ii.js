@@ -1,5 +1,9 @@
 /**
  * Decode Ways II
+ * Intuition: Track ways to decode ending at the previous char (`waysEndingCurrent`) plus ways waiting for a second digit after a leading 1 or 2 (`waysEndingWithOne` / `waysEndingWithTwo`). `*` branches over 1–9 (and 10–26 for pairs).
+ * Approach: 1. For each char, reset totals. 2. If `*`, add 9*current + 9*ones + 6*twos and set both pending-pair flags to current. 3. Else add current if not '0', always add ones, add twos if digit ≤ '6'; set next-one/two if digit is 1 or 2. 4. Roll the three states modulo 10^9+7.
+ * Dry Run: s = "1*".
+ *   - '1': total=1, nextWaysEndingWithOne=1. '*': 9*1 + 9*1 + 6*0 = 18. Return 18.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

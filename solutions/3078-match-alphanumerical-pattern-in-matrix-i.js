@@ -60,7 +60,7 @@ var findPattern = function (board, pattern) {
     boardInput,
     patternInput,
     currentStartRow,
-    currentStartCol,
+    currentStartCol
   ) {
     const mapLetterToNumber = new Map();
     const mapNumberToLetter = new Map();

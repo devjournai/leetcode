@@ -1,5 +1,9 @@
 /**
  * Reformat Phone Number
+ * Intuition: Strip non-digits, then greedily take groups of 3 while more than 4 digits remain; finish with 2, 3, or two 2's so no leftover of 1.
+ * Approach: 1. `digitString` via replace. 2. While `totalDigits - currentIdx > 4`, push 3-digit `blockThree`. 3. Remaining 2/3/4 → one pair, one triple, or two pairs. 4. Join with '-'.
+ * Dry Run: number = "1-23-45 6"
+ * digits "123456"; one triple "123", remaining 3 → "456". Result "123-456".
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */

@@ -1,5 +1,8 @@
 /**
  * Path With Maximum Gold
+ * Intuition: Gold cells form a grid graph with no revisits; DFS from every gold cell with in-place marking finds the richest simple path.
+ * Approach: 1. From each nonzero cell, DFS: take gold, zero the cell, recurse 4-ways, restore. 2. When a move is invalid, update the global max with the path sum so far.
+ * Dry Run: grid=[[0,6,0],[5,8,7],[0,9,0]]. Path 6-8-7 or 6-8-9; best 24 (9-8-7).
  * Time Complexity: O(R * C * 3^(R * C))
  * Space Complexity: O(R * C)
  */
@@ -14,7 +17,7 @@ var getMaximumGold = function (grid) {
   function explorePath(
     currentRowPosition,
     currentColPosition,
-    currentPathTotalGold,
+    currentPathTotalGold
   ) {
     if (
       currentRowPosition < 0 ||
@@ -25,7 +28,7 @@ var getMaximumGold = function (grid) {
     ) {
       maximumCollectedGold = Math.max(
         maximumCollectedGold,
-        currentPathTotalGold,
+        currentPathTotalGold
       );
       return;
     }
@@ -45,7 +48,7 @@ var getMaximumGold = function (grid) {
       explorePath(
         nextRowCoordinate,
         nextColCoordinate,
-        currentPathTotalGold + goldInCurrentCell,
+        currentPathTotalGold + goldInCurrentCell
       );
     }
 

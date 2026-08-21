@@ -1,5 +1,9 @@
 /**
  * The Maze II
+ * Intuition: The ball rolls until it hits a wall, so each BFS node is a stop cell, not a single step. Track the shortest distance to every stop and only enqueue when a roll improves it.
+ * Approach: 1. `minTravelDistances` starts at infinity except start=0. 2. Queue `[row, col, dist]`. 3. From each cell roll in four directions until the next cell is out of bounds or a wall; if the new path is shorter, update and enqueue. 4. Destination is -1 if still infinity.
+ * Dry Run: 3x3 empty maze, start [0,0], dest [0,2].
+ *   - Roll right from (0,0) to (0,2) in 2 steps; that distance is stored. Later worse paths skip. Return 2.
  * Time Complexity: O(R * C * (R + C))
  * Space Complexity: O(R * C)
  */

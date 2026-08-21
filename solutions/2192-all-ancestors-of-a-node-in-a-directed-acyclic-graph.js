@@ -60,7 +60,7 @@ var getAncestors = function (n, edges) {
   const graphStructure = Array.from({ length: totalNodes }, () => []);
   const ancestorCollection = Array.from(
     { length: totalNodes },
-    () => new Set(),
+    () => new Set()
   );
 
   for (const [sourceNode, targetNode] of graphEdges) {
@@ -75,7 +75,7 @@ var getAncestors = function (n, edges) {
 
   const finalResult = ancestorCollection.map((ancestorSetEntry) => {
     const sortedAncestors = Array.from(ancestorSetEntry).sort(
-      (valueA, valueB) => valueA - valueB,
+      (valueA, valueB) => valueA - valueB
     );
     return sortedAncestors;
   });

@@ -1,5 +1,8 @@
 /**
  * Shuffle An Array
+ * Intuition: Keep an immutable original copy for reset, and Fisher–Yates-shuffle a working copy so each permutation is equally likely.
+ * Approach: 1. Constructor clones nums into `originalNumbers` and `shuffledNumbers`. 2. `reset` recopies original into shuffled. 3. `shuffle` swaps each index i from the end with a random index in [0, i].
+ * Dry Run: [1,2,3]. shuffle may swap i=2 with 0..2 then i=1 with 0..1; reset restores [1,2,3].
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

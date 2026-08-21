@@ -89,6 +89,8 @@
  *
  * becomes true, every position after j also works.
  *
+ * Approach: Find longest strict-increasing prefix `left` and suffix start `right`. If the whole array increases, return n*(n+1)/2. Else start with left+2 (prefix cuts plus removing all), then for each i<=left advance j on the suffix until nums[j]>nums[i] and add n-j.
+ *
  * This gives an O(n) two-pointer solution.
  *
  * ------------------------------------------------------------

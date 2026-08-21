@@ -1,5 +1,8 @@
 /**
  * Number Of Longest Increasing Subsequence
+ * Intuition: For each index, the LIS ending there is 1 plus the best strictly smaller predecessor, and the count of such LIS is the sum of counts of those predecessors that achieve that best length.
+ * Approach: 1. Fill `lisLengthRegistry` and `lisCountRegistry` with 1. 2. For `currentItemIndex`, scan earlier `precedingItemIndex`; if nums[curr]>nums[prev], set length/count when prevLength+1 is better, else add prevCount when equal. 3. Track `maximumLengthFound`. 4. Sum counts whose length equals that max.
+ * Dry Run: nums=[1,3,5,4,7]. After DP lengths [1,2,3,3,4], counts [1,1,1,1,2]. Max length 4 → finalLisCount=2 (1-3-5-7 and 1-3-4-7).
  * Time Complexity: O(n^2)
  * Space Complexity: O(n)
  */
@@ -45,7 +48,7 @@ var findNumberOfLIS = function (nums) {
     }
     maximumLengthFound = Math.max(
       maximumLengthFound,
-      lisLengthRegistry[currentItemIndex],
+      lisLengthRegistry[currentItemIndex]
     );
   }
 

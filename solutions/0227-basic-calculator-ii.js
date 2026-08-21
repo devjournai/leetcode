@@ -1,5 +1,10 @@
 /**
  * Basic Calculator II
+ * Intuition: + and - can wait as signed values on a stack; * and / must apply immediately to the previous stacked number. At the end, sum the stack.
+ * Approach: 1. Accumulate digits into currentNumber. 2. On an operator (or the last char), apply pendingOperator: push +, push negated -, or pop and push product/truncated quotient. 3. Set pendingOperator to this char and reset the accumulator. 4. Sum the stack.
+ * Dry Run: s = "3+2*2".
+ *   - '+': pending + pushes 3. '*': pending + pushes 2.
+ *   - End: pending * pops 2, pushes 4. Stack [3,4] sums to 7.
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */
@@ -33,7 +38,7 @@ var calculate = function (s) {
       } else if (pendingOperator === "/") {
         const priorNumericalValue = numericalStack.pop();
         numericalStack.push(
-          Math.trunc(priorNumericalValue / currentNumberAccumulator),
+          Math.trunc(priorNumericalValue / currentNumberAccumulator)
         );
       }
       pendingOperator = characterAtIterator;

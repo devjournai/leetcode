@@ -23,7 +23,7 @@ var minimumTime = function (n, edges, disappear) {
   const shortestArrivalTime = new Array(n).fill(Number.POSITIVE_INFINITY);
   shortestArrivalTime[0] = 0;
   const travelMinHeap = new PriorityQueue(
-    (stateA, stateB) => stateA[0] - stateB[0],
+    (stateA, stateB) => stateA[0] - stateB[0]
   );
   travelMinHeap.enqueue([0, 0]);
 

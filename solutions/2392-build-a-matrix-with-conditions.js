@@ -55,7 +55,7 @@ var buildMatrix = function (k, rowConditions, colConditions) {
   const processConditions = (edgesInput, arrayLength) => {
     const graphAdjacencyList = Array.from(
       { length: arrayLength + 1 },
-      () => [],
+      () => []
     );
     const currentInDegree = new Array(arrayLength + 1).fill(0);
 

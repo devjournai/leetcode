@@ -1,5 +1,10 @@
 /**
  * Flip Game II
+ * Intuition: The current player wins if some "++"→"--" move leaves a position the opponent cannot win. Memoize each board string.
+ * Approach: 1. If cached, return it. 2. For each "++", recurse on the flipped board; if the opponent loses, cache true and return. 3. If no such move, cache false.
+ * Dry Run: currentState = "++++".
+ *   - Move "+--+" has no "++", so opponent loses immediately → current player wins.
+ *   - Return true.
  * Time Complexity: O(N^2 * 2^N)
  * Space Complexity: O(N * 2^N)
  */

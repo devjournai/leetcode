@@ -1,5 +1,8 @@
 /**
  * Print Words Vertically
+ * Intuition: Treat words as columns of a ragged matrix and read by row, trimming trailing spaces per row.
+ * Approach: 1. Split on spaces; find max word length L. 2. For row r in 0..L-1, take char r of each word or a space. 3. Strip trailing spaces. 4. Return the L strings.
+ * Dry Run: s = "HOW ARE YOU". Rows "HAY", "ORO", "WEU".
  * Time Complexity: O(N + W * L)
  * Space Complexity: O(N + W * L)
  */
@@ -16,7 +19,7 @@ var printVertically = function (s) {
 
   const verticalResultContainers = Array.from(
     { length: greatestLength },
-    () => [],
+    () => []
   );
 
   let rowIterativeIndex = 0;
@@ -30,7 +33,7 @@ var printVertically = function (s) {
       const currentWordString = splitWordsCollection[currentWordPosition];
       if (rowIterativeIndex < currentWordString.length) {
         verticalResultContainers[rowIterativeIndex].push(
-          currentWordString[rowIterativeIndex],
+          currentWordString[rowIterativeIndex]
         );
       } else {
         verticalResultContainers[rowIterativeIndex].push(" ");
@@ -59,7 +62,7 @@ var printVertically = function (s) {
     }
     finalOutputLines[lineProcessorIndex] = lineForTrimming.substring(
       0,
-      trailingSpaceRemover + 1,
+      trailingSpaceRemover + 1
     );
   }
 

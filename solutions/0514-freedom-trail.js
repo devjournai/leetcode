@@ -1,5 +1,9 @@
 /**
  * Freedom Trail
+ * Intuition: For each key character, try every ring index that matches it, paying the shorter rotation plus a spell, then recurse. Memoize on `(ring pointer, key index)`.
+ * Approach: 1. `calculateMinimumSteps(currentRingPointer, currentKeyWordIndex)` returns 0 when the key is done. 2. For each matching `ringScanIndex`, cost is `min(abs, n-abs)+1` plus the recursive rest. 3. Cache results in `memoizationMap`. Start at pointer 0, key 0.
+ * Dry Run: ring = "god", key = "gd".
+ *   - Spell 'g' at 0 (0 rotate + 1). Then 'd' at 2: min(2,1)+1=2. Total 3.
  * Time Complexity: O(R^2 * K)
  * Space Complexity: O(R * K)
  */
@@ -30,18 +34,18 @@ var findRotateSteps = function (ringChars, keyChars) {
         const absoluteDistance = Math.abs(ringScanIndex - currentRingPointer);
         const rotationMoves = Math.min(
           absoluteDistance,
-          ringStringLength - absoluteDistance,
+          ringStringLength - absoluteDistance
         );
 
         const charStepCost = rotationMoves + 1;
         const futurePathCost = calculateMinimumSteps(
           ringScanIndex,
-          currentKeyWordIndex + 1,
+          currentKeyWordIndex + 1
         );
 
         minimumAccumulatedSteps = Math.min(
           minimumAccumulatedSteps,
-          charStepCost + futurePathCost,
+          charStepCost + futurePathCost
         );
       }
     }

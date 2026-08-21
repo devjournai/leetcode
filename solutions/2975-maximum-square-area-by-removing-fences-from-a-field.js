@@ -21,6 +21,8 @@
  *
  * ------------------------------------------------------------
  *
+ * Approach: Add boundaries 1 and m (resp. n) to h/v fences, sort, put all horizontal gaps in a Set, then scan vertical gaps and keep the max gap present in both. Return -1 if none, else (maxSide^2) % (1e9+7).
+ *
  * Step 1:
  *
  * Add the field boundaries to both fence arrays.
@@ -64,7 +66,7 @@
  *
  * ------------------------------------------------------------
  *
- * Example:
+ * Dry Run:
  *
  * Horizontal distances:
  *

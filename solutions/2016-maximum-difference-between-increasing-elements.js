@@ -45,7 +45,7 @@ var maximumDifference = function (nums) {
       let currentDifference = currentArrayElement - minimumElementSoFar;
       maximumDifferenceValue = Math.max(
         maximumDifferenceValue,
-        currentDifference,
+        currentDifference
       );
     }
     minimumElementSoFar = Math.min(minimumElementSoFar, currentArrayElement);

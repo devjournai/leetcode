@@ -44,7 +44,7 @@ var minimumSubarrayLength = function (nums, k) {
       if (currentOrValue >= k) {
         minLengthFound = Math.min(
           minLengthFound,
-          advancePointer - startPointer + 1,
+          advancePointer - startPointer + 1
         );
         break;
       }

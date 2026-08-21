@@ -1,5 +1,9 @@
 /**
  * Groups Of Special Equivalent Strings
+ * Intuition: Even-index letters can be swapped among themselves, and odd-index letters among themselves. Two words are equivalent iff sorted even chars and sorted odd chars match.
+ * Approach: 1. `createCanonicalString` buckets even/odd indices, sorts each bucket, joins as `even#odd`. 2. Insert every word's canonical form into a Set. 3. Return the set size.
+ * Dry Run: words = ["abcd","cdab","cbad","xyzz","zzxy","zzyx"].
+ *   - "abcd"/"cdab"/"cbad" share even {a,c} odd {b,d}. "xyzz"/"zzxy" share even xz odd yz. "zzyx" even zy odd zx — third group. Return 3.
  * Time Complexity: O(N * L log L)
  * Space Complexity: O(N * L)
  */

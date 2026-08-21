@@ -1,5 +1,8 @@
 /**
  * Most Stones Removed With Same Row Or Column
+ * Intuition: Stones that share a row or column are in one connected component; you can remove all but one stone per component. Answer is n − (number of components).
+ * Approach: 1. Union-Find on stone indices (`searchRoot`/`unifySets`). 2. First stone in a row/column becomes that row/column’s representative; later stones union with it. 3. Count distinct roots. 4. Return stoneCount − that size.
+ * Dry Run: stones (0,0),(0,1),(1,0) all connect through row 0 / col 0 → 1 component → remove 2.
  * Time Complexity: O(N * α(N))
  * Space Complexity: O(N)
  */

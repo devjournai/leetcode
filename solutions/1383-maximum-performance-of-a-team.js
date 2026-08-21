@@ -1,5 +1,10 @@
 /**
  * Maximum Performance Of A Team
+ * Intuition: Performance is (sum of speeds) * (min efficiency). Sort engineers by efficiency descending so the current engineer is the team's min efficiency; keep the k largest speeds with a min-heap.
+ * Approach: 1. Pair (efficiency, speed) and sort by efficiency high to low. 2. For each engineer, add speed to a min-heap and to the speed sum. 3. If more than k people, drop the smallest speed. 4. Update max of speedSum * currentEfficiency. 5. Return that max modulo 1e9+7.
+ * Dry Run: n=6, speed=[2,10,3,1,5,8], efficiency=[5,4,3,9,7,2], k=2.
+ *   - Sorted by efficiency: (9,1), (7,5), (5,2), (4,10), ...
+ *   - After (4,10) keep speeds 5 and 10, sum=15, minEff=4, performance=60. Return 60.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */

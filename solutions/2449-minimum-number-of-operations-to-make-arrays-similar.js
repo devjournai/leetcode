@@ -24,7 +24,7 @@ var makeSimilar = function (nums, target) {
   numsEvenFiltered.sort((valA, valB) => valA - valB);
 
   const numsOddFiltered = nums.filter(
-    (singleNumValue) => singleNumValue % 2 !== 0,
+    (singleNumValue) => singleNumValue % 2 !== 0
   );
   numsOddFiltered.sort((valC, valD) => valC - valD);
 
@@ -32,7 +32,7 @@ var makeSimilar = function (nums, target) {
   targetEvenFiltered.sort((valE, valF) => valE - valF);
 
   const targetOddFiltered = target.filter(
-    (targetNumValue) => targetNumValue % 2 !== 0,
+    (targetNumValue) => targetNumValue % 2 !== 0
   );
   targetOddFiltered.sort((valG, valH) => valG - valH);
 

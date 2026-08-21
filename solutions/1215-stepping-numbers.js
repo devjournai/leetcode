@@ -1,5 +1,8 @@
 /**
  * Stepping Numbers
+ * Intuition: Every stepping number grows by appending lastDigit±1, so BFS from 1–9 generates them all in order of length.
+ * Approach: 1. Include 0 if low==0. 2. Queue digits 1–9. 3. Dequeue; if in [low,high] record; append last±1 when in 0–9 and the number has not exceeded high. 4. Sort the result.
+ * Dry Run: low=10, high=15. From 1 we get 10,12 among others; in range: 10,12.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */

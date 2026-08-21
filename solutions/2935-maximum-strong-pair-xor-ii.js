@@ -77,6 +77,8 @@
  *
  * ------------------------------------------------------------
  *
+ * Approach: Sort nums. Maintain a binary trie of the window [left, right] where nums[left]*2 >= nums[right]. Insert nums[right], remove nums[left] while the strong-pair bound fails, then query max XOR of the current number.
+ *
  * Sliding Window + Trie:
  *
  * 1. Sort nums.

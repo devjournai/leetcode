@@ -32,13 +32,13 @@ var delayAll = function (originalFunctions, delayMilliseconds) {
       try {
         const originalOutcome = await currentFunction();
         const delayPromiseInstance = new Promise((resolveDelay) =>
-          setTimeout(resolveDelay, delayMilliseconds),
+          setTimeout(resolveDelay, delayMilliseconds)
         );
         await delayPromiseInstance;
         return originalOutcome;
       } catch (caughtIssue) {
         const delayPromiseSecondInstance = new Promise((resolveTimeOut) =>
-          setTimeout(resolveTimeOut, delayMilliseconds),
+          setTimeout(resolveTimeOut, delayMilliseconds)
         );
         await delayPromiseSecondInstance;
         throw caughtIssue;

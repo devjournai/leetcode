@@ -1,5 +1,8 @@
 /**
  * Maximum Path Score in a Grid
+ * Intuition: Cells contribute score 0/1/2 and cost 0/1/1. Move only right on row 0 then down/right thereafter, maximizing score with total cost ≤ k via DP on (column, cost), rolling rows.
+ * Approach: 1. scoreMap/costMap for 0,1,2. 2. Fill first row left-to-right from dp[0][0]=0. 3. For each next row, from up and left with remaining cost. 4. Max over dp[n-1][*], or -1.
+ * Dry Run: grid = [[0, 1], [2, 0]], k = 1. First row col1 costs 1 score 1. Down to (1,1) cell 0 adds 0. Score 1.
  * Time Complexity: O(m * n * k)
  * Space Complexity: O(n * k)
  */
@@ -49,7 +52,7 @@ var maxPathScore = function (grid, k) {
         if (prevCostFromUp >= 0 && dp[c][prevCostFromUp] !== -1) {
           maxScoreForCurrentCellCost = Math.max(
             maxScoreForCurrentCellCost,
-            dp[c][prevCostFromUp] + cellScore,
+            dp[c][prevCostFromUp] + cellScore
           );
         }
 
@@ -61,7 +64,7 @@ var maxPathScore = function (grid, k) {
           ) {
             maxScoreForCurrentCellCost = Math.max(
               maxScoreForCurrentCellCost,
-              nextRowDp[c - 1][prevCostFromLeft] + cellScore,
+              nextRowDp[c - 1][prevCostFromLeft] + cellScore
             );
           }
         }

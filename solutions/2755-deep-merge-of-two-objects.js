@@ -82,7 +82,7 @@ var deepMerge = function (obj1, obj2) {
       if (currentIndex < obj2.length) {
         mergedCollection[currentIndex] = deepMerge(
           valueFromObjectOne,
-          valueFromObjectTwo,
+          valueFromObjectTwo
         );
       } else {
         mergedCollection[currentIndex] = valueFromObjectOne;
@@ -105,7 +105,7 @@ var deepMerge = function (obj1, obj2) {
         const propertyFromObj2 = obj2[otherPropertyKey];
         mergedFinalResult[otherPropertyKey] = deepMerge(
           propertyFromObj1,
-          propertyFromObj2,
+          propertyFromObj2
         );
       }
     }

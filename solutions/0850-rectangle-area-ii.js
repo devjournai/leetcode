@@ -1,5 +1,8 @@
 /**
  * Rectangle Area Ii
+ * Intuition: Compress unique x/y edges into a discrete grid. Mark every unit cell covered by any rectangle, then sum (Δx * Δy) of marked cells mod 1e9+7 (union without double-counting).
+ * Approach: 1. Collect all x/y, sort, map to indices. 2. `coverageGrid[xi][yi]=1` for each rect's index range. 3. For each marked cell add width*height, mod MOD. 4. Return area.
+ * Dry Run: [[0,0,2,2],[1,0,2,3],[1,0,3,1]]. Unique x 0,1,2,3 y 0,1,2,3. Covered union area 6.
  * Time Complexity: O(N^3)
  * Space Complexity: O(N^2)
  */
@@ -22,10 +25,10 @@ var rectangleArea = function (rectangles) {
   }
 
   const sortedXUnique = [...allXCoordinates].sort(
-    (coordA, coordB) => coordA - coordB,
+    (coordA, coordB) => coordA - coordB
   );
   const sortedYUnique = [...allYCoordinates].sort(
-    (coordA, coordB) => coordA - coordB,
+    (coordA, coordB) => coordA - coordB
   );
 
   const xMapIndices = new Map();

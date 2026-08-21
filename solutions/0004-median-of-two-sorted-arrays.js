@@ -1,5 +1,9 @@
 /**
  * Median of Two Sorted Arrays
+ * Intuition: Binary search the partition of the shorter array so the combined left half has `medianPos` elements and every left value is ≤ every right value; the median is then read from the four border values.
+ * Approach: 1. Swap so `arrA` is the shorter array. 2. Binary search `partitionA` in [0, arrA.length] and set `partitionB = medianPos - partitionA`. 3. Compute `maxLeftA`/`minRightA` and `maxLeftB`/`minRightB` (using ±Infinity at edges). 4. If both sides are ordered, return the average of the two middle values when `isEven`, else `min(minRightA, minRightB)`. 5. If `maxLeftA > minRightB`, move `high` left; otherwise move `low` right.
+ * Dry Run: arrA = [1, 3], arrB = [2], totalLength=3, medianPos=1.
+ *   - partitionA=1, partitionB=0 → maxLeftA=1, minRightA=3, maxLeftB=-∞, minRightB=2. 1≤2 and -∞≤3, odd → return min(3, 2) = 2.
  * Time Complexity: O(log(min(M, N)))
  * Space Complexity: O(1)
  */

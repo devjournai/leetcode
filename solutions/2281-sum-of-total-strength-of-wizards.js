@@ -68,7 +68,7 @@ var totalStrength = function (strength) {
 
   const leftBoundaryIndices = new Array(lengthOfStrength).fill(-1);
   const rightBoundaryIndices = new Array(lengthOfStrength).fill(
-    lengthOfStrength,
+    lengthOfStrength
   );
 
   const processingStack = [];

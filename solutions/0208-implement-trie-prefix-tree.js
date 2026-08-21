@@ -1,5 +1,11 @@
 /**
  * Implement Trie Prefix Tree
+ * Intuition: Nested objects keyed by character share prefixes. A flag on the terminal node distinguishes a complete word from a prefix-only path.
+ * Approach: 1. insert walks/creates child objects and sets isCompleteWord. 2. getEndOfPathNode follows the path or returns null. 3. search succeeds only if that node exists and isCompleteWord. 4. startsWith succeeds if the path exists.
+ * Dry Run: insert("app"), then search / startsWith.
+ *   - Trie: root.a.p.p.isCompleteWord = true.
+ *   - search("app") → node with flag → true; search("ap") → node without flag → false.
+ *   - startsWith("ap") → node exists → true.
  * Time Complexity: O(L)
  * Space Complexity: O(S)
  */

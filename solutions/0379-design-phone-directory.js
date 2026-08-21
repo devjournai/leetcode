@@ -1,5 +1,8 @@
 /**
  * Design Phone Directory
+ * Intuition: Fresh numbers are handed out in order until capacity; released numbers sit in a recycle set and are reused first. Availability is “never issued yet” or “currently in the freed set”.
+ * Approach: 1. Track `nextSequentialNumber`, `freedNumbers`, `activeNumbers`. 2. `get` pops a freed slot if any, else issues the next sequential id, else -1. 3. `check` is true for in-range ids that are freed or ≥ nextSequential. 4. `release` moves an active id into freed.
+ * Dry Run: max=3. get→0, get→1, release(0), check(0) true, get→0.
  * Time Complexity: O(1)
  * Space Complexity: O(N)
  */

@@ -1,5 +1,9 @@
 /**
  * Check If Two Expression Trees Are Equivalent
+ * Intuition: With only '+', two trees are equivalent iff they contain the same multiset of variables. Count leaves and compare maps.
+ * Approach: 1. Recurse: a non-'+' leaf yields {var: 1}; a '+' node merges left and right count maps. 2. Compare key sets and counts of both roots. 3. Return true only if they match exactly.
+ * Dry Run: a+(b+c) vs (c+a)+b.
+ *   - Both maps {a:1,b:1,c:1} → true.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

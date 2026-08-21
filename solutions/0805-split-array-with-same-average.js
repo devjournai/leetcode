@@ -1,5 +1,8 @@
 /**
  * Split Array With Same Average
+ * Intuition: A nonempty proper subset with average equal to the whole means `sum(subset) = totalSum * len / n` (integer). Meet-in-the-middle: all subset (len,sum) of each half, then look for a complement sum.
+ * Approach: 1. n=1 → false. 2. Recurse first half into `firstHalfCollections[len]` sets of sums; same for second half. 3. Nested over lenA,sumA,lenB; skip empty/full; skip non-integer target; if `secondHalfCollections[lenB]` has `target-sumA`, true.
+ * Dry Run: nums = [1,2,3,4,5,6,7,8]. Subset of size 4 summing to 18 exists → true.
  * Time Complexity: O(2^(N/2) + (N/2)^3 * MAX_ABS_VAL)
  * Space Complexity: O(N * MAX_ABS_VAL)
  */
@@ -12,7 +15,7 @@ var splitArraySameAverage = function (nums) {
   const overallElementsSum = nums.reduce(
     (initialAccumulator, currentArrayValue) =>
       initialAccumulator + currentArrayValue,
-    0,
+    0
   );
 
   const firstHalfCountLimit = Math.floor(totalElementsCount / 2);
@@ -26,7 +29,7 @@ var splitArraySameAverage = function (nums) {
     endIndexValue,
     currentSubsetElementsCount,
     currentSubsetSumValue,
-    sumSetsContainer,
+    sumSetsContainer
   ) => {
     if (startIndexValue === endIndexValue) {
       sumSetsContainer[currentSubsetElementsCount].add(currentSubsetSumValue);
@@ -38,7 +41,7 @@ var splitArraySameAverage = function (nums) {
       endIndexValue,
       currentSubsetElementsCount,
       currentSubsetSumValue,
-      sumSetsContainer,
+      sumSetsContainer
     );
 
     generateSubsetsRecursively(
@@ -46,7 +49,7 @@ var splitArraySameAverage = function (nums) {
       endIndexValue,
       currentSubsetElementsCount + 1,
       currentSubsetSumValue + nums[startIndexValue],
-      sumSetsContainer,
+      sumSetsContainer
     );
   };
 
@@ -55,7 +58,7 @@ var splitArraySameAverage = function (nums) {
     firstHalfCountLimit,
     0,
     0,
-    firstHalfCollections,
+    firstHalfCollections
   );
 
   const secondHalfCountLimit = totalElementsCount - firstHalfCountLimit;
@@ -67,7 +70,7 @@ var splitArraySameAverage = function (nums) {
     totalElementsCount,
     0,
     0,
-    secondHalfCollections,
+    secondHalfCollections
   );
 
   for (let subsetLenA = 0; subsetLenA <= firstHalfCountLimit; subsetLenA++) {

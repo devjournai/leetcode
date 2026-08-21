@@ -1,5 +1,9 @@
 /**
  * Valid Square
+ * Intuition: Four distinct points form a square iff the six pairwise squared distances are four equal sides plus two equal diagonals, and each diagonal squared equals twice a side squared.
+ * Approach: 1. `calculateSquaredDistance` returns dx²+dy² for each of the six pairs into `squaredDistancesList`. 2. Any zero distance (duplicate points) returns false. 3. Sort distances. 4. Require first four equal (`checkFirstFourEqual`), last two equal (`checkLastTwoEqual`), and `squaredDistancesList[4] === 2 * squaredDistancesList[0]`.
+ * Dry Run: p1=[0,0], p2=[1,1], p3=[1,0], p4=[0,1].
+ *   - Distances: four 1s and two 2s (sorted). Diagonal 2 === 2*1. Return true.
  * Time Complexity: O(1)
  * Space Complexity: O(1)
  */

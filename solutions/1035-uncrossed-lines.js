@@ -1,5 +1,9 @@
 /**
  * Uncrossed Lines
+ * Intuition: Uncrossed lines are an LCS of the two arrays. Classic DP: match adds 1 from the diagonal, else take max of skip-left or skip-up.
+ * Approach: 1. Table (m+1)x(n+1) of zeros. 2. If nums1[i-1]==nums2[j-1], dp[i][j]=dp[i-1][j-1]+1. 3. Else max(dp[i-1][j], dp[i][j-1]). 4. Return dp[m][n].
+ * Dry Run: nums1=[1,4,2], nums2=[1,2,4].
+ *   - 1 matches 1. Then 4 matches later 4 or 2 matches 2, LCS length 2.
  * Time Complexity: O(m * n)
  * Space Complexity: O(m * n)
  */

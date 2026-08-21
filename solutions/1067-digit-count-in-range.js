@@ -1,5 +1,8 @@
 /**
  * Digit Count In Range
+ * Intuition: Count of digit d in [low, high] is count(≤high) minus count(≤low-1). Digit DP by place uses the left prefix, current digit, and right suffix to add how often d appears in that position.
+ * Approach: 1. For each place, split the number into left, digit, right. 2. Add left×10^rightLen (or left-1 when d=0 and not the leading place). 3. If the place digit equals d, add right+1; if greater, add a full block. 4. Subtract the two bounds.
+ * Dry Run: d=1, low=1, high=13. Count ≤13 of digit 1 is 6 (1,10,11,12,13); ≤0 is 0 → 6.
  * Time Complexity: O(log(high))
  * Space Complexity: O(log(high))
  */

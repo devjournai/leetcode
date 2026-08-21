@@ -1,5 +1,8 @@
 /**
  * Rank Transform Of A Matrix
+ * Intuition: Equal values that share a row or column must get the same rank. Union those cells, process values ascending, and assign rank = 1 + max of prior ranks on those rows/cols.
+ * Approach: 1. Union-find cells with the same value in a row or column. 2. Sort all cells by value. 3. For each value, group by UF root; rank = 1 + max(rowMax, colMax) over the group. 4. After the value is fully ranked, update row/col max trackers.
+ * Dry Run: [[1,2],[3,4]] already distinct; ranks [[1,2],[2,3]].
  * Time Complexity: O(R * C * log(R * C))
  * Space Complexity: O(R * C)
  */
@@ -7,11 +10,11 @@ var matrixRankTransform = function (matrix) {
   const matrixDimensionRows = matrix.length;
   const matrixDimensionCols = matrix[0].length;
   const finalRankMatrix = Array.from({ length: matrixDimensionRows }, () =>
-    new Array(matrixDimensionCols).fill(0),
+    new Array(matrixDimensionCols).fill(0)
   );
 
   const disjointSetParents = new Array(
-    matrixDimensionRows * matrixDimensionCols,
+    matrixDimensionRows * matrixDimensionCols
   ).fill(-1);
 
   const findSetRepresentative = (nodeIdentifier) => {
@@ -19,7 +22,7 @@ var matrixRankTransform = function (matrix) {
       return nodeIdentifier;
     }
     disjointSetParents[nodeIdentifier] = findSetRepresentative(
-      disjointSetParents[nodeIdentifier],
+      disjointSetParents[nodeIdentifier]
     );
     return disjointSetParents[nodeIdentifier];
   };
@@ -64,7 +67,7 @@ var matrixRankTransform = function (matrix) {
         const [secondR, secondC] = coordinateList[listIndex];
         uniteSets(
           firstR * matrixDimensionCols + firstC,
-          secondR * matrixDimensionCols + secondC,
+          secondR * matrixDimensionCols + secondC
         );
       }
     }
@@ -99,7 +102,7 @@ var matrixRankTransform = function (matrix) {
         const [laterR, laterC] = currentCoordList[coordListPointer];
         uniteSets(
           initialR * matrixDimensionCols + initialC,
-          laterR * matrixDimensionCols + laterC,
+          laterR * matrixDimensionCols + laterC
         );
       }
     }
@@ -141,7 +144,7 @@ var matrixRankTransform = function (matrix) {
     ) {
       const [, elementRow, elementCol] = allMatrixElements[scanIndex];
       const rootNodeIdentifier = findSetRepresentative(
-        elementRow * matrixDimensionCols + elementCol,
+        elementRow * matrixDimensionCols + elementCol
       );
       if (!componentCoordGroups.has(rootNodeIdentifier)) {
         componentCoordGroups.set(rootNodeIdentifier, []);
@@ -160,7 +163,7 @@ var matrixRankTransform = function (matrix) {
         maxRankAcrossComponents = Math.max(
           maxRankAcrossComponents,
           maxRankInRows[memberRow],
-          maxRankInColumns[memberCol],
+          maxRankInColumns[memberCol]
         );
       }
       const computedRank = maxRankAcrossComponents + 1;
@@ -178,7 +181,7 @@ var matrixRankTransform = function (matrix) {
       maxRankInRows[memberRow] = Math.max(maxRankInRows[memberRow], cellRank);
       maxRankInColumns[memberCol] = Math.max(
         maxRankInColumns[memberCol],
-        cellRank,
+        cellRank
       );
     }
   }

@@ -1,12 +1,16 @@
 /**
  * Palindrome Partitioning Iv
+ * Intuition: Check whether two cuts split `s` into three palindromes. Precompute a palindrome DP table, then try all split pairs.
+ * Approach: 1. Fill `palindromeDpTable[i][j]` if s[i]==s[j] and (short or inner palindrome). 2. Nested loops on `firstSplitPoint` and `secondSplitPoint`. 3. Return true if all three segments are palindromes.
+ * Dry Run: s = "abcbdd"
+ * splits "a"|"bcb"|"dd" all palindromes → true.
  * Time Complexity: O(n^2)
  * Space Complexity: O(n^2)
  */
 var checkPartitioning = function (s) {
   const stringLength = s.length;
   const palindromeDpTable = Array.from({ length: stringLength }, () =>
-    Array(stringLength).fill(false),
+    Array(stringLength).fill(false)
   );
 
   for (let currentStart = stringLength - 1; currentStart >= 0; currentStart--) {

@@ -1,5 +1,8 @@
 /**
  * Letter Tile Possibilities
+ * Intuition: Every non-empty sequence is a permutation of a multiset subset of the tiles. Backtracking that decrements letter counts generates each distinct sequence once and counts nodes in the search tree.
+ * Approach: 1. Tally character frequencies. 2. Recurse: for each letter with remaining count, use one, add 1, recurse, then restore. 3. Sum those choices. 4. Return the total.
+ * Dry Run: tiles=AAB. Sequences: A, AA, AAB, AB, ABA, B, BA, BAA → 8.
  * Time Complexity: O(K * N!)
  * Space Complexity: O(K + N)
  */

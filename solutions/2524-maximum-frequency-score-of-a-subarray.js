@@ -156,7 +156,7 @@ var maxFrequencyScore = function (nums, k) {
     if (rightWindowIndex >= k - 1) {
       overallMaximumScore = Math.max(
         overallMaximumScore,
-        currentWindowSumScore,
+        currentWindowSumScore
       );
 
       const valueToEvict = nums[rightWindowIndex - k + 1];

@@ -40,7 +40,7 @@ var maxProduct = function (s) {
       stringIndex <= currentManacherRightBoundary
         ? Math.min(
             manacherExpansionRadii[2 * currentManacherCenter - stringIndex],
-            currentManacherRightBoundary - stringIndex,
+            currentManacherRightBoundary - stringIndex
           )
         : 0;
     let leftCheckPointer = stringIndex - initialExpansionRadius;
@@ -54,11 +54,11 @@ var maxProduct = function (s) {
       const currentPalindromeLength = rightCheckPointer - leftCheckPointer + 1;
       maxOddPalindromeLengthEndingAt[rightCheckPointer] = Math.max(
         maxOddPalindromeLengthEndingAt[rightCheckPointer],
-        currentPalindromeLength,
+        currentPalindromeLength
       );
       maxOddPalindromeLengthStartingAt[leftCheckPointer] = Math.max(
         maxOddPalindromeLengthStartingAt[leftCheckPointer],
-        currentPalindromeLength,
+        currentPalindromeLength
       );
       leftCheckPointer--;
       rightCheckPointer++;
@@ -79,7 +79,7 @@ var maxProduct = function (s) {
   ) {
     maxOddPalindromeLengthEndingAt[prefixMaxIndex] = Math.max(
       maxOddPalindromeLengthEndingAt[prefixMaxIndex - 1],
-      maxOddPalindromeLengthEndingAt[prefixMaxIndex],
+      maxOddPalindromeLengthEndingAt[prefixMaxIndex]
     );
   }
 
@@ -90,7 +90,7 @@ var maxProduct = function (s) {
   ) {
     maxOddPalindromeLengthStartingAt[suffixMaxIndex] = Math.max(
       maxOddPalindromeLengthStartingAt[suffixMaxIndex + 1],
-      maxOddPalindromeLengthStartingAt[suffixMaxIndex],
+      maxOddPalindromeLengthStartingAt[suffixMaxIndex]
     );
   }
 
@@ -106,7 +106,7 @@ var maxProduct = function (s) {
       maxOddPalindromeLengthStartingAt[splitPartitionIndex];
     resultantMaxProduct = Math.max(
       resultantMaxProduct,
-      leftSegmentMaxPalLen * rightSegmentMaxPalLen,
+      leftSegmentMaxPalLen * rightSegmentMaxPalLen
     );
   }
 

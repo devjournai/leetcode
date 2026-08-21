@@ -1,5 +1,11 @@
 /**
  * Minimum Time To Collect All Apples In A Tree
+ * Intuition: DFS from 0. A child subtree costs its internal travel plus 2 (down and back) iff that child has an apple or collected apples deeper.
+ * Approach: 1. Build an undirected adjacency list. 2. Recurse (node, parent) summing child times. 3. If a child's returned time > 0 or hasApple[child], add time+2. 4. Return the root's accumulated time.
+ * Dry Run: n=7, apples at nodes 2,4,7 (0-indexed 1,2,4 example style)
+ *   - leaf apple: parent adds 2
+ *   - path through empty nodes still pays 2 per edge on the way to apples
+ *   - typical sample returns 8
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -26,7 +32,7 @@ var minTime = function (n, edges, hasApple) {
       if (neighborId !== parentNodeId) {
         const timeFromRecursiveCall = calculateSubtreeTime(
           neighborId,
-          currentNodeId,
+          currentNodeId
         );
         const hasAppleAtNeighbor = hasApple[neighborId];
 

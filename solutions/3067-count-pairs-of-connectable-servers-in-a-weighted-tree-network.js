@@ -194,7 +194,7 @@ var countPairsOfConnectableServers = function (edges, signalSpeed) {
           validPathCount += depthFirstSearch(
             neighborNode,
             currentNode,
-            currentDistance + pathWeight,
+            currentDistance + pathWeight
           );
         }
       }
@@ -208,7 +208,7 @@ var countPairsOfConnectableServers = function (edges, signalSpeed) {
       const individualBranchCount = depthFirstSearch(
         directChild,
         serverIdx,
-        initialWeight,
+        initialWeight
       );
       branchPathCounts.push(individualBranchCount);
     }

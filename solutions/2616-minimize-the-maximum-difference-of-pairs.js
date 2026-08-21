@@ -88,7 +88,7 @@ var minimizeMax = function (nums, p) {
     candidateDifference,
     requiredPairCount,
     arrayToCheck,
-    arrayLengthForCheck,
+    arrayLengthForCheck
   ) {
     let currentPairCount = 0;
     let currentSearchIndex = 0;

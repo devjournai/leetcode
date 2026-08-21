@@ -78,7 +78,7 @@ var maxValueOfCoins = function (piles, k) {
 
         dpScores[coinBudgetIterator] = Math.max(
           dpScores[coinBudgetIterator],
-          potentialTotalValue,
+          potentialTotalValue
         );
       }
     }

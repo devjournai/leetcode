@@ -1,5 +1,8 @@
 /**
  * Cyclically Rotating A Grid
+ * Intuition: Each concentric layer is a cycle. Rotate that ring left (counterclockwise) by k mod perimeter by flattening, offsetting, and writing back.
+ * Approach: 1. For each layer, collect cells down/right/up/left. 2. `effectiveRotationCount = k % perimeter`. 3. Write starting at (perimeter − k) offset into `rotatedResultMatrix`.
+ * Dry Run: grid=[[40,10],[30,20]], k=1. Layer cycle [40,30,20,10] shifts to [[10,20],[40,30]].
  * Time Complexity: O(m * n)
  * Space Complexity: O(m * n)
  */
@@ -15,7 +18,7 @@ var rotateGrid = function (grid, k) {
     layerLeftBoundary,
     layerBottomBoundary,
     layerRightBoundary,
-    totalRotations,
+    totalRotations
   ) => {
     if (
       layerTopBoundary >= layerBottomBoundary ||
@@ -119,7 +122,7 @@ var rotateGrid = function (grid, k) {
       currentLayerIndex,
       gridRowsDimension - 1 - currentLayerIndex,
       gridColsDimension - 1 - currentLayerIndex,
-      k,
+      k
     );
   }
 

@@ -1,5 +1,9 @@
 /**
  * Largest Submatrix With Rearrangements
+ * Intuition: After freely reordering columns, any set of columns can be grouped. Consecutive 1-heights from the top of the current row, sorted descending, give histogram bars; area = height[i]*(i+1).
+ * Approach: 1. Convert each cell to consecutive-1 height downward from previous rows. 2. Copy the row, sort heights descending. 3. For each prefix of columns, update `maximumAchievedArea`. 4. Return the max.
+ * Dry Run: matrix = [[0,0,1],[1,1,1],[1,0,1]]
+ * Row2 heights [2,1,3] sorted [3,2,1] → areas 3,4,3 → 4.
  * Time Complexity: O(rows * cols * log(cols))
  * Space Complexity: O(cols)
  */

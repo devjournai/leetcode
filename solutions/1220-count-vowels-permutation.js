@@ -1,5 +1,8 @@
 /**
  * Count Vowels Permutation
+ * Intuition: Each vowel may follow only specific predecessors; keep five running counts and roll them for n-1 steps.
+ * Approach: 1. Start all vowels at 1 for length 1. 2. a←e+i+u, e←a+i, i←e+o, o←i, u←i+o, all mod 10^9+7. 3. Sum the five counts.
+ * Dry Run: n=1 → 5. n=2 → a from e,i,u (3) plus other transitions → 10.
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */

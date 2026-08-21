@@ -15,7 +15,7 @@
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */
-var resultArrayElements = function (nums) {
+var resultArray = function (nums) {
   const firstArray = [nums[0]];
   const secondArray = [nums[1]];
 

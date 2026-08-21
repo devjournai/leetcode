@@ -97,6 +97,8 @@
  *
  * ------------------------------------------------------------
  *
+ * Approach: Factor k into primes and set `requiredMultiplier` = product p^ceil(e/2). Track prefix vowel-consonant `balance` and `prefixIndex % (2*requiredMultiplier)`. Map key `balance#remainder`; add prior frequency of the same key to the answer.
+ *
  * Step 3: Count valid prefix pairs.
  *
  * We need:
@@ -120,7 +122,7 @@
  *
  * ------------------------------------------------------------
  *
- * Example:
+ * Dry Run:
  *
  * s = "abba"
  * k = 1

@@ -43,11 +43,11 @@ var findWinners = function (matches) {
 
     playerLossTracker.set(
       winningPlayerId,
-      playerLossTracker.get(winningPlayerId) ?? 0,
+      playerLossTracker.get(winningPlayerId) ?? 0
     );
     playerLossTracker.set(
       losingPlayerId,
-      (playerLossTracker.get(losingPlayerId) ?? 0) + 1,
+      (playerLossTracker.get(losingPlayerId) ?? 0) + 1
     );
   }
 

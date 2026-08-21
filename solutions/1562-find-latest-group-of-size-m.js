@@ -1,5 +1,9 @@
 /**
  * Find Latest Group Of Size M
+ * Intuition: Turning bits on merges neighbor groups. Track group lengths at endpoints and how many groups have size m; the last step with a size-m group is the answer.
+ * Approach: 1. lengths[0..n+1]. 2. On flip i, merge leftLen+rightLen+1, update endpoint lengths and sizeCounts. 3. If count[m]>0 record the step.
+ * Dry Run: arr = [3,5,1,2,4], m = 1.
+ *   - Last time a group of size 1 exists is step 4.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

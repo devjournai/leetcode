@@ -1,5 +1,8 @@
 /**
  * Minimum Distance To Type A Word Using Two Fingers
+ * Intuition: Each next letter is typed by finger 1 or 2. State (index, finger1 pos, finger2 pos) with Manhattan keyboard distance memoizes the min remaining cost.
+ * Approach: 1. Map A–Z onto a 6-wide grid. 2. Distance from a parked finger is 0 if unused. 3. Recurse: try moving each finger to word[i], take min, cache the triple. 4. Start both fingers unused.
+ * Dry Run: word = "CAKE". Optimal uses two fingers around C/A then K/E; min Manhattan total is 3.
  * Time Complexity: O(N * (A+1)^2)
  * Space Complexity: O(N * (A+1)^2)
  */
@@ -11,7 +14,7 @@ var minimumDistance = function (word) {
   function fetchCharacterCoordinates(charInput) {
     const characterNumericalValue = charInput.charCodeAt(0) - asciiCodeForA;
     const xCoordinateValue = Math.floor(
-      characterNumericalValue / keyboardLayoutWidth,
+      characterNumericalValue / keyboardLayoutWidth
     );
     const yCoordinateValue = characterNumericalValue % keyboardLayoutWidth;
     return [xCoordinateValue, yCoordinateValue];
@@ -26,10 +29,10 @@ var minimumDistance = function (word) {
     const [destinationXCoordinate, destinationYCoordinate] =
       fetchCharacterCoordinates(toCharInput);
     const horizontalDistance = Math.abs(
-      sourceXCoordinate - destinationXCoordinate,
+      sourceXCoordinate - destinationXCoordinate
     );
     const verticalDistance = Math.abs(
-      sourceYCoordinate - destinationYCoordinate,
+      sourceYCoordinate - destinationYCoordinate
     );
     return horizontalDistance + verticalDistance;
   }
@@ -37,7 +40,7 @@ var minimumDistance = function (word) {
   function computeMinimumTypingDistance(
     wordPositionIndex,
     currentFingerOneChar,
-    currentFingerTwoChar,
+    currentFingerTwoChar
   ) {
     if (wordPositionIndex === word.length) {
       return 0;
@@ -52,31 +55,31 @@ var minimumDistance = function (word) {
 
     const distanceIfOneMoves = calculateFingerMovementDistance(
       currentFingerOneChar,
-      targetCharacter,
+      targetCharacter
     );
     const totalCostMovingFingerOne =
       distanceIfOneMoves +
       computeMinimumTypingDistance(
         wordPositionIndex + 1,
         targetCharacter,
-        currentFingerTwoChar,
+        currentFingerTwoChar
       );
 
     const distanceIfTwoMoves = calculateFingerMovementDistance(
       currentFingerTwoChar,
-      targetCharacter,
+      targetCharacter
     );
     const totalCostMovingFingerTwo =
       distanceIfTwoMoves +
       computeMinimumTypingDistance(
         wordPositionIndex + 1,
         currentFingerOneChar,
-        targetCharacter,
+        targetCharacter
       );
 
     const smallestDistanceForCurrentState = Math.min(
       totalCostMovingFingerOne,
-      totalCostMovingFingerTwo,
+      totalCostMovingFingerTwo
     );
     memoizationCache[stateLookupKey] = smallestDistanceForCurrentState;
     return smallestDistanceForCurrentState;

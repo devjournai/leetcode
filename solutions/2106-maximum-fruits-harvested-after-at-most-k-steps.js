@@ -68,7 +68,7 @@ var maxTotalFruits = function (fruits, startPos, k) {
 
       const totalStepsRequired = Math.min(
         distanceToGoLeftFirst,
-        distanceToGoRightFirst,
+        distanceToGoRightFirst
       );
 
       if (totalStepsRequired <= k) {

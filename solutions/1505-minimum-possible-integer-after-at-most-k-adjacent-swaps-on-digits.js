@@ -1,5 +1,9 @@
 /**
  * Minimum Possible Integer After At Most K Adjacent Swaps On Digits
+ * Intuition: Greedy: at each output slot take the smallest digit whose remaining left-swap cost is ≤ k. A Fenwick tree counts digits already taken left of an original index.
+ * Approach: 1. Queue original indices per digit 0-9. 2. cost = pos - BIT.query(pos). 3. If cost≤k, spend it, append the digit, mark pos taken. 4. Join digits.
+ * Dry Run: num = "4321", k = 4.
+ *   - Digit 1 at pos 3 costs 3; spend k=1 remaining and greedy-fill → "1342".
  * Time Complexity: O(N * log N)
  * Space Complexity: O(N)
  */

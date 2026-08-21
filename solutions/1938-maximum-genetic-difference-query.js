@@ -1,5 +1,9 @@
 /**
  * Maximum Genetic Difference Query
+ * Intuition: For query `(node, val)` we want `max val XOR ancestor` including the node. A binary trie of values on the root-to-node path, updated during DFS (insert on enter, erase on leave), answers max XOR in O(bit width).
+ * Approach: 1. Build the tree from `parents` and group queries by node. 2. Insert/remove 18-bit values in a trie with occupancy counts. 3. `trieQuery` prefers the opposite bit at each level. 4. DFS from the root: insert node, answer its queries, recurse children, then remove.
+ * Dry Run: parents = [-1,0,1], queries = [[0,2]] (val=2, node=0).
+ *   - Trie has only 0; 2 XOR 0 = 2. Answer [2].
  * Time Complexity: O((N + Q) * log N)
  * Space Complexity: O(N * log N + Q)
  */

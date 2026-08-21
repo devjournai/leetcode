@@ -1,5 +1,8 @@
 /**
  * Maximum Score From Grid Operations
+ * Intuition: After choosing a "white" height for each column, the score comes from black cells between neighboring column heights; DP can carry the previous height and current height.
+ * Approach: Precompute column prefix sums S[j][i]. dp[p][c] is the best score after the previous column with heights p and c. For each next column, build prefix/suffix maxima of previous dp into V[K], then nextDp[p][c] = V[max(p,c)] - S[j-1][p]. Finish with the last column's extra black cells S[n-1][max(p,c)] - S[n-1][c].
+ * Dry Run: 1x1 grid has no neighboring-column operations, score 0.
  * Time Complexity: O(N³)
  * Space Complexity: O(N²)
  */
@@ -21,7 +24,7 @@ var maximumScore = function (grid) {
 
   for (let j = 1; j < n; j++) {
     const nextDp = Array.from({ length: n + 1 }, () =>
-      Array(n + 1).fill(-Infinity),
+      Array(n + 1).fill(-Infinity)
     );
 
     for (let p = 0; p <= n; p++) {

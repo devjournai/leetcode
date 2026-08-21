@@ -41,7 +41,7 @@ var modifiedMatrix = function (matrix) {
     for (let rowIndexValue = 0; rowIndexValue < mRows; rowIndexValue++) {
       columnMaxValues[colIndex] = Math.max(
         columnMaxValues[colIndex],
-        matrix[rowIndexValue][colIndex],
+        matrix[rowIndexValue][colIndex]
       );
     }
   }

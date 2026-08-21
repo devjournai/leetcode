@@ -1,5 +1,9 @@
 /**
  * Masking Personal Information
+ * Intuition: '@' means email: lowercase, keep first and last letters of the local name, insert "*****", then the domain from '@'. Otherwise collect digits and mask the last 10 as a phone, starring a 1–3 digit country code.
+ * Approach: 1. Scan `S` for '@' into `hasAtSymbol`. 2. Email: `toLowerCase()`, find `atSymbolIndex`, return first + "*****" + char before '@' + `substring(atSymbolIndex)`. 3. Phone: push chars in '0'..'9', take last 4 digits, `countryCodeDigitCount = length - 10`, format "***-***-XXXX" or "+*...-***-***-XXXX".
+ * Dry Run: S = "LeetCode@LeetCode.com" → '@' found. lower = "leetcode@leetcode.com", local ends at 'e' → "l*****e@leetcode.com".
+ *   Phone "1(234)567-890" → digits "1234567890", country 0 → "***-***-7890".
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

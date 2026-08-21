@@ -1,5 +1,8 @@
 /**
  * Largest Number At Least Twice Of Others
+ * Intuition: The dominant index exists iff the maximum is at least twice the second maximum. Track both in one scan.
+ * Approach: 1. Empty → -1; length 1 → 0. 2. Walk the array updating `firstMaximumValue`/`firstMaximumIndex` and `secondMaximumValue`. 3. Return the index if `firstMaximumValue >= 2 * secondMaximumValue`, else -1.
+ * Dry Run: [3,6,1,0]. Max 6, second 3, 6≥6 → index 1. [1,2,3,4] max 4 < 6 → -1.
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */

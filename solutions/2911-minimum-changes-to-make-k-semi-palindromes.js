@@ -36,6 +36,8 @@
  *    dp[group][end] =
  *      min(dp[group - 1][start] + cost[start][end - 1])
  *
+ * Dry Run: s="abcac", k=2. Precompute cost[l][r] as min mismatches over proper divisors d. Then dp[group][end] = min of dp[group-1][start]+cost[start][end-1]; answer is dp[k][n].
+ *
  * Time Complexity: O(N^4 + K * N^2)
  * Space Complexity: O(N^2)
  */
@@ -80,7 +82,7 @@ var minimumChanges = function (s, k) {
 
         dp[group][end] = Math.min(
           dp[group][end],
-          dp[group - 1][start] + cost[start][end - 1],
+          dp[group - 1][start] + cost[start][end - 1]
         );
       }
     }

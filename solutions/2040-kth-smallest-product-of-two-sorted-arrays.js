@@ -120,7 +120,7 @@ var kthSmallestProduct = function (nums1, nums2, k) {
 
   while (lowProductBound < highProductBound) {
     const currentGuessProduct = Math.floor(
-      (lowProductBound + highProductBound) / 2,
+      (lowProductBound + highProductBound) / 2
     );
     if (determineProductCount(currentGuessProduct) >= k) {
       highProductBound = currentGuessProduct;

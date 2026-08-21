@@ -1,5 +1,8 @@
 /**
  * Minimum Distance Between Three Equal Elements I
+ * Intuition: Distance of a triple (i, j, k) with equal values is 2*(k-i). Consecutive occurrences of the same value give the tightest window of three.
+ * Approach: 1. Bucket indices by value. 2. For each value, slide windows of three consecutive indices and take 2*(last-first). 3. Return the min or -1.
+ * Dry Run: nums = [1, 2, 1, 1]. Value 1 at 0,2,3 → 2*(3-0)=6.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

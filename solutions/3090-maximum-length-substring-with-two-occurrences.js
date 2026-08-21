@@ -42,7 +42,7 @@ var maximumLengthSubstring = function (s) {
     const characterAtWindowEnd = s[windowEndPointer];
     charFrequencyTracker.set(
       characterAtWindowEnd,
-      (charFrequencyTracker.get(characterAtWindowEnd) || 0) + 1,
+      (charFrequencyTracker.get(characterAtWindowEnd) || 0) + 1
     );
 
     while (charFrequencyTracker.get(characterAtWindowEnd) > 2) {
@@ -58,7 +58,7 @@ var maximumLengthSubstring = function (s) {
 
     maxLengthFound = Math.max(
       maxLengthFound,
-      windowEndPointer - windowStartPointer + 1,
+      windowEndPointer - windowStartPointer + 1
     );
   }
 

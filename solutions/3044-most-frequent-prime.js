@@ -93,7 +93,7 @@ var mostFrequentPrime = function (mat) {
           if (currentValue > 10 && isNumberPrime(currentValue)) {
             primeCountsMap.set(
               currentValue,
-              (primeCountsMap.get(currentValue) || 0) + 1,
+              (primeCountsMap.get(currentValue) || 0) + 1
             );
           }
           currentRow += deltaRow;

@@ -1,5 +1,9 @@
 /**
  * Tree Of Coprimes
+ * Intuition: Node values are at most 50, so the closest coprime ancestor is the deepest node among ancestry stacks of values whose gcd with the current value is 1. DFS push/pop keeps those stacks as the root-to-node path.
+ * Approach: 1. Build `graphRepresentation`. 2. In `depthFirstSearchTraversal`, scan coprime candidate values 1..50, take the deepest stack top, and store it in `finalAnswerList`. 3. Push the node, recurse to unvisited neighbors, then pop. 4. Start at node 0.
+ * Dry Run: values [2,3,3,2], edges 0-1, 1-2, 0-3.
+ *   - Node 0: no ancestor → -1. Node 1 (3) sees ancestor 2 → 0. Node 2 (3) sees 2 at 0 (not coprime) and 3 at 1 (not coprime) → -1.
  * Time Complexity: O(N * MaxValue * log(MaxValue))
  * Space Complexity: O(N + MaxValue)
  */
@@ -34,7 +38,7 @@ var getCoprimes = function (nodeValues, treeEdges) {
   function depthFirstSearchTraversal(
     currentTreeTraversalNode,
     currentTreeTraversalDepth,
-    parentOfCurrentNode,
+    parentOfCurrentNode
   ) {
     const currentNodesValue = nodeValues[currentTreeTraversalNode];
     let maximumDepthReached = -1;
@@ -48,7 +52,7 @@ var getCoprimes = function (nodeValues, treeEdges) {
       if (
         computeGreatestCommonDivisor(
           currentNodesValue,
-          coprimeCandidateValue,
+          coprimeCandidateValue
         ) === 1 &&
         ancestryStackPerValue[coprimeCandidateValue].length > 0
       ) {
@@ -76,10 +80,10 @@ var getCoprimes = function (nodeValues, treeEdges) {
           depthFirstSearchTraversal(
             currentNeighborId,
             currentTreeTraversalDepth + 1,
-            currentTreeTraversalNode,
+            currentTreeTraversalNode
           );
         }
-      },
+      }
     );
 
     ancestryStackPerValue[currentNodesValue].pop();

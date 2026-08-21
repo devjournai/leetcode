@@ -117,7 +117,7 @@ var sortJumbled = function (mapping, nums) {
   });
 
   const transformedOutput = mappedCollection.map(
-    (element) => element.originalEntry,
+    (element) => element.originalEntry
   );
 
   return transformedOutput;

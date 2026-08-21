@@ -1,5 +1,10 @@
 /**
  * Create Maximum Number
+ * Intuition: The k-digit answer is a merge of the largest i-digit subsequence of nums1 and (k - i)-digit subsequence of nums2. Try every valid i and keep the lexicographically largest merge.
+ * Approach: 1. If k is 0, return []. 2. extractMaxSubsequence drops smaller digits while drops remain, then slices to the desired length. 3. mergeSubsequences always takes the larger remaining suffix (lex compare). 4. For i from max(0, k - n2) to min(k, n1), merge and keep the better result.
+ * Dry Run: nums1 = [6, 7], nums2 = [6, 0, 4], k = 5.
+ *   - Only i = 2, j = 3: subsequences [6, 7] and [6, 0, 4].
+ *   - Merge by suffix compare → [6, 7, 6, 0, 4].
  * Time Complexity: O((M + N) * K^2)
  * Space Complexity: O((M + N) * K)
  */
@@ -71,7 +76,7 @@ var maxNumber = function (nums1, nums2, k) {
         sourceToPickFrom =
           compareLexicographically(
             firstSubsequence.slice(indexA),
-            secondSubsequence.slice(indexB),
+            secondSubsequence.slice(indexB)
           ) >= 0
             ? firstSubsequence
             : secondSubsequence;
@@ -101,16 +106,16 @@ var maxNumber = function (nums1, nums2, k) {
 
     const firstSubsequenceFound = extractMaxSubsequence(
       nums1,
-      subsequenceLength1,
+      subsequenceLength1
     );
     const secondSubsequenceFound = extractMaxSubsequence(
       nums2,
-      subsequenceLength2,
+      subsequenceLength2
     );
 
     const currentCombinedResult = mergeSubsequences(
       firstSubsequenceFound,
-      secondSubsequenceFound,
+      secondSubsequenceFound
     );
 
     if (compareLexicographically(currentCombinedResult, maxResultArray) > 0) {

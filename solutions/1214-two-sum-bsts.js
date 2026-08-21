@@ -1,5 +1,8 @@
 /**
  * Two Sum Bsts
+ * Intuition: Two-pointer on BST inorder (smallest from tree1, largest from tree2) finds a pair summing to target in linear time.
+ * Approach: 1. Stack-descend left on tree1 and right on tree2. 2. Compare sum of current values. 3. Equal → true; too small → next inorder from tree1; too large → next reverse-inorder from tree2.
+ * Dry Run: tree1={1,2,3}, tree2={4,5}, target=6. 1+5=6 → true.
  * Time Complexity: O(N1 + N2)
  * Space Complexity: O(H1 + H2)
  */

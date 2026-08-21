@@ -1,5 +1,8 @@
 /**
  * Range Sum Of Bst
+ * Intuition: In a BST, skip the left subtree when node.val ≤ low and skip the right when node.val ≥ high. Sum nodes whose values sit in [low, high].
+ * Approach: 1. Null root → 0. 2. Iterative stack from root. 3. If val in range, add it. 4. Push left if val > low; push right if val < high. 5. Return `currentTotalSum`.
+ * Dry Run: Tree 10 / 5,15 with 3,7 and 18. low=7 high=15 → add 10,7,15 = 32.
  * Time Complexity: O(N)
  * Space Complexity: O(H)
  */

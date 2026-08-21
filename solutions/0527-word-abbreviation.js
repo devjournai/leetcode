@@ -1,5 +1,9 @@
 /**
  * Word Abbreviation
+ * Intuition: Abbreviate as `prefix + (skipped count) + last char`. When several words share an abbreviation, grow the prefix until groups become unique (or fall back to the full word if it is not shorter).
+ * Approach: 1. Start `wordPrefixLengths` at 1 and group indices by abbreviation. 2. Unique groups get the abbreviation if shorter than the word. 3. Conflicts increment prefix length, regroup, and repeat until no collisions.
+ * Dry Run: ["like","god","internal","me"].
+ *   - "like" → l2e, "god" stays god (too short), "internal" → i6l, "me" stays me. No collisions. Result ["l2e","god","i6l","me"].
  * Time Complexity: O(N * L^2)
  * Space Complexity: O(N * L)
  */
@@ -26,7 +30,7 @@ var wordsAbbreviation = function (words) {
     const currentWordText = words[wordIndex];
     const initialAbbreviation = generateCurrentAbbreviation(
       currentWordText,
-      wordPrefixLengths[wordIndex],
+      wordPrefixLengths[wordIndex]
     );
 
     if (!currentAbbreviationGroups.has(initialAbbreviation)) {
@@ -50,7 +54,7 @@ var wordsAbbreviation = function (words) {
         const originalFullWord = words[singleWordIndex];
         const finalProposedAbbr = generateCurrentAbbreviation(
           originalFullWord,
-          wordPrefixLengths[singleWordIndex],
+          wordPrefixLengths[singleWordIndex]
         );
 
         finalAbbreviations[singleWordIndex] =
@@ -74,7 +78,7 @@ var wordsAbbreviation = function (words) {
         const newPrefixValue = wordPrefixLengths[specificWordIdx];
         const newComputedAbbreviation = generateCurrentAbbreviation(
           evaluatedWordString,
-          newPrefixValue,
+          newPrefixValue
         );
 
         if (!nextAbbreviationGroups.has(newComputedAbbreviation)) {

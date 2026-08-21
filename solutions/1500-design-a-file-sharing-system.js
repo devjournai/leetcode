@@ -1,5 +1,8 @@
 /**
  * Design A File Sharing System
+ * Intuition: Reuse the smallest leftover user id, else allocate nextNewUserId. Track chunk->owners and user->chunks so request can return sorted owners and grant the chunk.
+ * Approach: 1. join: take min recycled id or increment; register owned chunks in both maps. 2. leave: remove the user from every chunk set and recycle the id. 3. request: sort current owners; if any exist, add userID as an owner too; return that sorted list (empty if nobody had the chunk).
+ * Dry Run: m=4, join([1,2]) -> user 1; join([2,3]) -> user 2; request(1,3) returns [2] and user 1 now owns 3
  * Time Complexity: O(M)
  * Space Complexity: O(M)
  */
@@ -15,7 +18,7 @@ FileSharing.prototype.join = function (ownedChunks) {
 
   if (this.availableUserIdsSet.size > 0) {
     const sortedAvailableIdsArray = Array.from(this.availableUserIdsSet).sort(
-      (a, b) => a - b,
+      (a, b) => a - b
     );
     newlyAssignedUserId = sortedAvailableIdsArray[0];
     this.availableUserIdsSet.delete(newlyAssignedUserId);

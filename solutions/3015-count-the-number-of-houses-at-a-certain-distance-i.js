@@ -56,7 +56,7 @@ var countOfPairs = function (n, x, y) {
         currentMinimumDistance = Math.min(
           linearPathDistance,
           pathViaFirstToSecond,
-          pathViaSecondToFirst,
+          pathViaSecondToFirst
         );
       }
       distanceCounts[currentMinimumDistance]++;

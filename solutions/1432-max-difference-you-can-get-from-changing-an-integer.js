@@ -1,5 +1,11 @@
 /**
  * Max Difference You Can Get From Changing An Integer
+ * Intuition: Maximize by replacing the first non-9 digit with 9 everywhere. Minimize by turning the first digit into 1 if it is not 1, otherwise turning the first later digit that is not 0 or 1 into 0.
+ * Approach: 1. Convert num to digit chars. 2. For max, find the first digit != 9 and remap it to 9. 3. For min, if leading digit != 1 remap it to 1; else remap the first digit in {2..9} to 0. 4. Return maxValue - minValue.
+ * Dry Run: num = 555
+ *   - max: replace 5 with 9 -> 999
+ *   - min: leading 5 -> 1 -> 111
+ *   - 999 - 111 = 888
  * Time Complexity: O(log N)
  * Space Complexity: O(log N)
  */

@@ -1,5 +1,8 @@
 /**
  * Find K Length Substrings With No Repeated Characters
+ * Intuition: A window of length k has no repeats iff it contains k distinct characters. A sliding frequency map counts such windows in one pass.
+ * Approach: 1. If k>n or k=0, return 0. 2. Expand right, increment counts. 3. When width=k, if map.size==k increment; then decrement/remove the left char and slide. 4. Return the count.
+ * Dry Run: s=havefunonleetcode, k=5. Windows like havef (5 distinct) count; later funon has repeats and does not.
  * Time Complexity: O(N)
  * Space Complexity: O(min(K, A))
  */
@@ -18,7 +21,7 @@ var numKLenSubstrNoRepeats = function (s, k) {
     const characterAtEnd = s[currentWindowEnd];
     characterOccurrences.set(
       characterAtEnd,
-      (characterOccurrences.get(characterAtEnd) || 0) + 1,
+      (characterOccurrences.get(characterAtEnd) || 0) + 1
     );
 
     if (currentWindowEnd - currentWindowStart + 1 === k) {

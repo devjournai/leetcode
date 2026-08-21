@@ -86,14 +86,14 @@ var maxMoves = function (grid) {
   const numRows = grid.length;
   const numColumns = grid[0].length;
   const memoizationTable = Array.from({ length: numRows }, () =>
-    new Array(numColumns).fill(-1),
+    new Array(numColumns).fill(-1)
   );
 
   let overallMaximumMoves = 0;
   for (let initialRow = 0; initialRow < numRows; initialRow++) {
     overallMaximumMoves = Math.max(
       overallMaximumMoves,
-      findMaxMovesFromCell(initialRow, 0),
+      findMaxMovesFromCell(initialRow, 0)
     );
   }
 
@@ -122,7 +122,7 @@ var maxMoves = function (grid) {
     ) {
       maximumStepsForCurrentCell = Math.max(
         maximumStepsForCurrentCell,
-        1 + findMaxMovesFromCell(nextRowUp, nextColumnIndexUp),
+        1 + findMaxMovesFromCell(nextRowUp, nextColumnIndexUp)
       );
     }
 
@@ -134,7 +134,7 @@ var maxMoves = function (grid) {
     ) {
       maximumStepsForCurrentCell = Math.max(
         maximumStepsForCurrentCell,
-        1 + findMaxMovesFromCell(straightRightRow, straightRightColumn),
+        1 + findMaxMovesFromCell(straightRightRow, straightRightColumn)
       );
     }
 
@@ -147,7 +147,7 @@ var maxMoves = function (grid) {
     ) {
       maximumStepsForCurrentCell = Math.max(
         maximumStepsForCurrentCell,
-        1 + findMaxMovesFromCell(nextRowDown, nextColumnIndexDown),
+        1 + findMaxMovesFromCell(nextRowDown, nextColumnIndexDown)
       );
     }
 

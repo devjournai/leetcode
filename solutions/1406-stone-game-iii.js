@@ -58,7 +58,7 @@ var stoneGameIII = function (stoneValue) {
       const futureGameDiff = calculateMaxDifference(currentIndex + numPiles);
       maximumPossibleDiff = Math.max(
         maximumPossibleDiff,
-        currentPilesValue - futureGameDiff,
+        currentPilesValue - futureGameDiff
       );
     }
 

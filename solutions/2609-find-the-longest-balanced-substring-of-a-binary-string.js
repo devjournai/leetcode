@@ -64,7 +64,7 @@ var findTheLongestBalancedSubstring = function (s) {
       currentPosition++;
       maximumLength = Math.max(
         maximumLength,
-        2 * Math.min(zeroCharacterCount, oneCharacterCount),
+        2 * Math.min(zeroCharacterCount, oneCharacterCount)
       );
     }
   }

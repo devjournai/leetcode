@@ -1,5 +1,9 @@
 /**
  * Build Binary Expression Tree From Infix Expression
+ * Intuition: Shunting-yard with two stacks: operators and operand nodes. Higher-or-equal precedence operators collapse first.
+ * Approach: 1. Digits → operand nodes. 2. '(': push. ')': pop until '('. 3. Op: while top precedence ≥ current, merge. 4. Flush operators; return the remaining operand.
+ * Dry Run: s = "3*4-2*5".
+ *   - Build (*,3,4) and (*,2,5) then '-' as root.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -47,7 +51,7 @@ var expTree = function (s) {
         operatorStackTracker.length > 0 &&
         operatorStackTracker[operatorStackTracker.length - 1] !== "(" &&
         precedenceMap.get(
-          operatorStackTracker[operatorStackTracker.length - 1],
+          operatorStackTracker[operatorStackTracker.length - 1]
         ) >= precedenceMap.get(currentCharacter)
       ) {
         executeOperation();

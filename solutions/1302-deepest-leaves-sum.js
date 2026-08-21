@@ -1,5 +1,8 @@
 /**
  * Deepest Leaves Sum
+ * Intuition: The deepest leaves sit on the last BFS level, so a level-order walk can replace the running sum each level and keep only the last one.
+ * Approach: 1. Queue the root. 2. While the queue is nonempty, sum every node on the current level and enqueue children. 3. Overwrite `finalSum` with that level sum. 4. Return `finalSum` after the last level.
+ * Dry Run: tree [1,2,3,4,5,null,6,7,null,null,null,null,8]. Levels sum 1 then 5 then 15 then 15; deepest leaves 7+8 = 15.
  * Time Complexity: O(N)
  * Space Complexity: O(W)
  */

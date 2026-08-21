@@ -1,5 +1,8 @@
 /**
  * Buddy Strings
+ * Intuition: Swap two letters in s to match goal. Need equal length. Zero mismatches works iff some letter repeats. Exactly two mismatches must be a swap pair. One or >2 mismatches fail.
+ * Approach: 1. Lengths differ → false. 2. Scan: record mismatch indices (abort if >2) and frequencies (`hasRepeatingChar`). 3. 0 mismatches → hasRepeatingChar. 4. 2 mismatches: s[i]==goal[j] and s[j]==goal[i]. Else false.
+ * Dry Run: s="ab", goal="ba" → two mismatches that swap → true. s="aa", goal="aa" → zero mismatches, repeat 'a' → true. "ab","ab" → false.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

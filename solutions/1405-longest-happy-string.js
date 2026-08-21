@@ -1,5 +1,9 @@
 /**
  * Longest Happy String
+ * Intuition: Always append the currently most frequent letter unless that would make three in a row; then use the second-most frequent.
+ * Approach: 1. Keep {a,b,c} counts. 2. Sort by remaining count. 3. Prefer the top letter if it would not create a triple at the end; else try the second. 4. Stop when neither is safe. 5. Join the built characters.
+ * Dry Run: a=1, b=1, c=7.
+ *   - Prefer c,c then b (cannot ccc), then c,c, a, then c,c. Result like "ccaccbcc" / "ccbccacc".
  * Time Complexity: O(a + b + c)
  * Space Complexity: O(a + b + c)
  */

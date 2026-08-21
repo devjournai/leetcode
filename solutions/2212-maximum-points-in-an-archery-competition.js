@@ -65,7 +65,7 @@ var maximumBobPoints = function (totalArrowsProvided, aliceScoreAllocation) {
     currentSectionIdentifier,
     arrowsRemainingForBob,
     currentAccumulatedScore,
-    currentBobAllocation,
+    currentBobAllocation
   ) {
     if (currentSectionIdentifier === 12 || arrowsRemainingForBob === 0) {
       if (currentAccumulatedScore > highestAchievedScore) {
@@ -84,7 +84,7 @@ var maximumBobPoints = function (totalArrowsProvided, aliceScoreAllocation) {
         currentSectionIdentifier + 1,
         arrowsRemainingForBob - arrowsRequiredToWin,
         currentAccumulatedScore + currentSectionIdentifier,
-        currentBobAllocation,
+        currentBobAllocation
       );
       currentBobAllocation[currentSectionIdentifier] = 0; // Backtrack
     }
@@ -93,7 +93,7 @@ var maximumBobPoints = function (totalArrowsProvided, aliceScoreAllocation) {
       currentSectionIdentifier + 1,
       arrowsRemainingForBob,
       currentAccumulatedScore,
-      currentBobAllocation,
+      currentBobAllocation
     );
   }
 

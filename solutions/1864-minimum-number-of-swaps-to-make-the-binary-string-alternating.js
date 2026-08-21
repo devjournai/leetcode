@@ -1,5 +1,8 @@
 /**
  * Minimum Number Of Swaps To Make The Binary String Alternating
+ * Intuition: An alternating string is 0101… or 1010…. If |#0−#1|>1 it is impossible. Each swap fixes two mismatches, so mismatches/2 is the swap count.
+ * Approach: 1. Count zeros and ones; return -1 if difference > 1. 2. Count positions that fail the 0101… pattern (`mismatchesForZeroStart`) and 1010… (`mismatchesForOneStart`). 3. If counts equal, take min/2; else only the pattern that matches the majority bit.
+ * Dry Run: s="111000". Equal counts; mismatches vs 010101 and 101010; min/2 = 1.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

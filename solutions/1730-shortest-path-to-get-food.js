@@ -1,5 +1,8 @@
 /**
  * Shortest Path To Get Food
+ * Intuition: Unweighted grid: BFS from '*' to the nearest '#' avoiding 'X' yields the fewest steps.
+ * Approach: 1. Find start '*'. 2. Queue `[row,col,pathLength]`; mark visited. 3. When cell is '#', return `pathLength`. 4. Else enqueue 4-neighbors that are in bounds, unvisited, not 'X'. Return -1 if exhausted.
+ * Dry Run: grid with * at (0,0) and # at (0,2) open path → distance 2.
  * Time Complexity: O(R * C)
  * Space Complexity: O(R * C)
  */

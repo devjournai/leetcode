@@ -1,5 +1,8 @@
 /**
  * Count Sub Islands
+ * Intuition: A grid2 island is a sub-island iff every land cell is also land in grid1. BFS/flood each grid2 island and flag if any cell is water in grid1.
+ * Approach: 1. Scan grid2 for 1s. 2. BFS, mark visited 0, set `isCandidateSubIsland` false if grid1 is 0. 3. If still true after the island, increment `subIslandCount`.
+ * Dry Run: grid1 all 1s, grid2 a single 1. That island is a sub-island. Return 1.
  * Time Complexity: O(M * N)
  * Space Complexity: O(M * N)
  */

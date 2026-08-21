@@ -1,5 +1,9 @@
 /**
  * Number Of Ways To Reconstruct A Tree
+ * Intuition: `pairs` are ancestor–descendant edges of some tree. The node adjacent to all others is the root. Sort by degree; each node’s parent is the smallest-degree ancestor in its pair-set, and the child’s neighbor set must be ⊆ parent’s. Equal degrees imply multiple trees.
+ * Approach: 1. Build undirected `adjacencyMap`. 2. Sort nodes by degree; root must have degree n−1. 3. For each later node, find nearest larger-degree neighbor as parent; check neighbor subset; bump `waysAmbiguityCounter` on equal degree. 4. Return 0, 1, or 2.
+ * Dry Run: pairs = [[1,2],[2,3]]
+ * Degrees 2:2, 1:1, 3:1; root 2 connected to both. One parent each → 1 way.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N^2)
  */
@@ -17,7 +21,7 @@ var checkWays = function (pairs) {
 
   allNodes.sort(
     (nodeA, nodeB) =>
-      adjacencyMap.get(nodeB).size - adjacencyMap.get(nodeA).size,
+      adjacencyMap.get(nodeB).size - adjacencyMap.get(nodeA).size
   );
 
   const assumedRoot = allNodes[0];

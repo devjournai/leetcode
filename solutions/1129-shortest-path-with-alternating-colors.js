@@ -1,12 +1,18 @@
 /**
  * Shortest Path With Alternating Colors
+ * Intuition: A shortest path to a node may depend on the color of the last edge, so BFS on states (node, lastColor). From a red arrival take a blue edge, and vice versa.
+ * Approach: 1. Build red and blue adjacency sets. 2. Distances[node][0/1] start at Infinity except node 0 both colors 0. 3. Queue (0,red) and (0,blue). 4. From (u, prevColor) walk the opposite-color neighbors; first visit to (v, nextColor) is shortest. 5. Answer per node is min of the two colors, or -1.
+ * Dry Run: n = 3, red = [[0,1],[1,2]], blue = [].
+ *   - From 0 with last red, take blue: none. From 0 with last blue, take red to 1 (dist 1).
+ *   - From 1 last-red, take blue: none. Node 2 stays unreachable.
+ *   - Answer [0,1,-1].
  * Time Complexity: O(N + E)
  * Space Complexity: O(N + E)
  */
 var shortestAlternatingPaths = function (
   totalNodes,
   redEdgeList,
-  blueEdgeList,
+  blueEdgeList
 ) {
   const redAdjacency = Array(totalNodes)
     .fill()

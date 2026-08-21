@@ -70,7 +70,7 @@ var rootCount = function (edges, guesses, k) {
         }
         correctCountDfs += calculateRootZeroCorrect(
           neighborDfs,
-          currentNodeDfs,
+          currentNodeDfs
         );
       }
     }

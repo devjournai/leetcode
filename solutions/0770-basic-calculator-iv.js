@@ -1,26 +1,31 @@
 /**
  * Basic Calculator Iv
+ * Intuition: Parse the expression into tokens, then evaluate `+`/`-` over `*` with parentheses, representing each sub-result as a polynomial (`ExpressionClass` of `TermClass` monomials). Substitute known variables from `evaluationVariables` / `evaluationIntegers`.
+ * Approach: 1. Build `variableEvaluations`. 2. `generateTokens` splits spaces, operators, lowercase names, and integers. 3. `parseArithmeticExpression` folds `+`/`-` via `combineExpressions` / `deductExpressions`; `parseMultiplicativeTerm` folds `*`; `parseAtomicFactor` handles `(...)`, mapped constants, free variables, or numbers. 4. `outputFormattedArray` sorts terms by degree then variable names and formats `coeff*var*var`.
+ * Dry Run: expression = "e + 8 - a + 5", evalvars = ["e"], evalints = [1].
+ *   - Tokens: e, +, 8, -, a, +, 5. Substitute e→1.
+ *   - Combine: 1 + 8 - a + 5 → constant 14 and term -1*a. Formatted: ["-1*a","14"].
  * Time Complexity: O(L * T^2 * D * W)
  * Space Complexity: O(L * T * D * W)
  */
 var basicCalculatorIV = function (
   inputExpressionString,
   evaluationVariables,
-  evaluationIntegers,
+  evaluationIntegers
 ) {
   const variableEvaluations = new Map();
   let varIndex = 0;
   while (varIndex < evaluationVariables.length) {
     variableEvaluations.set(
       evaluationVariables[varIndex],
-      evaluationIntegers[varIndex],
+      evaluationIntegers[varIndex]
     );
     varIndex++;
   }
 
   const finalExpressionRepresentation = processExpressionString(
     inputExpressionString,
-    variableEvaluations,
+    variableEvaluations
   );
   return finalExpressionRepresentation.outputFormattedArray();
 
@@ -33,7 +38,7 @@ var basicCalculatorIV = function (
     const expressionChunks = [];
     let traversalIndex = 0;
 
-    for (; traversalIndex < inputString.length; ) {
+    for (; traversalIndex < inputString.length;) {
       const charConsidered = inputString[traversalIndex];
 
       if (charConsidered === " ") {
@@ -76,12 +81,12 @@ var basicCalculatorIV = function (
   function parseArithmeticExpression(
     tokenArray,
     startTokenIndex,
-    currentEvalMap,
+    currentEvalMap
   ) {
     let [leftOperand, currentReadPosition] = parseMultiplicativeTerm(
       tokenArray,
       startTokenIndex,
-      currentEvalMap,
+      currentEvalMap
     );
 
     while (
@@ -93,7 +98,7 @@ var basicCalculatorIV = function (
       const [rightOperand, nextReadPosition] = parseMultiplicativeTerm(
         tokenArray,
         currentReadPosition + 1,
-        currentEvalMap,
+        currentEvalMap
       );
 
       leftOperand =
@@ -109,12 +114,12 @@ var basicCalculatorIV = function (
   function parseMultiplicativeTerm(
     tokenArray,
     startIndexForTerm,
-    currentEvalMap,
+    currentEvalMap
   ) {
     let [leftFactor, positionAfterFactor] = parseAtomicFactor(
       tokenArray,
       startIndexForTerm,
-      currentEvalMap,
+      currentEvalMap
     );
 
     while (
@@ -124,7 +129,7 @@ var basicCalculatorIV = function (
       const [rightFactor, nextPositionAfterFactor] = parseAtomicFactor(
         tokenArray,
         positionAfterFactor + 1,
-        currentEvalMap,
+        currentEvalMap
       );
       leftFactor = leftFactor.multiplyExpressionComponents(rightFactor);
       positionAfterFactor = nextPositionAfterFactor;
@@ -140,7 +145,7 @@ var basicCalculatorIV = function (
       const [innerExpression, positionAfterParen] = parseArithmeticExpression(
         tokenArray,
         startIndexForFactor + 1,
-        currentEvalMap,
+        currentEvalMap
       );
       return [innerExpression, positionAfterParen + 1];
     }
@@ -182,7 +187,7 @@ class TermClass {
   multiplyTerms(otherTerm) {
     return new TermClass(
       this.termCoefficient * otherTerm.termCoefficient,
-      [...this.termVariables, ...otherTerm.termVariables].sort(),
+      [...this.termVariables, ...otherTerm.termVariables].sort()
     );
   }
 
@@ -207,7 +212,7 @@ class TermClass {
         anotherTerm.termVariables[varComparisonIndex]
       ) {
         return this.termVariables[varComparisonIndex].localeCompare(
-          anotherTerm.termVariables[varComparisonIndex],
+          anotherTerm.termVariables[varComparisonIndex]
         );
       }
       varComparisonIndex++;
@@ -242,7 +247,7 @@ class ExpressionClass {
       } else {
         const newlyCreatedTerm = new TermClass(
           incomingTerm.termCoefficient * coefficientMultiplier,
-          incomingTerm.termVariables,
+          incomingTerm.termVariables
         );
         this.expressionTerms.push(newlyCreatedTerm);
         termLookup.set(incomingTermKey, newlyCreatedTerm);
@@ -251,7 +256,7 @@ class ExpressionClass {
     }
 
     this.expressionTerms = this.expressionTerms.filter(
-      (monomial) => monomial.termCoefficient !== 0,
+      (monomial) => monomial.termCoefficient !== 0
     );
     return this;
   }
@@ -272,7 +277,7 @@ class ExpressionClass {
         const termProduct = termOne.multiplyTerms(termTwo);
         if (termProduct.termCoefficient !== 0) {
           resultantExpression.combineExpressions(
-            new ExpressionClass([termProduct]),
+            new ExpressionClass([termProduct])
           );
         }
         secondExprTermIndex++;

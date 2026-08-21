@@ -14,7 +14,7 @@ var minimumCost = function (nums, k, dist) {
   const arrayLength = nums.length;
   const selectedCount = k - 1;
   const uniqueSorted = [...new Set(nums.slice(1))].sort(
-    (left, right) => left - right,
+    (left, right) => left - right
   );
   const valueRank = new Map();
   for (let rankIndex = 0; rankIndex < uniqueSorted.length; rankIndex++) {

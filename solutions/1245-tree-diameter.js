@@ -1,5 +1,10 @@
 /**
  * Tree Diameter
+ * Intuition: In a tree the longest path ends at a farthest leaf from an arbitrary start, then at the farthest node from that leaf. Two BFS passes find those endpoints.
+ * Approach: 1. If there are no edges, return 0. 2. Build an undirected adjacencyGraph from edges. 3. BFS from node 0 to find firstFarthestNode. 4. BFS from that node; the distance returned is actualDiameter. 5. Return actualDiameter.
+ * Dry Run: edges = [[0,1],[1,2],[2,3],[1,4]]
+ *   BFS from 0: furthest is 3 (or 4) at distance 3 from 0 along 0-1-2-3.
+ *   BFS from 3: path 3-2-1-4 has length 3. Return 3.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -47,11 +52,11 @@ var treeDiameter = function (edges) {
 
   const [firstFarthestNode, placeholderDistance] = performBfsTraversal(
     0,
-    adjacencyGraph,
+    adjacencyGraph
   );
   const [secondFarthestNode, actualDiameter] = performBfsTraversal(
     firstFarthestNode,
-    adjacencyGraph,
+    adjacencyGraph
   );
 
   return actualDiameter;

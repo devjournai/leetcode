@@ -1,5 +1,8 @@
 /**
  * Number Of Corner Rectangles
+ * Intuition: A axis-aligned rectangle of 1s is determined by two rows and two columns where both rows have 1s. For each pair of rows, if they share `c` columns of 1s, they form `C(c,2)` rectangles.
+ * Approach: 1. For each pair `rowIndexOne < rowIndexTwo`, count `columnsWithSharedOnes`. 2. Add `columnsWithSharedOnes * (columnsWithSharedOnes - 1) / 2` to `totalCornerRectangles`.
+ * Dry Run: Two rows [1,0,1] and [1,0,1] share two columns → 1 rectangle. A third 1-column would add more pairs.
  * Time Complexity: O(R^2 * C)
  * Space Complexity: O(1)
  */

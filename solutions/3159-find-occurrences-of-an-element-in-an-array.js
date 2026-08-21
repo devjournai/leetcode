@@ -18,6 +18,6 @@ var occurrencesOfElement = function (nums, queries, x) {
   return queries.map((occurrenceNumber) =>
     occurrenceNumber <= matchingIndices.length
       ? matchingIndices[occurrenceNumber - 1]
-      : -1,
+      : -1
   );
 };

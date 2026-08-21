@@ -1,5 +1,9 @@
 /**
  * Even Odd Tree
+ * Intuition: Even levels must be strictly increasing odd values; odd levels must be strictly decreasing even values. Check this while walking the tree level by level.
+ * Approach: 1. BFS each depth. 2. Seed previous as -∞ on even depths and +∞ on odd depths. 3. Reject a node if parity or monotonicity fails. 4. Enqueue children and increment depth. 5. Return true if every level is valid.
+ * Dry Run: [1,10,4,3,null,7,9].
+ *   - Depth 0: 1 odd. Depth 1: 10>4 even decreasing. Depth 2: 3<7<9 odd increasing → true.
  * Time Complexity: O(N)
  * Space Complexity: O(W)
  */

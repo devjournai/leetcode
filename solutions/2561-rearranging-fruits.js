@@ -47,14 +47,14 @@ var minCost = function (basketOneValues, basketTwoValues) {
   basketOneValues.forEach((currentFruitValue) => {
     frequencyMapOne.set(
       currentFruitValue,
-      (frequencyMapOne.get(currentFruitValue) || 0) + 1,
+      (frequencyMapOne.get(currentFruitValue) || 0) + 1
     );
   });
 
   basketTwoValues.forEach((anotherFruitValue) => {
     frequencyMapTwo.set(
       anotherFruitValue,
-      (frequencyMapTwo.get(anotherFruitValue) || 0) + 1,
+      (frequencyMapTwo.get(anotherFruitValue) || 0) + 1
     );
   });
 

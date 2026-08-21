@@ -1,5 +1,9 @@
 /**
  * N Queens II
+ * Intuition: Same placement rules as N-Queens, but we only count complete boards instead of building string grids. Sets mark used columns and both diagonal families.
+ * Approach: 1. Recurse by row; when row == n, increment the count. 2. For each column, if column and both diagonals are free, mark them, recurse to the next row, then unmark.
+ * Dry Run: n = 4.
+ *   - Exhaustive search finds two valid placements (the two classic 4-queens solutions). Return 2.
  * Time Complexity: O(N!)
  * Space Complexity: O(N)
  */

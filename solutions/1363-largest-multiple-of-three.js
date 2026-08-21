@@ -1,5 +1,9 @@
 /**
  * Largest Multiple Of Three
+ * Intuition: A number is divisible by 3 iff its digit sum is. To keep the largest number we greedily drop the fewest smallest digits that fix the remainder (one digit of the same remainder, or two of the other remainder).
+ * Approach: 1. Count digit frequencies and the total sum. 2. If sum % 3 == 0, emit digits from 9 to 0. 3. Otherwise try removing one smallest digit with the needed remainder, and also try removing two smallest digits of the other remainder. 4. Build both candidates (highest digits first, collapsing leading zeros to "0") and keep the lexicographically larger / longer result.
+ * Dry Run: digits = [8, 1, 9], sum = 18, remainder 0.
+ *   - Build from frequencies: "981". Return "981".
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -35,7 +39,7 @@ var largestMultipleOfThree = function (digits) {
 
   const compareAndSelectLargest = (
     firstCandidateString,
-    secondCandidateString,
+    secondCandidateString
   ) => {
     const firstStringLength = firstCandidateString.length;
     const secondStringLength = secondCandidateString.length;
@@ -136,7 +140,7 @@ var largestMultipleOfThree = function (digits) {
 
   let finalResult = compareAndSelectLargest(
     resultOptionOneRemoval,
-    resultOptionTwoRemovals,
+    resultOptionTwoRemovals
   );
 
   return finalResult;

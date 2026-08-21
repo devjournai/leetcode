@@ -29,7 +29,7 @@ var maximumSumSubsequence = function (nums, queries) {
         merged[leftTaken][rightTaken] = Math.max(
           leftState[leftTaken][0] + rightState[0][rightTaken],
           leftState[leftTaken][0] + rightState[1][rightTaken],
-          leftState[leftTaken][1] + rightState[0][rightTaken],
+          leftState[leftTaken][1] + rightState[0][rightTaken]
         );
       }
     }
@@ -46,7 +46,7 @@ var maximumSumSubsequence = function (nums, queries) {
     buildTree(treeIndex * 2 + 2, rangeMid + 1, rangeRight);
     rangeStates[treeIndex] = mergeStates(
       rangeStates[treeIndex * 2 + 1],
-      rangeStates[treeIndex * 2 + 2],
+      rangeStates[treeIndex * 2 + 2]
     );
   };
 
@@ -55,7 +55,7 @@ var maximumSumSubsequence = function (nums, queries) {
     rangeLeft,
     rangeRight,
     updateIndex,
-    newValue,
+    newValue
   ) => {
     if (rangeLeft === rangeRight) {
       rangeStates[treeIndex] = makeLeaf(newValue);
@@ -70,12 +70,12 @@ var maximumSumSubsequence = function (nums, queries) {
         rangeMid + 1,
         rangeRight,
         updateIndex,
-        newValue,
+        newValue
       );
     }
     rangeStates[treeIndex] = mergeStates(
       rangeStates[treeIndex * 2 + 1],
-      rangeStates[treeIndex * 2 + 2],
+      rangeStates[treeIndex * 2 + 2]
     );
   };
 
@@ -88,7 +88,7 @@ var maximumSumSubsequence = function (nums, queries) {
       rootState[0][0],
       rootState[0][1],
       rootState[1][0],
-      rootState[1][1],
+      rootState[1][1]
     );
     totalAnswer = (totalAnswer + Math.max(0, bestSubsequence)) % MOD;
   }

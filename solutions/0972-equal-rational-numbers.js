@@ -1,5 +1,8 @@
 /**
  * Equal Rational Numbers
+ * Intuition: Convert each string to a float: integer part plus non-repeating decimals plus repeating block as `cycleNumeric / (10^len−1)` shifted by the pre-repeat length, then compare within `1e-10`.
+ * Approach: 1. `convertDecimalToFloat` splits on `.`. 2. No fraction → integer. 3. No `(` → parseFloat of `0.frac`. 4. Else parse pre-repeat and repeating group via the geometric-series formula. 5. Return abs(s−t) < tolerance.
+ * Dry Run: s = "0.9(9)", t = "1.". 0.9 + 9/9/10 = 1.0, t is 1. Difference 0 < 1e-10. True.
  * Time Complexity: O(L)
  * Space Complexity: O(L)
  */
@@ -35,7 +38,7 @@ var isRationalEqual = function (s, t) {
     const preRepeatDigits = fractionalPartStr.slice(0, parenthesisPosition);
     const cycleDigits = fractionalPartStr.slice(
       parenthesisPosition + 1,
-      fractionalPartStr.length - 1,
+      fractionalPartStr.length - 1
     );
 
     let preRepeatNumeric = 0;

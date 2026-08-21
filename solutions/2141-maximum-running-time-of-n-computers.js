@@ -35,7 +35,7 @@ var maxRunTime = function (n, batteries) {
   let lowPointer = 1;
   const batteryCapacitiesSum = batteries.reduce(
     (totalSum, singleBatteryValue) => totalSum + singleBatteryValue,
-    0,
+    0
   );
   let highPointer = Math.floor(batteryCapacitiesSum / n);
 
@@ -46,7 +46,7 @@ var maxRunTime = function (n, batteries) {
     for (const currentBatteryEnergy of batteries) {
       effectivePowerAccumulator += Math.min(
         currentBatteryEnergy,
-        candidateDuration,
+        candidateDuration
       );
     }
 

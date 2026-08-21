@@ -1,5 +1,8 @@
 /**
  * Preimage Size Of Factorial Zeroes Function
+ * Intuition: Trailing zeros of `x!` jump in plateaus; the count of `x` with exactly `k` zeros is the gap between the first `x` with ≥`k` zeros and the first with >`k` zeros.
+ * Approach: 1. `calculateFactorialTrailingZeroes` sums `floor(x/5)+floor(x/25)+…`. 2. Binary search `[0, 5e9]` for min `x` with zeros ≥ `k`. 3. Search for min `x` with zeros > `k`. 4. Return their difference (0 if `k` is skipped).
+ * Dry Run: k = 0. Lower bound is 0 (0! has 0 zeros). First x with zeros > 0 is 5. Return 5 (x = 0..4).
  * Time Complexity: O(log(MAX_X_VALUE) * log_5(MAX_X_VALUE))
  * Space Complexity: O(1)
  */
@@ -26,7 +29,7 @@ var preimageSizeFZF = function (k) {
 
     while (leftBoundary <= rightBoundary) {
       let middleIndex = Math.floor(
-        leftBoundary + (rightBoundary - leftBoundary) / 2,
+        leftBoundary + (rightBoundary - leftBoundary) / 2
       );
       let evaluatedZeroesCount = calculateFactorialTrailingZeroes(middleIndex);
 

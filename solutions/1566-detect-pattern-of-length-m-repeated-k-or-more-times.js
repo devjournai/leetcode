@@ -1,5 +1,9 @@
 /**
  * Detect Pattern Of Length M Repeated K Or More Times
+ * Intuition: A pattern of length m repeating k times is k equal adjacent blocks. Try each start and count matching following blocks.
+ * Approach: 1. For each start ≤ n-m*k, compare the next m-blocks to the first. 2. Return true if k matches.
+ * Dry Run: arr = [1,2,4,4,4,4], m = 1, k = 3.
+ *   - Four consecutive 4s → true.
  * Time Complexity: O(arr.length * k * m)
  * Space Complexity: O(1)
  */

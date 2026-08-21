@@ -1,5 +1,8 @@
 /**
  * Remove Comments
+ * Intuition: Scan source as a stream, tracking whether a block comment is open. Line comments discard the rest of the line; block comments can span lines. Keep `segmentBuilder` across lines until a block closes so glued code stays one line.
+ * Approach: 1. For each line, walk indices. 2. If a block comment is open, look for the closer else skip. 3. Else a line comment ends the line, a block opener starts a block, otherwise push the char. 4. After a line, if not in a block and the builder is nonempty, emit the joined line and reset.
+ * Dry Run: `int a;` then a block comment then `int b;` becomes `int a;  int b;`. An unclosed block holds the builder until it ends.
  * Time Complexity: O(TotalChars)
  * Space Complexity: O(TotalChars)
  */

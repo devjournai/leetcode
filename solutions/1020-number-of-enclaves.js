@@ -1,5 +1,9 @@
 /**
  * Number Of Enclaves
+ * Intuition: Land that can walk off the grid is any 1 connected to the border. Flood those away, then count remaining 1s.
+ * Approach: 1. DFS from every border cell, flipping connected 1s to 0. 2. Scan the interior and count leftover 1s.
+ * Dry Run: grid = [[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]].
+ *   - Border has no 1s. Inner 1s at (1,2),(2,1),(2,2) remain. Count 3.
  * Time Complexity: O(R * C)
  * Space Complexity: O(R * C)
  */

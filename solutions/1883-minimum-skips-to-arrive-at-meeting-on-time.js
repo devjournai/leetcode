@@ -1,12 +1,15 @@
 /**
  * Minimum Skips To Arrive At Meeting On Time
+ * Intuition: Rest ceils time to a whole hour except when a skip is used. DP[i][s] = minimum scaled time after i roads with s skips (stored as distance-equivalent, rest via ceil to multiples of speed).
+ * Approach: 1. dpTable[0][0]=0. 2. Transition rest (ceil) with same skips, or skip (add dist, no ceil) with s-1. 3. Smallest s with dp[n][s] ≤ hoursBefore*speed, else -1.
+ * Dry Run: dist=[1,3,2], speed=4, hoursBefore=2. With 1 skip you finish in time. Return 1.
  * Time Complexity: O(n^2)
  * Space Complexity: O(n^2)
  */
 var minSkips = function (dist, speed, hoursBefore) {
   const totalRoadCount = dist.length;
   const dpTable = Array.from({ length: totalRoadCount + 1 }, () =>
-    new Array(totalRoadCount + 1).fill(Infinity),
+    new Array(totalRoadCount + 1).fill(Infinity)
   );
   dpTable[0][0] = 0;
 
@@ -26,7 +29,7 @@ var minSkips = function (dist, speed, hoursBefore) {
             Math.ceil(timeForCurrentCalculation / speed) * speed;
           dpTable[roadIteration][skipCount] = Math.min(
             dpTable[roadIteration][skipCount],
-            timeAfterRestApplied,
+            timeAfterRestApplied
           );
         }
       }
@@ -40,7 +43,7 @@ var minSkips = function (dist, speed, hoursBefore) {
             dist[roadIteration - 1];
           dpTable[roadIteration][skipCount] = Math.min(
             dpTable[roadIteration][skipCount],
-            totalTimeWithoutRest,
+            totalTimeWithoutRest
           );
         }
       }

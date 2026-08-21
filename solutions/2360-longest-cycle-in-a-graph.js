@@ -55,7 +55,7 @@ var longestCycle = function (edges) {
     if (nodeVisitationStates[currentNodeIdentifier] === 1) {
       maximumCycleLength = Math.max(
         maximumCycleLength,
-        currentPathDepth - nodeDiscoveryDepths[currentNodeIdentifier],
+        currentPathDepth - nodeDiscoveryDepths[currentNodeIdentifier]
       );
       return;
     }

@@ -63,7 +63,7 @@ var numberOfCategories = function (n, categoryHandler) {
             !hasVisited[loopIndexInner] &&
             categoryHandler.haveSameCategory(
               currentProcessingElement,
-              loopIndexInner,
+              loopIndexInner
             )
           ) {
             hasVisited[loopIndexInner] = true;

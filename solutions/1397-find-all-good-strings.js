@@ -1,5 +1,9 @@
 /**
  * Find All Good Strings
+ * Intuition: Count strings of length n in [s1, s2] that do not contain evil, using digit-DP plus KMP so we never embed the evil prefix.
+ * Approach: 1. Build LPS for evil. 2. Recurse on (index, kmpState, tightLow, tightHigh). 3. If kmpState == evil.length, that path is invalid (0). If index == n, count 1. 4. Iterate allowed letters between the tight bounds, advance the KMP state, and memoize. 5. Return the count mod 1e9+7.
+ * Dry Run: n = 2, s1 = "aa", s2 = "da", evil = "b".
+ *   - Strings from "aa" to "da" excluding those with 'b': aa,ac,...,az,ca,...,da minus *b*. Sample answer 51.
  * Time Complexity: O(n * M * alphabet_size)
  * Space Complexity: O(n * M)
  */
@@ -42,7 +46,7 @@ var findGoodStrings = function (n, s1, s2, evil) {
     s1Reference,
     s2Reference,
     evilReference,
-    lpsReference,
+    lpsReference
   ) {
     if (evilKmpState === evilReference.length) {
       return 0;
@@ -95,7 +99,7 @@ var findGoodStrings = function (n, s1, s2, evil) {
         s1Reference,
         s2Reference,
         evilReference,
-        lpsReference,
+        lpsReference
       );
       functionResultAccumulator =
         (functionResultAccumulator + callReturnValue) % goodStringsModulus;
@@ -113,7 +117,7 @@ var findGoodStrings = function (n, s1, s2, evil) {
     s1,
     s2,
     evil,
-    precomputedEvilLPS,
+    precomputedEvilLPS
   );
   return goodStringCountResult;
 };

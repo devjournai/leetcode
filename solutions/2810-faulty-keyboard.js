@@ -24,7 +24,7 @@ var finalString = function (s) {
         return currentCharacters;
       }
     },
-    [],
+    []
   );
 
   return characterAccumulator.join("");

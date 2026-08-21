@@ -1,5 +1,9 @@
 /**
  * Trapping Rain Water II
+ * Intuition: Water height for an inner cell is limited by the lowest surrounding “wall”. Grow inward from the border with a min-heap of boundary heights; a neighbor traps `max(0, currentCellHeight - neighborHeight)` and then becomes a wall of `max(current, neighbor)`.
+ * Approach: 1. Empty map → 0. 2. Push all border cells into `PriorityQueueMin` (by height) and mark visited. 3. Pop the lowest wall, visit unvisited neighbors, add trapped water, push the updated boundary height. 4. Return `totalWaterTrapped`.
+ * Dry Run: 3×3 with center 1 and border 2s.
+ *   - Borders at height 2 in the heap; pop 2, neighbor center 1 traps 1, new wall 2. Return 1.
  * Time Complexity: O(M*N*log(M*N))
  * Space Complexity: O(M*N)
  */
@@ -94,7 +98,7 @@ var trapRainWater = function (heightMap) {
 
   const minPriorityQueue = new PriorityQueueMin();
   const cellVisitedStatus = Array.from({ length: mapRowsCount }, () =>
-    Array(mapColsCount).fill(false),
+    Array(mapColsCount).fill(false)
   );
 
   let rowIter = 0;
@@ -155,13 +159,13 @@ var trapRainWater = function (heightMap) {
 
       const waterVolume = Math.max(
         0,
-        currentCellHeight - heightMap[nextCellRow][nextCellCol],
+        currentCellHeight - heightMap[nextCellRow][nextCellCol]
       );
       totalWaterTrapped += waterVolume;
 
       const nextCellBoundaryHeight = Math.max(
         currentCellHeight,
-        heightMap[nextCellRow][nextCellCol],
+        heightMap[nextCellRow][nextCellCol]
       );
       minPriorityQueue.push([nextCellRow, nextCellCol, nextCellBoundaryHeight]);
       directionIndex++;

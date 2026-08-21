@@ -1,4 +1,9 @@
-/* Add Two Polynomials Represented as Linked Lists
+/**
+ * Add Two Polynomials Represented as Linked Lists
+ * Intuition: Both lists are sorted by descending power, so merge like sorted lists: take the higher power, or add coefficients when powers match (drop zero sums).
+ * Approach: 1. Dummy head and two pointers. 2. While either list remains, pick the larger power, or sum equal powers. 3. Append a node only if the coefficient is nonzero. 4. Return dummy.next.
+ * Dry Run: 2x^2 + 4x + 3  and  -4x + 1.
+ *   - Powers 2 then 1: 4-4=0 dropped, then 3+1=4 → 2x^2 + 4.
  * Time Complexity: O(M + N)
  * Space Complexity: O(M + N)
  */

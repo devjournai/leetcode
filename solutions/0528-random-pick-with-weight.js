@@ -1,5 +1,9 @@
 /**
  * Random Pick With Weight
+ * Intuition: Prefix sums turn weights into a number line. A uniform random value in `[0, total)` maps to an index via binary search for the first prefix strictly greater than that value.
+ * Approach: 1. Constructor builds `cumulativeWeights` and `totalWeightSum`. 2. `pickIndex` draws `randomValue = Math.random() * total`. 3. Binary search the smallest prefix `> randomValue` and return that index.
+ * Dry Run: weights = [1, 3]. Prefixes [1, 4].
+ *   - Random in [0,1) → index 0; in [1,4) → index 1.
  * Time Complexity: O(log N)
  * Space Complexity: O(N)
  */

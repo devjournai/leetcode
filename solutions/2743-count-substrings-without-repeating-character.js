@@ -38,14 +38,14 @@ var numberOfSpecialSubstrings = function (s) {
     const currentCharRight = s[rightBoundary];
     charOccurrencesTracker.set(
       currentCharRight,
-      (charOccurrencesTracker.get(currentCharRight) || 0) + 1,
+      (charOccurrencesTracker.get(currentCharRight) || 0) + 1
     );
 
     while (charOccurrencesTracker.get(currentCharRight) > 1) {
       const charAtLeftBoundary = s[leftBoundary];
       charOccurrencesTracker.set(
         charAtLeftBoundary,
-        charOccurrencesTracker.get(charAtLeftBoundary) - 1,
+        charOccurrencesTracker.get(charAtLeftBoundary) - 1
       );
       if (charOccurrencesTracker.get(charAtLeftBoundary) === 0) {
         charOccurrencesTracker.delete(charAtLeftBoundary);

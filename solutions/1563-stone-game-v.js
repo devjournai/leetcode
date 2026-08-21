@@ -84,7 +84,7 @@ var stoneGameV = function (stoneValue) {
   }
 
   const memo = Array.from({ length: stoneCount }, () =>
-    new Array(stoneCount).fill(-1),
+    new Array(stoneCount).fill(-1)
   );
 
   function calculateMaxScore(startPosition, endPosition) {
@@ -115,7 +115,7 @@ var stoneGameV = function (stoneValue) {
           rightSegmentSum + calculateMaxScore(divisionPoint + 1, endPosition);
         currentIterationScore = Math.max(
           scoreFromKeepingLeft,
-          scoreFromKeepingRight,
+          scoreFromKeepingRight
         );
       } else if (leftSegmentSum > rightSegmentSum) {
         currentIterationScore =

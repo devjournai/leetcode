@@ -1,5 +1,8 @@
 /**
  * Longest Balanced Substring I
+ * Intuition: A substring is balanced when every character that appears does so the same number of times. Brute all start/end pairs with a 26-count array.
+ * Approach: 1. For each start i reset counts. 2. Extend j, increment s[j]. 3. Scan 26 buckets: all nonzero counts equal ⇒ update max length.
+ * Dry Run: s = "abb". [0,0] "a" ok len 1; [0,1] a:1 b:1 ok len 2; [1,2] "bb" ok len 2. Answer 2.
  * Time Complexity: O(N^2)
  * Space Complexity: O(1)
  */

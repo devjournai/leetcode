@@ -70,7 +70,7 @@ class PriorityQueue {
       if (
         this.compareElements(
           this.heapContent[currentIdx],
-          this.heapContent[parentIdx],
+          this.heapContent[parentIdx]
         ) < 0
       ) {
         [this.heapContent[currentIdx], this.heapContent[parentIdx]] = [
@@ -96,7 +96,7 @@ class PriorityQueue {
         leftChildIdx <= lastIdx &&
         this.compareElements(
           this.heapContent[leftChildIdx],
-          this.heapContent[smallestIdx],
+          this.heapContent[smallestIdx]
         ) < 0
       ) {
         smallestIdx = leftChildIdx;
@@ -106,7 +106,7 @@ class PriorityQueue {
         rightChildIdx <= lastIdx &&
         this.compareElements(
           this.heapContent[rightChildIdx],
-          this.heapContent[smallestIdx],
+          this.heapContent[smallestIdx]
         ) < 0
       ) {
         smallestIdx = rightChildIdx;
@@ -135,12 +135,12 @@ var minimumCost = function (nCities, allHighways, availableDiscounts) {
   }
 
   const priorityQ = new PriorityQueue(
-    (entryA, entryB) => entryA[0] - entryB[0],
+    (entryA, entryB) => entryA[0] - entryB[0]
   );
   priorityQ.enqueue([0, 0, 0]); // [cost, city, discountsUsed]
 
   const minCostStates = Array.from({ length: nCities }, () =>
-    new Array(availableDiscounts + 1).fill(Infinity),
+    new Array(availableDiscounts + 1).fill(Infinity)
   );
   minCostStates[0][0] = 0;
 

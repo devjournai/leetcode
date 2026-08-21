@@ -47,7 +47,7 @@ var equalDigitFrequency = function (s) {
       const currentDigitChar = s[endPosition];
       digitTally.set(
         currentDigitChar,
-        (digitTally.get(currentDigitChar) || 0) + 1,
+        (digitTally.get(currentDigitChar) || 0) + 1
       );
 
       if (areFrequenciesBalanced(digitTally)) {

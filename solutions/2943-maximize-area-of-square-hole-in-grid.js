@@ -37,7 +37,7 @@
  *
  * ------------------------------------------------------------
  *
- * Example:
+ * Dry Run:
  *
  * hBars = [2, 3, 4]
  * vBars = [1, 2]
@@ -105,7 +105,7 @@ function getMaxSide(bars) {
 
     maxConsecutiveLength = Math.max(
       maxConsecutiveLength,
-      currentConsecutiveLength,
+      currentConsecutiveLength
     );
   }
 

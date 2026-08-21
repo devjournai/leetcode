@@ -1,5 +1,9 @@
 /**
  * Design Tic Tac Toe
+ * Intuition: Player 1 adds +1 and player 2 adds -1 to the moved row, column, and diagonals. A line of n of the same player has absolute score n, so a winner can be detected in O(1) per move.
+ * Approach: 1. Store n and zeroed row/column arrays plus two diagonal totals. 2. On move, apply +1 or -1 to that row and column; if row === col update the main diagonal; if row + col === n - 1 update the anti-diagonal. 3. If any of those four absolute scores equals n, return playerNumber. 4. Otherwise return 0.
+ * Dry Run: n = 2; move(0, 0, 1), move(0, 1, 2), move(1, 1, 1).
+ *   - Third move completes the main diagonal for player 1 (abs score 2) → return 1.
  * Time Complexity: O(1)
  * Space Complexity: O(N)
  */
@@ -14,7 +18,7 @@ var TicTacToe = function (nBoardSize) {
 TicTacToe.prototype.move = function (
   rowCoordinate,
   colCoordinate,
-  playerNumber,
+  playerNumber
 ) {
   const scoreChangeValue = playerNumber === 1 ? 1 : -1;
   const currentBoardSize = this.gameBoardSize;
@@ -32,13 +36,13 @@ TicTacToe.prototype.move = function (
 
   const currentAbsoluteRowScore = Math.abs(this.rowTotalScores[rowCoordinate]);
   const currentAbsoluteColumnScore = Math.abs(
-    this.columnTotalScores[colCoordinate],
+    this.columnTotalScores[colCoordinate]
   );
   const currentAbsoluteLeadingDiagonalScore = Math.abs(
-    this.leadingDiagonalTotal,
+    this.leadingDiagonalTotal
   );
   const currentAbsoluteSecondaryDiagonalScore = Math.abs(
-    this.secondaryDiagonalTotal,
+    this.secondaryDiagonalTotal
   );
 
   if (

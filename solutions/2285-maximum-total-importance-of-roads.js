@@ -71,7 +71,7 @@ var maximumImportance = function (n, roads) {
 
   const allCityIndices = Array.from({ length: n }, (_, cityIndex) => cityIndex);
   allCityIndices.sort(
-    (cityA, cityB) => cityConnectionCounts[cityB] - cityConnectionCounts[cityA],
+    (cityA, cityB) => cityConnectionCounts[cityB] - cityConnectionCounts[cityA]
   );
 
   let totalAccumulatedImportance = 0;

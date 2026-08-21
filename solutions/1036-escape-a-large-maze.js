@@ -1,5 +1,9 @@
 /**
  * Escape A Large Maze
+ * Intuition: On a 1e6 grid, blocked cells can only enclose a region of size O(B^2). BFS from source (and from target) succeeds if we reach the other point or visit more than ~19900 cells.
+ * Approach: 1. Put blocked cells in a set. 2. BFS from source toward target; return false if trapped. 3. BFS from target toward source the same way. 4. During BFS, succeed if the opposite cell is reached or visited size exceeds 19900.
+ * Dry Run: blocked=[[0,1]], source=[0,0], target=[0,2].
+ *   - From (0,0) can loop around the single block on the huge grid (visit count exceeds threshold) -> true.
  * Time Complexity: O(B^2)
  * Space Complexity: O(B^2)
  */
@@ -7,9 +11,7 @@ var isEscapePossible = function (blocked, source, target) {
   const maxDimension = 1e6;
   const escapeThreshold = 19900;
   const blockedCoordinates = new Set(
-    blocked.map(
-      ([coordinateX, coordinateY]) => `${coordinateX},${coordinateY}`,
-    ),
+    blocked.map(([coordinateX, coordinateY]) => `${coordinateX},${coordinateY}`)
   );
 
   const canExploreFromSource = checkForPathOrEscape(
@@ -17,7 +19,7 @@ var isEscapePossible = function (blocked, source, target) {
     target,
     blockedCoordinates,
     maxDimension,
-    escapeThreshold,
+    escapeThreshold
   );
   if (!canExploreFromSource) {
     return false;
@@ -28,7 +30,7 @@ var isEscapePossible = function (blocked, source, target) {
     source,
     blockedCoordinates,
     maxDimension,
-    escapeThreshold,
+    escapeThreshold
   );
   return canExploreFromTarget;
 
@@ -37,7 +39,7 @@ var isEscapePossible = function (blocked, source, target) {
     endLocation,
     blockLookup,
     gridLimit,
-    explorationCeiling,
+    explorationCeiling
   ) {
     const searchQueue = [startLocation];
     const visitedLocations = new Set([

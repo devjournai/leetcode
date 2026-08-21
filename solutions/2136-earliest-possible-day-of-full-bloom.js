@@ -32,7 +32,7 @@ var earliestFullBloom = function (plantTime, growTime) {
 
   flowerSeeds.sort(
     (firstSeedPair, secondSeedPair) =>
-      secondSeedPair.growingDuration - firstSeedPair.growingDuration,
+      secondSeedPair.growingDuration - firstSeedPair.growingDuration
   );
 
   let currentPlantingAccumulator = 0;

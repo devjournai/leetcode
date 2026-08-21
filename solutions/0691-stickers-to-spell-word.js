@@ -1,5 +1,8 @@
 /**
  * Stickers To Spell Word
+ * Intuition: Each subset of `target` chars is a bitmask. From a reachable mask, try stickers that cover the first missing letter and greedy-assign remaining sticker letters to unset bits.
+ * Approach: 1. Count letters per sticker (26). 2. `dpStickerCounts[mask]` min stickers; 0 at empty mask. 3. For each finite mask find `firstOpenIndex`; skip stickers lacking that letter. 4. Copy freq, set bits for covered unset chars, relax dp with +1. 5. Full mask or -1.
+ * Dry Run: stickers=["with","example","science"], target="the". "with" covers t,h; "example" covers e. dp full mask = 2.
  * Time Complexity: O(2^T * N * T)
  * Space Complexity: O(2^T + N * 26)
  */
@@ -80,7 +83,7 @@ var minStickers = function (stickers, target) {
       if (nextTargetMask !== currentMaskIteration) {
         dpStickerCounts[nextTargetMask] = Math.min(
           dpStickerCounts[nextTargetMask],
-          dpStickerCounts[currentMaskIteration] + 1,
+          dpStickerCounts[currentMaskIteration] + 1
         );
       }
     }

@@ -1,5 +1,8 @@
 /**
  * Bricks Falling When Hit
+ * Intuition: Process hits backward. After erasing all hits, mark bricks still attached to the top as 3. Restoring a hit brick that touches a stable component reconnects a DFS blob; extras besides the hit itself would have fallen.
+ * Approach: 1. Mark existing hit cells as 2. 2. DFS from row 0, set 1→3. 3. Reverse hits: skip non-2; set 1; if `isBrickStable` (row 0 or neighbor 3), `countConnectedStable` 1→3; fallen = size-1. 4. Return `fallCounts`.
+ * Dry Run: grid = [[1,0,0,0],[1,1,1,0]], hits = [[1,0]]. After reverse restore (1,0), it is stable via (0,0); connected extra is 2 → [2].
  * Time Complexity: O(R * C + H)
  * Space Complexity: O(R * C + H)
  */
@@ -33,7 +36,7 @@ var hitBricks = function (grid, hits) {
       grid,
       gridRows,
       gridCols,
-      movesArray,
+      movesArray
     );
     columnIterator++;
   }
@@ -60,7 +63,7 @@ var hitBricks = function (grid, hits) {
         grid,
         gridRows,
         gridCols,
-        movesArray,
+        movesArray
       );
       fallCounts[revertHitIndex] = newlyStabilizedBricks - 1;
     }
@@ -75,7 +78,7 @@ var hitBricks = function (grid, hits) {
     currentGridState,
     totalRows,
     totalCols,
-    directionsSet,
+    directionsSet
   ) {
     if (
       rowPosition < 0 ||
@@ -99,7 +102,7 @@ var hitBricks = function (grid, hits) {
         currentGridState,
         totalRows,
         totalCols,
-        directionsSet,
+        directionsSet
       );
     }
     return componentSize;
@@ -111,7 +114,7 @@ var hitBricks = function (grid, hits) {
     currentGridState,
     totalRows,
     totalCols,
-    directionsSet,
+    directionsSet
   ) {
     if (checkRow === 0) {
       return true;
@@ -140,7 +143,7 @@ var hitBricks = function (grid, hits) {
     currentGridState,
     totalRows,
     totalCols,
-    directionsSet,
+    directionsSet
   ) {
     if (
       startRow < 0 ||
@@ -165,7 +168,7 @@ var hitBricks = function (grid, hits) {
         currentGridState,
         totalRows,
         totalCols,
-        directionsSet,
+        directionsSet
       );
       directionIndex++;
     }

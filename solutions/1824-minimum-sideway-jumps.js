@@ -1,5 +1,9 @@
 /**
  * Minimum Sideway Jumps
+ * Intuition: Three lanes; frog starts on lane 2. DP stores min jumps to occupy each lane at the current stone, forbidding the obstacle lane and allowing a +1 jump from another free lane.
+ * Approach: 1. Seed `currentMinJumps = [1,0,1]`. 2. At each waypoint copy staying on a free lane, then consider jumping from the other two free lanes. 3. Advance the DP. 4. Return min of the three lanes at the end.
+ * Dry Run: obstacles = [0,1,2,3,0].
+ *   - Obstacle pattern forces two side jumps. Return 2.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

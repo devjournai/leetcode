@@ -1,5 +1,9 @@
 /**
  * String Compression II
+ * Intuition: DP after prefix i with d deletions: min encoded length. A run of the last kept char encodes with length 1/2/3/4 depending on count.
+ * Approach: 1. memo[i][d]=inf, memo[0][0]=0. 2. For each i,d scan backward grouping the last char, delete mismatches, add encode(run). 3. Also try deleting s[i-1]. 4. Return memo[n][k].
+ * Dry Run: s = "aaabcccd", k = 2.
+ *   - Delete two letters from the c-run; optimal encoded length is 4.
  * Time Complexity: O(N^2 * K)
  * Space Complexity: O(N * K)
  */
@@ -50,7 +54,7 @@ var getLengthOfOptimalCompression = function (s, k) {
             memo[currentStringIndex][currentDeletionsAllowed],
             memo[backwardScanIndex - 1][
               currentDeletionsAllowed - nonMatchingDeletions
-            ] + computeRunLength(matchingCharacterCount),
+            ] + computeRunLength(matchingCharacterCount)
           );
         }
       }
@@ -58,7 +62,7 @@ var getLengthOfOptimalCompression = function (s, k) {
       if (currentDeletionsAllowed > 0) {
         memo[currentStringIndex][currentDeletionsAllowed] = Math.min(
           memo[currentStringIndex][currentDeletionsAllowed],
-          memo[currentStringIndex - 1][currentDeletionsAllowed - 1],
+          memo[currentStringIndex - 1][currentDeletionsAllowed - 1]
         );
       }
     }

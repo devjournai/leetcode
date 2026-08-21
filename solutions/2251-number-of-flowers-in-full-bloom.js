@@ -41,11 +41,11 @@ var fullBloomFlowers = function (flowers, people) {
 
   const bloomCountsResult = new Array(people.length).fill(0);
   const personArrivalsWithOriginalIndices = people.map(
-    (arrivalMoment, originalPosition) => [arrivalMoment, originalPosition],
+    (arrivalMoment, originalPosition) => [arrivalMoment, originalPosition]
   );
 
   personArrivalsWithOriginalIndices.sort(
-    (personA, personB) => personA[0] - personB[0],
+    (personA, personB) => personA[0] - personB[0]
   );
 
   let currentBloomTally = 0;

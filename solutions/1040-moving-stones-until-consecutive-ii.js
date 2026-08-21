@@ -1,5 +1,9 @@
 /**
  * Moving Stones Until Consecutive II
+ * Intuition: Max moves is the larger of sliding the leftmost or rightmost stone into the opposite interior gap. Min moves is n minus the densest window of length n, except a special case that needs 2.
+ * Approach: 1. Sort. 2. max = max(end-second-n+2, secondLast-start-n+2). 3. Sliding window of stones that fit in a span of n; min = n - windowSize, or 2 when n-1 stones already occupy n-1 consecutive slots. 4. Return [min,max].
+ * Dry Run: stones = [7,4,9].
+ *   - Sorted 4,7,9. Max is max(9-7+1-2, 7-4+1-2)=max(1,2)=2. Sliding window of length 3 holds 2 stones, min=1. [1,2].
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */
@@ -22,7 +26,7 @@ var numMovesStonesII = function (stonesPositions) {
 
   const maximumPossibleMoves = Math.max(
     movesIfFirstStoneFixed,
-    movesIfLastStoneFixed,
+    movesIfLastStoneFixed
   );
 
   let minimumRequiredMoves = totalCount;
@@ -53,7 +57,7 @@ var numMovesStonesII = function (stonesPositions) {
     } else {
       minimumRequiredMoves = Math.min(
         minimumRequiredMoves,
-        totalCount - currentWindowStoneCount,
+        totalCount - currentWindowStoneCount
       );
     }
   }

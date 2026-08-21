@@ -81,7 +81,7 @@ var jsonToMatrix = function (arr) {
         accumulatedPaths.push(
           singleNestedPath
             ? `${currentLevelKey}.${singleNestedPath}`
-            : currentLevelKey,
+            : currentLevelKey
         );
       }
     }
@@ -132,7 +132,7 @@ var jsonToMatrix = function (arr) {
       const currentPathString = finalColumnNames[columnScanIndex];
       const cellData = retrievePathValue(
         currentSourceObject,
-        currentPathString,
+        currentPathString
       );
       currentRowData.push(cellData);
     }

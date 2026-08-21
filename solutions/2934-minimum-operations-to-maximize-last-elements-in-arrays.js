@@ -88,12 +88,12 @@ var minOperations = function (nums1, nums2) {
 
   let costIfLastNotSwapped = calculateMinimumSwaps(
     lastElementOneOriginal,
-    lastElementTwoOriginal,
+    lastElementTwoOriginal
   );
 
   let costIfLastSwapped = calculateMinimumSwaps(
     lastElementTwoOriginal,
-    lastElementOneOriginal,
+    lastElementOneOriginal
   );
   if (costIfLastSwapped !== Infinity) {
     costIfLastSwapped++;
@@ -101,7 +101,7 @@ var minOperations = function (nums1, nums2) {
 
   const minimumTotalOperations = Math.min(
     costIfLastNotSwapped,
-    costIfLastSwapped,
+    costIfLastSwapped
   );
 
   if (minimumTotalOperations === Infinity) {

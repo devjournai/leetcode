@@ -1,5 +1,9 @@
 /**
  * Sparse Matrix Multiplication
+ * Intuition: Skip zeros in mat1 by storing only non-zero (column,value) pairs per row, then multiply those against non-zero entries of mat2.
+ * Approach: 1. Allocate an M×N zero product. 2. For each mat1[i][k]≠0, push {column:k,value}. 3. For each stored entry, for each mat2 column j, if mat2[k][j]≠0 add value*mat2[k][j] into product[i][j]. 4. Return the product.
+ * Dry Run: mat1=[[1,0],[0,0]], mat2=[[1,0],[0,1]].
+ *   - Only (0,0)=1 is stored; it multiplies row 0 of mat2 → product [[1,0],[0,0]].
  * Time Complexity: O(M * K * N)
  * Space Complexity: O(M * N)
  */

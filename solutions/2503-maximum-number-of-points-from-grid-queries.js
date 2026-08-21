@@ -109,7 +109,7 @@ var maxPoints = function (gridInput, queryInput) {
       ) {
         this.swapHeapElements(
           this.getHeapParentIndex(currentElementIndex),
-          currentElementIndex,
+          currentElementIndex
         );
         currentElementIndex = this.getHeapParentIndex(currentElementIndex);
       }
@@ -158,7 +158,7 @@ var maxPoints = function (gridInput, queryInput) {
     [0, -1],
   ];
   const priorityQueue = new MinPriorityQueue(
-    ([rowIdx, colIdx]) => gridInput[rowIdx][colIdx],
+    ([rowIdx, colIdx]) => gridInput[rowIdx][colIdx]
   );
   const visitedCells = new Set();
 

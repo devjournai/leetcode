@@ -1,5 +1,10 @@
 /**
  * How Many Numbers Are Smaller Than The Current Number
+ * Intuition: Values are in a tiny range, so a frequency array plus prefix counts gives, for each value, how many numbers are strictly smaller.
+ * Approach: 1. Count occurrences of each value in [0, 100]. 2. Build cumulativeSmaller[v] = count of values < v. 3. Map each original nums[i] to cumulativeSmaller[nums[i]].
+ * Dry Run: nums = [8, 1, 2, 2, 3].
+ *   - Frequencies: 1→1, 2→2, 3→1, 8→1.
+ *   - Smaller counts: 8→4, 1→0, 2→1, 2→1, 3→3. Return [4, 0, 1, 1, 3].
  * Time Complexity: O(N + K)
  * Space Complexity: O(N + K)
  */

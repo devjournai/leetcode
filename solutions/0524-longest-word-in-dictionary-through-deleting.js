@@ -1,5 +1,9 @@
 /**
  * Longest Word In Dictionary Through Deleting
+ * Intuition: A dictionary word is valid if it is a subsequence of `s`. Prefer the longest such word, breaking ties lexicographically.
+ * Approach: 1. `isSubsequencePresent` advances a pointer on the candidate whenever `s` matches. 2. For each dictionary word that is a subsequence, replace `currentLongestWord` if it is longer or equal-length and `localeCompare` is smaller.
+ * Dry Run: s = "abpcplea", dictionary = ["ale","apple","monkey","plea"].
+ *   - "ale" ok; "apple" longer; "monkey" not a subsequence; "plea" shorter. Return "apple".
  * Time Complexity: O(D * (S + L_max))
  * Space Complexity: O(L_max)
  */

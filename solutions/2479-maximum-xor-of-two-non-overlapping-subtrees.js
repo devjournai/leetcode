@@ -111,7 +111,7 @@ var maxXor = function (nodeCount, edgeList, nodeValues) {
       if (childNode !== parentNode) {
         totalSubtreeValues[currentNode] += calculateNodeSubtreeSum(
           childNode,
-          currentNode,
+          currentNode
         );
       }
     }
@@ -169,7 +169,7 @@ var maxXor = function (nodeCount, edgeList, nodeValues) {
   function findMaximumXorScore(currentNode, parentNode, trieRootPointer) {
     let maximumXorScore = queryTrieForMaxXor(
       trieRootPointer,
-      totalSubtreeValues[currentNode],
+      totalSubtreeValues[currentNode]
     );
 
     for (
@@ -182,7 +182,7 @@ var maxXor = function (nodeCount, edgeList, nodeValues) {
         const maxScoreFromChild = findMaximumXorScore(
           childNode,
           currentNode,
-          trieRootPointer,
+          trieRootPointer
         );
         if (maxScoreFromChild > maximumXorScore) {
           maximumXorScore = maxScoreFromChild;

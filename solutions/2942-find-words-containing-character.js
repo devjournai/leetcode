@@ -31,7 +31,7 @@ var findWordsContaining = function (words, x) {
       }
       return indicesCollector;
     },
-    [],
+    []
   );
 
   return matchingWordIndices;

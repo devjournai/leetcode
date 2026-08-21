@@ -1,5 +1,8 @@
 /**
  * Minimum Speed To Arrive On Time
+ * Intuition: Time is monotone in speed. Binary-search speed; ceil every train except the last (no wait after the last).
+ * Approach: 1. If even waiting n−1 hours already exceeds `hour`, return -1. 2. Search [1, 1e7]. 3. For mid speed, sum ceil(dist[i]/speed) for i<n-1 plus last/speed. 4. Record `lowestValidSpeed` when total ≤ hour.
+ * Dry Run: dist=[1,3,2], hour=6. Speed 1 works (1+3+2=6). Return 1.
  * Time Complexity: O(numberOfTrains * log(maximumSearchSpeed))
  * Space Complexity: O(1)
  */
@@ -16,7 +19,7 @@ var minSpeedOnTime = function (dist, hour) {
 
   while (minAchievableSpeed <= maxAchievableSpeed) {
     const currentCheckSpeed = Math.floor(
-      (minAchievableSpeed + maxAchievableSpeed) / 2,
+      (minAchievableSpeed + maxAchievableSpeed) / 2
     );
 
     let totalTimeAccumulated = 0;
@@ -25,7 +28,7 @@ var minSpeedOnTime = function (dist, hour) {
     for (distIterator = 0; distIterator < numberOfTrains - 1; distIterator++) {
       const currentSegmentDistance = dist[distIterator];
       totalTimeAccumulated += Math.ceil(
-        currentSegmentDistance / currentCheckSpeed,
+        currentSegmentDistance / currentCheckSpeed
       );
     }
 

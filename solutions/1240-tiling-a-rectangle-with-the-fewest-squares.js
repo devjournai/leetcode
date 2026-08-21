@@ -1,5 +1,8 @@
 /**
  * Tiling A Rectangle With The Fewest Squares
+ * Intuition: Fill the first empty cell with the largest feasible square and backtrack, pruning when the square count already meets the best.
+ * Approach: 1. Board of booleans. 2. Find the top-left empty cell. 3. Try placing size max..1 if it fits, recurse, undo. 4. When full, record min squares.
+ * Dry Run: n=2, m=3. Place a 2×2 at (0,0), then two 1×1 squares for the remaining column → 3.
  * Time Complexity: O(min(N,M)^S * (N*M))
  * Space Complexity: O(N * M)
  */
@@ -12,7 +15,7 @@ var tilingRectangle = function (n, m) {
   function checkPlacement(
     startRowPosition,
     startColumnPosition,
-    squareDimension,
+    squareDimension
   ) {
     if (
       startRowPosition + squareDimension > lengthN ||
@@ -83,7 +86,7 @@ var tilingRectangle = function (n, m) {
 
     const maxSquareFit = Math.min(
       lengthN - foundEmptyRow,
-      widthM - foundEmptyCol,
+      widthM - foundEmptyCol
     );
     for (
       let squareFitSize = maxSquareFit;

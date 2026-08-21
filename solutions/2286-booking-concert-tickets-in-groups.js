@@ -64,7 +64,7 @@ var BookMyShow = function (n, m) {
     {
       length: treeCapacity,
     },
-    () => [0, 0],
+    () => [0, 0]
   );
 
   this.buildSegmentTree(0, 0, this.rowsCount - 1);
@@ -73,7 +73,7 @@ var BookMyShow = function (n, m) {
 BookMyShow.prototype.buildSegmentTree = function (
   nodeIdx,
   currentRangeStart,
-  currentRangeEnd,
+  currentRangeEnd
 ) {
   if (currentRangeStart === currentRangeEnd) {
     this.bookingTree[nodeIdx] = [this.seatsPerRow, this.seatsPerRow];
@@ -98,7 +98,7 @@ BookMyShow.prototype.gather = function (seatsCount, maximumRow) {
     0,
     this.rowsCount - 1,
     seatsCount,
-    maximumRow,
+    maximumRow
   );
   if (bookingResult.length) {
     this.allocateGroupSeats(
@@ -106,7 +106,7 @@ BookMyShow.prototype.gather = function (seatsCount, maximumRow) {
       0,
       this.rowsCount - 1,
       bookingResult[0],
-      seatsCount,
+      seatsCount
     );
   }
   return bookingResult;
@@ -117,7 +117,7 @@ BookMyShow.prototype.findAvailableGroup = function (
   currentRangeStart,
   currentRangeEnd,
   requiredSeats,
-  maxAllowedRow,
+  maxAllowedRow
 ) {
   if (currentRangeStart > maxAllowedRow) return [];
   if (this.bookingTree[nodeIdx][0] < requiredSeats) return [];
@@ -136,7 +136,7 @@ BookMyShow.prototype.findAvailableGroup = function (
     currentRangeStart,
     midPoint,
     requiredSeats,
-    maxAllowedRow,
+    maxAllowedRow
   );
   if (leftSubtreeResult.length) return leftSubtreeResult;
   return this.findAvailableGroup(
@@ -144,7 +144,7 @@ BookMyShow.prototype.findAvailableGroup = function (
     midPoint + 1,
     currentRangeEnd,
     requiredSeats,
-    maxAllowedRow,
+    maxAllowedRow
   );
 };
 
@@ -153,7 +153,7 @@ BookMyShow.prototype.allocateGroupSeats = function (
   currentRangeStart,
   currentRangeEnd,
   targetRow,
-  bookedSeatsCount,
+  bookedSeatsCount
 ) {
   if (currentRangeStart > targetRow || currentRangeEnd < targetRow) return;
 
@@ -173,14 +173,14 @@ BookMyShow.prototype.allocateGroupSeats = function (
     currentRangeStart,
     midPoint,
     targetRow,
-    bookedSeatsCount,
+    bookedSeatsCount
   );
   this.allocateGroupSeats(
     rightChildrenIdx,
     midPoint + 1,
     currentRangeEnd,
     targetRow,
-    bookedSeatsCount,
+    bookedSeatsCount
   );
 
   const leftMaxVal = this.bookingTree[leftChildrenIdx][0];
@@ -193,7 +193,7 @@ BookMyShow.prototype.scatter = function (seatsCount, maximumRow) {
     0,
     0,
     this.rowsCount - 1,
-    maximumRow,
+    maximumRow
   );
   const canAccommodate = availableTotal >= seatsCount;
   if (canAccommodate) {
@@ -206,7 +206,7 @@ BookMyShow.prototype.retrieveTotalAvailable = function (
   nodeIdx,
   currentRangeStart,
   currentRangeEnd,
-  maxAllowedRow,
+  maxAllowedRow
 ) {
   if (currentRangeStart > maxAllowedRow) return 0;
   if (currentRangeEnd <= maxAllowedRow) return this.bookingTree[nodeIdx][1];
@@ -219,13 +219,13 @@ BookMyShow.prototype.retrieveTotalAvailable = function (
     leftChildrenIdx,
     currentRangeStart,
     midPoint,
-    maxAllowedRow,
+    maxAllowedRow
   );
   const rightSumValue = this.retrieveTotalAvailable(
     rightChildrenIdx,
     midPoint + 1,
     currentRangeEnd,
-    maxAllowedRow,
+    maxAllowedRow
   );
   return leftSumValue + rightSumValue;
 };
@@ -235,7 +235,7 @@ BookMyShow.prototype.distributeSeats = function (
   currentRangeStart,
   currentRangeEnd,
   seatsToDistribute,
-  maxAllowedRow,
+  maxAllowedRow
 ) {
   if (currentRangeStart > maxAllowedRow || seatsToDistribute <= 0) return;
 
@@ -258,7 +258,7 @@ BookMyShow.prototype.distributeSeats = function (
       currentRangeStart,
       midPoint,
       seatsToDistribute,
-      maxAllowedRow,
+      maxAllowedRow
     );
   } else {
     this.distributeSeats(
@@ -266,14 +266,14 @@ BookMyShow.prototype.distributeSeats = function (
       currentRangeStart,
       midPoint,
       leftSegmentSum,
-      maxAllowedRow,
+      maxAllowedRow
     );
     this.distributeSeats(
       rightChildrenIdx,
       midPoint + 1,
       currentRangeEnd,
       seatsToDistribute - leftSegmentSum,
-      maxAllowedRow,
+      maxAllowedRow
     );
   }
 
@@ -281,6 +281,6 @@ BookMyShow.prototype.distributeSeats = function (
   const rightMaxSeatsValue = this.bookingTree[rightChildrenIdx][0];
   this.bookingTree[nodeIdx][0] = Math.max(
     leftMaxSeatsValue,
-    rightMaxSeatsValue,
+    rightMaxSeatsValue
   );
 };

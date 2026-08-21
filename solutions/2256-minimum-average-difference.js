@@ -82,7 +82,7 @@ var minimumAverageDifference = function (nums) {
     const currentRightCount = nElementsCount - iteratorIndex - 1;
 
     const leftSideAverage = Math.floor(
-      currentLeftAccumulator / currentLeftCount,
+      currentLeftAccumulator / currentLeftCount
     );
     const rightSideAverage =
       currentRightCount === 0

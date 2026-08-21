@@ -72,11 +72,11 @@
 var findAllPeople = function (
   totalPeopleCount,
   allMeetings,
-  initialSecretHolder,
+  initialSecretHolder
 ) {
   const personRoots = Array.from(
     { length: totalPeopleCount },
-    (_, currentIdx) => currentIdx,
+    (_, currentIdx) => currentIdx
   );
 
   const findSet = (targetId) => {
@@ -93,7 +93,7 @@ var findAllPeople = function (
   uniteSets(0, initialSecretHolder);
 
   allMeetings.sort(
-    (comparisonA, comparisonB) => comparisonA[2] - comparisonB[2],
+    (comparisonA, comparisonB) => comparisonA[2] - comparisonB[2]
   );
 
   let meetingIterationIndex = 0;

@@ -47,7 +47,7 @@ var houseCount = function (street, k) {
   const computeDistanceToOpenDoor = (
     currentStreetInstance,
     maximumBound,
-    includeCurrentHouse,
+    includeCurrentHouse
   ) => {
     if (currentStreetInstance.isDoorOpen() && includeCurrentHouse) {
       return 0;
@@ -66,14 +66,14 @@ var houseCount = function (street, k) {
   const determineTotalHouses = (
     currentStreetState,
     boundValue,
-    accumulatedCount,
+    accumulatedCount
   ) => {
     computeDistanceToOpenDoor(currentStreetState, boundValue, true);
 
     let measuredHouseDistance = computeDistanceToOpenDoor(
       currentStreetState,
       boundValue,
-      false,
+      false
     );
 
     if (measuredHouseDistance > boundValue) {
@@ -86,7 +86,7 @@ var houseCount = function (street, k) {
     return determineTotalHouses(
       currentStreetState,
       boundValue,
-      newAccumulation,
+      newAccumulation
     );
   };
 

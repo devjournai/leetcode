@@ -1,5 +1,8 @@
 /**
  * Count Ways To Build Rooms In An Ant Colony
+ * Intuition: The prevRoom array is a tree. Ways to interleave child subtrees is multinomial: (size-1)! / ∏ childSize! times the children’s ways.
+ * Approach: 1. Build `adjLists`, factorials and inverse factorials mod 1e9+7. 2. DFS `calculateSubtreeWays`: multiply child ways by invFact[childCount], then × fact[subtree-1]. 3. Return ways at root 0.
+ * Dry Run: prevRoom=[-1,0,1]. Chain 0-1-2 has only 1 order. Return 1.
  * Time Complexity: O(N * log(MOD))
  * Space Complexity: O(N)
  */
@@ -35,7 +38,7 @@ var waysToBuildRooms = function (prevRoom) {
   for (let countIdx = 1; countIdx <= numRooms; countIdx++) {
     invFactValues[countIdx] = findModInverse(
       factValues[countIdx],
-      BigInt(primeModulus),
+      BigInt(primeModulus)
     );
   }
 

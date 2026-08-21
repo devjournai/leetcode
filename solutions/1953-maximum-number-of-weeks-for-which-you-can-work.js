@@ -26,12 +26,12 @@ var numberOfWeeks = function (milestones) {
     accumulatedMilestones += projectMilestoneCount;
     maximumProjectMilestones = Math.max(
       maximumProjectMilestones,
-      projectMilestoneCount,
+      projectMilestoneCount
     );
   }
 
   return Math.min(
     accumulatedMilestones,
-    2 * (accumulatedMilestones - maximumProjectMilestones) + 1,
+    2 * (accumulatedMilestones - maximumProjectMilestones) + 1
   );
 };

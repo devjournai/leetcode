@@ -1,5 +1,8 @@
 /**
  * Complete Binary Tree Inserter
+ * Intuition: Completeness means new nodes fill the leftmost missing child. Nodes missing a left or right child are insertion parents, in BFS order.
+ * Approach: 1. BFS from `initialRoot`; enqueue any node with a missing child into `parentCandidates`. 2. `insert`: attach to `parentCandidates[0]` (left if null, else right then `shift` that parent). Push the new node as a future parent. Return the parent’s val. 3. `get_root` returns `rootNode`.
+ * Dry Run: Tree 1 with left 2. Candidates [1,2]. insert(3) fills 1.right, shift 1, candidates [2,3], return 1. insert(4) fills 2.left, return 2.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

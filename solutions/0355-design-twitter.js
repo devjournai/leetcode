@@ -1,5 +1,8 @@
 /**
  * Design Twitter
+ * Intuition: Store every tweet in a global newest-last list with a monotonic timestamp, and keep follow edges as a map of sets. A news feed is a backward scan that keeps tweets from the user and their followees until 10 ids are collected.
+ * Approach: 1. `postTweet` increments the timestamp and pushes `[ts, tweetId, userId]`. 2. `getNewsFeed` builds a set of the user plus followees, then walks `allTweets` from the end collecting matching tweet ids (max 10). 3. `follow` ignores self-follows and adds to a Set; `unfollow` deletes from that Set if present.
+ * Dry Run: user 1 posts 5 then 3, follows 2, user 2 posts 6. getNewsFeed(1) scans [6,3,5] and returns [6, 3, 5].
  * Time Complexity: O(T + U)
  * Space Complexity: O(T + U + F)
  */

@@ -14,7 +14,7 @@
 var minimumHealth = function (damage, armor) {
   const totalDamageValue = damage.reduce(
     (currentSum, currentDmg) => currentSum + currentDmg,
-    0,
+    0
   );
   const maximumLevelHealthLoss = Math.max(...damage);
   const effectiveArmorProtection = Math.min(armor, maximumLevelHealthLoss);

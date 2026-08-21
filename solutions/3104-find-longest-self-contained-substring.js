@@ -82,7 +82,7 @@ var maxSubstringLength = function (s) {
 
       currentWindowReach = Math.max(
         currentWindowReach,
-        lastPosition.get(innerCharacter),
+        lastPosition.get(innerCharacter)
       );
       innerScanWindowIndex++;
     }
@@ -94,7 +94,7 @@ var maxSubstringLength = function (s) {
       if (currentBlockLength !== s.length) {
         longestSubstringCandidate = Math.max(
           longestSubstringCandidate,
-          currentBlockLength,
+          currentBlockLength
         );
       }
       windowStartIndex = currentWindowReach + 1;

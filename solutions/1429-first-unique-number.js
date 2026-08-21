@@ -1,5 +1,12 @@
 /**
  * First Unique Number
+ * Intuition: Keep insertion order in a queue, frequencies in a map, and currently unique values in a set. showFirstUnique drains the queue until the front is still unique.
+ * Approach: 1. Constructor inserts every initial number via insertValue. 2. insertValue bumps frequency; first sighting queues the value and adds it to the unique set; second sighting removes it from the set. 3. retrieveFirstUnique shifts stale non-unique fronts, then returns the front or -1.
+ * Dry Run: FirstUnique([2,3,5]), then insert 5, then insert 2, then retrieve
+ *   - after init: queue [2,3,5], unique {2,3,5}
+ *   - insert 5: unique {2,3}
+ *   - insert 2: unique {3}
+ *   - retrieve: skip 2, return 3
  * Time Complexity: O(N + M)
  * Space Complexity: O(N + M)
  */

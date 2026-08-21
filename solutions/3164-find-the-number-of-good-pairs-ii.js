@@ -14,7 +14,7 @@ var numberOfPairs = function (nums1, nums2, k) {
     const scaledValue = rightValue * k;
     scaledFrequency.set(
       scaledValue,
-      (scaledFrequency.get(scaledValue) || 0) + 1,
+      (scaledFrequency.get(scaledValue) || 0) + 1
     );
   }
 

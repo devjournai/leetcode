@@ -1,5 +1,8 @@
 /**
  * Minimum Operations to Equalize Binary String
+ * Intuition: Only the count of zeros matters. Flipping k bits maps a reachable interval of zero-counts (with parity) to a new interval; stop when 0 is reachable.
+ * Approach: 1. Count zeros C; if 0 return 0. 2. Start with [L,R]=[C,C]. 3. For each step, compute nextL from whether k lies in [L,R] (parity), k<L (L-k), or k>R (k-R); nextR from leftover t=n-k similarly, capped by n with matching parity. 4. If L becomes 0 return the step; else -1 after n+5 tries.
+ * Dry Run: s = "011", k = 2, C = 1. After one step L can become 0 (flip the zero and a one). Answer 1.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

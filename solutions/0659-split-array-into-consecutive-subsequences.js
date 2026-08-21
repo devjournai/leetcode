@@ -1,5 +1,9 @@
 /**
  * Split Array Into Consecutive Subsequences
+ * Intuition: Prefer appending a number onto an existing chain that needs it; otherwise start a new chain of length 3. Fail if neither is possible.
+ * Approach: 1. Count frequencies. 2. For each num still available: if `subsequenceNextExpected` wants it, consume and expect num+1. 3. Else if num+1 and num+2 exist, start a chain and expect num+3. 4. Else return false.
+ * Dry Run: nums=[1,2,3,3,4,5].
+ *   - 1 starts 1,2,3 expecting 4. Next 3 starts 3,4,5 expecting 6. All consumed → true.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -10,7 +14,7 @@ var isPossible = function (nums) {
   for (const numberValue of nums) {
     initialFrequencies.set(
       numberValue,
-      (initialFrequencies.get(numberValue) || 0) + 1,
+      (initialFrequencies.get(numberValue) || 0) + 1
     );
   }
 
@@ -26,12 +30,12 @@ var isPossible = function (nums) {
     if (nextExpectedForSubsequence > 0) {
       subsequenceNextExpected.set(
         processedNumber,
-        nextExpectedForSubsequence - 1,
+        nextExpectedForSubsequence - 1
       );
       initialFrequencies.set(processedNumber, currentNumberAvailable - 1);
       subsequenceNextExpected.set(
         processedNumber + 1,
-        (subsequenceNextExpected.get(processedNumber + 1) || 0) + 1,
+        (subsequenceNextExpected.get(processedNumber + 1) || 0) + 1
       );
     } else {
       const nextConsecutiveAvailable =
@@ -43,15 +47,15 @@ var isPossible = function (nums) {
         initialFrequencies.set(processedNumber, currentNumberAvailable - 1);
         initialFrequencies.set(
           processedNumber + 1,
-          nextConsecutiveAvailable - 1,
+          nextConsecutiveAvailable - 1
         );
         initialFrequencies.set(
           processedNumber + 2,
-          twoAheadConsecutiveAvailable - 1,
+          twoAheadConsecutiveAvailable - 1
         );
         subsequenceNextExpected.set(
           processedNumber + 3,
-          (subsequenceNextExpected.get(processedNumber + 3) || 0) + 1,
+          (subsequenceNextExpected.get(processedNumber + 3) || 0) + 1
         );
       } else {
         return false;

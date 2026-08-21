@@ -31,7 +31,7 @@ var frequenciesOfElements = function (head) {
   while (currentLink) {
     frequencyTracker.set(
       currentLink.val,
-      (frequencyTracker.get(currentLink.val) || 0) + 1,
+      (frequencyTracker.get(currentLink.val) || 0) + 1
     );
     currentLink = currentLink.next;
   }

@@ -92,7 +92,7 @@ var numberOfPaths = function (grid, k) {
   const pathModulo = 1e9 + 7;
 
   const dynamicProgrammingTable = Array.from({ length: numRows }, () =>
-    Array.from({ length: numCols }, () => Array(k).fill(0)),
+    Array.from({ length: numCols }, () => Array(k).fill(0))
   );
 
   const initialGridValueRemainder = grid[0][0] % k;

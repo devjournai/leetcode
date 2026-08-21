@@ -1,5 +1,9 @@
 /**
  * Can Convert String In K Moves
+ * Intuition: Each position needs a shift 0..25. The t-th use of shift s costs s+26*(t-1) and must be ≤ k; shift 0 is free.
+ * Approach: 1. Lengths must match. 2. Count needed shifts 1..25. 3. For each s, last cost s+26*(cnt-1) ≤ k.
+ * Dry Run: s = "input", t = "output", k = 9.
+ *   - Shift 6 is needed twice; last cost 32 > 9 → false.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

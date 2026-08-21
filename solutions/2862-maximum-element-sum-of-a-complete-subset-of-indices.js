@@ -129,11 +129,11 @@ var maximumSum = function (nums) {
   for (const elementValues of indexGroupings.values()) {
     const currentGroupTotal = elementValues.reduce(
       (accumulatorValue, currentValue) => accumulatorValue + currentValue,
-      0,
+      0
     );
     maximumElementValueSum = Math.max(
       maximumElementValueSum,
-      currentGroupTotal,
+      currentGroupTotal
     );
   }
 

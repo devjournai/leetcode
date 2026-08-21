@@ -41,7 +41,7 @@ var sumOfBeauties = function (nums) {
   for (let firstIndex = 1; firstIndex < arrayLength; firstIndex++) {
     maximumLeft[firstIndex] = Math.max(
       maximumLeft[firstIndex - 1],
-      nums[firstIndex - 1],
+      nums[firstIndex - 1]
     );
   }
 
@@ -50,7 +50,7 @@ var sumOfBeauties = function (nums) {
   for (let secondIndex = arrayLength - 2; secondIndex >= 0; secondIndex--) {
     minimumRight[secondIndex] = Math.min(
       minimumRight[secondIndex + 1],
-      nums[secondIndex + 1],
+      nums[secondIndex + 1]
     );
   }
 

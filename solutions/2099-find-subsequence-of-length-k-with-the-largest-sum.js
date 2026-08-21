@@ -114,7 +114,7 @@ var maxSubsequence = function (nums, k) {
 
   kLargestElements.sort(
     (firstElement, secondElement) =>
-      firstElement.originalPosition - secondElement.originalPosition,
+      firstElement.originalPosition - secondElement.originalPosition
   );
 
   let finalResultArray = [];

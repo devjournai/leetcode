@@ -1,5 +1,8 @@
 /**
  * Remove All Adjacent Duplicates In String II
+ * Intuition: A stack of (char, run-length) collapses a run as soon as it reaches k, matching the repeated adjacent-deletion process.
+ * Approach: 1. For each char, increment the top run if it matches, else push [char,1]. 2. Pop when the run hits k. 3. Rebuild the string from remaining runs.
+ * Dry Run: s="deeedbbcccbdaa", k=3. "eee" pops, "ccc" pops, leftover "d"+"bb"+"bdaa" after further collapses → "aa".
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

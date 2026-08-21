@@ -1,5 +1,9 @@
 /**
  * Longest Duplicate Substring
+ * Intuition: If a duplicate of length L exists, shorter ones do too. Binary search L and Rabin-Karp rolling hashes to find a repeated substring of that length.
+ * Approach: 1. Binary search length in 1..n-1. 2. For mid, roll a base-26 hash modulo 1e9+7, map hash -> start indices. 3. On hash collision, compare actual slices; return the string if equal. 4. Search higher if found, else lower. Keep the longest hit.
+ * Dry Run: s = "banana".
+ *   - Length 3 candidate "ana" appears twice. Longer 4 fails. Answer "ana".
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */
@@ -10,12 +14,12 @@ var longestDupSubstring = function (s) {
   let searchRangeUpper = s.length - 1;
   let finalLongestDuplicate = "";
 
-  for (; searchRangeLower <= searchRangeUpper; ) {
+  for (; searchRangeLower <= searchRangeUpper;) {
     const currentMidpointLength = Math.floor(
-      (searchRangeLower + searchRangeUpper) / 2,
+      (searchRangeLower + searchRangeUpper) / 2
     );
     const foundSubstringCandidate = checkDuplicationExistence(
-      currentMidpointLength,
+      currentMidpointLength
     );
 
     if (foundSubstringCandidate) {
@@ -79,7 +83,7 @@ var longestDupSubstring = function (s) {
         const storedIndicesList = hashToStartIndices.get(rollingHashValue);
         const substringBeingChecked = s.slice(
           windowIterator,
-          windowIterator + testedLength,
+          windowIterator + testedLength
         );
 
         for (
@@ -90,7 +94,7 @@ var longestDupSubstring = function (s) {
           const previousSubstringStart = storedIndicesList[storedPositionIndex];
           const comparedSubstring = s.slice(
             previousSubstringStart,
-            previousSubstringStart + testedLength,
+            previousSubstringStart + testedLength
           );
           if (comparedSubstring === substringBeingChecked) {
             return substringBeingChecked;

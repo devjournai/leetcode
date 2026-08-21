@@ -42,7 +42,7 @@ var minNumber = function (nums1, nums2) {
 
   const overallMinimumTwoDigit = Math.min(
     numberFromFirstSmallest,
-    numberFromSecondSmallest,
+    numberFromSecondSmallest
   );
 
   if (smallestCommonFound !== 10) {

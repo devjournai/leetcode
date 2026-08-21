@@ -1,5 +1,9 @@
 /**
  * Rearrange Spaces Between Words
+ * Intuition: Count spaces and words; even gap between words, remainder at the end (all trailing if one word).
+ * Approach: 1. Parse words and spaceTally. 2. gap=spaces/(words-1) or 0. 3. Join with the gap string plus leftover spaces.
+ * Dry Run: text = "  this   is  a sentence ".
+ *   - 9 spaces, 4 words → 3 between each, 0 leftover.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

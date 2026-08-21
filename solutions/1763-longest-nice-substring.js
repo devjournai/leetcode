@@ -1,5 +1,9 @@
 /**
  * Longest Nice Substring
+ * Intuition: A substring is nice when every letter appears in both cases. Letters missing their counterpart split the range into independent pieces, so divide-and-conquer on those splits finds the longest nice substring.
+ * Approach: 1. `recurseFindNice` builds `segmentCharSet` and `badCharRegistry`. 2. If the segment is nice, keep it when longer than `maximalNiceSubstring`. 3. Otherwise split on bad characters and recurse. 4. Start on [0, n-1].
+ * Dry Run: s = "YazaAay".
+ *   - 'z' is unpaired, so split "Ya" | "aAa" | "y". "aAa" is nice length 3 → "aAa".
  * Time Complexity: O(N^2)
  * Space Complexity: O(N)
  */

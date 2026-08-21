@@ -1,5 +1,8 @@
 /**
  * Bus Routes
+ * Intuition: BFS on stops; taking a bus once visits all its stops at cost +1. Never ride the same route twice.
+ * Approach: 1. Same start/end → 0. 2. Map stop → route ids. 3. Missing start or end → -1. 4. Queue `[stop, buses]`; for unseen routes, if a stop is target return buses+1 else enqueue unvisited stops.
+ * Dry Run: routes = [[1,2,7],[3,6,7]], source 1, target 6. Ride first bus to 7 then second to 6 → 2.
  * Time Complexity: O(S_total + R)
  * Space Complexity: O(S_total + R)
  */

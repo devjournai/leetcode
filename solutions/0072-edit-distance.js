@@ -1,5 +1,8 @@
 /**
  * Edit Distance
+ * Intuition: The cheapest way to turn prefixes of word1 into prefixes of word2 reuses smaller prefixes: matching last characters copies the diagonal, otherwise take min of delete, insert, or replace plus one.
+ * Approach: 1. Allocate dp[M+1][N+1]; row 0 is insert-all, column 0 is delete-all. 2. For each pair of prefixes, if the last chars match copy dp[i-1][j-1]; else 1 + min(delete, insert, replace). 3. Answer is dp[M][N].
+ * Dry Run: word1="horse", word2="ros" → dp[5][3]: h→r replace, or→o match, rs→s match after insert/delete sequence → 3
  * Time Complexity: O(M * N)
  * Space Complexity: O(M * N)
  */

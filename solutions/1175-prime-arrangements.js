@@ -1,5 +1,8 @@
 /**
  * Prime Arrangements
+ * Intuition: Among 1..n the primes may be permuted among themselves and the composites among themselves. Answer is p! * (n-p)! mod 1e9+7.
+ * Approach: 1. Count primes in 1..n by trial division. 2. Compute factorials with BigInt. 3. Return Number((p! * (n-p)!) % 1000000007).
+ * Dry Run: n = 5. Primes 2,3,5 (p=3), nonprimes 2. 3!*2! = 12.
  * Time Complexity: O(n * sqrt(n))
  * Space Complexity: O(1)
  */
@@ -50,6 +53,6 @@ var numPrimeArrangements = function (nVal) {
   const nonPrimePermutationResult = computeFactorial(nonPrimeNumberCount);
 
   return Number(
-    (primePermutationResult * nonPrimePermutationResult) % MOD_VALUE,
+    (primePermutationResult * nonPrimePermutationResult) % MOD_VALUE
   );
 };

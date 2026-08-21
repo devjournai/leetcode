@@ -1,5 +1,8 @@
 /**
  * Insert Delete Getrandom O1 Duplicates Allowed
+ * Intuition: Keep every copy in an array for uniform `getRandom`, and map each value to a Set of its indices so we can splice out one occurrence in O(1) by swapping with the tail.
+ * Approach: 1. `insert` creates a Set if needed (return true only then), records the new index, and pushes. 2. `remove` takes one index from the Set; if it is not the last slot, overwrite it with the tail value and rewrite the tail’s index set. 3. Pop; drop the map key when that Set empties. 4. `getRandom` picks a random array index.
+ * Dry Run: insert 1 (true), insert 1 (false) → array [1,1]. remove 1 swaps/pops to [1]; getRandom returns 1.
  * Time Complexity: O(1)
  * Space Complexity: O(N)
  */

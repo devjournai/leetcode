@@ -1,5 +1,9 @@
 /**
  * Pizza With 3n Slices
+ * Intuition: We pick n = slices.length/3 pieces from a circle with no two adjacent. That is house-robber-style DP on a line, run twice: once taking slice 0 (so exclude last and second), once skipping slice 0.
+ * Approach: 1. maxSlicesToPick = N/3. 2. calculateMaxSum(arr, k) is DP: dp[i][j] = max of skip arr[i-1] or take it plus dp[i-2][j-1] (cannot take two adjacent). 3. Case A: slices[0] + DP on slices[2..N-2] with k-1 picks. 4. Case B: DP on slices[1..N-1] with k picks. 5. Return the max.
+ * Dry Run: slices = [1,2,3,4,5,6], pick 2.
+ *   - Take first (1) then from [3,4,5] pick 1 → best 5, total 6. Skip first: DP on [2,3,4,5,6] pick 2 → 2+5=7 or 3+6=9. Return 9.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N^2)
  */
@@ -41,7 +45,7 @@ var maxSizeSlices = function (slices) {
 
         dynamicProgramTable[slicePosition][sliceQuantity] = Math.max(
           sumWithoutCurrent,
-          sumWithCurrent,
+          sumWithCurrent
         );
       }
     }
@@ -55,12 +59,12 @@ var maxSizeSlices = function (slices) {
   const subsetForSecondCase = slices.slice(1, totalPizzaSlices);
   const resultExcludingFirstSlice = calculateMaxSum(
     subsetForSecondCase,
-    maxSlicesToPick,
+    maxSlicesToPick
   );
 
   const finalMaximumSum = Math.max(
     resultIncludingFirstSlice,
-    resultExcludingFirstSlice,
+    resultExcludingFirstSlice
   );
 
   return finalMaximumSum;

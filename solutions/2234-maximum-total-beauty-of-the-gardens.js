@@ -112,7 +112,7 @@ var maximumBeauty = function (
   extraFlowersCount,
   completionTarget,
   fullReward,
-  partialReward,
+  partialReward
 ) {
   const gardenCount = initialFlowers.length;
   initialFlowers.sort((valueOne, valueTwo) => valueTwo - valueOne); // Sort descending
@@ -152,7 +152,7 @@ var maximumBeauty = function (
   let currentMinimumValue = Math.min(
     completionTarget - 1,
     initialFlowers[currentCheckIdx] +
-      Math.floor(remainingBudgetForMin / gardensForMinCount),
+      Math.floor(remainingBudgetForMin / gardensForMinCount)
   );
 
   let maximumOverallBeauty = 0;
@@ -209,14 +209,14 @@ var maximumBeauty = function (
       totalGardensInMinGroup > 0
         ? initialFlowers[adjustmentPointer] +
             Math.floor(actualRemainingFlowers / totalGardensInMinGroup)
-        : 0,
+        : 0
     );
   }
 
   if (initialFlowers[gardenCount - 1] >= completionTarget) {
     maximumOverallBeauty = Math.max(
       maximumOverallBeauty,
-      gardenCount * fullReward,
+      gardenCount * fullReward
     );
   }
 

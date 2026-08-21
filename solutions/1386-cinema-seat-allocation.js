@@ -1,5 +1,9 @@
 /**
  * Cinema Seat Allocation
+ *
+ * Intuition: A family needs four consecutive seats in [2-5], [4-7], or [6-9]. Empty rows fit two families (left+right). Only reserved rows need extra checks.
+ * Approach: 1. Map reserved columns per row. 2. Start with 2 * (n - reservedRows). 3. For each reserved row, if left and right are free add 2; else if any of left/middle/right is free add 1.
+ * Dry Run: n=3, reserved=[[1,2]]. Empty rows 2 and 3 contribute 4. Row 1: left blocked, middle and right free → 1. Total 5.
  * Time Complexity: O(R)
  * Space Complexity: O(R)
  */

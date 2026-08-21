@@ -76,7 +76,7 @@ var minimumOperations = function (root) {
     }
 
     const sortedLevelCopy = [...currentLevelNumericalValues].sort(
-      (valueOne, valueTwo) => valueOne - valueTwo,
+      (valueOne, valueTwo) => valueOne - valueTwo
     );
     const valuePositionMap = new Map();
     let mapEntryCreator = 0;
@@ -88,7 +88,7 @@ var minimumOperations = function (root) {
     ) {
       valuePositionMap.set(
         currentLevelNumericalValues[mapEntryCreator],
-        mapEntryCreator,
+        mapEntryCreator
       );
     }
 

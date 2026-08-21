@@ -1,5 +1,9 @@
 /**
  * Number Of Valid Words For Each Puzzle
+ * Intuition: A word is valid for a puzzle if it contains the puzzle’s first letter and no letter outside the puzzle. Bitmasks of letter sets let us count words by enumerating submasks of each puzzle that include the first letter.
+ * Approach: 1. Map each word to a bitmask and count frequencies. 2. For each puzzle mask, iterate all submasks; if the submask includes the first-letter bit, add that word-count. 3. Push the total per puzzle.
+ * Dry Run: words = ["aaaa","asas","able","ability","actt","actor","access"], puzzle "aboveyz".
+ *   - First letter a; word "aaaa" mask is just a, a subset. Count 1 for that puzzle.
  * Time Complexity: O(W * L_W + P * 2^L_P)
  * Space Complexity: O(W + P)
  */
@@ -20,7 +24,7 @@ var findNumOfValidWords = function (words, puzzles) {
     const currentWordMask = calculateBitRepresentation(currentWordEntry);
     wordCodeCounts.set(
       currentWordMask,
-      (wordCodeCounts.get(currentWordMask) || 0) + 1,
+      (wordCodeCounts.get(currentWordMask) || 0) + 1
     );
   }
 

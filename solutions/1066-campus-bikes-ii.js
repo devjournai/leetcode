@@ -1,5 +1,8 @@
 /**
  * Campus Bikes Ii
+ * Intuition: Assigning bikes is a min-cost matching. With few bikes, DP over worker index and a bitmask of used bikes tries every unused bike for the current worker and memoizes the rest.
+ * Approach: 1. Recurse on (worker, usedMask). 2. Base: all workers assigned → 0. 3. For each free bike, add Manhattan distance plus the recursive remainder. 4. Memoize the min over bikes.
+ * Dry Run: workers=[[0,0]], bikes=[[1,0],[2,0]]. Mask 0 tries bike0 cost 1 and bike1 cost 2 → min 1.
  * Time Complexity: O(N * M * 2^M)
  * Space Complexity: O(N * 2^M)
  */
@@ -37,12 +40,12 @@ var assignBikes = function (workers, bikes) {
       if ((usedBikesBitmask & bikeAvailabilityCheck) === 0) {
         const directDistance = calculateManhattanDistance(
           workerCurrentIndex,
-          bikeSearchIndex,
+          bikeSearchIndex
         );
         const nextUsedBikesBitmask = usedBikesBitmask | bikeAvailabilityCheck;
         const remainingWorkersMinSum = solveAssignment(
           workerCurrentIndex + 1,
-          nextUsedBikesBitmask,
+          nextUsedBikesBitmask
         );
         const totalDistanceForThisPath =
           directDistance + remainingWorkersMinSum;

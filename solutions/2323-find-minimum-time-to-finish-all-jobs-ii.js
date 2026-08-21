@@ -35,7 +35,7 @@ var minimumTime = function (jobs, workers) {
     const jobDurationValue = jobs[jobIterationIndex];
     const workerCapacityValue = workers[jobIterationIndex];
     const currentAssignmentDays = Math.ceil(
-      jobDurationValue / workerCapacityValue,
+      jobDurationValue / workerCapacityValue
     );
     overallMaximumDays = Math.max(overallMaximumDays, currentAssignmentDays);
   }

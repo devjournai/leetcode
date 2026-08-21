@@ -12,7 +12,7 @@ var duplicateNumbersXOR = function (nums) {
   for (const currentValue of nums) {
     frequencyByValue.set(
       currentValue,
-      (frequencyByValue.get(currentValue) || 0) + 1,
+      (frequencyByValue.get(currentValue) || 0) + 1
     );
   }
   let xorOfDuplicates = 0;

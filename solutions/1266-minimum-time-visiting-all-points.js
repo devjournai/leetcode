@@ -1,5 +1,9 @@
 /**
  * Minimum Time Visiting All Points
+ * Intuition: Chebyshev distance: diagonal moves cover both axes at once, so time between two points is max(|dx|,|dy|). Sum consecutive segments.
+ * Approach: 1. For each adjacent pair compute abs deltas. 2. Add Math.max(deltaX, deltaY) to totalElapsedSeconds. 3. Return the total.
+ * Dry Run: points = [[1,1],[3,4],[-1,0]]
+ *   (1,1)->(3,4): max(2,3)=3. (3,4)->(-1,0): max(4,4)=4. Return 7.
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */

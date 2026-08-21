@@ -87,7 +87,7 @@ var minSessions = function (tasksInput, sessionMaxTime) {
         const remainingTasksBitmask = currentTaskSet ^ subTaskSet;
         dpArray[currentTaskSet] = Math.min(
           dpArray[currentTaskSet],
-          dpArray[remainingTasksBitmask] + 1,
+          dpArray[remainingTasksBitmask] + 1
         );
       }
     }

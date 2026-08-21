@@ -1,5 +1,8 @@
 /**
  * Largest Triangle Area
+ * Intuition: The largest triangle is among all triples; area is half the absolute shoelace determinant.
+ * Approach: 1. Triple-loop i < j < k. 2. `calculateGeometryArea` returns `|x1(y2-y3)+x2(y3-y1)+x3(y1-y2)|/2`. 3. Track the max.
+ * Dry Run: [[0,0],[0,1],[1,0],[0,2],[2,0]]. Triple (0,0),(0,2),(2,0) area 2.
  * Time Complexity: O(N^3)
  * Space Complexity: O(1)
  */
@@ -30,7 +33,7 @@ var largestTriangleArea = function (points) {
         const currentTriangleArea = calculateGeometryArea(
           pointCoordinateA,
           pointCoordinateB,
-          pointCoordinateC,
+          pointCoordinateC
         );
         greatestAreaValue = Math.max(greatestAreaValue, currentTriangleArea);
       }

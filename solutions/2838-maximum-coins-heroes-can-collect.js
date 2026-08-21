@@ -26,7 +26,7 @@
 var maximumCoins = function (
   heroPowersParam,
   monsterPowersParam,
-  coinValuesParam,
+  coinValuesParam
 ) {
   const combinedMonsterCoinInfo = monsterPowersParam.map((monsterVal, mIdx) => [
     monsterVal,
@@ -53,7 +53,7 @@ var maximumCoins = function (
   for (const currentHeroPower of heroPowersParam) {
     const defeatableMonsterCount = findRightmostInsertPoint(
       sortedMonsterStrengths,
-      currentHeroPower,
+      currentHeroPower
     );
     const totalCoinsCollected = runningCoinTotals[defeatableMonsterCount];
     finalHeroOutcomes.push(totalCoinsCollected);

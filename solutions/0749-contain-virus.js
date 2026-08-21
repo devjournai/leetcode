@@ -1,5 +1,8 @@
 /**
  * Contain Virus
+ * Intuition: Each day, the infected region that threatens the most uninfected cells is walled off (cells set to 0). Remaining regions then infect neighbors that are not already walled. Repeat until no region threatens any cell.
+ * Approach: 1. `processConnectedCells` DFS-marks a region, collecting threatened uninfected cells and candidate wall keys using `moveVectors`. 2. Each day scan 1-cells, temporarily mark as 2, and keep the region with max `iterationThreatenedCells`. 3. Install those walls, quarantine that region to 0, then collect `newlyInfectedPositions` and set them to 1. Return `totalWallsInstalled`.
+ * Dry Run: A 1 next to two 0s is the only threat; walls equal the perimeter of that region, then the loop ends if nothing else can spread.
  * Time Complexity: O((M*N)^2)
  * Space Complexity: O(M*N)
  */
@@ -31,7 +34,7 @@ var containVirus = function (initialGrid) {
     gatheredVertWalls,
     gatheredHorizWalls,
     existingUpDownWalls,
-    existingLeftRightWalls,
+    existingLeftRightWalls
   ) {
     if (
       currentProcRow < 0 ||
@@ -63,7 +66,7 @@ var containVirus = function (initialGrid) {
         gatheredVertWalls,
         gatheredHorizWalls,
         existingUpDownWalls,
-        existingLeftRightWalls,
+        existingLeftRightWalls
       );
 
       if (
@@ -115,7 +118,7 @@ var containVirus = function (initialGrid) {
       iterationPotentialVerticalWalls,
       iterationPotentialHorizontalWalls,
       upDownWalls,
-      leftRightWalls,
+      leftRightWalls
     );
 
     if (iterationThreatenedCells.size > currentMaxThreat) {
@@ -147,10 +150,10 @@ var containVirus = function (initialGrid) {
     }
 
     currentBestVerticalWalls.forEach((wallIdentifier) =>
-      upDownWalls.add(wallIdentifier),
+      upDownWalls.add(wallIdentifier)
     );
     currentBestHorizontalWalls.forEach((wallIdentifier) =>
-      leftRightWalls.add(wallIdentifier),
+      leftRightWalls.add(wallIdentifier)
     );
     totalWallsInstalled +=
       currentBestVerticalWalls.size + currentBestHorizontalWalls.size;
@@ -172,7 +175,7 @@ var containVirus = function (initialGrid) {
       dummyVerticalWallsAccumulator,
       dummyHorizontalWallsAccumulator,
       upDownWalls,
-      leftRightWalls,
+      leftRightWalls
     );
 
     let spreadSearchTarget = 1;
@@ -192,7 +195,7 @@ var containVirus = function (initialGrid) {
             dummyVerticalWallsAccumulator,
             dummyHorizontalWallsAccumulator,
             upDownWalls,
-            leftRightWalls,
+            leftRightWalls
           );
         }
       }

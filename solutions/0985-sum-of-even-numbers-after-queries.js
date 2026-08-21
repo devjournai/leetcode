@@ -1,5 +1,8 @@
 /**
  * Sum Of Even Numbers After Queries
+ * Intuition: Maintain the even-sum of A. For each query, subtract the old value if even, apply the add, then add the new value if even.
+ * Approach: 1. `currentOverallEvenSum` from reducing even elements. 2. For each `[valueToBeAdded, arrayIndexToModify]`, drop old even, mutate A, add new even. 3. Push the running even sum. 4. Return `queryResultsStorage`.
+ * Dry Run: A = [1,2,3,4], queries = [[1,0]]. 1 is odd so even sum starts 6; 1+1=2 even → sum 8. Answer [8] for that one query.
  * Time Complexity: O(N + M)
  * Space Complexity: O(M)
  */
@@ -11,7 +14,7 @@ var sumEvenAfterQueries = function (A, queries) {
       }
       return accumulatorForSum;
     },
-    0,
+    0
   );
 
   const queryResultsStorage = [];

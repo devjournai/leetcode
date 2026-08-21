@@ -1,12 +1,16 @@
 /**
  * Find Servers That Handled Most Number Of Requests
+ * Intuition: Request i prefers server i % k, then the next free server wrapping around. Track free servers with a segment tree and busy ones with a min-heap of finish times.
+ * Approach: 1. Segment tree stores 1 if a server is free. 2. Min-heap holds [finishTime, serverId]. 3. At each arrival, free every server whose finish time ≤ now. 4. Query the first free id in [i%k, k-1], else [0, i%k-1]. 5. Assign, mark busy, count hits. 6. Return all servers matching the max count.
+ * Dry Run: k=3, arrival=[1,2,3,4], load=[1,2,1,2].
+ *   - t=1 → server 0; t=2 → 1; t=3 → 2; t=4 → 0 free again. Counts [2,1,1] → [0].
  * Time Complexity: O(N log K)
  * Space Complexity: O(K)
  */
 class MinPriorityQueue {
   constructor(
     comparator = (firstElement, secondElement) =>
-      firstElement[0] - secondElement[0],
+      firstElement[0] - secondElement[0]
   ) {
     this.heapInternalData = [];
     this.comparisonFunction = comparator;
@@ -46,7 +50,7 @@ class MinPriorityQueue {
       if (
         this.comparisonFunction(
           this.heapInternalData[childIndex],
-          this.heapInternalData[parentIndex],
+          this.heapInternalData[parentIndex]
         ) < 0
       ) {
         [
@@ -74,7 +78,7 @@ class MinPriorityQueue {
         leftChildIndex <= lastIndex &&
         this.comparisonFunction(
           this.heapInternalData[leftChildIndex],
-          this.heapInternalData[currentSmallestIndex],
+          this.heapInternalData[currentSmallestIndex]
         ) < 0
       ) {
         currentSmallestIndex = leftChildIndex;
@@ -84,7 +88,7 @@ class MinPriorityQueue {
         rightChildIndex <= lastIndex &&
         this.comparisonFunction(
           this.heapInternalData[rightChildIndex],
-          this.heapInternalData[currentSmallestIndex],
+          this.heapInternalData[currentSmallestIndex]
         ) < 0
       ) {
         currentSmallestIndex = rightChildIndex;
@@ -149,7 +153,7 @@ class SegmentTree {
       0,
       this.maxServers - 1,
       searchMin,
-      searchMax,
+      searchMax
     );
   }
 
@@ -158,7 +162,7 @@ class SegmentTree {
     nodeRangeBegin,
     nodeRangeEnd,
     queryRangeBegin,
-    queryRangeEnd,
+    queryRangeEnd
   ) {
     if (
       nodeRangeBegin > queryRangeEnd ||
@@ -179,7 +183,7 @@ class SegmentTree {
       nodeRangeBegin,
       midRangePoint,
       queryRangeBegin,
-      queryRangeEnd,
+      queryRangeEnd
     );
     if (leftSearchOutcome !== -1) {
       return leftSearchOutcome;
@@ -190,7 +194,7 @@ class SegmentTree {
       midRangePoint + 1,
       nodeRangeEnd,
       queryRangeBegin,
-      queryRangeEnd,
+      queryRangeEnd
     );
     return rightSearchOutcome;
   }
@@ -199,7 +203,7 @@ class SegmentTree {
 var busiestServers = function (serverCount, arrivalSchedule, loadDurations) {
   const serverRequestTallies = new Array(serverCount).fill(0);
   const serverCompletionTimes = new MinPriorityQueue(
-    (tupleA, tupleB) => tupleA[0] - tupleB[0],
+    (tupleA, tupleB) => tupleA[0] - tupleB[0]
   );
   const activeServerTree = new SegmentTree(serverCount);
 
@@ -224,13 +228,13 @@ var busiestServers = function (serverCount, arrivalSchedule, loadDurations) {
 
     chosenServerId = activeServerTree.retrieveFirstAvailable(
       idealServerCandidate,
-      serverCount - 1,
+      serverCount - 1
     );
 
     if (chosenServerId === -1) {
       chosenServerId = activeServerTree.retrieveFirstAvailable(
         0,
-        idealServerCandidate - 1,
+        idealServerCandidate - 1
       );
     }
 

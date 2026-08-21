@@ -1,5 +1,8 @@
 /**
  * Word Ladder
+ * Intuition: Each word is a graph vertex; an edge exists when two words differ by one letter. BFS from beginWord finds the shortest path length to endWord.
+ * Approach: 1. Put wordList in a set; missing endWord → 0. 2. Queue beginWord with length 1. 3. For each word, try every position × 26 letters; if the neighbor is in the set, enqueue it and delete it so it is visited once. 4. Return the length when endWord is dequeued, or 0 if the queue empties.
+ * Dry Run: begin=hit, end=cog, same list. Levels: hit → hot → dot,lot → dog,log → cog. Length 5.
  * Time Complexity: O(L^2 * N)
  * Space Complexity: O(N * L)
  */
@@ -39,7 +42,7 @@ var ladderLength = function (beginWord, endWord, wordList) {
           alphabetIterator < 26;
           alphabetIterator++
         ) {
-          const charToSubstitute = String.fromCharCode(97 + alphabetIterator); // 'a' through 'z'
+          const charToSubstitute = String.fromCharCode(97 + alphabetIterator);
           const generatedNeighborWord =
             currentWordBeingProcessed.substring(0, charPositionInWord) +
             charToSubstitute +

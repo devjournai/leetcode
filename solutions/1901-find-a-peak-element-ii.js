@@ -1,5 +1,8 @@
 /**
  * Find A Peak Element II
+ * Intuition: Binary-search rows. In the mid row take the max column; if it is greater than vertical neighbors it is a 2D peak (also checked vs left/right). Else search toward the larger vertical neighbor.
+ * Approach: 1. `getMaxColumnIndexInRow` on midRowCandidate. 2. If peak vs four neighbors, return [row,col]. 3. If top is larger, recurse upper half; else lower half.
+ * Dry Run: mat=[[1,4],[3,2]]. Mid row 0 max is 4; bottom neighbor 2 is smaller, left 1 smaller → peak [0,1].
  * Time Complexity: O(N log M)
  * Space Complexity: O(log M)
  */
@@ -32,7 +35,7 @@ var findPeakGrid = function (mat) {
     const peakCandidateColIndex = getMaxColumnIndexInRow(
       midRowCandidate,
       0,
-      matrixCols - 1,
+      matrixCols - 1
     );
     const peakCandidateValue = mat[midRowCandidate][peakCandidateColIndex];
 

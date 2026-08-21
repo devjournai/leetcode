@@ -94,7 +94,7 @@ var closestMeetingNode = function (edges, node1, node2) {
     ) {
       const maxDistanceToCurrent = Math.max(
         distanceToCurrentFromOne,
-        distanceToCurrentFromTwo,
+        distanceToCurrentFromTwo
       );
       if (maxDistanceToCurrent < minimumOverallDistance) {
         minimumOverallDistance = maxDistanceToCurrent;

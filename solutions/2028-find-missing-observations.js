@@ -33,7 +33,7 @@ var missingRolls = function (rolls, mean, n) {
 
   const existingSum = rolls.reduce(
     (accumulator, currentRoll) => accumulator + currentRoll,
-    0,
+    0
   );
 
   const requiredMissingSum = targetTotalSum - existingSum;

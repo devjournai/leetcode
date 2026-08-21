@@ -25,21 +25,25 @@
  *   Return 6.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
-*/
+ */
 var countVowels = function (word) {
-    const vowelChecker = new Set(['a', 'e', 'i', 'o', 'u']);
-    let accumulatedSum = 0;
-    const stringLength = word.length;
+  const vowelChecker = new Set(["a", "e", "i", "o", "u"]);
+  let accumulatedSum = 0;
+  const stringLength = word.length;
 
-    for (let characterIndex = 0; characterIndex < stringLength; characterIndex++) {
-        const currentCharacter = word[characterIndex];
-        if (vowelChecker.has(currentCharacter)) {
-            const leftSubstrings = characterIndex + 1;
-            const rightSubstrings = stringLength - characterIndex;
-            const vowelContribution = leftSubstrings * rightSubstrings;
-            accumulatedSum += vowelContribution;
-        }
+  for (
+    let characterIndex = 0;
+    characterIndex < stringLength;
+    characterIndex++
+  ) {
+    const currentCharacter = word[characterIndex];
+    if (vowelChecker.has(currentCharacter)) {
+      const leftSubstrings = characterIndex + 1;
+      const rightSubstrings = stringLength - characterIndex;
+      const vowelContribution = leftSubstrings * rightSubstrings;
+      accumulatedSum += vowelContribution;
     }
+  }
 
-    return accumulatedSum;
+  return accumulatedSum;
 };

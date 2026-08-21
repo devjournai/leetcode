@@ -1,5 +1,9 @@
 /**
  * Design Most Recently Used Queue
+ * Intuition: The queue is 1..n. `fetch(k)` returns the k-th (1-based) element and moves it to the back—an array shift.
+ * Approach: 1. Constructor fills `storedItems` with 1..n. 2. `fetch`: read index k-1, slide later elements left, write the value at the end. 3. Return the extracted item.
+ * Dry Run: n=8, fetch(3)
+ * [1,2,3,4,5,6,7,8] → extract 3 → [1,2,4,5,6,7,8,3], return 3.
  * Time Complexity: Constructor O(n), fetch O(n)
  * Space Complexity: Constructor O(n), fetch O(1)
  */

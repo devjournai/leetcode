@@ -30,7 +30,7 @@ var longestSubarray = function (nums) {
     }
     maximumConsecutiveLength = Math.max(
       maximumConsecutiveLength,
-      currentConsecutiveCount,
+      currentConsecutiveCount
     );
   }
 

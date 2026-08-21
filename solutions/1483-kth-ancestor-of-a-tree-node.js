@@ -1,5 +1,10 @@
 /**
  * Kth Ancestor Of A Tree Node
+ * Intuition: Binary lifting: ancestorLookup[node][j] is the 2^j-th parent. Queries walk the bits of k.
+ * Approach: 1. Let highestPower = ceil(log2 n). 2. Fill level 0 from parent[]. 3. For j>=1, lookup[i][j] = lookup[ lookup[i][j-1] ][j-1] if defined. 4. getKthAncestor shifts k, jumping when the bit is set.
+ * Dry Run: n=7, parent=[-1,0,0,1,1,2,2], getKthAncestor(3,1) then (5,2)
+ *   - 3's 1st parent is 1
+ *   - 5 -> 2 -> 0, 2nd ancestor is 0
  * Time Complexity: O(N log N)
  * Space Complexity: O(N log N)
  */
@@ -10,7 +15,7 @@ var TreeAncestor = function (n, parent) {
   }
 
   this.ancestorLookup = Array.from({ length: n }, () =>
-    new Array(highestPower + 1).fill(-1),
+    new Array(highestPower + 1).fill(-1)
   );
 
   for (let nodeIndex = 0; nodeIndex < n; nodeIndex++) {

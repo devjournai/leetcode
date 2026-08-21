@@ -76,7 +76,7 @@ var paintWalls = function (cost, time) {
       // The cost remains the same, and the number of walls covered also remains the same.
       minCostTable[wallConsideration + 1][coveredQuantity] = Math.min(
         minCostTable[wallConsideration + 1][coveredQuantity],
-        minCostTable[wallConsideration][coveredQuantity],
+        minCostTable[wallConsideration][coveredQuantity]
       );
 
       // Option 2: Paint the current wall with the paid painter
@@ -84,12 +84,12 @@ var paintWalls = function (cost, time) {
       // The number of walls covered increases by 1 (for the current wall) + wallTimes[wallConsideration] (for free walls).
       const nextWallsToCoverCount = Math.min(
         totalWallsCount,
-        coveredQuantity + wallTimes[wallConsideration] + 1,
+        coveredQuantity + wallTimes[wallConsideration] + 1
       );
       minCostTable[wallConsideration + 1][nextWallsToCoverCount] = Math.min(
         minCostTable[wallConsideration + 1][nextWallsToCoverCount],
         minCostTable[wallConsideration][coveredQuantity] +
-          wallCosts[wallConsideration],
+          wallCosts[wallConsideration]
       );
     }
   }

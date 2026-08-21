@@ -61,11 +61,11 @@ var rearrangeCharacters = function (s, target) {
     if (requiredTargetCount > 0) {
       const availableSourceCount = sourceCharacterCounts[charIndex];
       const potentialCopiesForChar = Math.floor(
-        availableSourceCount / requiredTargetCount,
+        availableSourceCount / requiredTargetCount
       );
       maximumPossibleCopies = Math.min(
         maximumPossibleCopies,
-        potentialCopiesForChar,
+        potentialCopiesForChar
       );
     }
   }

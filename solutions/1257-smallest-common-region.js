@@ -1,5 +1,9 @@
 /**
  * Smallest Common Region
+ * Intuition: Regions form a tree via parent pointers. The smallest common region is the first ancestor of region2 that also lies on region1’s path to the root.
+ * Approach: 1. Map each child to its parent from the regions lists. 2. Walk region1 to the root into pathForRegionA. 3. Walk region2 toward the root and return the first node in pathASet.
+ * Dry Run: Earth contains NorthAmerica; NorthAmerica contains US; US contains NY and KY. region1=NY, region2=KY
+ *   path NY->US->NA->Earth. Walk KY->US: US is in the set. Return "US".
  * Time Complexity: O(E + D)
  * Space Complexity: O(V + D)
  */

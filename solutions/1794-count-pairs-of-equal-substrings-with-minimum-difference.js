@@ -1,5 +1,9 @@
 /**
  * Count Pairs Of Equal Substrings With Minimum Difference
+ * Intuition: Equal length-1 substrings are single matching letters. For each letter, the last index in `firstString` minus the first index in `secondString` is a candidate difference; count letters achieving the global minimum.
+ * Approach: 1. Scan firstString right-to-left storing 1-based last positions in `firstCharIndices`. 2. Scan secondString left-to-right storing first positions. 3. For each letter present in both, compare `firstStringLocation - secondStringLocation` to `smallestDiffVal` and update `matchingPairsCount`. 4. Return the count.
+ * Dry Run: firstString = "abcd", secondString = "bccda".
+ *   - Letter a: 1-5=-4; b: 2-1=1; c: 3-2=1; d: 4-4=0. Minimum is -4 occurring once → 1.
  * Time Complexity: O(firstString.length + secondString.length)
  * Space Complexity: O(1)
  */

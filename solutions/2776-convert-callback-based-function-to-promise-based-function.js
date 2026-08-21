@@ -48,7 +48,7 @@ var promisify = function (originalFn) {
             promiseResolver(callbackResult);
           }
         },
-        ...inputArguments,
+        ...inputArguments
       );
     });
   };

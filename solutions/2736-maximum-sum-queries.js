@@ -1,59 +1,8 @@
 /**
  * Maximum Sum Queries
- *
- * Intuition:
- * Process queries offline.
- *
- * Sort points by nums1 in descending order.
- * Sort queries by xi in descending order.
- *
- * While processing a query, insert every point whose nums1 >= xi.
- *
- * Among the inserted points, we need:
- *
- *      nums2 >= yi
- *
- * and maximize
- *
- *      nums1 + nums2
- *
- * Compress all nums2 values and use a Segment Tree that stores the maximum
- * value (nums1 + nums2) for every nums2 coordinate.
- *
- * -----------------------------------------------------------------------
- *
- * Approach:
- *
- * 1. Build points:
- *
- *      (nums1, nums2, sum)
- *
- * 2. Coordinate-compress all nums2 values and query yi values.
- *
- * 3. Sort
- *
- *      points descending by nums1.
- *
- *      queries descending by xi.
- *
- * 4. Maintain a segment tree.
- *
- * 5. While
- *
- *      point.nums1 >= xi
- *
- *      update its compressed nums2 position with
- *
- *      nums1 + nums2.
- *
- * 6. Query the maximum value over
- *
- *      nums2 >= yi
- *
- * using the segment tree.
- *
- * -----------------------------------------------------------------------
- *
+ * Intuition: Process queries offline by decreasing xi so we only insert points with nums1 >= xi. A segment tree on compressed nums2 stores the max nums1+nums2 for nums2 >= yi.
+ * Approach: 1. Compress nums2 and query y values. 2. Build points (nums1, nums2, sum) and sort both points and queries by nums1/xi descending. 3. For each query, insert eligible points into the tree at their nums2 rank. 4. Query max on ranks >= yi.
+ * Dry Run: nums1=[4,3,1], nums2=[2,4,6], queries=[[3,2]]. Insert (4,2,6) then (3,4,7). Query nums2>=2 yields max 7.
  * Time Complexity: O((N + Q) log(N + Q))
  * Space Complexity: O(N + Q)
  */
@@ -127,7 +76,7 @@ var maximumSumQueries = function (nums1, nums2, queries) {
 
     return Math.max(
       query(node * 2, left, mid, ql, qr),
-      query(node * 2 + 1, mid + 1, right, ql, qr),
+      query(node * 2 + 1, mid + 1, right, ql, qr)
     );
   };
 

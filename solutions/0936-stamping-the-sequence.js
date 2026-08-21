@@ -1,5 +1,8 @@
 /**
  * Stamping The Sequence
+ * Intuition: Work backward: any window that already matches `stamp` except for `?` (and still has a real character) can be the last stamp covering that window. Replace it with `?` and record the index; reverse the list for chronological order.
+ * Approach: 1. Copy target to `modifiedTargetChars`. 2. `evaluateAndPerformStamp(pos)`: window must match stamp or `?`, and not be all `?`; then overwrite with `?`. 3. Repeatedly scan all starts until no progress or all `?`, cap at 10*n stamps. 4. If fully `?`, reverse `resultIndices`, else [].
+ * Dry Run: stamp="ab", target="abab". Stamp at 2 then 0 (or similar), reverse → [0,2] covering "abab".
  * Time Complexity: O(T^2 * S)
  * Space Complexity: O(T)
  */

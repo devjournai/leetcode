@@ -53,11 +53,11 @@ var validArrangement = function (pairs) {
 
     degreeBalance.set(
       startPointValue,
-      (degreeBalance.get(startPointValue) || 0) + 1,
+      (degreeBalance.get(startPointValue) || 0) + 1
     );
     degreeBalance.set(
       endPointValue,
-      (degreeBalance.get(endPointValue) || 0) - 1,
+      (degreeBalance.get(endPointValue) || 0) - 1
     );
   }
 

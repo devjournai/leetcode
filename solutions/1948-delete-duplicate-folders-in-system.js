@@ -1,5 +1,9 @@
 /**
  * Delete Duplicate Folders In System
+ * Intuition: Two folders are duplicates if their entire subfolder trees match (same names and nested structure). Serialize each subtree, group folders by that signature, mark all groups with size > 1 (and their descendants) for deletion, then collect remaining paths.
+ * Approach: 1. Insert every path into a nested object trie. 2. Post-order serialize children as sorted `name(subId)` strings; map each nonempty signature to folder paths. 3. Paths sharing a signature go into `primaryDeletionTargetsSet`; DFS marks them and descendants. 4. DFS again, skipping marked nodes, pushing surviving path prefixes.
+ * Dry Run: paths = [["a"],["c"],["d"],["a","b"],["c","b"],["d","a"]].
+ *   - `a` and `c` both serialize as `b()` → delete a, c and children. Remaining `[["d"],["d","a"]]`.
  * Time Complexity: O(N * L * log(D))
  * Space Complexity: O(N * L)
  */
@@ -42,7 +46,7 @@ var deleteDuplicateFolder = function (inputPaths) {
       const childReferenceNode = treeNode[childKeyName];
       const subStructureId = performSerializationAndMapStructures(
         childReferenceNode,
-        [...pathAccumulator, childKeyName],
+        [...pathAccumulator, childKeyName]
       );
       aggregatedChildStructures.push(`${childKeyName}(${subStructureId})`);
     }
@@ -97,7 +101,7 @@ var deleteDuplicateFolder = function (inputPaths) {
   const markDescendantsForDeletion = (
     traversalNode,
     currentPathComponents,
-    isParentMarked,
+    isParentMarked
   ) => {
     const currentPathIdentifier = currentPathComponents.join("/");
     const shouldCurrentNodeBeMarked =
@@ -117,7 +121,7 @@ var deleteDuplicateFolder = function (inputPaths) {
       markDescendantsForDeletion(
         traversalNode[childKeyName],
         [...currentPathComponents, childKeyName],
-        shouldCurrentNodeBeMarked,
+        shouldCurrentNodeBeMarked
       );
     }
   };
@@ -136,7 +140,7 @@ var deleteDuplicateFolder = function (inputPaths) {
 
   const collectNonDeletedPaths = (
     processingTreeElement,
-    currentPathSegments,
+    currentPathSegments
   ) => {
     const assembledPathKey = currentPathSegments.join("/");
     if (finalDeletionSet.has(assembledPathKey)) {

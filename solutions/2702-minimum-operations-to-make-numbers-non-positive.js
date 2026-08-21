@@ -72,7 +72,7 @@ var minOperations = function (nums, x, y) {
     allNumbersArray,
     xDecrement,
     yDecrement,
-    currentIterationCount,
+    currentIterationCount
   ) {
     if (xDecrement <= yDecrement) {
       for (
@@ -100,7 +100,7 @@ var minOperations = function (nums, x, y) {
     for (let arrayIndex = 0; arrayIndex < lengthOfArray; arrayIndex++) {
       if (temporaryValues[arrayIndex] > 0) {
         const specificPicks = Math.ceil(
-          temporaryValues[arrayIndex] / effectiveDecrease,
+          temporaryValues[arrayIndex] / effectiveDecrease
         );
         totalExtraCount += specificPicks;
       }

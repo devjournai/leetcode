@@ -1,5 +1,11 @@
 /**
  * Smallest Sufficient Team
+ * Intuition: Skill sets are small, so represent coverage as a bitmask. DP maps each reachable skill mask to the smallest team of people that achieves it; adding a person unions their mask with every existing state.
+ * Approach: 1. Map each required skill to a bit and encode every person as a mask. 2. DP starts with mask 0 -> empty team. 3. For each person with a nonempty mask, snapshot current DP entries and try unioning that person; keep the shorter team for the new mask. 4. Return the team for the full-skill mask.
+ * Dry Run: reqSkills = ["java","nodejs","reactjs"], people = [["java"],["nodejs"],["nodejs","reactjs"]].
+ *   - Bits: java=1, nodejs=2, reactjs=4; people masks 1, 2, 6.
+ *   - Person0: {1:[0]}. Person1: {3:[0,1]}. Person2: {7:[0,2]} (shorter than [0,1,2]).
+ *   - Answer [0,2].
  * Time Complexity: O(P * 2^S * S)
  * Space Complexity: O(2^S * S)
  */
@@ -67,7 +73,7 @@ var smallestSufficientTeam = function (reqSkills, people) {
 
       const prospectiveTeam = [...currentTeamMembers, individualPersonnelIndex];
       const existingOptimalForNextSkills = minimumTeamsDP.get(
-        nextSkillRequirementCoverage,
+        nextSkillRequirementCoverage
       );
 
       const isNewEntryForSkills = existingOptimalForNextSkills === undefined;

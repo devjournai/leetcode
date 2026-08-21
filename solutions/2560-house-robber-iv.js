@@ -50,14 +50,14 @@ var minCapability = function (numsArray, minimumHousesToRob) {
 
   while (capabilityMinRange < capabilityMaxRange) {
     const currentCandidateCapability = Math.floor(
-      (capabilityMinRange + capabilityMaxRange) / 2,
+      (capabilityMinRange + capabilityMaxRange) / 2
     );
 
     if (
       checkRobbingFeasibility(
         numsArray,
         currentCandidateCapability,
-        minimumHousesToRob,
+        minimumHousesToRob
       )
     ) {
       capabilityMaxRange = currentCandidateCapability;
@@ -72,7 +72,7 @@ var minCapability = function (numsArray, minimumHousesToRob) {
 function checkRobbingFeasibility(
   houseValuations,
   maxAllowedCapability,
-  targetHousesToSteal,
+  targetHousesToSteal
 ) {
   let stolenHousesCount = 0;
   let currentIndex = 0;

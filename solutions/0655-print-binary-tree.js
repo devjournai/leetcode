@@ -1,5 +1,8 @@
 /**
  * Print Binary Tree
+ * Intuition: Height h needs a (h+1) by (2^{h+1}-1) grid; each node sits at mid of its interval, children at ± 2^{h-level-1}.
+ * Approach: 1. `calculateHeight` (null = -1). 2. Allocate `outputMatrix` of empty strings. 3. `fillMatrix` writes `val` at (level, col) then recurses left/right with that power offset. 4. Start at column floor((cols-1)/2).
+ * Dry Run: [1,2]. Height 1, cols=3. Root at col 1, left child at col 0. Matrix [["","1",""],["2","",""]].
  * Time Complexity: O(H * 2^H)
  * Space Complexity: O(H * 2^H)
  */

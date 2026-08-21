@@ -24,7 +24,7 @@
  *    d. After the loop, `maxLen` is updated with `currentChainLen`.
  * 4. Return `maxLen`.
  *
- * Dry Run Example 1: nums = [5,4,1,2,2]
+ * Dry Run: nums = [5,4,1,2,2]
  * 1. counts = {1:1, 2:2, 4:1, 5:1}
  * 2. maxLen = 1. `counts.has(1)` is true, so `maxLen = Math.max(1, counts.get(1)) = 1`.
  * 3. Iterate s > 1:

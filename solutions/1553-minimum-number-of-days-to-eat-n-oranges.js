@@ -1,5 +1,9 @@
 /**
  * Minimum Number Of Days To Eat N Oranges
+ * Intuition: Eating one-by-one to a multiple of 2 or 3 then dividing is optimal; memoize remaining oranges.
+ * Approach: 1. dp(x)=x if x≤1. 2. dp(x)=min(x%2+1+dp(x//2), x%3+1+dp(x//3)). 3. Cache.
+ * Dry Run: n = 10.
+ *   - Eat toward 8 or 9 then divide; minimum days is 4.
  * Time Complexity: O(logN)
  * Space Complexity: O(logN)
  */

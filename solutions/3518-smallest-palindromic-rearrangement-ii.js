@@ -139,7 +139,7 @@ var smallestPalindrome = function (s, k) {
         const remainingLength = halfLen - (i + 1);
         const numPerms = getPermutationsCount(
           remainingLength,
-          currentCountsSnapshot,
+          currentCountsSnapshot
         );
 
         if (k < numPerms) {

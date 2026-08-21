@@ -86,7 +86,7 @@ var maxTastiness = function (price, tastiness, maxAmount, maxCoupons) {
     let currentMaximumValue = calculateMaxTastiness(
       fruitIndex + 1,
       currentBudget,
-      couponsRemaining,
+      couponsRemaining
     );
 
     const currentFruitPrice = price[fruitIndex];
@@ -98,7 +98,7 @@ var maxTastiness = function (price, tastiness, maxAmount, maxCoupons) {
         calculateMaxTastiness(
           fruitIndex + 1,
           currentBudget - currentFruitPrice,
-          couponsRemaining,
+          couponsRemaining
         );
       currentMaximumValue = Math.max(currentMaximumValue, valueWithFullPrice);
     }
@@ -111,7 +111,7 @@ var maxTastiness = function (price, tastiness, maxAmount, maxCoupons) {
           calculateMaxTastiness(
             fruitIndex + 1,
             currentBudget - discountedCost,
-            couponsRemaining - 1,
+            couponsRemaining - 1
           );
         currentMaximumValue = Math.max(currentMaximumValue, valueWithDiscount);
       }

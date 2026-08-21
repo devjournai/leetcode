@@ -74,7 +74,7 @@ var minCost = function (nums, costs) {
       let previousAscStackIndex = ascValueStackIndices.pop();
       minimumPathCosts[currentProcessingIndex] = Math.min(
         minimumPathCosts[currentProcessingIndex],
-        minimumPathCosts[previousAscStackIndex] + costs[currentProcessingIndex],
+        minimumPathCosts[previousAscStackIndex] + costs[currentProcessingIndex]
       );
     }
 
@@ -86,8 +86,7 @@ var minCost = function (nums, costs) {
       let previousDescStackIndex = descValueStackIndices.pop();
       minimumPathCosts[currentProcessingIndex] = Math.min(
         minimumPathCosts[currentProcessingIndex],
-        minimumPathCosts[previousDescStackIndex] +
-          costs[currentProcessingIndex],
+        minimumPathCosts[previousDescStackIndex] + costs[currentProcessingIndex]
       );
     }
 

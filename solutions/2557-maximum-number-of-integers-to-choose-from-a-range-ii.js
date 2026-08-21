@@ -35,7 +35,7 @@
 var maxCount = function (inputBannedNumbers, rangeLimit, maximumPossibleSum) {
   const initialTopValue = Math.min(
     rangeLimit,
-    Math.floor((-1 + Math.sqrt(1 + 8 * maximumPossibleSum)) / 2),
+    Math.floor((-1 + Math.sqrt(1 + 8 * maximumPossibleSum)) / 2)
   );
   const prohibitedNumbersSet = new Set(inputBannedNumbers);
 

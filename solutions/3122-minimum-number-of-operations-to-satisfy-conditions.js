@@ -12,7 +12,7 @@ var minimumOperations = function (grid) {
   const rowCount = grid.length;
   const columnCount = grid[0].length;
   const digitCountByColumn = Array.from({ length: columnCount }, () =>
-    new Array(10).fill(0),
+    new Array(10).fill(0)
   );
   for (let rowIndex = 0; rowIndex < rowCount; rowIndex++) {
     for (let columnIndex = 0; columnIndex < columnCount; columnIndex++) {
@@ -21,7 +21,7 @@ var minimumOperations = function (grid) {
   }
 
   const memoizedOperationCounts = Array.from({ length: columnCount }, () =>
-    new Array(10).fill(-1),
+    new Array(10).fill(-1)
   );
 
   const minOperationsFromColumn = (columnIndex, previousDigit) => {
@@ -41,7 +41,7 @@ var minimumOperations = function (grid) {
         rowCount - digitCountByColumn[columnIndex][chosenDigit];
       bestOperations = Math.min(
         bestOperations,
-        changeCost + minOperationsFromColumn(columnIndex + 1, chosenDigit),
+        changeCost + minOperationsFromColumn(columnIndex + 1, chosenDigit)
       );
     }
 

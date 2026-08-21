@@ -15,7 +15,7 @@ var numberOfPermutations = function (n, requirements) {
   const MOD = 1000000007;
   const MAX_INVERSIONS = 400;
   const dp = Array.from({ length: n + 1 }, () =>
-    Array(MAX_INVERSIONS + 1).fill(0),
+    Array(MAX_INVERSIONS + 1).fill(0)
   );
   const endToCnt = Array(n + 1).fill(-1);
 

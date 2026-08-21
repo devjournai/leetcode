@@ -1,5 +1,11 @@
 /**
  * Course Schedule II
+ * Intuition: A topological order is a valid course order. Kahn's algorithm repeatedly takes courses with in-degree 0; leftover nodes mean a cycle.
+ * Approach: 1. Edge required → dependent; count incoming edges. 2. Enqueue every course with in-degree 0. 3. Pop, append to the order, decrement neighbors, enqueue when in-degree hits 0. 4. Return the order if it contains all courses, else [].
+ * Dry Run: numCourses = 3, prerequisites = [[1,0],[2,0]].
+ *   - Edges 0→1, 0→2; in-degree [0,1,1]; queue [0].
+ *   - Take 0 → order [0]; 1 and 2 drop to 0 → queue [1,2].
+ *   - Take 1, then 2 → [0,1,2]. Length 3 → return [0,1,2].
  * Time Complexity: O(V + E)
  * Space Complexity: O(V + E)
  */

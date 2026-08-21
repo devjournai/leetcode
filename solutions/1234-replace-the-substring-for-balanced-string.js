@@ -1,5 +1,8 @@
 /**
  * Replace The Substring For Balanced String
+ * Intuition: Outside a window every Q/W/E/R count must be ≤ n/4; the shortest such window is the smallest replacement.
+ * Approach: 1. Count all four letters; if already n/4 each, return 0. 2. Expand right, decrementing outside counts. 3. While all outside counts ≤ n/4, shrink left and track min length.
+ * Dry Run: s="QWER" already balanced → 0. s="QQWE" needs a window covering one extra Q → 1.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

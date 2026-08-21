@@ -28,7 +28,7 @@
 var findMiddleIndex = function (nums) {
   let sumAllNumbers = nums.reduce(
     (initialValue, currentNumber) => initialValue + currentNumber,
-    0,
+    0
   );
   let currentLeftPartSum = 0;
 

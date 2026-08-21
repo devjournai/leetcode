@@ -106,7 +106,7 @@ var networkBecomesIdle = function (edges, patience) {
     let resendMultiplier = 0;
     if (twoWayTravelDuration > currentServerPatience) {
       resendMultiplier = Math.floor(
-        (twoWayTravelDuration - 1) / currentServerPatience,
+        (twoWayTravelDuration - 1) / currentServerPatience
       );
     }
 
@@ -115,7 +115,7 @@ var networkBecomesIdle = function (edges, patience) {
 
     overallLatestCompletion = Math.max(
       overallLatestCompletion,
-      serverCompletionTime,
+      serverCompletionTime
     );
   }
 

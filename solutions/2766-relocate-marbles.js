@@ -34,7 +34,7 @@ var relocateMarbles = function (nums, moveFrom, moveTo) {
 
   const finalPositionsArray = [...currentPositions];
   finalPositionsArray.sort(
-    (firstValue, secondValue) => firstValue - secondValue,
+    (firstValue, secondValue) => firstValue - secondValue
   );
 
   return finalPositionsArray;

@@ -1,5 +1,8 @@
 /**
  * Prime Palindrome
+ * Intuition: Even-length palindromes > 11 are divisible by 11, so jump to the next odd-length 10^len. Then increment until the number is both a palindrome and prime.
+ * Approach: 1. Loop from `initialN`. 2. Even length and >11 → jump to 10^length. 3. Else `checkStringPalindrome`; if not, ++. 4. `checkIfPrime` (6k±1 trial); if yes return, else ++.
+ * Dry Run: n=13. 13 not palindrome. 14…101: skip evens after 99 jump to 100, 101 palindrome and prime → 101.
  * Time Complexity: O(P)
  * Space Complexity: O(log P)
  */

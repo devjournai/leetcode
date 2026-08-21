@@ -1,5 +1,8 @@
 /**
  * Redistribute Characters To Make All Strings Equal
+ * Intuition: Characters can move freely, so every letter’s total count must be divisible by the number of words.
+ * Approach: 1. Tally `charFrequencies` over all words. 2. If any count % totalWordsCount !== 0, return false. 3. Else true.
+ * Dry Run: words=["abc","aabc","bc"]. Counts a:3 b:3 c:3, n=3. Return true.
  * Time Complexity: O(L)
  * Space Complexity: O(1)
  */

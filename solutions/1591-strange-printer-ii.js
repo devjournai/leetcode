@@ -1,5 +1,9 @@
 /**
  * Strange Printer II
+ * Intuition: Each color must be printed as a solid rectangle. Other colors inside that rectangle must be printed later → edges; a cycle means impossible.
+ * Approach: 1. Bounding box per color. 2. Any different color in the box is a dependency. 3. DFS cycle detect. 4. Printable iff acyclic.
+ * Dry Run: nested rectangles of color 1 then 2.
+ *   - 2 depends on 1; acyclic → true.
  * Time Complexity: O(C * M * N)
  * Space Complexity: O(C^2)
  */

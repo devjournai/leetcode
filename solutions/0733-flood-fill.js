@@ -1,5 +1,8 @@
 /**
  * Flood Fill
+ * Intuition: Recolor the 4-connected component that matches the start pixel. If the start color already equals `newColor`, do nothing to avoid infinite recursion.
+ * Approach: 1. Read `initialPixelValue` at (sr, sc). 2. If it equals `newColor`, return the image. 3. DFS `traverseAndRecolor` writes `newColor` and recurses in four directions while the cell still equals the original color.
+ * Dry Run: Start (1,1) color 1, newColor 2. The connected 1s become 2; a disconnected 1 is unchanged.
  * Time Complexity: O(R * C)
  * Space Complexity: O(R * C)
  */

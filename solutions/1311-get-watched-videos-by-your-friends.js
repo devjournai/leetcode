@@ -1,5 +1,8 @@
 /**
  * Get Watched Videos By Your Friends
+ * Intuition: Friends form an unweighted graph. BFS to exact depth `level` yields that friend set; then rank their videos by frequency.
+ * Approach: 1. BFS from `id`, skipping visited people, for `level` hops. 2. Count videos watched by that frontier. 3. Sort by count then name. 4. Return titles only.
+ * Dry Run: id=0, level=1, friends=[[1,2],[0,3],[0,3],[1,2]], videos=[["A"],["B"],["C"],["D"]]. Level-1 friends 1 and 2 → ["B","C"] sorted.
  * Time Complexity: O(P + E + K * V_max + D log D)
  * Space Complexity: O(P + D)
  */

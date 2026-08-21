@@ -1,5 +1,9 @@
 /**
  * Length Of Longest Fibonacci Subsequence
+ * Intuition: Any Fib-like subsequence is determined by its first two terms. Put `arr` in a set and, for every pair `(valueA, valueB)`, keep extending `first+second` while that sum exists.
+ * Approach: 1. `lookupSet = Set(arr)`. 2. For each index pair with `indexA < currentInnerIndex`, start length 2 and while `firstTerm + secondTerm` is in the set, shift the window and increment length. 3. Track `longestOverall`. 4. Return it if `>= 3`, else 0.
+ * Dry Run: arr = [1, 2, 3, 4, 5, 6, 7, 8].
+ *   - Pair (1, 2): 3,5,8 exist → length 5. Pair (1, 3): 4,7 → length 4. Best is 5 ≥ 3 → 5.
  * Time Complexity: O(N^2 log(Max_Value))
  * Space Complexity: O(N)
  */

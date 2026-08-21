@@ -1,5 +1,9 @@
 /**
  * Replace All S To Avoid Consecutive Repeating Characters
+ * Intuition: Replace each '?' with the smallest letter ≠ neighbors (next neighbor only if it is not '?').
+ * Approach: 1. Split chars. 2. On '?', try a,b,c... until unlike prev and next non-?. 3. Join.
+ * Dry Run: s = "?zs".
+ *   - First '?' becomes 'a' → "azs".
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */

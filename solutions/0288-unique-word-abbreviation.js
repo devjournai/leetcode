@@ -1,6 +1,11 @@
 /**
  * Unique Word Abbreviation
- * Time Complexity: O(N * L) 
+ * Intuition: An abbreviation is unique for a query if no other dictionary word shares first+middleLength+last, except the query itself appearing alone.
+ * Approach: 1. Map each dict word’s abbr to a Set of words (words of length <=2 stay themselves). 2. isUnique: missing abbr → true; else true only if the set size is 1 and contains the query.
+ * Dry Run: dict=["deer","door","cake","card"].
+ *   - d2r→{deer,door}, c2e→{cake}, c2d→{card}.
+ *   - isUnique("dear") false; "cart" true; "cane" false; "cake" true.
+ * Time Complexity: O(N * L)
  * Space Complexity: O(N * L)
  */
 var ValidWordAbbr = function (dictionary) {

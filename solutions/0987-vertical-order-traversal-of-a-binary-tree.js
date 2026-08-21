@@ -1,5 +1,8 @@
 /**
  * Vertical Order Traversal Of A Binary Tree
+ * Intuition: BFS records (column, row, val), then sort by column, row, value and group into column lists.
+ * Approach: 1. Queue `[node, row, col]` from root at (0,0). 2. Push left as col-1, right as col+1. 3. Sort `collectedNodesInfo` by those three keys. 4. Bucket consecutive same columns into `finalOutput`.
+ * Dry Run: [3,9,20,null,null,15,7]. Nodes (col -1:9), (0:3 then 15), (1:20), (2:7). Output [[9],[3,15],[20],[7]].
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */

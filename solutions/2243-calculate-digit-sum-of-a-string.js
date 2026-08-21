@@ -36,11 +36,11 @@ var digitSum = function (s, k) {
     ) {
       let segmentEndOffset = Math.min(
         segmentStartOffset + k,
-        currentStringState.length,
+        currentStringState.length
       );
       let currentSegment = currentStringState.substring(
         segmentStartOffset,
-        segmentEndOffset,
+        segmentEndOffset
       );
 
       let segmentDigitsSum = 0;

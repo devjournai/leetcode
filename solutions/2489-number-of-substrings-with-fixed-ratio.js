@@ -58,7 +58,7 @@ var fixedRatio = function (s, num1, num2) {
 
     frequencyMap.set(
       calculatedDiff,
-      (frequencyMap.get(calculatedDiff) || 0) + 1,
+      (frequencyMap.get(calculatedDiff) || 0) + 1
     );
   }
 

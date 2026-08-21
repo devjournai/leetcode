@@ -79,7 +79,7 @@ var maximumCost = function (totalCities, roadSegments, highwayCount) {
   ) {
     maxTotalCost = Math.max(
       maxTotalCost,
-      calculateMaxCost(initialCityIndex, 1 << initialCityIndex),
+      calculateMaxCost(initialCityIndex, 1 << initialCityIndex)
     );
   }
 
@@ -104,12 +104,12 @@ var maximumCost = function (totalCities, roadSegments, highwayCount) {
       if (!((visitedCitiesMask >> nextAdjacentCity) & 1)) {
         const recursiveResult = calculateMaxCost(
           nextAdjacentCity,
-          visitedCitiesMask | (1 << nextAdjacentCity),
+          visitedCitiesMask | (1 << nextAdjacentCity)
         );
         if (recursiveResult !== -1) {
           currentAnswer = Math.max(
             currentAnswer,
-            connectionToll + recursiveResult,
+            connectionToll + recursiveResult
           );
         }
       }

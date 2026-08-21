@@ -1,5 +1,8 @@
 /**
  * Minimum Knight Moves
+ * Intuition: Knight moves are symmetric, so work in the first quadrant and recursively step toward origin with memoization.
+ * Approach: 1. Take abs(x), abs(y). 2. Recurse with min(dfs(|x-1|,|y-2|), dfs(|x-2|,|y-1|))+1. 3. Base: (0,0)→0; Manhattan 2 (the (1,1)-type trap)→2. Cache results.
+ * Dry Run: (2,1). Direct knight step from origin → 1.
  * Time Complexity: O(x*y)
  * Space Complexity: O(x*y)
  */
@@ -26,14 +29,14 @@ var minKnightMoves = function (x, y) {
     const firstOptionCoordY = Math.abs(currentYCoord - 2);
     const firstOptionResult = depthFirstSearcher(
       firstOptionCoordX,
-      firstOptionCoordY,
+      firstOptionCoordY
     );
 
     const secondOptionCoordX = Math.abs(currentXCoord - 2);
     const secondOptionCoordY = Math.abs(currentYCoord - 1);
     const secondOptionResult = depthFirstSearcher(
       secondOptionCoordX,
-      secondOptionCoordY,
+      secondOptionCoordY
     );
 
     const shortestSteps = Math.min(firstOptionResult, secondOptionResult) + 1;

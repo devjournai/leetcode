@@ -45,11 +45,11 @@ var SORTracker = function () {
   this.queryCount = 0;
   this.lowerScoreHeap = new PriorityQueue(
     (elementA, elementB) =>
-      elementA[0] - elementB[0] || elementB[1].localeCompare(elementA[1]),
+      elementA[0] - elementB[0] || elementB[1].localeCompare(elementA[1])
   );
   this.higherScoreHeap = new PriorityQueue(
     (elementC, elementD) =>
-      elementD[0] - elementC[0] || elementC[1].localeCompare(elementD[1]),
+      elementD[0] - elementC[0] || elementC[1].localeCompare(elementD[1])
   );
 };
 

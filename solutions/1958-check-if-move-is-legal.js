@@ -30,7 +30,7 @@ const checkMove = function (
   boardGameCells,
   moveRow,
   moveCol,
-  playerPieceColor,
+  playerPieceColor
 ) {
   const opponentPieceColor = playerPieceColor === "B" ? "W" : "B";
   const allMoveDirections = [

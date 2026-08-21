@@ -1,5 +1,9 @@
 /**
  * Number Of Good Leaf Nodes Pairs
+ * Intuition: Post-order each node collects leaf distances. A good pair is a left leaf and a right leaf whose depths sum to ≤ distance.
+ * Approach: 1. Leaf returns [1]. 2. Cross left/right depths counting sums ≤ distance. 3. Return incremented depths still ≤ distance.
+ * Dry Run: tree 1-2-4 and 1-3, distance = 3.
+ *   - Leaves 4 and 3 are 3 apart → 1 pair.
  * Time Complexity: O(N * D^2)
  * Space Complexity: O(N * D)
  */

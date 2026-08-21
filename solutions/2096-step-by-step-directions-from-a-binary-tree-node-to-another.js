@@ -65,7 +65,7 @@ var getDirections = function (root, startValue, destValue) {
   let commonPathIndex = 0;
   const minPathLength = Math.min(
     pathFromRootToStartNode.length,
-    pathFromRootToDestNode.length,
+    pathFromRootToDestNode.length
   );
 
   for (let currentIdx = 0; currentIdx < minPathLength; ++currentIdx) {

@@ -1,5 +1,8 @@
 /**
  * Largest Time For Given Digits
+ * Intuition: There are only 4! permutations; keep the lexicographically largest "HH:MM" with HH<24 and MM<60.
+ * Approach: 1. Nested four loops over distinct indices. 2. hours = 10*d1+d2, minutes similarly. 3. If valid, format with leading zeros and compare as strings to `latestValidTime`. 4. Return that string ("" if none).
+ * Dry Run: [1,2,3,4] best 23:41. [5,5,5,5] none → "".
  * Time Complexity: O(1)
  * Space Complexity: O(1)
  */

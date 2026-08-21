@@ -1,5 +1,9 @@
 /**
  * Check If Two String Arrays Are Equivalent
+ * Intuition: Concatenation equality can be checked by walking both arrays character by character without building new strings.
+ * Approach: 1. Four indices: word and char for each array. 2. Compare current characters; mismatch → false. 3. Advance and wrap to the next word when a word is exhausted. 4. Equal iff both arrays are fully consumed together.
+ * Dry Run: word1=["ab","c"], word2=["a","bc"].
+ *   - a=a, b=b, c=c, both done → true.
  * Time Complexity: O(L1 + L2)
  * Space Complexity: O(1)
  */

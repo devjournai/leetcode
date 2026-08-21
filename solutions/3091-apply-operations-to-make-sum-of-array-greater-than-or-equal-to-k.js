@@ -55,7 +55,7 @@ var minOperations = function (k) {
     let operationsForCurrentStrategy = currentIncrementCount + duplicationCount;
     minimumOperationsFound = Math.min(
       minimumOperationsFound,
-      operationsForCurrentStrategy,
+      operationsForCurrentStrategy
     );
   }
 

@@ -22,7 +22,7 @@ var numberOfSubstrings = function (s) {
     const currentCharacter = s[charIndex];
     charFrequencies.set(
       currentCharacter,
-      (charFrequencies.get(currentCharacter) || 0) + 1,
+      (charFrequencies.get(currentCharacter) || 0) + 1
     );
   }
 

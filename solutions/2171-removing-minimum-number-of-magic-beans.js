@@ -33,11 +33,11 @@
  */
 var minimumRemoval = function (beans) {
   const sortedBeanAmounts = beans.sort(
-    (firstElement, secondElement) => firstElement - secondElement,
+    (firstElement, secondElement) => firstElement - secondElement
   );
   const initialTotalBeans = sortedBeanAmounts.reduce(
     (totalAccumulator, currentAmount) => totalAccumulator + currentAmount,
-    0,
+    0
   );
 
   let minimumRemovedBeans = initialTotalBeans;

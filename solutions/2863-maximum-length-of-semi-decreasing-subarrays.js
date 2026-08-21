@@ -76,7 +76,7 @@ var maxSubarrayLength = function (nums) {
         const calculatedLength = rightCandidateIndex - leftPointer + 1;
         currentMaxSubarrayLength = Math.max(
           currentMaxSubarrayLength,
-          calculatedLength,
+          calculatedLength
         );
         indicesForSuffixMinimums.pop();
       }

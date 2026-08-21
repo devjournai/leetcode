@@ -1,5 +1,9 @@
 /**
  * Reachable Nodes In Subdivided Graph
+ * Intuition: Original nodes plus `cnt` nodes on each edge. Dijkstra from 0 with a sort-based min-queue finds how far we can travel (`maxMoves`). Along each undirected edge, count intermediate nodes reached from either endpoint without double-counting overlap.
+ * Approach: 1. Build undirected adj lists of `[neighbor, newNodesCount]`. 2. `shortestDistances[0]=0`, others Infinity; queue `[dist, node]`. 3. Pop smallest dist; skip stale. For each neighbor, record `min(maxMoves-dist, cnt)` on that directed side of the edge key `"min-max"`. If `dist+cnt+1 ≤ maxMoves` and improves, push. 4. Count original nodes with dist ≤ maxMoves. 5. For each edge add `min(cnt, reachedA+reachedB)`.
+ * Dry Run: edges = [[0,1,10],[0,2,1],[1,2,2]], maxMoves = 6, n = 3.
+ *   - Distances: 0→0, 0→2 cost 2, 2→1 cost 5. All 3 original nodes. Edge 0-1: 6+1=7 intermediates; 0-2: 1; 1-2: min(2,1+2)=2. Total 13.
  * Time Complexity: O(N * E * log E)
  * Space Complexity: O(N + E)
  */
@@ -58,12 +62,12 @@ var reachableNodes = function (edges, maxMoves, n) {
       }
       const nodesReachableOnSegment = Math.min(
         maxMoves - currentDistVal,
-        edgeIntermediateNodes,
+        edgeIntermediateNodes
       );
       edgeVisitedCounts[compositeEdgeIdentifier][travelDirectionIndex] =
         Math.max(
           edgeVisitedCounts[compositeEdgeIdentifier][travelDirectionIndex],
-          nodesReachableOnSegment,
+          nodesReachableOnSegment
         );
 
       const costToNeighbor = currentDistVal + edgeIntermediateNodes + 1;
@@ -107,7 +111,7 @@ var reachableNodes = function (edges, maxMoves, n) {
       const combinedReachedOnEdge = reachedFromSideA + reachedFromSideB;
       totalReachableNodesCount += Math.min(
         totalNewNodes,
-        combinedReachedOnEdge,
+        combinedReachedOnEdge
       );
     }
     originalEdgeIndex++;

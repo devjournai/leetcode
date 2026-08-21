@@ -58,6 +58,8 @@
  *
  * We never allow a state representing 3 consecutive elements < k.
  *
+ * Approach: Keep three scalars `dp0`/`dp1`/`dp2` as min cost with 0/1/2 consecutive unmodified values < k. If `num >= k`, reset to dp0=min(all) and dp1=dp2=INF. Else set newDp0 = min(all)+(k-num), newDp1=dp0, newDp2=dp1. Answer is min of the three states.
+ *
  * ------------------------------------------------------------
  *
  * For nums[i] >= k:

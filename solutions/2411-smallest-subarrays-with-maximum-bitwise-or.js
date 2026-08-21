@@ -69,7 +69,7 @@ var smallestSubarrays = function (nums) {
     for (let bitChecker = 0; bitChecker < 32; bitChecker++) {
       maximumReachIndex = Math.max(
         maximumReachIndex,
-        lastOccurrenceIndices[bitChecker],
+        lastOccurrenceIndices[bitChecker]
       );
     }
 

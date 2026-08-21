@@ -78,7 +78,7 @@ var maximumMinutes = function (grid) {
     checkLocationColumn,
     rowsTotal,
     columnsTotal,
-    currentGridReference,
+    currentGridReference
   ) {
     return (
       checkLocationRow >= 0 &&
@@ -131,7 +131,7 @@ var maximumMinutes = function (grid) {
             nextFireCoordinateColumn,
             numberOfRows,
             numberOfColumns,
-            grid,
+            grid
           ) &&
           fireArrivalTimes[nextFireCoordinateRow][nextFireCoordinateColumn] ===
             Infinity
@@ -188,7 +188,7 @@ var maximumMinutes = function (grid) {
             nextPersonCoordinateColumn,
             numberOfRows,
             numberOfColumns,
-            grid,
+            grid
           ) ||
           personPathVisited[nextPersonCoordinateRow][nextPersonCoordinateColumn]
         ) {
@@ -238,7 +238,7 @@ var maximumMinutes = function (grid) {
 
   while (binarySearchLow <= binarySearchHigh) {
     const middleAttemptDelay = Math.floor(
-      (binarySearchLow + binarySearchHigh) / 2,
+      (binarySearchLow + binarySearchHigh) / 2
     );
 
     if (checkReachability(middleAttemptDelay)) {

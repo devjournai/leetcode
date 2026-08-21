@@ -1,5 +1,8 @@
 /**
  * Construct Target Array With Multiple Sums
+ * Intuition: Forward replaces a 1 with the array sum. Reverse: the max element was previous-sum; replace it with max-(total-max), using a max-heap and jumping many steps via remainder.
+ * Approach: 1. If n=1, true iff the value is 1. 2. Heapify target; loop while max>1. 3. rest=total-max; if rest<1 fail. 4. Reduce max modulo rest (keeping it in (0,max)), update total, sift down. 5. True when max≤1.
+ * Dry Run: target = [9,3,5]. 9→1 with rest 8 then 5→1 → [1,3,1] → [1,1,1] true.
  * Time Complexity: O(N * log N * log M)
  * Space Complexity: O(N)
  */
@@ -10,7 +13,7 @@ var isPossible = function (targetArrayElements) {
 
   let currentTotalSum = targetArrayElements.reduce(
     (accumulator, currentValue) => accumulator + currentValue,
-    0,
+    0
   );
   const valueHeap = [...targetArrayElements];
 

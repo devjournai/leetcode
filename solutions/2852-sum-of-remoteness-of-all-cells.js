@@ -75,7 +75,7 @@ var sumRemoteness = function (gridParam) {
     mutableGridRef,
     gridRowsCount,
     gridColsCount,
-    movementOptions,
+    movementOptions
   ) => {
     if (
       dfsCoordX < 0 ||
@@ -105,7 +105,7 @@ var sumRemoteness = function (gridParam) {
         mutableGridRef,
         gridRowsCount,
         gridColsCount,
-        movementOptions,
+        movementOptions
       );
       const recursiveSum = componentDfsResult[0];
       const recursiveCount = componentDfsResult[1];
@@ -125,7 +125,7 @@ var sumRemoteness = function (gridParam) {
           temporaryGrid,
           matrixRows,
           matrixCols,
-          movementVectors,
+          movementVectors
         );
         const componentSumTotal = componentDetails[0];
         const componentCellCount = componentDetails[1];

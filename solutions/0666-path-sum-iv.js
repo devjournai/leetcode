@@ -1,5 +1,9 @@
 /**
  * Path Sum Iv
+ * Intuition: Each 3-digit code is depth, position, value. DFS from (1,1) adds node values along the path and, at leaves, returns the path total; internal nodes sum both children.
+ * Approach: 1. Map `"depth-position"` → value. 2. `calculatePathSum(level, pos, pathTotal)` returns 0 if missing; if no children return accumulated; else left pos `2p-1` and right `2p` on the next level.
+ * Dry Run: nums=[113,215,221].
+ *   - Root 3, left 5, right 1. Leaves: 3+5=8 and 3+1=4. Return 12.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -41,12 +45,12 @@ var pathSum = function (nums) {
     const sumFromLeftBranch = calculatePathSum(
       nextLevel,
       leftNodeIndex,
-      accumulatedSum,
+      accumulatedSum
     );
     const sumFromRightBranch = calculatePathSum(
       nextLevel,
       rightNodeIndex,
-      accumulatedSum,
+      accumulatedSum
     );
 
     return sumFromLeftBranch + sumFromRightBranch;

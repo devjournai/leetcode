@@ -1,5 +1,8 @@
 /**
  * Minimum Moves To Reach Target With Rotations
+ * Intuition: The snake is a 2-cell state (tail, orientation) on an empty grid; BFS finds the shortest sequence of crawls and rotations to the bottom-right horizontal pose.
+ * Approach: 1. BFS from (0,0,horizontal). 2. From horizontal: crawl right/down if cells are 0, or clockwise-rotate if the 2×2 square is empty. 3. From vertical: crawl right/down or counterclockwise-rotate analogously. 4. Return moves when tail is at (n-1,n-2) horizontal, else -1.
+ * Dry Run: 3×3 empty grid. Start horizontal at top-left; sequence of downs/rights/rotations reaches (2,1) horizontal in 5 moves.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N^2)
  */
@@ -112,7 +115,7 @@ var minimumMoves = function (grid) {
         rotateClockwiseCheckRow < nGridDimension &&
         checkCellValidity(
           rotateClockwiseCheckRow,
-          rotateClockwiseCheckColOne,
+          rotateClockwiseCheckColOne
         ) &&
         checkCellValidity(rotateClockwiseCheckRow, rotateClockwiseCheckColTwo)
       ) {
@@ -185,11 +188,11 @@ var minimumMoves = function (grid) {
         rotateCounterClockwiseCheckCol < nGridDimension &&
         checkCellValidity(
           rotateCounterClockwiseCheckRowOne,
-          rotateCounterClockwiseCheckCol,
+          rotateCounterClockwiseCheckCol
         ) &&
         checkCellValidity(
           rotateCounterClockwiseCheckRowTwo,
-          rotateCounterClockwiseCheckCol,
+          rotateCounterClockwiseCheckCol
         )
       ) {
         const rotateCounterClockwiseStateKeyV = `${rotateCounterClockwiseNewRowV},${rotateCounterClockwiseNewColV},${rotateCounterClockwiseNewOrientationV}`;

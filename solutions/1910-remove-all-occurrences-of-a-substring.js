@@ -1,5 +1,8 @@
 /**
  * Remove All Occurrences Of A Substring
+ * Intuition: A stack of characters: after each push, if the suffix equals `part`, pop those characters (handles nested occurrences).
+ * Approach: 1. Push each char of `s` onto `stringBuilder`. 2. If length ≥ part length and suffix join equals `part`, pop `subPartLength` times. 3. Join the stack.
+ * Dry Run: s="daabcbaabcbc", part="abc". Repeated pops leave "dab".
  * Time Complexity: O(N * M)
  * Space Complexity: O(N)
  */

@@ -35,7 +35,7 @@ var maximumAlternatingSubarraySum = function (nums) {
   for (const elementValue of nums) {
     let candidateSumEndingPlus = Math.max(
       maxSumEndingMinus + elementValue,
-      elementValue,
+      elementValue
     );
     let candidateSumEndingMinus = maxSumEndingPlus - elementValue;
 
@@ -44,7 +44,7 @@ var maximumAlternatingSubarraySum = function (nums) {
     maxOverallResult = Math.max(
       maxOverallResult,
       maxSumEndingPlus,
-      maxSumEndingMinus,
+      maxSumEndingMinus
     );
   }
 

@@ -60,7 +60,7 @@ var numberOfGoodPartitions = function (nums) {
     }
     currentMaxReach = Math.max(
       currentMaxReach,
-      lastOccurrenceMap.get(nums[loopIndexTwo]),
+      lastOccurrenceMap.get(nums[loopIndexTwo])
     );
   }
 

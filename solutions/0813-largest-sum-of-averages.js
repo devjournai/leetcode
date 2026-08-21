@@ -1,5 +1,8 @@
 /**
  * Largest Sum Of Averages
+ * Intuition: DP `maxScores[i][p]` = best score splitting `nums[i..]` into p groups. First group is a prefix average plus remaining with p-1 groups.
+ * Approach: 1. Prefix sums for `getAverage(l,r)`. 2. `maxScores[i][1]` = average of `i..n-1`. 3. For partitions 2..k, for each start, try first-group end and take max of avg + `maxScores[end+1][p-1]`. 4. Return `maxScores[0][k]`.
+ * Dry Run: nums = [9,1,2,3,9], k = 3. Best is [9] + [1,2,3] + [9] averages 9+2+9 = 20.
  * Time Complexity: O(N^2 * K)
  * Space Complexity: O(N * K)
  */
@@ -28,7 +31,7 @@ var largestSumOfAverages = function (nums, k) {
   ) {
     maxScores[currentSegmentStart][1] = getAverage(
       currentSegmentStart,
-      totalLength - 1,
+      totalLength - 1
     );
   }
 
@@ -45,14 +48,14 @@ var largestSumOfAverages = function (nums, k) {
       ) {
         const currentSubarrayAverage = getAverage(
           segmentStartIndex,
-          firstSubarrayEndIndex,
+          firstSubarrayEndIndex
         );
         const remainingProblemScore =
           maxScores[firstSubarrayEndIndex + 1][numPartitions - 1];
 
         maxScores[segmentStartIndex][numPartitions] = Math.max(
           maxScores[segmentStartIndex][numPartitions],
-          currentSubarrayAverage + remainingProblemScore,
+          currentSubarrayAverage + remainingProblemScore
         );
       }
     }

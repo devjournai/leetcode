@@ -90,7 +90,7 @@ var findMaximums = function (nums) {
       1;
     finalAnswer[lengthOfMaxSubarray - 1] = Math.max(
       finalAnswer[lengthOfMaxSubarray - 1],
-      nums[populateIterIndex],
+      nums[populateIterIndex]
     );
   }
 
@@ -101,7 +101,7 @@ var findMaximums = function (nums) {
   ) {
     finalAnswer[lengthUpdateIterIndex] = Math.max(
       finalAnswer[lengthUpdateIterIndex],
-      finalAnswer[lengthUpdateIterIndex + 1],
+      finalAnswer[lengthUpdateIterIndex + 1]
     );
   }
 

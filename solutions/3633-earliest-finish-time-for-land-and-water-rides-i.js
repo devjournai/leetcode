@@ -54,7 +54,7 @@ var earliestFinishTime = function (
   landStartTime,
   landDuration,
   waterStartTime,
-  waterDuration,
+  waterDuration
 ) {
   let minOverallFinishTime = Infinity;
 
@@ -69,7 +69,7 @@ var earliestFinishTime = function (
       const landFinishTime = currentLandStartTime + currentLandDuration;
       const waterStartAfterLand = Math.max(
         landFinishTime,
-        currentWaterStartTime,
+        currentWaterStartTime
       );
       const finishTimeLW = waterStartAfterLand + currentWaterDuration;
       minOverallFinishTime = Math.min(minOverallFinishTime, finishTimeLW);
@@ -77,7 +77,7 @@ var earliestFinishTime = function (
       const waterFinishTime = currentWaterStartTime + currentWaterDuration;
       const landStartAfterWater = Math.max(
         waterFinishTime,
-        currentLandStartTime,
+        currentLandStartTime
       );
       const finishTimeWL = landStartAfterWater + currentLandDuration;
       minOverallFinishTime = Math.min(minOverallFinishTime, finishTimeWL);

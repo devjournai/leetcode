@@ -26,7 +26,7 @@ var numberOfPoints = function (nums) {
   }
 
   const sortedCars = nums.sort(
-    (segmentOne, segmentTwo) => segmentOne[0] - segmentTwo[0],
+    (segmentOne, segmentTwo) => segmentOne[0] - segmentTwo[0]
   );
 
   let mergedIntervalStart = sortedCars[0][0];

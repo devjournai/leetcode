@@ -70,10 +70,10 @@ var averageOfSubtree = function (root) {
     }
 
     const [leftSumOfSubtree, leftCountOfNodes] = calculateSubtreeMetrics(
-      currentNodePointer.left,
+      currentNodePointer.left
     );
     const [rightSumOfSubtree, rightCountOfNodes] = calculateSubtreeMetrics(
-      currentNodePointer.right,
+      currentNodePointer.right
     );
 
     const currentSubtreeSum =
@@ -81,7 +81,7 @@ var averageOfSubtree = function (root) {
     const currentSubtreeCount = leftCountOfNodes + rightCountOfNodes + 1;
 
     const calculatedAverage = Math.floor(
-      currentSubtreeSum / currentSubtreeCount,
+      currentSubtreeSum / currentSubtreeCount
     );
 
     if (calculatedAverage === currentNodePointer.val) {

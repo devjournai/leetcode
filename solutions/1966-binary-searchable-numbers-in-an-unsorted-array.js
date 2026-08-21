@@ -53,7 +53,7 @@ var binarySearchableNumbers = function (nums) {
   for (let leftScanIdx = 1; leftScanIdx < arrayLength; leftScanIdx++) {
     prefixMaximums[leftScanIdx] = Math.max(
       prefixMaximums[leftScanIdx - 1],
-      nums[leftScanIdx],
+      nums[leftScanIdx]
     );
   }
 
@@ -61,7 +61,7 @@ var binarySearchableNumbers = function (nums) {
   for (let rightScanIdx = arrayLength - 2; rightScanIdx >= 0; rightScanIdx--) {
     suffixMinimums[rightScanIdx] = Math.min(
       suffixMinimums[rightScanIdx + 1],
-      nums[rightScanIdx],
+      nums[rightScanIdx]
     );
   }
 

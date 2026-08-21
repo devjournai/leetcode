@@ -1,5 +1,8 @@
 /**
  * XOR After Range Multiplication Queries II
+ * Intuition: Small k uses difference arrays along each residue class (multiply at l, inverse at the next index after the last hit). Large k is applied by walking the arithmetic progression.
+ * Approach: 1. Split queries by k < sqrt(n). 2. For each small k, difference-multiply v at l and inv(v) at last+k, prefix-multiply along i, i-k. 3. Apply large-k queries directly onto a multiplier array. 4. Multiply original nums and XOR.
+ * Dry Run: n = 4, one query (0, 3, 1, 2). Small k: diff[0]*=2, prefix fills [2,2,2,2], XOR of doubled values.
  * Time Complexity: O(sum( (ri - li) / ki + 1 ))
  * Space Complexity: O(N)
  */
