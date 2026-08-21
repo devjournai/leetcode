@@ -1,5 +1,9 @@
 /**
  * Cat And Mouse II
+ * Intuition: Mouse and cat alternate jumps (mouse first) of limited length on empty cells. Mouse wins by reaching food first; cat wins by occupying the mouse or food or if the game repeats too long. Memoized DFS on (turn, mouse pos, cat pos).
+ * Approach: 1. Locate M/C/F and `emptyCellsCount`. 2. `solveGameOutcome`: if turn ≥ 2*empty → cat; if mouse on food → mouse; cat on mouse/food → cat. 3. Try stay plus jumps along 4 dirs up to jump limit; mouse needs any winning move, cat needs all mouse-wins to fail. 4. Return whether start state is 1.
+ * Dry Run: grid = ["####F","#C...","M...."], catJump = 1, mouseJump = 1
+ * Mouse moves first toward F; with jump 1 the cat cannot cut off every path in this layout → mouse can win (true in the matching LC sample with these jumps).
  * Time Complexity: O((R * C)^3 * max(catJump, mouseJump))
  * Space Complexity: O((R * C)^3)
  */
@@ -55,12 +59,12 @@ var canMouseWin = function (gridInput, catJumpInput, mouseJumpInput) {
   const solveGameOutcome = (
     currentTurnNumber,
     mouseCurrentPosition,
-    catCurrentPosition,
+    catCurrentPosition
   ) => {
     const uniqueStateKey = createStateKey(
       currentTurnNumber,
       mouseCurrentPosition,
-      catCurrentPosition,
+      catCurrentPosition
     );
     if (memoizationStore.has(uniqueStateKey)) {
       return memoizationStore.get(uniqueStateKey);
@@ -105,7 +109,7 @@ var canMouseWin = function (gridInput, catJumpInput, mouseJumpInput) {
             solveGameOutcome(
               currentTurnNumber + 1,
               [nextMouseRowPosition, nextMouseColPosition],
-              catCurrentPosition,
+              catCurrentPosition
             ) === 1
           ) {
             memoizationStore.set(uniqueStateKey, 1);

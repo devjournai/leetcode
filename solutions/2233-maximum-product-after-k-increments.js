@@ -42,7 +42,7 @@
 var maximumProduct = function (nums, k) {
   const modulusValue = 1e9 + 7;
   const priorityQueueInstance = new PriorityQueue(
-    (valueA, valueB) => valueA - valueB,
+    (valueA, valueB) => valueA - valueB
   );
 
   let populateIndex = 0;

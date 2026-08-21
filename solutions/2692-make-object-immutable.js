@@ -67,7 +67,7 @@ var makeImmutable = function (sourceObject) {
             return Reflect.apply(
               originalMethod,
               invocationContext,
-              argumentsPassed,
+              argumentsPassed
             );
           },
         });

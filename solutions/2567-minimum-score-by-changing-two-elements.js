@@ -17,7 +17,7 @@
  */
 var minimizeSum = function (nums) {
   const sortedNumbers = nums.sort(
-    (firstElement, secondElement) => firstElement - secondElement,
+    (firstElement, secondElement) => firstElement - secondElement
   );
   const arrayLength = sortedNumbers.length;
 
@@ -31,7 +31,7 @@ var minimizeSum = function (nums) {
   const minimumOverallScore = Math.min(
     firstRangeCalculation,
     secondRangeCalculation,
-    thirdRangeCalculation,
+    thirdRangeCalculation
   );
 
   return minimumOverallScore;

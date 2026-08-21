@@ -1,5 +1,10 @@
 /**
  * Analyze User Website Visit Pattern
+ * Intuition: Each user’s 3-website sequences (in time order) vote once per unique pattern. The pattern with the most users wins; ties take the lexicographically smallest tuple.
+ * Approach: 1. Zip and sort visits by timestamp, group sites per user. 2. For each user with >=3 visits, enumerate all i<j<k triples into a set. 3. Increment a global score per unique pattern. 4. Pick max score, then min string key; split back to three sites.
+ * Dry Run: joe and mary both visit home,about,career; james visits home,cart,maps,home.
+ *   - Pattern home,about,career scores 2 (joe+mary); other james triples score 1.
+ *   - Answer ["home","about","career"].
  * Time Complexity: O(N^3)
  * Space Complexity: O(N^3)
  */
@@ -53,7 +58,7 @@ var mostVisitedPattern = function (username, timestamp, website) {
     for (const sequenceKey of uniqueUserPatterns) {
       patternScoreMap.set(
         sequenceKey,
-        (patternScoreMap.get(sequenceKey) || 0) + 1,
+        (patternScoreMap.get(sequenceKey) || 0) + 1
       );
     }
   }

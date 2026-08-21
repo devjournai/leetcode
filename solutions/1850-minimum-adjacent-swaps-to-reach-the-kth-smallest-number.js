@@ -1,5 +1,8 @@
 /**
  * Minimum Adjacent Swaps To Reach The Kth Smallest Number
+ * Intuition: The kth next permutation is the target. Adjacent swaps to rearrange digits equal the number of bubble-sort swaps that bring each target digit into place.
+ * Approach: 1. Copy `num` into `currentPermutationArray` and apply `generateNextPermutation` k times. 2. For each mismatch at `outerIndex`, find the needed digit later in `initialDigitsArray` and adjacent-swap it left, counting each swap.
+ * Dry Run: num="5489355142", k=4. After 4 next-permutations the target is "5489355214". Counting adjacent swaps from the original to that string yields 2.
  * Time Complexity: O(k * N + N^2)
  * Space Complexity: O(N)
  */

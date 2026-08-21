@@ -1,5 +1,8 @@
 /**
  * Binary Tree Zigzag Level Order Traversal
+ * Intuition: Same as level-order BFS, but reverse every other level so values alternate left-to-right then right-to-left.
+ * Approach: 1. Empty root → []. 2. BFS collecting each level left-to-right. 3. If `isLeftToRight` is false, reverse that level’s array before pushing. 4. Flip the direction flag after each level.
+ * Dry Run: [3,9,20,null,null,15,7] → [[3],[20,9],[15,7]]
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

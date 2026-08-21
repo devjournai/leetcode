@@ -29,11 +29,11 @@ var minProcessingTime = function (processorTime, tasks) {
 
   taskDurations.sort(
     (firstTaskDuration, secondTaskDuration) =>
-      secondTaskDuration - firstTaskDuration,
+      secondTaskDuration - firstTaskDuration
   );
   processorAvailabilityTimes.sort(
     (firstProcessorTime, secondProcessorTime) =>
-      firstProcessorTime - secondProcessorTime,
+      firstProcessorTime - secondProcessorTime
   );
 
   let overallMinCompletionTime = 0;
@@ -55,7 +55,7 @@ var minProcessingTime = function (processorTime, tasks) {
       currentProcessorAvailableTime + currentTaskDurationOne;
     overallMinCompletionTime = Math.max(
       overallMinCompletionTime,
-      completionTimeForTaskOne,
+      completionTimeForTaskOne
     );
 
     const currentTaskDurationTwo = taskDurations[taskStartIndex + 1];
@@ -63,7 +63,7 @@ var minProcessingTime = function (processorTime, tasks) {
       currentProcessorAvailableTime + currentTaskDurationTwo;
     overallMinCompletionTime = Math.max(
       overallMinCompletionTime,
-      completionTimeForTaskTwo,
+      completionTimeForTaskTwo
     );
 
     const currentTaskDurationThree = taskDurations[taskStartIndex + 2];
@@ -71,7 +71,7 @@ var minProcessingTime = function (processorTime, tasks) {
       currentProcessorAvailableTime + currentTaskDurationThree;
     overallMinCompletionTime = Math.max(
       overallMinCompletionTime,
-      completionTimeForTaskThree,
+      completionTimeForTaskThree
     );
 
     const currentTaskDurationFour = taskDurations[taskStartIndex + 3];
@@ -79,7 +79,7 @@ var minProcessingTime = function (processorTime, tasks) {
       currentProcessorAvailableTime + currentTaskDurationFour;
     overallMinCompletionTime = Math.max(
       overallMinCompletionTime,
-      completionTimeForTaskFour,
+      completionTimeForTaskFour
     );
   }
 

@@ -1,5 +1,8 @@
 /**
  * All Oone Data Structure
+ * Intuition: Map each key to a count bucket in a doubly linked list ordered by frequency. Inc/dec move a key to the neighboring count (creating/removing empty buckets) so min/max are the sentinels’ neighbors.
+ * Approach: 1. Sentinels `startBoundary` (count 0) and `endBoundary` (Infinity). 2. `inc`: from current bucket or start, ensure next count exists, add key, drop empty old bucket. 3. `dec`: count 0 deletes the key; else move to previous count. 4. `getMaxKey`/`getMinKey` take any key from the last/first real bucket, or `""`.
+ * Dry Run: inc("a"), inc("a"), inc("b"). Buckets 1:{b} then 2:{a}. getMaxKey "a", getMinKey "b". dec("a") moves a to count 1.
  * Time Complexity: O(1)
  * Space Complexity: O(N)
  */

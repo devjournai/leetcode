@@ -74,7 +74,7 @@ var minimumRelativeLosses = function (prices, queries) {
     const maxC1Available = Math.min(selectionCount, numPricesBelowK);
     const minC1Available = Math.max(
       0,
-      selectionCount - (totalChocolates - numPricesBelowK),
+      selectionCount - (totalChocolates - numPricesBelowK)
     );
 
     const optimalC1Unclamped = findOptimalC1(
@@ -85,12 +85,12 @@ var minimumRelativeLosses = function (prices, queries) {
           prices[indexInPrices] +
           prices[totalChocolates - selectionCount + indexInPrices]
         );
-      },
+      }
     );
 
     const optimalC1 = Math.min(
       maxC1Available,
-      Math.max(minC1Available, optimalC1Unclamped),
+      Math.max(minC1Available, optimalC1Unclamped)
     );
 
     const numC2 = selectionCount - optimalC1;

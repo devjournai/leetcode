@@ -137,7 +137,7 @@ var minimumLines = function (points) {
         const remainingPointsMask = currentMaskState & ~lineCandidateMask;
         dynamicProgram[currentMaskState] = Math.min(
           dynamicProgram[currentMaskState],
-          1 + dynamicProgram[remainingPointsMask],
+          1 + dynamicProgram[remainingPointsMask]
         );
       }
     }

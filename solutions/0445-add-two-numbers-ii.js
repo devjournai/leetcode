@@ -1,5 +1,8 @@
 /**
  * Add Two Numbers II
+ * Intuition: Lists are MSD-first, so push digits onto stacks and add LSD-first with carry, prepending each new digit onto the result.
+ * Approach: 1. Walk `l1`/`l2` into `stackOne`/`stackTwo`. 2. While a stack or carry remains, pop digits (0 if empty), sum with carry. 3. Create a `ListNode` for `sum%10` and set `next` to the previous head. 4. Return `resultingHead`.
+ * Dry Run: 7→2→4→3 plus 5→6→4. Stacks add 3+4, 4+6, 2+5, 7 → 7→8→0→7.
  * Time Complexity: O(N + M)
  * Space Complexity: O(N + M)
  */

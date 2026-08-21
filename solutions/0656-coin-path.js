@@ -1,5 +1,9 @@
 /**
  * Coin Path
+ * Intuition: 1-indexed DP of cheapest cost to each index, with parent pointers. Equal-cost ties keep the lexicographically smaller index path.
+ * Approach: 1. `minimumTotalCost[1]=coins[0]`. 2. From each reachable i, try jumps up to `maximumJumpDistance`, skipping -1. 3. On cheaper cost, reparent; on equal cost, `constructJourney` + `evaluateLexicographical` to pick the better parent. 4. Reconstruct from n or return [].
+ * Dry Run: coins=[1,2,4,-1,2], maxJump=2.
+ *   - Reach 1 cost 1, jump to 2 (cost 3) and 3 (cost 5). From 3 jump to 5 cost 7. Path 1→3→5. Return [1,3,5].
  * Time Complexity: O(N^2 * M)
  * Space Complexity: O(N)
  */
@@ -13,7 +17,7 @@ var cheapestJump = function (coinsArray, maximumJumpDistance) {
   const constructJourney = (
     ancestorMap,
     destinationIndex,
-    provisionalParentIndex = null,
+    provisionalParentIndex = null
   ) => {
     const journeyIndices = [];
     let currentBuildIndex;
@@ -83,12 +87,12 @@ var cheapestJump = function (coinsArray, maximumJumpDistance) {
       ) {
         const existingPathCandidate = constructJourney(
           parentTraceMap,
-          nextJumpPosition,
+          nextJumpPosition
         );
         const proposedNewPath = constructJourney(
           parentTraceMap,
           nextJumpPosition,
-          currentPosition,
+          currentPosition
         );
 
         if (evaluateLexicographical(proposedNewPath, existingPathCandidate)) {

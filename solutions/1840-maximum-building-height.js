@@ -84,7 +84,7 @@ var maxBuilding = function (n, restrictions) {
   allRestrictionsData.push([numBuildings, numBuildings - 1]);
 
   allRestrictionsData.sort(
-    (restrictionA, restrictionB) => restrictionA[0] - restrictionB[0],
+    (restrictionA, restrictionB) => restrictionA[0] - restrictionB[0]
   );
 
   const totalRestrictionEntries = allRestrictionsData.length;
@@ -106,7 +106,7 @@ var maxBuilding = function (n, restrictions) {
       previousMaxHeightForward + (currentIdForward - previousIdForward);
     const finalHeightAfterForwardPass = Math.min(
       currentMaxHeightForward,
-      possibleHeightFromPrev,
+      possibleHeightFromPrev
     );
     allRestrictionsData[forwardPassIndex][1] = finalHeightAfterForwardPass;
   }
@@ -128,7 +128,7 @@ var maxBuilding = function (n, restrictions) {
       nextMaxHeightBackward + (nextIdBackward - currentIdBackward);
     const finalHeightAfterBackwardPass = Math.min(
       currentMaxHeightBackward,
-      possibleHeightFromNext,
+      possibleHeightFromNext
     );
     allRestrictionsData[backwardPassIndex][1] = finalHeightAfterBackwardPass;
   }
@@ -150,13 +150,13 @@ var maxBuilding = function (n, restrictions) {
 
     const segmentIdentifierDistance = rightSegmentId - leftSegmentId;
     const segmentHeightDifferenceValue = Math.abs(
-      rightSegmentHeight - leftSegmentHeight,
+      rightSegmentHeight - leftSegmentHeight
     );
 
     const potentialPeakHeight =
       Math.max(leftSegmentHeight, rightSegmentHeight) +
       Math.floor(
-        (segmentIdentifierDistance - segmentHeightDifferenceValue) / 2,
+        (segmentIdentifierDistance - segmentHeightDifferenceValue) / 2
       );
     maximumOverallHeight = Math.max(maximumOverallHeight, potentialPeakHeight);
   }

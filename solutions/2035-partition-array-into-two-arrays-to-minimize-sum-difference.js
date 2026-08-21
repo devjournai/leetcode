@@ -60,7 +60,7 @@ var minimumDifference = function (nums) {
   let minOverallDifference = Infinity;
   const overallSum = nums.reduce(
     (initialValue, numberValue) => initialValue + numberValue,
-    0,
+    0
   );
   const firstHalfCollections = new Map();
 
@@ -128,7 +128,7 @@ var minimumDifference = function (nums) {
     const targetSumForFirstHalf = (overallSum - 2 * secondHalfCurrentSum) / 2;
     const foundIndex = findClosestSumIndex(
       matchingFirstHalfSums,
-      targetSumForFirstHalf,
+      targetSumForFirstHalf
     );
 
     if (foundIndex < matchingFirstHalfSums.length) {
@@ -136,8 +136,8 @@ var minimumDifference = function (nums) {
         minOverallDifference,
         Math.abs(
           overallSum -
-            2 * (secondHalfCurrentSum + matchingFirstHalfSums[foundIndex]),
-        ),
+            2 * (secondHalfCurrentSum + matchingFirstHalfSums[foundIndex])
+        )
       );
     }
 
@@ -146,8 +146,8 @@ var minimumDifference = function (nums) {
         minOverallDifference,
         Math.abs(
           overallSum -
-            2 * (secondHalfCurrentSum + matchingFirstHalfSums[foundIndex - 1]),
-        ),
+            2 * (secondHalfCurrentSum + matchingFirstHalfSums[foundIndex - 1])
+        )
       );
     }
   }

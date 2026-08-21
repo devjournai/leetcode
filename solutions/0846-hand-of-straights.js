@@ -1,5 +1,8 @@
 /**
  * Hand Of Straights
+ * Intuition: After sorting, greedily start a group of `groupSizeLimit` consecutive values at each leftover card; fail if any needed value is missing.
+ * Approach: 1. Length not divisible by group size → false. 2. Sort a copy; count frequencies. 3. For each card with remaining count, decrement that value and the next groupSize-1 consecutives, or return false. 4. True if all groups form.
+ * Dry Run: [1,2,3,6,2,3,4,7,8], group=3. Groups 1-2-3, 2-3-4, 6-7-8 → true. Missing 4 after 2,3 would fail.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */
@@ -11,7 +14,7 @@ var isNStraightHand = function (inputCards, groupSizeLimit) {
   }
 
   const sortedCardValues = [...inputCards].sort(
-    (valueA, valueB) => valueA - valueB,
+    (valueA, valueB) => valueA - valueB
   );
 
   const cardFrequencyMap = {};

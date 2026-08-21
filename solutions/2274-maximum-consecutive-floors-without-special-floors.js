@@ -38,7 +38,7 @@ var maxConsecutive = function (bottom, top, special) {
     let consecutiveMiddle = currentSpecialFloor - previousSpecialFloor - 1;
     maximumConsecutiveCount = Math.max(
       maximumConsecutiveCount,
-      consecutiveMiddle,
+      consecutiveMiddle
     );
     currentFloorIndex++;
   }

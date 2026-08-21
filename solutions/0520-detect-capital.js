@@ -1,5 +1,9 @@
 /**
  * Detect Capital
+ * Intuition: Valid usage is all-caps, all-lowercase, or only the first letter capital. Count uppercase letters and check those three cases.
+ * Approach: 1. Length 1 is true. 2. Count chars in `'A'..'Z'`. 3. True if count equals length, equals 0, or equals 1 with `word[0]` uppercase. Else false.
+ * Dry Run: word = "FlaG".
+ *   - Two capitals, first is F, not all-caps. Return false. "USA" count=3 equals length → true.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

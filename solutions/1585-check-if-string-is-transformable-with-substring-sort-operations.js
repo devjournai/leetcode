@@ -1,5 +1,9 @@
 /**
  * Check If String Is Transformable With Substring Sort Operations
+ * Intuition: Sorting a substring can only move a digit left past larger digits, never past a smaller one still in front. Consume target digits from source positions if no smaller digit remains to the left.
+ * Approach: 1. Queues of indices per digit in source. 2. For each target digit, take the next occurrence; if any smaller digit still has an earlier index, false. 3. Advance the pointer.
+ * Dry Run: s = "84532", t = "34852".
+ *   - Prefix sorts can rearrange to t → true.
  * Time Complexity: O(sourceString.length + targetString.length)
  * Space Complexity: O(sourceString.length)
  */

@@ -1,5 +1,9 @@
 /**
  * Letter Combinations Of A Phone Number
+ * Intuition: Backtracking builds one character per digit from `digitToLettersMap`, appending every letter choice and collecting the string when `currentPosition` reaches the end.
+ * Approach: 1. Return [] if `digits` is empty. 2. Recurse `buildCombination(currentPosition, currentStringAccumulator)`. 3. At `digits.length`, push the accumulator. 4. Otherwise loop letters of the current digit and recurse with position+1. 5. Start from (0, "") and return `collectedCombinations`.
+ * Dry Run: digits = "23".
+ *   - '2'→a then '3'→d,e,f → "ad","ae","af"; same for b and c. Return ["ad","ae","af","bd","be","bf","cd","ce","cf"].
  * Time Complexity: O(4^N * N)
  * Space Complexity: O(4^N * N)
  */
@@ -38,7 +42,7 @@ var letterCombinations = function (digits) {
       const selectedChar = availableCharacters[charIndex];
       buildCombination(
         currentPosition + 1,
-        currentStringAccumulator + selectedChar,
+        currentStringAccumulator + selectedChar
       );
     }
   };

@@ -23,7 +23,7 @@ var findAnswer = function (n, edges) {
     const distanceFromSource = new Array(n).fill(UNREACHABLE_DISTANCE);
     distanceFromSource[sourceNode] = 0;
     const distanceMinHeap = new PriorityQueue(
-      (stateA, stateB) => stateA[0] - stateB[0],
+      (stateA, stateB) => stateA[0] - stateB[0]
     );
     distanceMinHeap.enqueue([0, sourceNode]);
 

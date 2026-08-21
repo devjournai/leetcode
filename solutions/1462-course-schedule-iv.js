@@ -1,5 +1,10 @@
 /**
  * Course Schedule Iv
+ * Intuition: Reachability among courses is transitive. Floyd-Warshall on a boolean prerequisite matrix answers every query in O(1).
+ * Approach: 1. Mark direct edges u->v as true. 2. Triple loop k,i,j: if i reaches k and k reaches j, set i reaches j. 3. Map each query [a,b] to matrix[a][b].
+ * Dry Run: numCourses=2, prerequisites=[[1,0]], queries=[[0,1],[1,0]]
+ *   - matrix[1][0]=true, Floyd adds nothing else
+ *   - [0,1] false, [1,0] true
  * Time Complexity: O(numCourses^3)
  * Space Complexity: O(numCourses^2)
  */

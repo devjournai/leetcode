@@ -32,7 +32,7 @@ var findColumnWidth = function (grid) {
       const stringValueLength = String(currentGridValue).length;
       columnMaximumLengths[columnIterator] = Math.max(
         columnMaximumLengths[columnIterator],
-        stringValueLength,
+        stringValueLength
       );
     }
   }

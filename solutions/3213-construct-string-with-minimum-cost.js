@@ -22,7 +22,7 @@ var minimumCost = function (target, words, costs) {
       minCostByStartingLetter[startingLetterIndex].get(word) ?? INFINITY_COST;
     minCostByStartingLetter[startingLetterIndex].set(
       word,
-      Math.min(previousCost, costs[wordIndex]),
+      Math.min(previousCost, costs[wordIndex])
     );
   }
 

@@ -83,7 +83,7 @@ var getWordsInLongestSubsequence = function (wordsParameter, groupsParameter) {
         groupsParameter[priorIterationIndex];
       const wordsAreOneHammingDistance = checkHammingDistanceOne(
         wordsParameter[currentIterationIndex],
-        wordsParameter[priorIterationIndex],
+        wordsParameter[priorIterationIndex]
       );
 
       if (groupsAreDifferent && wordsAreOneHammingDistance) {

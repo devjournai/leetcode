@@ -73,7 +73,7 @@ var minimumTime = function (n, relations, time) {
       const nextCourse = courseGraph[activeCourse][dependentIndex];
       courseCompletionDurations[nextCourse] = Math.max(
         courseCompletionDurations[nextCourse],
-        courseCompletionDurations[activeCourse] + time[nextCourse - 1],
+        courseCompletionDurations[activeCourse] + time[nextCourse - 1]
       );
       incomingEdgesCount[nextCourse]--;
       if (incomingEdgesCount[nextCourse] === 0) {

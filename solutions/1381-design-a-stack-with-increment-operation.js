@@ -1,5 +1,9 @@
 /**
  * Design A Stack With Increment Operation
+ * Intuition: Store values in an array capped at maxSize. Push/pop are ordinary; increment walks the bottom min(k, size) slots.
+ * Approach: 1. Constructor stores [] and maxSize. 2. push appends only if length < maxSize. 3. pop returns the last value or -1. 4. increment adds val to indices [0, min(k, length)).
+ * Dry Run: CustomStack(3); push 1, 2; increment(2, 100); pop.
+ *   - Stack [1,2] → [101,102] → pop 102. Next pop 101.
  * Time Complexity: O(1)
  * Space Complexity: O(maxSize)
  */

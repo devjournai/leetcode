@@ -1,5 +1,9 @@
 /**
  * Last Stone Weight II
+ * Intuition: Smashing is equivalent to partitioning into two piles and returning |sumA-sumB| = total-2*subset. Maximize a subset sum <= total/2.
+ * Approach: 1. Sum stones; target = floor(sum/2). 2. Boolean knapsack: dp[s] true if some subset sums to s. 3. Find the largest true s <= target. 4. Return total-2*s.
+ * Dry Run: stones = [2,7,4,1,8,1], sum=23, target=11.
+ *   - Best subset 11 (e.g. 2+8+1). Difference 23-22=1.
  * Time Complexity: O(N * S)
  * Space Complexity: O(S)
  */

@@ -1,5 +1,8 @@
 /**
  * Reduce Array Size To The Half
+ * Intuition: Removing an integer removes all its occurrences. Greedily drop the most frequent values until at least half the array is gone.
+ * Approach: 1. Count frequencies. 2. Sort frequencies descending. 3. Accumulate until ≥ n/2. 4. Return how many distinct values were taken.
+ * Dry Run: arr = [3,3,3,3,5,5,5,2,2,7]. Freqs 4,3,2,1; take 4 then 3 → 2 integers.
  * Time Complexity: O(N + U log U)
  * Space Complexity: O(U)
  */
@@ -11,12 +14,12 @@ var minSetSize = function (arr) {
     const currentElement = arr[indexValue];
     elementFrequencies.set(
       currentElement,
-      (elementFrequencies.get(currentElement) || 0) + 1,
+      (elementFrequencies.get(currentElement) || 0) + 1
     );
   }
 
   const frequencyList = Array.from(elementFrequencies.values()).sort(
-    (valueA, valueB) => valueB - valueA,
+    (valueA, valueB) => valueB - valueA
   );
 
   let removedItemsTotal = 0;

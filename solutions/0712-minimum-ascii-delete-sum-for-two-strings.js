@@ -1,5 +1,8 @@
 /**
  * Minimum Ascii Delete Sum For Two Strings
+ * Intuition: `minimumAsciiCosts[i][j]` is the cheapest ASCII delete cost to equalize the first `i` chars of the first string and the first `j` of the second. Matching chars cost nothing extra; otherwise delete one of the two current chars.
+ * Approach: 1. Build a (lengthFirst+1)×(lengthSecond+1) table. 2. Fill row 0 / column 0 with prefix ASCII sums (delete everything). 3. If chars match, copy the diagonal. 4. Else take min of deleting the first-string char vs the second-string char. Return the bottom-right cell.
+ * Dry Run: "sea", "eat". Match 'e' and 'a'; delete 's' (115) and 't' (116). Result 231.
  * Time Complexity: O(m*n)
  * Space Complexity: O(m*n)
  */
@@ -42,7 +45,7 @@ var minimumDeleteSum = function (firstStringInput, secondStringInput) {
       } else {
         const asciiValueCharOne = firstStringInput.charCodeAt(primaryIndex - 1);
         const asciiValueCharTwo = secondStringInput.charCodeAt(
-          secondaryIndex - 1,
+          secondaryIndex - 1
         );
 
         const deleteCharOneCost =
@@ -54,7 +57,7 @@ var minimumDeleteSum = function (firstStringInput, secondStringInput) {
 
         minimumAsciiCosts[primaryIndex][secondaryIndex] = Math.min(
           deleteCharOneCost,
-          deleteCharTwoCost,
+          deleteCharTwoCost
         );
       }
     }

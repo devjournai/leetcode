@@ -47,7 +47,7 @@ var maximumValueSum = function (nums, k, edges) {
 
     smallestAbsoluteDifference = Math.min(
       smallestAbsoluteDifference,
-      Math.abs(currentValueDifference),
+      Math.abs(currentValueDifference)
     );
   }
 

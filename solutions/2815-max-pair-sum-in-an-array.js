@@ -61,7 +61,7 @@ var maxSum = function (nums) {
     const candidateNumbers = digitToLargestTwo.get(dominantDigit);
     candidateNumbers.push(currentInput);
     candidateNumbers.sort(
-      (firstElement, secondElement) => secondElement - firstElement,
+      (firstElement, secondElement) => secondElement - firstElement
     );
 
     if (candidateNumbers.length > 2) {

@@ -115,7 +115,7 @@ var minimumCost = function (sentence, k) {
           : (k - currentLineLength) ** 2;
       minimumTotalCost = Math.min(
         minimumTotalCost,
-        actualSegmentCost + costForNextSegment,
+        actualSegmentCost + costForNextSegment
       );
     }
 

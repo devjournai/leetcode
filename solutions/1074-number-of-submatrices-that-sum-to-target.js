@@ -1,5 +1,8 @@
 /**
  * Number Of Submatrices That Sum To Target
+ * Intuition: Fix the top and bottom rows and compress each column into a 1D prefix. Counting subarrays with sum=target on that 1D array (hash of prefix frequencies) enumerates every submatrix.
+ * Approach: 1. For each firstRow, zero a column-sum array. 2. Extend secondRow, adding that row into the column sums. 3. Scan prefixes; add map[prefix−target] then record prefix. 4. Sum over all row pairs.
+ * Dry Run: [[0,1],[1,0]] target=1. Row pair (0,0) finds two 1s; (1,1) two 1s; (0,1) two 1s from columns → 4.
  * Time Complexity: O(rows^2 * cols)
  * Space Complexity: O(cols)
  */
@@ -27,7 +30,7 @@ var numSubmatrixSumTarget = function (matrix, target) {
         finalSubmatrixCount += sumFrequencyTracker.get(neededValue) || 0;
         sumFrequencyTracker.set(
           runningColumnAccumulation,
-          (sumFrequencyTracker.get(runningColumnAccumulation) || 0) + 1,
+          (sumFrequencyTracker.get(runningColumnAccumulation) || 0) + 1
         );
       }
     }

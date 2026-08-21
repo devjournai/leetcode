@@ -1,5 +1,9 @@
 /**
  * Maximum Value At A Given Index In A Bounded Array
+ * Intuition: The cheapest array with nums[index]=peak is a pyramid decreasing by 1 toward both ends, then 1s. Binary search the largest peak whose pyramid sum is ≤ maxSum.
+ * Approach: 1. `computeRequiredArraySum(peak)` adds the peak, arithmetic-series slopes, and trailing ones. 2. Binary search peak in [1, maxSum]. 3. If the sum fits, raise the lower bound. 4. Return `maximumAchievableValue`.
+ * Dry Run: n=4, index=2, maxSum=6.
+ *   - Peak 2 → array like [1,1,2,1] sum 5 ≤ 6; peak 3 → [1,2,3,2] sum 8 > 6. Return 2.
  * Time Complexity: O(log(maxSum))
  * Space Complexity: O(1)
  */
@@ -50,7 +54,7 @@ var maxValue = function (n, index, maxSum) {
 
   while (searchLowerBound <= searchHigherBound) {
     let candidateMidValue = Math.floor(
-      (searchLowerBound + searchHigherBound) / 2,
+      (searchLowerBound + searchHigherBound) / 2
     );
     let neededSumForCandidate = computeRequiredArraySum(candidateMidValue);
 

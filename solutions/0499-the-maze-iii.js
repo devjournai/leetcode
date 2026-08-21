@@ -1,5 +1,9 @@
 /**
  * The Maze III
+ * Intuition: Like The Maze, the ball rolls to a wall (or drops into the hole mid-roll). Among shortest roll distances, the lexicographically smallest instruction string of u/d/l/r wins. Dijkstra-style: a queue always sorted by (distance, path).
+ * Approach: 1. `minPathDistances` start at Inf except start 0; `bestPathStrings` start as "~" except start "". Directions carry letters. 2. Push [0, r, c, ""]. 3. Sort the queue by distance then path, pop; if at the hole return the path. Skip stale worse (dist, path) states. 4. Roll each way, counting steps, stop on wall or hole. If the new (dist, path) is better, update and push. 5. Else `"impossible"`.
+ * Dry Run: ball at a cell one open tile above the hole, wall above the ball.
+ *   - Roll "d" of 1 step into the hole; queue pop returns "d". Other directions hit walls with steps 0 and are skipped.
  * Time Complexity: O(R * C * log(R * C))
  * Space Complexity: O(R * C)
  */
@@ -63,7 +67,7 @@ var findShortestWay = function (maze, ball, hole) {
       (currentPathDistance ===
         minPathDistances[currentRowPosition][currentColPosition] &&
         currentPathSequence.localeCompare(
-          bestPathStrings[currentRowPosition][currentColPosition],
+          bestPathStrings[currentRowPosition][currentColPosition]
         ) > 0)
     ) {
       continue;
@@ -110,7 +114,7 @@ var findShortestWay = function (maze, ball, hole) {
           newTotalDistance < minPathDistances[nextProbeRow][nextProbeCol] ||
           (newTotalDistance === minPathDistances[nextProbeRow][nextProbeCol] &&
             newTotalPath.localeCompare(
-              bestPathStrings[nextProbeRow][nextProbeCol],
+              bestPathStrings[nextProbeRow][nextProbeCol]
             ) < 0)
         ) {
           minPathDistances[nextProbeRow][nextProbeCol] = newTotalDistance;

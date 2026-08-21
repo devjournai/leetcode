@@ -61,7 +61,7 @@ var minSumSquareDiff = function (numsFirst, numsSecond, firstK, secondK) {
     currentArrayIndex++
   ) {
     const currentAbsoluteDiff = Math.abs(
-      numsFirst[currentArrayIndex] - numsSecond[currentArrayIndex],
+      numsFirst[currentArrayIndex] - numsSecond[currentArrayIndex]
     );
     diffFrequencies[currentAbsoluteDiff]++;
     if (currentAbsoluteDiff > maximumAbsoluteDiff) {
@@ -83,7 +83,7 @@ var minSumSquareDiff = function (numsFirst, numsSecond, firstK, secondK) {
       const currentDiffCount = diffFrequencies[diffDecreaseValue];
       const actualOperationsApplied = Math.min(
         currentDiffCount,
-        totalKOperations,
+        totalKOperations
       );
 
       diffFrequencies[diffDecreaseValue] -= actualOperationsApplied;

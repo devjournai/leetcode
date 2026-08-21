@@ -74,12 +74,12 @@ var maximumProcessableQueries = function (nums, queries) {
       ) {
         currentMaxProcessed = Math.max(
           currentMaxProcessed,
-          queriesProcessedRemovingLeft + 1,
+          queriesProcessedRemovingLeft + 1
         );
       } else {
         currentMaxProcessed = Math.max(
           currentMaxProcessed,
-          queriesProcessedRemovingLeft,
+          queriesProcessedRemovingLeft
         );
       }
 
@@ -97,12 +97,12 @@ var maximumProcessableQueries = function (nums, queries) {
       ) {
         currentMaxProcessed = Math.max(
           currentMaxProcessed,
-          queriesProcessedRemovingRight + 1,
+          queriesProcessedRemovingRight + 1
         );
       } else {
         currentMaxProcessed = Math.max(
           currentMaxProcessed,
-          queriesProcessedRemovingRight,
+          queriesProcessedRemovingRight
         );
       }
 
@@ -119,7 +119,7 @@ var maximumProcessableQueries = function (nums, queries) {
     ) {
       overallMaximumQueries = Math.max(
         overallMaximumQueries,
-        dpStorage[iterateLeft][iterateRight],
+        dpStorage[iterateLeft][iterateRight]
       );
       if (overallMaximumQueries === totalQueriesCount) {
         return totalQueriesCount;

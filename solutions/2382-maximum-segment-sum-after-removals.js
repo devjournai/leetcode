@@ -86,7 +86,7 @@ var maximumSegmentSum = function (inputNumbers, removalOperations) {
     if (currentParentTracker[nodeIdentifier] !== nodeIdentifier) {
       currentParentTracker[nodeIdentifier] = locateRoot(
         currentParentTracker,
-        currentParentTracker[nodeIdentifier],
+        currentParentTracker[nodeIdentifier]
       );
     }
     return currentParentTracker[nodeIdentifier];
@@ -125,7 +125,7 @@ var maximumSegmentSum = function (inputNumbers, removalOperations) {
     ) {
       const rootOfCurrentElementSegment = locateRoot(
         parentTracker,
-        currentElementIndex,
+        currentElementIndex
       );
       const rightSegmentRoot = locateRoot(parentTracker, adjacentRightIndex);
 
@@ -153,7 +153,7 @@ var maximumSegmentSum = function (inputNumbers, removalOperations) {
 
     maximumAchievedSum = Math.max(
       maximumAchievedSum,
-      segmentTotalSums[locateRoot(parentTracker, currentElementIndex)],
+      segmentTotalSums[locateRoot(parentTracker, currentElementIndex)]
     );
   }
 

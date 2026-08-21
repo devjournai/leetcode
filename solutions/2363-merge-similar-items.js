@@ -37,7 +37,7 @@ var mergeSimilarItems = function (items1, items2) {
     const currentWeight1 = itemEntry1[1];
     valueWeightMap.set(
       currentValue1,
-      (valueWeightMap.get(currentValue1) || 0) + currentWeight1,
+      (valueWeightMap.get(currentValue1) || 0) + currentWeight1
     );
   }
 
@@ -47,7 +47,7 @@ var mergeSimilarItems = function (items1, items2) {
     const currentWeight2 = itemEntry2[1];
     valueWeightMap.set(
       currentValue2,
-      (valueWeightMap.get(currentValue2) || 0) + currentWeight2,
+      (valueWeightMap.get(currentValue2) || 0) + currentWeight2
     );
   }
 
@@ -58,7 +58,7 @@ var mergeSimilarItems = function (items1, items2) {
   });
 
   const finalSortedResult = aggregatedList.sort(
-    (itemA, itemB) => itemA[0] - itemB[0],
+    (itemA, itemB) => itemA[0] - itemB[0]
   );
 
   return finalSortedResult;

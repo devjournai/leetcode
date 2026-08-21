@@ -1,5 +1,10 @@
 /**
  * Best Meeting Point
+ * Intuition: Manhattan distance separates into x and y. The min total 1D distance is the sum of (right - left) while pairing sorted coordinates from both ends (equivalent to meeting at the median).
+ * Approach: 1. Collect row and col of every 1. 2. Sort both arrays. 3. Two-pointer: while start < end, add coords[end]-coords[start] and move inward, for x then y. 4. Return the two sums.
+ * Dry Run: grid homes at (0,0), (0,4), (2,2).
+ *   - x sorted [0,0,2] → 2-0=2. y sorted [0,2,4] → 4-0=4.
+ *   - Return 6.
  * Time Complexity: O(R * C + k log k)
  * Space Complexity: O(k)
  */

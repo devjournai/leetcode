@@ -1,5 +1,9 @@
 /**
  * Sort Features By Popularity
+ * Intuition: A feature's popularity is how many responses mention it at least once. Sort by that count descending, breaking ties by original feature order.
+ * Approach: 1. Seed `featurePopularityMap` with zeros. 2. For each response, split into a set of words and increment matching features. 3. Build records with popularity and `originalIndexPosition`, sort, and map back to names.
+ * Dry Run: features = ["cooler","lock","touch"], responses = ["i like cooler cooler","lock touch cool","locker like touch"].
+ *   - cooler 1, lock 1, touch 2 → ["touch","cooler","lock"].
  * Time Complexity: O(N_R * (L_R + W_R * L_F) + N_F * L_F + N_F log N_F)
  * Space Complexity: O(N_F * L_F + W_R * L_F)
  */
@@ -30,7 +34,7 @@ var sortFeatures = function (features, responses) {
       featureIdentifier: featureKey,
       featurePopularity: featurePopularityMap.get(featureKey),
       originalIndexPosition: originalFeatureIndex,
-    }),
+    })
   );
 
   featureDataCollection.sort((featureRecordA, featureRecordB) => {
@@ -46,7 +50,7 @@ var sortFeatures = function (features, responses) {
   });
 
   let finalSortedFeatures = featureDataCollection.map(
-    (sortedEntry) => sortedEntry.featureIdentifier,
+    (sortedEntry) => sortedEntry.featureIdentifier
   );
 
   return finalSortedFeatures;

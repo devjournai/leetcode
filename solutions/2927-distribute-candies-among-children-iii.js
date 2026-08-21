@@ -42,7 +42,7 @@ var distributeCandies = function (n, limit) {
     3 * calculateCombinations(n - 2 * excessRequirement);
 
   const thirdCategoryViolations = calculateCombinations(
-    n - 3 * excessRequirement,
+    n - 3 * excessRequirement
   );
 
   const finalCount =

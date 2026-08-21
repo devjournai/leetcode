@@ -1,5 +1,8 @@
 /**
  * Longest Repeating Substring
+ * Intuition: If some substring of length L repeats, every shorter length does too, so binary-search L. Rolling double hashes detect a duplicate window of that length without comparing every pair of substrings.
+ * Approach: 1. Binary search length in [1, n-1]. 2. For mid, slide a window computing two modular hashes. 3. If a hash pair was seen, mid is feasible. 4. Track the largest feasible mid.
+ * Dry Run: s=abcd. Length 2 hashes ab,bc,cd are unique; length 1 may repeat only if a letter repeats. Unique letters → 0.
  * Time Complexity: O(n log n)
  * Space Complexity: O(n)
  */

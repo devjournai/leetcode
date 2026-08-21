@@ -1,5 +1,9 @@
 /**
  * Image Overlap
+ * Intuition: Collect 1-cells in both images. Each pair of ones implies a translation `(dRow, dCol)` that would stack them; the most frequent translation is the largest overlap.
+ * Approach: 1. Gather `imageOneOnes` and `imageTwoOnes`. Empty either → 0. 2. For every pair, key `${row2-row1},${col2-col1}` in `overlapCounts`. 3. Track `maximumOverlap`. 4. Return it.
+ * Dry Run: img1 ones at (0,0),(0,1),(1,1),(2,1); img2 at (1,1),(1,2),(2,2).
+ *   Translation (1,1) maps three ones → 3.
  * Time Complexity: O(N^4)
  * Space Complexity: O(N^2)
  */

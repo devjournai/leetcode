@@ -1,5 +1,9 @@
 /**
  * Add Bold Tag In String
+ * Intuition: Find every occurrence of each word as a half-open interval, merge overlapping/adjacent intervals, then wrap merged spans with `<b></b>` while copying the rest of `s` unchanged.
+ * Approach: 1. For each `currentWord`, repeated `s.indexOf` from `currentSearchIndex+1` pushes `[start, start+len]`. 2. If none, return `s`. 3. Sort intervals by start then end. 4. Merge when `nextSegmentStart <= activeMergedEnd`. 5. Walk `mergedBoldSegments`, append `s.slice` plus `boldOpenTag`/`boldCloseTag`.
+ * Dry Run: s="abcxyz123", words=["abc","123"].
+ *   - Intervals [0,3],[6,9]. No merge. Output "<b>abc</b>xyz<b>123</b>".
  * Time Complexity: O(S * W * L_max + N log N)
  * Space Complexity: O(S * W)
  */

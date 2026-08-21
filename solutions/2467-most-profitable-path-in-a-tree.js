@@ -103,7 +103,7 @@ var mostProfitablePath = function (edges, bob, amount) {
     currentAliceNode,
     parentAliceNode,
     currentAliceTime,
-    currentAccumulatedValue,
+    currentAccumulatedValue
   ) {
     let gainAtCurrentVertex;
     if (
@@ -128,7 +128,7 @@ var mostProfitablePath = function (edges, bob, amount) {
           adjacentVertex,
           currentAliceNode,
           currentAliceTime + 1,
-          currentPathValue,
+          currentPathValue
         );
         maxPossibleGain = Math.max(maxPossibleGain, recursiveGain);
       }

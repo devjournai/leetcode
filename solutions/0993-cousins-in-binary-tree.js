@@ -1,5 +1,8 @@
 /**
  * Cousins In Binary Tree
+ * Intuition: BFS stores parent and depth. x and y are cousins if `depthOfX === depthOfY` and `parentOfX !== parentOfY`.
+ * Approach: 1. Queue `[node, parent, level]` from root. 2. When val matches x or y, record parent/depth. 3. Stop once both found. 4. Return the cousin predicate.
+ * Dry Run: [1,2,3,4], x=4, y=3. 4 has parent 2 depth 2; 3 has parent 1 depth 1. Depths differ. False.
  * Time Complexity: O(N)
  * Space Complexity: O(W)
  */

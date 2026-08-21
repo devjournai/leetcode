@@ -93,7 +93,7 @@
  */
 var countTheNumOfKFreeSubsets = function (nums, k) {
   const sortedInputElements = [...nums].sort(
-    (valueA, valueB) => valueA - valueB,
+    (valueA, valueB) => valueA - valueB
   );
   const originalElementsLookup = new Set(sortedInputElements);
   const processedChainElements = new Set();

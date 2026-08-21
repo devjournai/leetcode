@@ -1,5 +1,8 @@
 /**
  * Rotating the Box
+ * Intuition: Gravity pulls stones ('#') right, then the box rotates 90° clockwise. Simulate fall in each original row using a write pointer, mapping (r,c) → (c, m-1-r).
+ * Approach: 1. Allocate `rotatedBoxState` of size width×height filled with '.'. 2. For each original row, scan columns right-to-left: '*' lands in place and resets `availablePlacementRow`; '#' falls to that row then the pointer decrements. 3. Return the rotated grid.
+ * Dry Run: [["#",".","#"]]. Stones fall right then rotate 90° clockwise to [["."],["#"],["#"]].
  * Time Complexity: O(m * n)
  * Space Complexity: O(n * m)
  */
@@ -8,7 +11,7 @@ var rotateTheBox = function (inputMatrix) {
   const originalWidth = inputMatrix[0].length;
 
   const rotatedBoxState = Array.from({ length: originalWidth }, () =>
-    new Array(originalHeight).fill("."),
+    new Array(originalHeight).fill(".")
   );
 
   let currentOriginalRow = 0;

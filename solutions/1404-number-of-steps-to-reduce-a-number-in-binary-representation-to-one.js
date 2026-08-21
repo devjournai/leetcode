@@ -1,5 +1,9 @@
 /**
  * Number of Steps to Reduce a Number in Binary Representation to One
+ * Intuition: Even numbers (end with 0) are halved by dropping the last bit; odd numbers are incremented (binary add 1 with carry). Repeat until the string is "1".
+ * Approach: 1. Work on a char array. 2. While not "1": if last bit 0, pop; else add 1 from the right, possibly unshift a new '1'. 3. Count each operation.
+ * Dry Run: s = "1101" (13).
+ *   - Odd → 1110; even → 111; odd → 1000; even three times → 1. Six steps.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N)
  */

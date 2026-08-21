@@ -1,5 +1,8 @@
 /**
  * Number Of Matching Subsequences
+ * Intuition: A word matches if you can walk `s` left to right and pick every word character in order.
+ * Approach: 1. `isCurrentWordSubsequence` advances `candidateStringIndex` only on equal chars while scanning `s`. 2. Match if that index equals the word length. 3. Count words that pass.
+ * Dry Run: s = "abcde", words = ["a","bb","acd","ace"]. "a","acd","ace" match; "bb" does not → 3.
  * Time Complexity: O(words.length * s.length)
  * Space Complexity: O(1)
  */

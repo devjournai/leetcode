@@ -33,7 +33,7 @@ var findMaximalUncoveredRanges = function (n, ranges) {
 
   const sortedRangesData = [...ranges];
   sortedRangesData.sort(
-    (firstInterval, secondInterval) => firstInterval[0] - secondInterval[0],
+    (firstInterval, secondInterval) => firstInterval[0] - secondInterval[0]
   );
 
   const mergedIntervals = [];

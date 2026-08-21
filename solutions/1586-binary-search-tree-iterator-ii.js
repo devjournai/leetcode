@@ -1,5 +1,9 @@
 /**
  * Binary Search Tree Iterator II
+ * Intuition: Flatten inorder into an array and move a pointer for next/prev.
+ * Approach: 1. Inorder push vals; pointer=-1. 2. hasNext/next increment. 3. hasPrev/prev decrement.
+ * Dry Run: BST 7 with children 3 and 15.
+ *   - Inorder [3,7,15]; next→3, next→7, prev→3.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

@@ -1,5 +1,9 @@
 /**
  * Minimize Rounding Error To Meet Target
+ * Intuition: Floor every price then ceil exactly (target-sumFloors) of them. Prefer ceiling the prices where ceil-error minus floor-error is smallest.
+ * Approach: 1. Parse floats; compute floor/ceil sums; return "-1" if target is outside. 2. Need ceilCount = target-sumFloors. 3. Sort items by (ceilError-floorError). 4. Sum ceilError for the first ceilCount and floorError for the rest; format to 3 decimals.
+ * Dry Run: prices=["0.700","2.800","4.900"], target=8.
+ *   - Floors sum 6, need 2 ceils. Best ceils yield error 1.000.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */
@@ -10,11 +14,11 @@ var minimizeError = function (priceStrings, targetSum) {
 
   const minimumPossibleSum = floorResults.reduce(
     (sumAccumulator, currentFloor) => sumAccumulator + currentFloor,
-    0,
+    0
   );
   const maximumPossibleSum = ceilResults.reduce(
     (summationValue, currentCeil) => summationValue + currentCeil,
-    0,
+    0
   );
 
   if (targetSum < minimumPossibleSum || targetSum > maximumPossibleSum) {
@@ -34,12 +38,12 @@ var minimizeError = function (priceStrings, targetSum) {
         individualCeilError,
         errorTransformationDelta,
       };
-    },
+    }
   );
 
   roundingAdjustments.sort(
     (detailA, detailB) =>
-      detailA.errorTransformationDelta - detailB.errorTransformationDelta,
+      detailA.errorTransformationDelta - detailB.errorTransformationDelta
   );
 
   let aggregatedError = 0;

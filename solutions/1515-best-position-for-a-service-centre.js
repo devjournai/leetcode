@@ -1,5 +1,9 @@
 /**
  * Best Position For A Service Centre
+ * Intuition: The geometric median minimizes the sum of Euclidean distances; Weiszfeld iteration from the centroid converges.
+ * Approach: 1. Start at the mean of the points. 2. Up to 1000 times, set next = weighted average with weights 1/distance. 3. Stop on a tiny move. 4. Sum distances to that point.
+ * Dry Run: positions = [[0,1],[1,0],[1,2],[2,1]].
+ *   - Centroid (1,1) is the median; sum of distances is 4.
  * Time Complexity: O(I * N)
  * Space Complexity: O(1)
  */
@@ -41,7 +45,7 @@ var getMinDistSum = function (positionsInput) {
       const diffFromCurrentY = finalServiceCentreY - customerPointBY;
       const currentEuclideanDistance = Math.sqrt(
         diffFromCurrentX * diffFromCurrentX +
-          diffFromCurrentY * diffFromCurrentY,
+          diffFromCurrentY * diffFromCurrentY
       );
 
       if (currentEuclideanDistance < acceptanceThreshold) {
@@ -85,7 +89,7 @@ var getMinDistSum = function (positionsInput) {
     const finalDiffX = finalServiceCentreX - finalCustomerX;
     const finalDiffY = finalServiceCentreY - finalCustomerY;
     overallMinimumDistanceSum += Math.sqrt(
-      finalDiffX * finalDiffX + finalDiffY * finalDiffY,
+      finalDiffX * finalDiffX + finalDiffY * finalDiffY
     );
   }
 

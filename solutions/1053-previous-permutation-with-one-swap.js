@@ -1,5 +1,9 @@
 /**
  * Previous Permutation With One Swap
+ * Intuition: The previous permutation from one swap is found by the rightmost ascent (A[i]>A[i+1]), then swapping A[i] with the largest value to its right that is still smaller (leftmost of that value).
+ * Approach: 1. Copy the array. 2. Scan from the right for the first i with A[i]>A[i+1]; if none, return original. 3. Among j>i with A[j]<A[i], pick the largest A[j] (later equal values overwrite so we keep the rightmost of that max). 4. Swap i and j.
+ * Dry Run: arr = [3,2,1].
+ *   - Rightmost descent at index 1 (2>1). Only smaller value to the right is 1. Swap -> [3,1,2].
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

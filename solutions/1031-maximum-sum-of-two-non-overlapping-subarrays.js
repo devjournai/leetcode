@@ -1,5 +1,9 @@
 /**
  * Maximum Sum Of Two Non Overlapping Subarrays
+ * Intuition: Prefix sums give O(1) window sums. Sweep left-to-right keeping the best first window so far, then try the other order (L then M vs M then L).
+ * Approach: 1. Build prefix sums. 2. For each split where L is left of M, track max L ending at the split and add the following M. 3. Repeat with M left of L. 4. Return the larger of the two maxima.
+ * Dry Run: nums = [0,6,5,2,2,5,1,9,4], L=1, M=2.
+ *   - Best is a length-1 window 9 plus a non-overlapping length-2 window 6+5=11, total 20.
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */
@@ -32,7 +36,7 @@ var maxSumTwoNoOverlap = function (inputNumbers, lengthOne, lengthTwo) {
       cumulativeSumsArray[loopIndexA - lengthOne];
     maximumSubarrayOneSum = Math.max(
       maximumSubarrayOneSum,
-      candidateWindowOneSum,
+      candidateWindowOneSum
     );
 
     const currentWindowTwoSum =
@@ -40,7 +44,7 @@ var maxSumTwoNoOverlap = function (inputNumbers, lengthOne, lengthTwo) {
       cumulativeSumsArray[loopIndexA];
     resultantMaximumSum = Math.max(
       resultantMaximumSum,
-      maximumSubarrayOneSum + currentWindowTwoSum,
+      maximumSubarrayOneSum + currentWindowTwoSum
     );
   }
 
@@ -57,7 +61,7 @@ var maxSumTwoNoOverlap = function (inputNumbers, lengthOne, lengthTwo) {
       cumulativeSumsArray[loopIndexB - lengthTwo];
     maximumSubarrayTwoSum = Math.max(
       maximumSubarrayTwoSum,
-      candidateWindowTwoSum,
+      candidateWindowTwoSum
     );
 
     const currentWindowOneSum =
@@ -65,7 +69,7 @@ var maxSumTwoNoOverlap = function (inputNumbers, lengthOne, lengthTwo) {
       cumulativeSumsArray[loopIndexB];
     alternativeResultMaximumSum = Math.max(
       alternativeResultMaximumSum,
-      maximumSubarrayTwoSum + currentWindowOneSum,
+      maximumSubarrayTwoSum + currentWindowOneSum
     );
   }
 

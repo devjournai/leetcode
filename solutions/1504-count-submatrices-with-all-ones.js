@@ -1,5 +1,9 @@
 /**
  * Count Submatrices With All Ones
+ * Intuition: Each row is a histogram of consecutive 1s upward. A monotonic stack counts all-1 submatrices that end at the current cell.
+ * Approach: 1. height[col] grows on 1 else resets. 2. Pop taller/equal bars. 3. Count rectangles ending here as prev.sum + height*(col-prev.index), or height*(col+1) if empty. 4. Accumulate.
+ * Dry Run: grid = [[1,0,1],[1,1,0],[1,1,0]].
+ *   - Row 0 heights [1,0,1] add 2; later rows add the remaining all-1 rectangles → 13.
  * Time Complexity: O(rows * cols)
  * Space Complexity: O(cols)
  */

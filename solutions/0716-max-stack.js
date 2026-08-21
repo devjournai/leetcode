@@ -1,5 +1,8 @@
 /**
  * Max Stack
+ * Intuition: A stack stores insertion order while a max heap stores values (tie-break by larger `identifier`). Lazy deletion via `removedElements` lets pop and popMax invalidate the other structure without searching it immediately.
+ * Approach: 1. `push` writes `{value, identifier}` to `mainStack` and `maximumHeap`. 2. `pop` / `top` call `pruneStack` then pop or peek the stack; `pop` marks the id removed. 3. `peekMax` / `popMax` call `pruneMaxHeap`; `popMax` marks the heap id removed. 4. Prune helpers drop nodes whose ids are in `removedElements`.
+ * Dry Run: push 5, push 1, push 5. peekMax = 5. popMax removes the last 5. top = 1. pop = 1. top = 5.
  * Time Complexity: O(1)
  * Space Complexity: O(N)
  */
@@ -52,7 +55,7 @@ MaxStack.prototype.pruneStack = function () {
   while (
     this.mainStack.length > 0 &&
     this.removedElements.has(
-      this.mainStack[this.mainStack.length - 1].identifier,
+      this.mainStack[this.mainStack.length - 1].identifier
     )
   ) {
     this.mainStack.pop();

@@ -50,7 +50,7 @@ var countDistinctIntegers = function (nums) {
       reversedDigitsAccumulator =
         reversedDigitsAccumulator * 10 + extractedDigit;
       processingNumberForReversal = Math.floor(
-        processingNumberForReversal / 10,
+        processingNumberForReversal / 10
       );
     }
     distinctElementsCollection.add(reversedDigitsAccumulator);

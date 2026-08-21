@@ -58,7 +58,7 @@ var maximumSumOfHeights = function (heights) {
     ) {
       const calculatedLeftHeight = Math.min(
         heights[leftPointer],
-        lastValidHeightLeft,
+        lastValidHeightLeft
       );
       sumForCurrentPeak += calculatedLeftHeight;
       lastValidHeightLeft = calculatedLeftHeight;
@@ -73,7 +73,7 @@ var maximumSumOfHeights = function (heights) {
     ) {
       const calculatedRightHeight = Math.min(
         heights[rightPointer],
-        lastValidHeightRight,
+        lastValidHeightRight
       );
       sumForCurrentPeak += calculatedRightHeight;
       lastValidHeightRight = calculatedRightHeight;

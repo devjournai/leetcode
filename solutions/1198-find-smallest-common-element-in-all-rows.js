@@ -1,5 +1,8 @@
 /**
  * Find Smallest Common Element In All Rows
+ * Intuition: Rows are sorted, so candidates from the first row can be binary-searched in every other row; the first success is the smallest common value.
+ * Approach: 1. Walk mat[0] left to right. 2. Binary-search each later row for that value. 3. Return the first value found in all rows, else -1.
+ * Dry Run: mat = [[1,2,3],[2,3,4],[2,3,5]]. 1 missing in row 1; 2 found in all → 2.
  * Time Complexity: O(m * n * log(n))
  * Space Complexity: O(1)
  */

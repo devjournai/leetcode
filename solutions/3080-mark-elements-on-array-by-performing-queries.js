@@ -11,7 +11,7 @@ var unmarkedSumArray = function (nums, queries) {
   const arrayLength = nums.length;
   const isMarked = new Array(arrayLength).fill(false);
   const sortedIndices = [...Array(arrayLength).keys()].sort(
-    (a, b) => nums[a] - nums[b] || a - b,
+    (a, b) => nums[a] - nums[b] || a - b
   );
   let remainingSum = nums.reduce((total, value) => total + value, 0);
   let smallestUnmarkedPointer = 0;

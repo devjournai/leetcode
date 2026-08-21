@@ -68,7 +68,7 @@ var gcdSort = function (nums) {
     }
     collectionOfParents[targetValue] = findRootNode(
       collectionOfParents[targetValue],
-      collectionOfParents,
+      collectionOfParents
     );
     return collectionOfParents[targetValue];
   };

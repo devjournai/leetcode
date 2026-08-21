@@ -62,7 +62,7 @@ var maxProfit = function (prices, profits) {
     while (iterationPointer > 0) {
       currentMaximumPrefix = Math.max(
         currentMaximumPrefix,
-        targetBitArray[iterationPointer],
+        targetBitArray[iterationPointer]
       );
       iterationPointer &= iterationPointer - 1;
     }
@@ -72,13 +72,13 @@ var maxProfit = function (prices, profits) {
   const updateMaxProfitPoint = (
     updateBitArray,
     updatePriceIndex,
-    newValueForUpdate,
+    newValueForUpdate
   ) => {
     let updatePointer = updatePriceIndex;
     while (updatePointer < maxPriceUpper) {
       updateBitArray[updatePointer] = Math.max(
         updateBitArray[updatePointer],
-        newValueForUpdate,
+        newValueForUpdate
       );
       updatePointer += updatePointer & -updatePointer;
     }
@@ -91,31 +91,31 @@ var maxProfit = function (prices, profits) {
 
     const maxSingleItemProfit = obtainMaxProfitPrefix(
       firstPriceProfitTracker,
-      currentPricePoint - 1,
+      currentPricePoint - 1
     );
     const maxTwoItemProfit = obtainMaxProfitPrefix(
       secondPriceProfitTracker,
-      currentPricePoint - 1,
+      currentPricePoint - 1
     );
 
     if (maxTwoItemProfit > 0) {
       maximumProfitFound = Math.max(
         maximumProfitFound,
-        maxTwoItemProfit + currentProfitAmount,
+        maxTwoItemProfit + currentProfitAmount
       );
     }
 
     updateMaxProfitPoint(
       firstPriceProfitTracker,
       currentPricePoint,
-      currentProfitAmount,
+      currentProfitAmount
     );
 
     if (maxSingleItemProfit > 0) {
       updateMaxProfitPoint(
         secondPriceProfitTracker,
         currentPricePoint,
-        currentProfitAmount + maxSingleItemProfit,
+        currentProfitAmount + maxSingleItemProfit
       );
     }
     itemPrimaryIndex++;

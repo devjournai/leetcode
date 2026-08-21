@@ -1,5 +1,8 @@
 /**
  * Triples With Bitwise And Equal To Zero
+ * Intuition: Pre-count every pairwise AND in `andProductFrequencies`, then for each third number add frequencies of masks whose AND with it is 0.
+ * Approach: 1. Allocate a 2^16 frequency array. 2. Double loop all pairs, increment `nums[i] & nums[j]`. 3. For each third value, scan all masks with positive count; if `(mask & num)===0` add that count. 4. Return `finalAnswerCount`.
+ * Dry Run: nums = [2,1,3]. Pair ANDs include 0 (2&1). 0 & 3 === 0 contributes. All ordered triples with AND 0 are counted (including permutations). Answer 12.
  * Time Complexity: O(N^2 + N * MAX_VAL)
  * Space Complexity: O(MAX_VAL)
  */

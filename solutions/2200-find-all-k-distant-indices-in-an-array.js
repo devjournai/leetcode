@@ -70,7 +70,7 @@ var findKDistantIndices = function (nums, key, k) {
 
   const finalSortedIndices = Array.from(distantIndexTracker);
   finalSortedIndices.sort(
-    (firstElement, secondElement) => firstElement - secondElement,
+    (firstElement, secondElement) => firstElement - secondElement
   );
 
   return finalSortedIndices;

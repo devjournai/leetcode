@@ -1,5 +1,8 @@
 /**
  * Unique Morse Code Words
+ * Intuition: Each word maps to a Morse concatenation; uniqueness is the size of that set.
+ * Approach: 1. Table of 26 codes; map `'a'+i` → code. 2. For each word join letter codes. 3. Add to `uniqueRepresentationsSet`. 4. Return `.size`.
+ * Dry Run: ["gin","zen","gig","msg"]. gin and zen both "--...-."; gig and msg both "--...--." → size 2.
  * Time Complexity: O(N * L)
  * Space Complexity: O(N * L)
  */

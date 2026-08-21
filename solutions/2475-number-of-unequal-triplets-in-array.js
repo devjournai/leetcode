@@ -30,7 +30,7 @@ var unequalTriplets = function (nums) {
   for (const currentNumber of nums) {
     elementFrequencies.set(
       currentNumber,
-      (elementFrequencies.get(currentNumber) || 0) + 1,
+      (elementFrequencies.get(currentNumber) || 0) + 1
     );
   }
 

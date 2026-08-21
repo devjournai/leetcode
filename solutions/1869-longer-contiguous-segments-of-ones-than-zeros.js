@@ -1,5 +1,8 @@
 /**
  * Longer Contiguous Segments Of Ones Than Zeros
+ * Intuition: Track current and best runs of 1s and 0s in one pass; compare the two maxima.
+ * Approach: 1. On '1', grow `currentOneSequence` and reset zeros. 2. On '0', the opposite. 3. Return whether `longestOnesSegment > longestZerosSegment`.
+ * Dry Run: s="110100010". Longest 1s=2, longest 0s=3 → false.
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */

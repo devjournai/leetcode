@@ -1,5 +1,9 @@
 /**
  * Check If There Is A Valid Path In A Grid
+ * Intuition: Each street type connects two directions. BFS from (0,0) only steps to a neighbor if that neighbor's type is in the allowed list for that direction.
+ * Approach: 1. Map types 1–6 to (delta, compatible neighbor types). 2. BFS with a visited set of "r,c". 3. From the current type, try each legal neighbor that is in bounds, unvisited, and compatible. 4. Return true on reaching the bottom-right, else false.
+ * Dry Run: grid = [[2,4,3],[6,5,2]].
+ *   - (0,0) type 2 goes down to (1,0) type 6 (allowed). 6 goes right to (1,1) type 5. 5 goes right to (1,2) type 2. Reach end. Return true.
  * Time Complexity: O(R * C)
  * Space Complexity: O(R * C)
  */

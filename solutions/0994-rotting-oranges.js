@@ -1,5 +1,8 @@
 /**
  * Rotting Oranges
+ * Intuition: Multi-source BFS from all 2's. Each fresh 1 becomes 2 with time+1; leftover fresh oranges mean -1.
+ * Approach: 1. Count fresh and enqueue rotten with time 0. 2. Pop, update `elapsedMinutes`, infect 4-neighbors that are 1. 3. If `totalFreshOranges>0` return -1 else `elapsedMinutes`.
+ * Dry Run: [[2,1,1],[1,1,0],[0,1,1]]. Rot from (0,0) spreads in waves; last fresh rots at minute 4. Answer 4.
  * Time Complexity: O(R * C)
  * Space Complexity: O(R * C)
  */

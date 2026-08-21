@@ -45,7 +45,7 @@ var countCompleteSubarrays = function (nums) {
     const currentRightElement = nums[rightPointer];
     currentWindowFrequencies.set(
       currentRightElement,
-      (currentWindowFrequencies.get(currentRightElement) || 0) + 1,
+      (currentWindowFrequencies.get(currentRightElement) || 0) + 1
     );
 
     while (currentWindowFrequencies.size === totalDistinctCount) {

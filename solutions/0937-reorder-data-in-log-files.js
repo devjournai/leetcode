@@ -1,5 +1,8 @@
 /**
  * Reorder Data In Log Files
+ * Intuition: Digit logs stay in original order after all letter logs. Letter logs sort by body, then identifier.
+ * Approach: 1. Split on first space; if body starts with a digit (code 48–57), keep in `digitLogCollection`. 2. Else store {fullLog, identifierPart, contentPart}. 3. Sort letter logs with localeCompare on content then id. 4. Concatenate mapped letter logs + digit logs.
+ * Dry Run: ["dig1 8 1","let1 art can","dig2 3 6","let2 own kit"] → letter "art can" then "own kit", then the two digit logs in input order.
  * Time Complexity: O(N * L * log N)
  * Space Complexity: O(N * L)
  */
@@ -27,7 +30,7 @@ var reorderLogFiles = function (logs) {
 
   letterLogCollection.sort((logA, logB) => {
     let contentComparisonResult = logA.contentPart.localeCompare(
-      logB.contentPart,
+      logB.contentPart
     );
     if (contentComparisonResult !== 0) {
       return contentComparisonResult;
@@ -36,7 +39,7 @@ var reorderLogFiles = function (logs) {
   });
 
   let reorderedLetterLogs = letterLogCollection.map(
-    (logObject) => logObject.fullLog,
+    (logObject) => logObject.fullLog
   );
 
   return [...reorderedLetterLogs, ...digitLogCollection];

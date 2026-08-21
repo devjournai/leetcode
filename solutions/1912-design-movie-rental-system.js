@@ -1,11 +1,14 @@
 /**
  * Design Movie Rental System
+ * Intuition: Maintain available copies per movie in a price/shop min-heap, rented copies in a (price, shop, movie) heap, plus maps for price and current rental status. search/report extract then reinsert after skipping stale heap entries.
+ * Approach: 1. Constructor indexes entries into `movieToAvailableShopsQueueMap` and `shopToMoviePriceMap`. 2. `search`: pop cheapest shops that still stock the movie (up to 5). 3. `rent`/`drop` move between maps and heaps. 4. `report`: pop rented heap for currently rented unique pairs (up to 5).
+ * Dry Run: shops [(0,1,5),(0,2,6),(1,1,4)]. search(1) → [1,0]. rent(1,1); report → [[1,1]].
  * Time Complexity: O(N log S + Q_s * S log S + Q_r * log N + Q_d * log S + Q_R * N log N)
  * Space Complexity: O(N)
  */
 class CustomPriorityQueue {
   constructor(
-    priorityComparator = (elementA, elementB) => elementA - elementB,
+    priorityComparator = (elementA, elementB) => elementA - elementB
   ) {
     this.heapArray = [];
     this.comparisonFunction = priorityComparator;
@@ -80,12 +83,12 @@ class CustomPriorityQueue {
       this.hasUpstream(currentItemIndex) &&
       this.comparisonFunction(
         this.heapArray[currentItemIndex],
-        this.getUpstreamValue(currentItemIndex),
+        this.getUpstreamValue(currentItemIndex)
       ) < 0
     ) {
       this.exchangeElements(
         currentItemIndex,
-        this.getUpstreamIndex(currentItemIndex),
+        this.getUpstreamIndex(currentItemIndex)
       );
       currentItemIndex = this.getUpstreamIndex(currentItemIndex);
     }
@@ -100,7 +103,7 @@ class CustomPriorityQueue {
         this.hasRightDescendant(currentItemPosition) &&
         this.comparisonFunction(
           this.getRightDescendantValue(currentItemPosition),
-          this.getLeftDescendantValue(currentItemPosition),
+          this.getLeftDescendantValue(currentItemPosition)
         ) < 0
       ) {
         smallerDescendantIndex =
@@ -110,7 +113,7 @@ class CustomPriorityQueue {
       if (
         this.comparisonFunction(
           this.heapArray[currentItemPosition],
-          this.heapArray[smallerDescendantIndex],
+          this.heapArray[smallerDescendantIndex]
         ) < 0
       ) {
         break;
@@ -138,7 +141,7 @@ var MovieRentingSystem = function (shopsCount, entriesList) {
       if (recordOne[2] !== recordTwo[2]) return recordOne[2] - recordTwo[2];
       if (recordOne[0] !== recordTwo[0]) return recordOne[0] - recordTwo[0];
       return recordOne[1] - recordTwo[1];
-    },
+    }
   );
   this.currentRentalsStatusMap = new Map();
 
@@ -160,7 +163,7 @@ var MovieRentingSystem = function (shopsCount, entriesList) {
         new CustomPriorityQueue((shopOne, shopTwo) => {
           if (shopOne[1] !== shopTwo[1]) return shopOne[1] - shopTwo[1];
           return shopOne[0] - shopTwo[0];
-        }),
+        })
       );
     }
     this.movieToAvailableShopsQueueMap
@@ -216,13 +219,13 @@ MovieRentingSystem.prototype.rent = function (shopIdParam, movieIdParam) {
   ]);
   this.currentRentalsStatusMap.set(
     `${shopIdParam}:${movieIdParam}`,
-    rentalPriceValue,
+    rentalPriceValue
   );
 };
 
 MovieRentingSystem.prototype.drop = function (
   shopIdParamDrop,
-  movieIdParamDrop,
+  movieIdParamDrop
 ) {
   const dropMovieShopKey = `${shopIdParamDrop}:${movieIdParamDrop}`;
   const droppedMoviePrice = this.currentRentalsStatusMap.get(dropMovieShopKey);
@@ -241,7 +244,7 @@ MovieRentingSystem.prototype.drop = function (
       new CustomPriorityQueue((shopOne, shopTwo) => {
         if (shopOne[1] !== shopTwo[1]) return shopOne[1] - shopTwo[1];
         return shopOne[0] - shopTwo[0];
-      }),
+      })
     );
   }
   this.movieToAvailableShopsQueueMap

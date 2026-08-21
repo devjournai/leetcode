@@ -1,5 +1,9 @@
 /**
  * Ways To Split Array Into Three Subarrays
+ * Intuition: Prefix sums need left ≤ mid ≤ right. For each left end, two pointers find the smallest and largest mid-end that keep those inequalities.
+ * Approach: 1. Build `cumulativeSums`. 2. For `firstSplitEndIndex`, advance `minSecondSplitEndIndex` until mid prefix ≥ 2*left, and `maxSecondSplitEndIndex` while mid ≤ right. 3. Add the count of valid mid ends modulo 1e9+7.
+ * Dry Run: inputNumbers = [1,1,1]
+ * Only split after 0 and 1: left=1, mid=1, right=1. One way.
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */
@@ -31,7 +35,7 @@ var waysToSplit = function (inputNumbers) {
 
     minSecondSplitEndIndex = Math.max(
       minSecondSplitEndIndex,
-      firstSplitEndIndex + 1,
+      firstSplitEndIndex + 1
     );
 
     while (
@@ -47,7 +51,7 @@ var waysToSplit = function (inputNumbers) {
 
     maxSecondSplitEndIndex = Math.max(
       maxSecondSplitEndIndex,
-      minSecondSplitEndIndex,
+      minSecondSplitEndIndex
     );
 
     while (

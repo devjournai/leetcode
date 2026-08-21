@@ -1,5 +1,9 @@
 /**
  * Design Compressed String Iterator
+ * Intuition: Pre-parse the compressed form into `[char, count]` segments. `next` consumes one remaining count in the current segment; `hasNext` is true while `currentSegmentPointer` is in range.
+ * Approach: 1. Constructor: scan `charValue` then digits into `numericValue`, push `[char, parseInt]`. Init `currentSegmentPointer=0`, `remainingCharsInSegment=0`. 2. `next`: if `!hasNext` return `" "`; if remaining is 0, load segment count; emit char, decrement; if 0, increment pointer. 3. `hasNext`: pointer `< characterSegments.length`.
+ * Dry Run: compressedString="L1e2t1".
+ *   - Segments [L,1],[e,2],[t,1]. next→L,e,e,t then " ". hasNext false after t.
  * Time Complexity: O(N)
  * Space Complexity: O(M)
  */

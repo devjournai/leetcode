@@ -115,11 +115,11 @@ var maximumDetonation = function (bombs) {
     performDfsTraversal(
       initialDetonationIndex,
       currentVisitedBombsSet,
-      adjacencyGraph,
+      adjacencyGraph
     );
     maxDetonatedCount = Math.max(
       maxDetonatedCount,
-      currentVisitedBombsSet.size,
+      currentVisitedBombsSet.size
     );
   }
 

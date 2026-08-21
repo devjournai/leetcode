@@ -24,7 +24,7 @@ var minimumMoves = function (nums, k, maxChanges) {
   for (let oneIndex = 0; oneIndex < onePositions.length; oneIndex++) {
     prefixOfOnePositions.push(
       prefixOfOnePositions[prefixOfOnePositions.length - 1] +
-        onePositions[oneIndex],
+        onePositions[oneIndex]
     );
   }
 
@@ -32,7 +32,7 @@ var minimumMoves = function (nums, k, maxChanges) {
   const maxOnesCollectedBySwap = Math.min(
     k,
     minOnesCollectedBySwap + INDICES_WITHIN_DISTANCE_ONE,
-    onePositions.length,
+    onePositions.length
   );
 
   let minimumMoveCount = Number.POSITIVE_INFINITY;

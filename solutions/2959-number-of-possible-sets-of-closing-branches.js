@@ -12,6 +12,8 @@
  *
  * possible subsets.
  *
+ * Approach: Enumerate every bitmask of open branches. Copy the min-edge distance matrix, run Floyd-Warshall only through open nodes, then check every open pair has dist <= maxDistance. Count valid masks (empty/single always valid).
+ *
  * For every subset:
  *
  * 1. Consider only the branches that remain open.
@@ -61,7 +63,7 @@
  *
  * ------------------------------------------------------------
  *
- * Example:
+ * Dry Run:
  *
  *     n = 3
  *
@@ -123,7 +125,7 @@ var numberOfSets = function (n, maxDistance, roads) {
 
           dist[from][to] = Math.min(
             dist[from][to],
-            dist[from][middle] + dist[middle][to],
+            dist[from][middle] + dist[middle][to]
           );
         }
       }

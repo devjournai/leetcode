@@ -1,5 +1,10 @@
 /**
  * Swap Adjacent In Lr String
+ * Intuition: `XL`→`LX` moves L left; `RX`→`XR` moves R right. After dropping X, the L/R sequences must match, each L cannot move right, and each R cannot move left.
+ * Approach: 1. Collect non-X chars from `start` and `result`; if `filteredStartString !== filteredResultString`, return false. 2. Collect their indices into `startCharacterIndices` / `resultCharacterIndices`. 3. For each pair, if the char is `'L'` and start index < result index, or not L (so R) and start index > result index, return false. 4. Else true.
+ * Dry Run: start = "RXXLRXRXL", result = "XRLXXRRLX".
+ *   - Non-X both "RLRRL". Start indices [0,3,4,6,8], result [1,2,5,6,7].
+ *   - R 0→1 (right), L 3→2 (left), R 4→5, R 6→6, L 8→7 (left). Return true.
  * Time Complexity: O(length)
  * Space Complexity: O(length)
  */

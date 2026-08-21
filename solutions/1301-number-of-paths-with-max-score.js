@@ -33,7 +33,7 @@ var pathsWithMaxScore = function (boardInput) {
   const moduloValue = 1000000007;
 
   const pathScoresAndCounts = Array.from({ length: boardSize }, () =>
-    new Array(boardSize).fill(null).map(() => [-Infinity, 0]),
+    new Array(boardSize).fill(null).map(() => [-Infinity, 0])
   );
 
   pathScoresAndCounts[boardSize - 1][boardSize - 1] = [0, 1];

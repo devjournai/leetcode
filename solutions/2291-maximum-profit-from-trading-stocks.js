@@ -40,12 +40,12 @@ var maximumProfit = function (present, future, budget) {
   }));
 
   const filteredStocks = mappedStocks.filter(
-    (candidateStock) => candidateStock.profit > 0,
+    (candidateStock) => candidateStock.profit > 0
   );
 
   const sortedStocks = filteredStocks.sort(
     (firstStockCompare, secondStockCompare) =>
-      secondStockCompare.profit - firstStockCompare.profit,
+      secondStockCompare.profit - firstStockCompare.profit
   );
 
   const dpValues = new Array(budget + 1).fill(0);
@@ -58,8 +58,7 @@ var maximumProfit = function (present, future, budget) {
     ) {
       dpValues[availableMoney] = Math.max(
         dpValues[availableMoney],
-        dpValues[availableMoney - individualStock.cost] +
-          individualStock.profit,
+        dpValues[availableMoney - individualStock.cost] + individualStock.profit
       );
     }
   }

@@ -1,5 +1,9 @@
 /**
  * Count Pairs Of Nodes
+ * Intuition: Pair (a,b) is counted when deg(a)+deg(b) minus shared edges exceeds the query. Two-pointer on sorted degrees counts pairs with deg sum > q, then subtract pairs whose shared edges pull them back to ≤ q.
+ * Approach: 1. Tally `nodeDegrees` and `edgePairCounts`. 2. Sort a copy of degrees. 3. For each query, two-pointer count degree-sum pairs, then decrement when `combinedDegreeSum - numEdgesBetweenNodes <= threshold` but the raw sum was above. 4. Store in `queryResults`.
+ * Dry Run: n=4, edges=[[1,2],[2,4],[1,3],[2,3],[2,1]], queries=[2,3].
+ *   - After shared-edge correction the answers are [6,5].
  * Time Complexity: O(N log N + Q * (N + E))
  * Space Complexity: O(N + E)
  */
@@ -17,7 +21,7 @@ var countPairs = function (nParam, edgesArray, queriesArray) {
 
     edgePairCounts.set(
       edgeKeyIdentifier,
-      (edgePairCounts.get(edgeKeyIdentifier) || 0) + 1,
+      (edgePairCounts.get(edgeKeyIdentifier) || 0) + 1
     );
   }
 

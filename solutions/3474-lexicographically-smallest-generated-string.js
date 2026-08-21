@@ -1,5 +1,8 @@
 /**
  * Lexicographically Smallest Generated String
+ * Intuition: True positions in str1 force str2 to appear as a substring; False positions forbid an exact copy. Fill forced T-windows first, then try 'a'..'z' on free cells without completing a forbidden match.
+ * Approach: 1. Write str2 into every T-window, aborting on conflicts. 2. Precompute next unfixed index and whether each T-window's suffix already matches str2. 3. Track first mismatch for each F-window. 4. For each empty cell try letters in order; reject a letter if it would complete some F-window with no remaining unfixed cells and a matching T-fixed suffix. 5. Join the filled array.
+ * Dry Run: str1="T", str2="a" forces word "a".
  * Time Complexity: O(N * M + L * M)
  * Space Complexity: O(N * M + L)
  */

@@ -1,5 +1,10 @@
 /**
  * Evaluate Division
+ * Intuition: Equations are weighted directed edges (`a/b = v` and `b/a = 1/v`). A query is the product of edge weights along any path from source to target, found by DFS.
+ * Approach: 1. Build `adjacencyGraph` from `equations`/`values`. 2. For each query, DFS from `querySrc` multiplying `currentProduct`, skipping visited nodes; missing variables or no path yield -1. 3. Collect results.
+ * Dry Run: a/b=2, b/c=3. Query a/c.
+ *   - edges a→b 2, b→a 0.5, b→c 3, c→b 1/3.
+ *   - DFS a→b product 2, b→c product 6. Return [6].
  * Time Complexity: O((V + E) * Q)
  * Space Complexity: O(V + E)
  */
@@ -35,7 +40,7 @@ var calcEquation = function (equations, values, queries) {
     sourceVar,
     targetVar,
     visitedNodesSet,
-    currentProduct,
+    currentProduct
   ) {
     if (!adjacencyGraph.has(sourceVar) || !adjacencyGraph.has(targetVar)) {
       return -1.0;
@@ -60,7 +65,7 @@ var calcEquation = function (equations, values, queries) {
           nextNodeVar,
           targetVar,
           visitedNodesSet,
-          currentProduct * edgeWeightVal,
+          currentProduct * edgeWeightVal
         );
         if (pathResultFromNext !== -1.0) {
           return pathResultFromNext;
@@ -88,7 +93,7 @@ var calcEquation = function (equations, values, queries) {
       querySrc,
       queryDest,
       queryVisitedTracker,
-      initialQueryProduct,
+      initialQueryProduct
     );
     finalResults.push(resultForQuery);
 

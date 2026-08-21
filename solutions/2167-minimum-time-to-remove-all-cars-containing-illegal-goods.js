@@ -55,13 +55,13 @@ var minimumTime = function (s) {
     const costFromLeftStrategyTwo = iterationIndex + 1;
     currentLeftRemovalCost = Math.min(
       costFromLeftStrategyOne,
-      costFromLeftStrategyTwo,
+      costFromLeftStrategyTwo
     );
 
     const costFromRightSegment = stringLength - 1 - iterationIndex;
     overallMinimumTime = Math.min(
       overallMinimumTime,
-      currentLeftRemovalCost + costFromRightSegment,
+      currentLeftRemovalCost + costFromRightSegment
     );
   }
 

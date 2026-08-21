@@ -1,5 +1,10 @@
 /**
  * Grid Illumination
+ * Intuition: A cell is lit if any lamp shares its row, column, or either diagonal. Count lamps on those four axes and answer queries in O(1), then turn off the 3x3 neighborhood.
+ * Approach: 1. Deduplicate lamps in a set. 2. Increment maps for row, col, r-c, and r+c. 3. For each query, emit 1 if any of those four counts is positive. 4. For each of the 9 cells around the query, if a lamp is there, delete it and decrement the four maps.
+ * Dry Run: n=5, lamps=[[0,0],[4,4]], queries=[[1,1],[1,0]].
+ *   - Lamps illuminate rows 0/4, cols 0/4, diagonals. Query (1,1) is on a diagonal of (0,0) -> 1. Turn off lamps in its 3x3 (includes (0,0)).
+ *   - Query (1,0): remaining lamp (4,4) does not share row/col/diag -> 0.
  * Time Complexity: O(L + Q)
  * Space Complexity: O(L + Q)
  */
@@ -20,23 +25,23 @@ var gridIllumination = function (n, lamps, queries) {
 
       rowIlluminationCounts.set(
         currentLampRow,
-        (rowIlluminationCounts.get(currentLampRow) || 0) + 1,
+        (rowIlluminationCounts.get(currentLampRow) || 0) + 1
       );
       columnIlluminationCounts.set(
         currentLampColumn,
-        (columnIlluminationCounts.get(currentLampColumn) || 0) + 1,
+        (columnIlluminationCounts.get(currentLampColumn) || 0) + 1
       );
       diagonalOneIlluminationCounts.set(
         currentLampRow - currentLampColumn,
         (diagonalOneIlluminationCounts.get(
-          currentLampRow - currentLampColumn,
-        ) || 0) + 1,
+          currentLampRow - currentLampColumn
+        ) || 0) + 1
       );
       diagonalTwoIlluminationCounts.set(
         currentLampRow + currentLampColumn,
         (diagonalTwoIlluminationCounts.get(
-          currentLampRow + currentLampColumn,
-        ) || 0) + 1,
+          currentLampRow + currentLampColumn
+        ) || 0) + 1
       );
     }
   }
@@ -88,23 +93,23 @@ var gridIllumination = function (n, lamps, queries) {
 
         rowIlluminationCounts.set(
           neighborRowCoordinate,
-          rowIlluminationCounts.get(neighborRowCoordinate) - 1,
+          rowIlluminationCounts.get(neighborRowCoordinate) - 1
         );
         columnIlluminationCounts.set(
           neighborColumnCoordinate,
-          columnIlluminationCounts.get(neighborColumnCoordinate) - 1,
+          columnIlluminationCounts.get(neighborColumnCoordinate) - 1
         );
         diagonalOneIlluminationCounts.set(
           neighborRowCoordinate - neighborColumnCoordinate,
           diagonalOneIlluminationCounts.get(
-            neighborRowCoordinate - neighborColumnCoordinate,
-          ) - 1,
+            neighborRowCoordinate - neighborColumnCoordinate
+          ) - 1
         );
         diagonalTwoIlluminationCounts.set(
           neighborRowCoordinate + neighborColumnCoordinate,
           diagonalTwoIlluminationCounts.get(
-            neighborRowCoordinate + neighborColumnCoordinate,
-          ) - 1,
+            neighborRowCoordinate + neighborColumnCoordinate
+          ) - 1
         );
       }
     }

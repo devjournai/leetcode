@@ -1,5 +1,8 @@
 /**
  * Satisfiability Of Equality Equations
+ * Intuition: Union all `==` variables first; any `!=` pair that shares a parent is a contradiction.
+ * Approach: 1. Init 26 parents. 2. `retrieveSetRepresentative` with compression; `mergeVariableSets` links roots. 3. Process equations whose `[1]==='='`. 4. For `!=`, return false if same root. 5. Else true.
+ * Dry Run: equations = ["a==b","b!=a"]. Merge a,b then inequality finds same representative. False.
  * Time Complexity: O(N * α(26))
  * Space Complexity: O(26)
  */
@@ -18,7 +21,7 @@ var equationsPossible = function (equations) {
   const retrieveSetRepresentative = (nodeIdentifier) => {
     if (disjointSetParents[nodeIdentifier] !== nodeIdentifier) {
       disjointSetParents[nodeIdentifier] = retrieveSetRepresentative(
-        disjointSetParents[nodeIdentifier],
+        disjointSetParents[nodeIdentifier]
       );
     }
     return disjointSetParents[nodeIdentifier];

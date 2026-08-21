@@ -41,7 +41,7 @@
 class PriorityQueue {
   constructor(
     comparisonFunction = (firstElement, secondElement) =>
-      firstElement - secondElement,
+      firstElement - secondElement
   ) {
     this.heapArray = [];
     this.comparisonFunction = comparisonFunction;
@@ -77,7 +77,7 @@ class PriorityQueue {
       if (
         this.comparisonFunction(
           this.heapArray[currentIndex],
-          this.heapArray[parentIndex],
+          this.heapArray[parentIndex]
         ) < 0
       ) {
         [this.heapArray[currentIndex], this.heapArray[parentIndex]] = [
@@ -103,7 +103,7 @@ class PriorityQueue {
         leftChildIndex <= lastHeapIndex &&
         this.comparisonFunction(
           this.heapArray[leftChildIndex],
-          this.heapArray[smallestCandidateIndex],
+          this.heapArray[smallestCandidateIndex]
         ) < 0
       ) {
         smallestCandidateIndex = leftChildIndex;
@@ -113,7 +113,7 @@ class PriorityQueue {
         rightChildIndex <= lastHeapIndex &&
         this.comparisonFunction(
           this.heapArray[rightChildIndex],
-          this.heapArray[smallestCandidateIndex],
+          this.heapArray[smallestCandidateIndex]
         ) < 0
       ) {
         smallestCandidateIndex = rightChildIndex;
@@ -138,7 +138,7 @@ var shortestPathWithHops = function (
   graphEdges,
   startNode,
   destinationNode,
-  maxHops,
+  maxHops
 ) {
   const adjGraph = new Array(numNodes).fill().map(() => []);
 
@@ -154,7 +154,7 @@ var shortestPathWithHops = function (
     .fill()
     .map(() => new Array(maxHops + 1).fill(false));
   const priorityQueueInstance = new PriorityQueue(
-    (elementA, elementB) => elementA[0] - elementB[0],
+    (elementA, elementB) => elementA[0] - elementB[0]
   );
 
   const initialDistance = 0;

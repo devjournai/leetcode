@@ -1,5 +1,8 @@
 /**
  * Merge Triplets To Form Target Triplet
+ * Intuition: Merge takes component-wise max. Any triplet with a coordinate larger than target is unusable. You can form target iff each target coordinate appears in some remaining triplet.
+ * Approach: 1. Skip triplets that exceed any target component. 2. Set isX/Y/ZAttainable when a remaining triplet matches that component. 3. Return all three flags.
+ * Dry Run: triplets=[[2,5,3],[1,8,4],[1,7,5]], target=[2,7,5]. Valid ones give x=2, y=7, z=5. Return true.
  * Time Complexity: O(N) where N is the number of triplets.
  * Space Complexity: O(1)
  */

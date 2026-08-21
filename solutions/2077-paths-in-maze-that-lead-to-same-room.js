@@ -58,31 +58,43 @@
  * Space Complexity: O(N + M)
  */
 var numberOfPaths = function (n, corridors) {
-    const adjacencyStructure = Array.from({ length: n + 1 }, () => new Set());
+  const adjacencyStructure = Array.from({ length: n + 1 }, () => new Set());
 
-    for (const corridorPair of corridors) {
-        const firstRoom = corridorPair[0];
-        const secondRoom = corridorPair[1];
-        adjacencyStructure[firstRoom].add(secondRoom);
-        adjacencyStructure[secondRoom].add(firstRoom);
-    }
+  for (const corridorPair of corridors) {
+    const firstRoom = corridorPair[0];
+    const secondRoom = corridorPair[1];
+    adjacencyStructure[firstRoom].add(secondRoom);
+    adjacencyStructure[secondRoom].add(firstRoom);
+  }
 
-    let triangleCount = 0;
+  let triangleCount = 0;
 
-    for (let currentVertex = 1; currentVertex <= n; currentVertex++) {
-        const neighborsList = Array.from(adjacencyStructure[currentVertex]);
+  for (let currentVertex = 1; currentVertex <= n; currentVertex++) {
+    const neighborsList = Array.from(adjacencyStructure[currentVertex]);
 
-        for (let firstNeighborIndex = 0; firstNeighborIndex < neighborsList.length; firstNeighborIndex++) {
-            for (let secondNeighborIndex = firstNeighborIndex + 1; secondNeighborIndex < neighborsList.length; secondNeighborIndex++) {
-                const vertexA = neighborsList[firstNeighborIndex];
-                const vertexB = neighborsList[secondNeighborIndex];
+    for (
+      let firstNeighborIndex = 0;
+      firstNeighborIndex < neighborsList.length;
+      firstNeighborIndex++
+    ) {
+      for (
+        let secondNeighborIndex = firstNeighborIndex + 1;
+        secondNeighborIndex < neighborsList.length;
+        secondNeighborIndex++
+      ) {
+        const vertexA = neighborsList[firstNeighborIndex];
+        const vertexB = neighborsList[secondNeighborIndex];
 
-                if (vertexA > currentVertex && vertexB > currentVertex && adjacencyStructure[vertexA].has(vertexB)) {
-                    triangleCount++;
-                }
-            }
+        if (
+          vertexA > currentVertex &&
+          vertexB > currentVertex &&
+          adjacencyStructure[vertexA].has(vertexB)
+        ) {
+          triangleCount++;
         }
+      }
     }
+  }
 
-    return triangleCount;
+  return triangleCount;
 };

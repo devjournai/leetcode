@@ -1,5 +1,10 @@
 /**
  * Minimum Cost To Connect Sticks
+ * Intuition: Always combine the two shortest sticks; that greedy choice (Huffman) minimizes the sum of intermediate lengths. A min-heap implements it.
+ * Approach: 1. Push all stick lengths into a min-heap. 2. While more than one stick remains, poll two, add their sum to the cost, and offer the combined stick back. 3. Return the accumulated cost.
+ * Dry Run: sticks = [2,4,3].
+ *   - Combine 2+3=5, cost 5; heap [4,5]. Combine 4+5=9, cost 14.
+ *   - Answer 14.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */

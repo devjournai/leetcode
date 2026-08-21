@@ -1,5 +1,8 @@
 /**
  * Path With Maximum Minimum Value
+ * Intuition: Maximize the bottleneck (min cell) on a path. Binary search that score and BFS-check a 4-neighbor path whose every cell is ≥ mid.
+ * Approach: 1. Search lo=0, hi=min(start,end). 2. Mid feasible if BFS from (0,0) to the end stays on cells ≥ mid. 3. Feasible → raise lo; else lower hi. 4. Return the best mid.
+ * Dry Run: [[5,4,5],[1,2,6],[7,4,6]]. Score 4 works via 5-4-5-6-6; 5 fails because 4s block → 4.
  * Time Complexity: O(M * N * log(MinInitialValue))
  * Space Complexity: O(M * N)
  */
@@ -62,7 +65,7 @@ var maximumMinimumPath = function (grid) {
   let lowerBound = 0;
   let upperBound = Math.min(
     grid[0][0],
-    grid[numberOfRows - 1][numberOfCols - 1],
+    grid[numberOfRows - 1][numberOfCols - 1]
   );
   let ultimateResult = 0;
 

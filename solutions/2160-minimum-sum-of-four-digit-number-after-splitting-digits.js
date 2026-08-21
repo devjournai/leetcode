@@ -23,7 +23,7 @@ var minimumSum = function (num) {
   const charArrayFromNum = numStringRepresentation.split("");
   const numberArrayFromChars = charArrayFromNum.map((aChar) => Number(aChar));
   const orderedDigits = numberArrayFromChars.sort(
-    (firstElement, secondElement) => firstElement - secondElement,
+    (firstElement, secondElement) => firstElement - secondElement
   );
 
   const digitA = orderedDigits[0];

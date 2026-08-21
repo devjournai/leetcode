@@ -1,5 +1,8 @@
 /**
  * Count Submatrices With Equal Frequency of X and Y
+ * Intuition: Submatrices from (0,0) to (r,c) are valid when they contain at least one X and equally many Y.
+ * Approach: Maintain 2D prefix counts of X and Y; for each cell increment the answer if prefixX > 0 and prefixX === prefixY.
+ * Dry Run: grid [["X","Y"],["Y","."]] -> cell (0,0) has 1 X 0 Y; (0,1) 1 X 1 Y counts; (1,0) 1 X 1 Y counts; (1,1) 1 X 1 Y counts; answer 3.
  * Time Complexity: O(R * C)
  * Space Complexity: O(R * C)
  */

@@ -1,5 +1,8 @@
 /**
  * All Nodes Distance K In Binary Tree
+ * Intuition: Convert the tree to an undirected graph of node values, then BFS from `target.val` until distance k.
+ * Approach: 1. DFS `establishConnections` to fill neighbor sets. 2. Queue [target.val, 0], visited set. 3. If pathLength==k collect; if >k skip; else enqueue unvisited neighbors. 4. Return `collectedResult`.
+ * Dry Run: tree 3 with children 5,1; target=5, k=2. Graph neighbors of 5: 3,6,2. Dist 2 from 5: 1,7,4.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

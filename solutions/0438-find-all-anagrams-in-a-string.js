@@ -1,62 +1,73 @@
 /**
  * Find All Anagrams In A String
+ * Intuition: A window of length `|p|` is an anagram when a 26-letter balance array is all zeros. Track how many letters already have zero balance.
+ * Approach: 1. If `s` is shorter than `p`, return []. 2. Decrement counts for `p`, then count how many of 26 are already 0. 3. Expand right: increment `s[right]`, updating `zeroBalanceCount`. 4. When the window is `|p|`, if 26 zeros, record `windowLeftPointer`; then decrement the left char and slide.
+ * Dry Run: s="cbaebabacd", p="abc". After "cba", 26 zeros → index 0. Slide; "bab" fails; "aba" fails; "bac" → index 6.
  * Time Complexity: O(s.length + p.length)
  * Space Complexity: O(1)
-*/
+ */
 var findAnagrams = function (s, p) {
-    const patternCharacterCounts = new Array(26).fill(0);
-    const resultStartingIndices = [];
+  const patternCharacterCounts = new Array(26).fill(0);
+  const resultStartingIndices = [];
 
-    const sourceLength = s.length;
-    const patternLength = p.length;
+  const sourceLength = s.length;
+  const patternLength = p.length;
 
-    if (sourceLength < patternLength) {
-        return resultStartingIndices;
-    }
-
-    for (let currentPCharIndex = 0; currentPCharIndex < patternLength; currentPCharIndex++) {
-        const charCodeP = p.charCodeAt(currentPCharIndex) - 97;
-        patternCharacterCounts[charCodeP]--;
-    }
-
-    let zeroBalanceCount = 0;
-
-    for (let charEntryIndex = 0; charEntryIndex < 26; charEntryIndex++) {
-        if (patternCharacterCounts[charEntryIndex] === 0) {
-            zeroBalanceCount++;
-        }
-    }
-
-    let windowLeftPointer = 0;
-    for (let windowRightPointer = 0; windowRightPointer < sourceLength; windowRightPointer++) {
-        const charCodeS = s.charCodeAt(windowRightPointer) - 97;
-
-        if (patternCharacterCounts[charCodeS] === 0) {
-            zeroBalanceCount--;
-        }
-        patternCharacterCounts[charCodeS]++;
-        if (patternCharacterCounts[charCodeS] === 0) {
-            zeroBalanceCount++;
-        }
-
-        if (windowRightPointer - windowLeftPointer + 1 === patternLength) {
-            if (zeroBalanceCount === 26) {
-                resultStartingIndices.push(windowLeftPointer);
-            }
-
-            const charCodeLeft = s.charCodeAt(windowLeftPointer) - 97;
-
-            if (patternCharacterCounts[charCodeLeft] === 0) {
-                zeroBalanceCount--;
-            }
-            patternCharacterCounts[charCodeLeft]--;
-            if (patternCharacterCounts[charCodeLeft] === 0) {
-                zeroBalanceCount++;
-            }
-
-            windowLeftPointer++;
-        }
-    }
-
+  if (sourceLength < patternLength) {
     return resultStartingIndices;
+  }
+
+  for (
+    let currentPCharIndex = 0;
+    currentPCharIndex < patternLength;
+    currentPCharIndex++
+  ) {
+    const charCodeP = p.charCodeAt(currentPCharIndex) - 97;
+    patternCharacterCounts[charCodeP]--;
+  }
+
+  let zeroBalanceCount = 0;
+
+  for (let charEntryIndex = 0; charEntryIndex < 26; charEntryIndex++) {
+    if (patternCharacterCounts[charEntryIndex] === 0) {
+      zeroBalanceCount++;
+    }
+  }
+
+  let windowLeftPointer = 0;
+  for (
+    let windowRightPointer = 0;
+    windowRightPointer < sourceLength;
+    windowRightPointer++
+  ) {
+    const charCodeS = s.charCodeAt(windowRightPointer) - 97;
+
+    if (patternCharacterCounts[charCodeS] === 0) {
+      zeroBalanceCount--;
+    }
+    patternCharacterCounts[charCodeS]++;
+    if (patternCharacterCounts[charCodeS] === 0) {
+      zeroBalanceCount++;
+    }
+
+    if (windowRightPointer - windowLeftPointer + 1 === patternLength) {
+      if (zeroBalanceCount === 26) {
+        resultStartingIndices.push(windowLeftPointer);
+      }
+
+      const charCodeLeft = s.charCodeAt(windowLeftPointer) - 97;
+
+      if (patternCharacterCounts[charCodeLeft] === 0) {
+        zeroBalanceCount--;
+      }
+      patternCharacterCounts[charCodeLeft]--;
+      if (patternCharacterCounts[charCodeLeft] === 0) {
+        zeroBalanceCount++;
+      }
+
+      windowLeftPointer++;
+    }
+  }
+
+  return resultStartingIndices;
 };

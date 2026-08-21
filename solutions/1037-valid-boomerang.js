@@ -1,5 +1,9 @@
 /**
  * Valid Boomerang
+ * Intuition: Three points form a boomerang iff they are not collinear, i.e. the cross product of two edge vectors is nonzero.
+ * Approach: 1. Read the three points. 2. Compute (y1-y2)*(x2-x3) vs (x1-x2)*(y2-y3). 3. Return whether those products differ.
+ * Dry Run: points = [[1,1],[2,3],[3,2]].
+ *   - Cross parts  (1-3)*(2-3)=(-2)*(-1)=2 vs (1-2)*(3-2)=(-1)*1=-1. Unequal -> true.
  * Time Complexity: O(1)
  * Space Complexity: O(1)
  */

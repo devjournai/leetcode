@@ -44,7 +44,7 @@ var maxSubarrayLength = function (numsArray, maxFrequencyLimit) {
   function checkValidity(
     currentCandidateLength,
     sourceArray,
-    allowedFrequency,
+    allowedFrequency
   ) {
     if (currentCandidateLength === 0) {
       return true;
@@ -110,7 +110,7 @@ var maxSubarrayLength = function (numsArray, maxFrequencyLimit) {
 
   while (minimumLengthPossible <= maximumLengthPossible) {
     const midpointLength = Math.floor(
-      (minimumLengthPossible + maximumLengthPossible) / 2,
+      (minimumLengthPossible + maximumLengthPossible) / 2
     );
 
     if (midpointLength === 0) {

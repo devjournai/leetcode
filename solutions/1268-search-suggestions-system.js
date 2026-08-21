@@ -1,5 +1,10 @@
 /**
  * Search Suggestions System
+ * Intuition: After sorting products, the matches for a growing prefix form a shrinking contiguous range. Take up to three products from the left of that range.
+ * Approach: 1. Sort products. 2. Maintain leftPointer/rightPointer over the current prefix window. 3. For each next character, advance left while products[left] does not start with the prefix, shrink right similarly. 4. Collect up to 3 products from leftPointer. 5. Return finalSuggestions.
+ * Dry Run: products=["mobile","mouse","moneypot","monitor","mousepad"], searchWord="mouse"
+ *   After "m": range of m-words, first 3 mobile,moneypot,monitor.
+ *   After "mo": same. After "mou": mouse,mousepad. After "mous"/"mouse": mouse,mousepad.
  * Time Complexity: O(N * L * log N + M * N)
  * Space Complexity: O(M * L)
  */

@@ -53,12 +53,12 @@ var minMaxGame = function (nums) {
       if (indexForNextGen % 2 === 0) {
         nextGeneration[indexForNextGen] = Math.min(
           currentNumbers[firstSourceIndex],
-          currentNumbers[secondSourceIndex],
+          currentNumbers[secondSourceIndex]
         );
       } else {
         nextGeneration[indexForNextGen] = Math.max(
           currentNumbers[firstSourceIndex],
-          currentNumbers[secondSourceIndex],
+          currentNumbers[secondSourceIndex]
         );
       }
     }

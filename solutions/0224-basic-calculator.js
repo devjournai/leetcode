@@ -1,5 +1,11 @@
 /**
  * Basic Calculator
+ * Intuition: A running total and a current sign handle + and -. Parentheses snapshot the outer total and sign on a stack, evaluate the inside, then combine.
+ * Approach: 1. Skip spaces. 2. Parse multi-digit numbers and add number * sign to the total. 3. '+' / '-' update the sign. 4. '(' push total and sign, reset both. 5. ')' pop sign and outer total; total = outer + inner * sign.
+ * Dry Run: s = "1+(2-3)".
+ *   - '1' → total=1; '+'; '(' push 1 then +1, reset total=0 sign=+.
+ *   - '2' → total=2; '-' → sign=-1; '3' → total=-1.
+ *   - ')' → 1 + (-1)*1 = 0. Return 0.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

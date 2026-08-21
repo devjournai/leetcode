@@ -1,5 +1,9 @@
 /**
  * Minimum Falling Path Sum II
+ * Intuition: Next row cell cannot reuse the same column, so add the previous row’s global min, or the second min if this column held that min.
+ * Approach: 1. previousRowMinimums = first row. 2. For each later row, find smallestValueOverall, its column, and secondSmallest. 3. New cell = grid + (second min if same column else min). 4. Return min of the last previousRowMinimums.
+ * Dry Run: grid = [[1,2,3],[4,5,6],[7,8,9]]
+ *   After row0: [1,2,3] min=1 col0 second=2. Row1: 4+2=6, 5+1=6, 6+1=7. Continue; final min path 13 (1+5+7).
  * Time Complexity: O(N^2)
  * Space Complexity: O(N)
  */

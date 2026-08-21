@@ -1,5 +1,9 @@
 /**
  * Maximum Score Of A Good Subarray
+ * Intuition: A good subarray must contain index k. Expanding from k, always add the larger neighboring value so the running minimum drops as slowly as possible, and score = min * length.
+ * Approach: 1. Start `currentLeftIndex = currentRightIndex = k`. 2. While a side can grow, extend the side with the larger next value (or the only available side). 3. Update `minimumInSubarray` and `maxScoreFound`. 4. Return the max score.
+ * Dry Run: nums = [1,4,3,7,4,5], k = 3.
+ *   - Start min 7 score 7. Expand to [3,7,4] min 3 length 3 score 9, then [4,3,7,4,5] min 3 length 5 score 15. Return 15.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */
@@ -25,7 +29,7 @@ var maximumScore = function (nums, k) {
         currentRightIndex++;
         minimumInSubarray = Math.min(
           minimumInSubarray,
-          nums[currentRightIndex],
+          nums[currentRightIndex]
         );
       }
     } else if (canMoveLeft) {
@@ -39,7 +43,7 @@ var maximumScore = function (nums, k) {
     const currentSubarrayLength = currentRightIndex - currentLeftIndex + 1;
     maxScoreFound = Math.max(
       maxScoreFound,
-      minimumInSubarray * currentSubarrayLength,
+      minimumInSubarray * currentSubarrayLength
     );
   }
 

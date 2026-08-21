@@ -83,7 +83,7 @@ ATM.prototype.withdraw = function (amount) {
     const maxNotesToCover = Math.floor(remainingMoney / currentDenomValue);
     const actualNotesToProcess = Math.min(
       maxNotesToCover,
-      currentNotesAvailable,
+      currentNotesAvailable
     );
 
     provisionalWithdrawalUnits[denominationIterator] = actualNotesToProcess;

@@ -56,11 +56,15 @@
  * `finalCount = 21 - 18 = 3`. (Substrings: "aeiou", "aeioua", "eioua")
  * Time Complexity: O(N)
  * Space Complexity: O(1)
-*/
+ */
 var countVowelSubstrings = function (word) {
-  const vowelCharacterCollection = new Set(['a', 'e', 'i', 'o', 'u']);
+  const vowelCharacterCollection = new Set(["a", "e", "i", "o", "u"]);
 
-  const calcSubstringsWithAtMostKDistinctVowels = (targetWord, maxAllowedDistinctVowels, vowelReferenceSet) => {
+  const calcSubstringsWithAtMostKDistinctVowels = (
+    targetWord,
+    maxAllowedDistinctVowels,
+    vowelReferenceSet
+  ) => {
     let subtotalResult = 0;
     const distinctVowelTracker = new Map();
     let windowLeft = 0;
@@ -74,24 +78,38 @@ var countVowelSubstrings = function (word) {
         continue;
       }
 
-      distinctVowelTracker.set(currentWordCharacter, (distinctVowelTracker.get(currentWordCharacter) || 0) + 1);
+      distinctVowelTracker.set(
+        currentWordCharacter,
+        (distinctVowelTracker.get(currentWordCharacter) || 0) + 1
+      );
 
       while (distinctVowelTracker.size > maxAllowedDistinctVowels) {
         const leftmostWindowCharacter = targetWord[windowLeft];
-        distinctVowelTracker.set(leftmostWindowCharacter, distinctVowelTracker.get(leftmostWindowCharacter) - 1);
+        distinctVowelTracker.set(
+          leftmostWindowCharacter,
+          distinctVowelTracker.get(leftmostWindowCharacter) - 1
+        );
         if (distinctVowelTracker.get(leftmostWindowCharacter) === 0) {
           distinctVowelTracker.delete(leftmostWindowCharacter);
         }
         windowLeft++;
       }
 
-      subtotalResult += (windowRight - windowLeft + 1);
+      subtotalResult += windowRight - windowLeft + 1;
     }
     return subtotalResult;
   };
 
-  const countAtMostFive = calcSubstringsWithAtMostKDistinctVowels(word, 5, vowelCharacterCollection);
-  const countAtMostFour = calcSubstringsWithAtMostKDistinctVowels(word, 4, vowelCharacterCollection);
+  const countAtMostFive = calcSubstringsWithAtMostKDistinctVowels(
+    word,
+    5,
+    vowelCharacterCollection
+  );
+  const countAtMostFour = calcSubstringsWithAtMostKDistinctVowels(
+    word,
+    4,
+    vowelCharacterCollection
+  );
 
   const finalCount = countAtMostFive - countAtMostFour;
   return finalCount;

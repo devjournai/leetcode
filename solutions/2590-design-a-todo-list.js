@@ -62,7 +62,7 @@ TodoList.prototype.addTask = function (
   userIdentifier,
   taskSummaryInput,
   deadlineValue,
-  categoryTags,
+  categoryTags
 ) {
   const currentGeneratedId = this.taskSequenceNumber++;
   const newCreatedTask = {
@@ -100,11 +100,11 @@ TodoList.prototype.getAllTasks = function (userIdentifier) {
   }
 
   accumulatedPendingTasks.sort(
-    (firstTask, secondTask) => firstTask.deadlineDate - secondTask.deadlineDate,
+    (firstTask, secondTask) => firstTask.deadlineDate - secondTask.deadlineDate
   );
 
   const taskDescriptionResults = accumulatedPendingTasks.map(
-    (item) => item.summary,
+    (item) => item.summary
   );
   return taskDescriptionResults;
 };
@@ -126,7 +126,7 @@ TodoList.prototype.getTasksForTag = function (userIdentifier, specificTag) {
   }
 
   filteredTaggedTasks.sort(
-    (firstItem, secondItem) => firstItem.deadlineDate - secondItem.deadlineDate,
+    (firstItem, secondItem) => firstItem.deadlineDate - secondItem.deadlineDate
   );
 
   const tagDescriptionResults = filteredTaggedTasks.map((item) => item.summary);
@@ -135,10 +135,10 @@ TodoList.prototype.getTasksForTag = function (userIdentifier, specificTag) {
 
 TodoList.prototype.completeTask = function (
   userIdentifier,
-  taskIdentifierToComplete,
+  taskIdentifierToComplete
 ) {
   const taskObjectReference = this.globalTaskCollection.get(
-    taskIdentifierToComplete,
+    taskIdentifierToComplete
   );
   if (taskObjectReference) {
     if (taskObjectReference.ownerIdentifier === userIdentifier) {

@@ -1,12 +1,16 @@
 /**
  * Optimize Water Distribution In A Village
+ * Intuition: A virtual house 0 connected to every house i by an edge of well-cost[i] turns wells into ordinary edges. The MST of that graph is the cheapest way to give every house water.
+ * Approach: 1. Add edges (0,i,wells[i-1]) and all pipes. 2. Sort by cost. 3. Kruskal union-find until n unions (n houses plus virtual node 0). 4. Return the total cost.
+ * Dry Run: n = 3, wells = [1,2,2], pipes = [[1,2,1],[2,3,1]].
+ *   - Cheapest: well at 1 (cost 1), pipes 1-2 and 2-3 (cost 1+1). Total 3.
  * Time Complexity: O((N + M) log (N + M))
  * Space Complexity: O(N + M)
  */
 var minCostToSupplyWater = function (
   totalVillageHouses,
   wellInstallationCosts,
-  pipeConfigurations,
+  pipeConfigurations
 ) {
   const graphEdges = [];
 
@@ -36,7 +40,7 @@ var minCostToSupplyWater = function (
 
   const parentArray = Array.from(
     { length: totalVillageHouses + 1 },
-    (_, elementIndex) => elementIndex,
+    (_, elementIndex) => elementIndex
   );
   let totalMinimumCost = 0;
   let connectionsEstablished = 0;
@@ -44,7 +48,7 @@ var minCostToSupplyWater = function (
   function findSetRepresentative(nodeIdentifier) {
     if (parentArray[nodeIdentifier] !== nodeIdentifier) {
       parentArray[nodeIdentifier] = findSetRepresentative(
-        parentArray[nodeIdentifier],
+        parentArray[nodeIdentifier]
       );
     }
     return parentArray[nodeIdentifier];

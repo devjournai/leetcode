@@ -34,7 +34,7 @@ var minimumWhiteTiles = function (floor, numCarpets, carpetLen) {
   const floorStringLength = floor.length;
   const dynamicProgramTable = Array.from(
     { length: floorStringLength + 1 },
-    () => Array(numCarpets + 1).fill(0),
+    () => Array(numCarpets + 1).fill(0)
   );
 
   for (
@@ -55,7 +55,7 @@ var minimumWhiteTiles = function (floor, numCarpets, carpetLen) {
       if (carpetAllocation > 0) {
         const previousCoveredTileIndex = Math.max(
           0,
-          tileProgression - carpetLen,
+          tileProgression - carpetLen
         );
         costIfApplying =
           dynamicProgramTable[previousCoveredTileIndex][carpetAllocation - 1];
@@ -63,7 +63,7 @@ var minimumWhiteTiles = function (floor, numCarpets, carpetLen) {
 
       dynamicProgramTable[tileProgression][carpetAllocation] = Math.min(
         costIfSkipping,
-        costIfApplying,
+        costIfApplying
       );
     }
   }

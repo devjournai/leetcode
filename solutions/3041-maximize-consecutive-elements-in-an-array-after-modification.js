@@ -15,16 +15,16 @@ var maxSelectedElements = function (nums) {
   for (const currentValue of nums) {
     longestEndingAtValue.set(
       currentValue + 1,
-      (longestEndingAtValue.get(currentValue) || 0) + 1,
+      (longestEndingAtValue.get(currentValue) || 0) + 1
     );
     longestEndingAtValue.set(
       currentValue,
-      (longestEndingAtValue.get(currentValue - 1) || 0) + 1,
+      (longestEndingAtValue.get(currentValue - 1) || 0) + 1
     );
     longestConsecutiveLength = Math.max(
       longestConsecutiveLength,
       longestEndingAtValue.get(currentValue),
-      longestEndingAtValue.get(currentValue + 1),
+      longestEndingAtValue.get(currentValue + 1)
     );
   }
 

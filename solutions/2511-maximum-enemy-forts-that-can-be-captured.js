@@ -63,7 +63,7 @@ var captureForts = function (fortLocations) {
     if (fortLocations[firstFortPointer] !== fortLocations[secondFortPointer]) {
       maxCapturedForts = Math.max(
         maxCapturedForts,
-        secondFortPointer - firstFortPointer - 1,
+        secondFortPointer - firstFortPointer - 1
       );
     }
 

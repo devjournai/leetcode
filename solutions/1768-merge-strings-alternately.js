@@ -1,5 +1,9 @@
 /**
  * Merge Strings Alternately
+ * Intuition: Emit one character from each string in lockstep, then append whichever string still has leftover characters.
+ * Approach: 1. While both indices are in range, push `stringOne[indexOne]` then `stringTwo[indexTwo]`. 2. Drain remaining characters from each string into `resultContainer`. 3. Join and return.
+ * Dry Run: word1 = "abc", word2 = "pqr".
+ *   - a p, b q, c r → "apbqcr".
  * Time Complexity: O(n + m)
  * Space Complexity: O(n + m)
  */

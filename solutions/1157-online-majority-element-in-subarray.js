@@ -1,5 +1,9 @@
 /**
  * Online Majority Element In Subarray
+ * Intuition: If a majority exists it occupies more than half the range, so random samples almost surely hit it. Occurrence lists plus binary search count a candidate in [left,right] in log time.
+ * Approach: 1. Constructor stores each value’s sorted indices. 2. Query samples up to 20 random indices in the range. 3. Count the candidate via lower/upper bound on its index list; return it if count >= threshold, else -1.
+ * Dry Run: arr = [1,1,2,2,1,1], query(0,5,4).
+ *   - Range is all 1s and 2s; 1 appears 4 times. A sample of 1 counts 4 >= 4, return 1.
  * Time Complexity: O(N) for constructor, O(log N) per query
  * Space Complexity: O(N)
  */
@@ -18,7 +22,7 @@ var MajorityChecker = function (inputArray) {
 MajorityChecker.prototype.query = function (
   queryLeft,
   queryRight,
-  queryThreshold,
+  queryThreshold
 ) {
   const maxCandidateChecks = 20;
   const searchRangeLength = queryRight - queryLeft + 1;
@@ -39,7 +43,7 @@ MajorityChecker.prototype.query = function (
     const elementCount = getRangeCount(
       candidateElementPositions,
       queryLeft,
-      queryRight,
+      queryRight
     );
 
     if (elementCount >= queryThreshold) {

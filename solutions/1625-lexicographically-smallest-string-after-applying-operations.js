@@ -1,5 +1,9 @@
 /**
  * Lexicographically Smallest String After Applying Operations
+ * Intuition: Add-on-odd-indices and rotate generate a finite graph of strings. BFS every reachable state and keep the lexicographically smallest.
+ * Approach: 1. Queue the start string; skip seen states. 2. From each state, produce add (odd digits + addValue mod 10) and rotate (last rotateValue chars moved to front). 3. Track the min string among visited states.
+ * Dry Run: s="5525", a=9, b=2.
+ *   - Add → "5424"; rotate and further adds reach "2050", which is the minimum.
  * Time Complexity: O(L * U)
  * Space Complexity: O(L * U)
  */
@@ -41,7 +45,7 @@ var findLexSmallestString = function (initialString, addValue, rotateValue) {
     searchQueue.push(resultingStringFromAdd);
 
     const resultingStringFromRotate = performRotateOperation(
-      currentProcessedString,
+      currentProcessedString
     );
     searchQueue.push(resultingStringFromRotate);
   }

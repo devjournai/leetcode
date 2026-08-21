@@ -1,5 +1,8 @@
 /**
  * Longest Balanced Subarray II
+ * Intuition: Distinct-even minus distinct-odd as a prefix balance: +1 for a new even, -1 for a new odd, undo the previous occurrence of the same value. Zero balance at some start i means [i..j] is balanced; a lazy segment tree finds the leftmost such i.
+ * Approach: 1. Segment tree over start indices with range add and query leftmost zero in [0, j]. 2. On even nums[j]: subtract 1 on [0, prev] if seen, add 1 on [0, j]. On odd: opposite signs. 3. Query leftmost zero and update max length.
+ * Dry Run: nums = [2, 3]. After 2, prefix +1 on [0,0]; after 3, -1 on [0,1] so index 0 is 0. Length 2.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */
@@ -42,11 +45,11 @@ var longestBalanced = function (nums) {
       const rightChildIdx = 2 * nodeIdx + 2;
       this.tree[nodeIdx].minVal = Math.min(
         this.tree[leftChildIdx].minVal,
-        this.tree[rightChildIdx].minVal,
+        this.tree[rightChildIdx].minVal
       );
       this.tree[nodeIdx].maxVal = Math.max(
         this.tree[leftChildIdx].maxVal,
-        this.tree[rightChildIdx].maxVal,
+        this.tree[rightChildIdx].maxVal
       );
     }
 
@@ -98,7 +101,7 @@ var longestBalanced = function (nums) {
         rangeStart,
         mid,
         queryL,
-        queryR,
+        queryR
       );
       if (resLeft !== -1) {
         return resLeft;
@@ -109,7 +112,7 @@ var longestBalanced = function (nums) {
         mid + 1,
         rangeEnd,
         queryL,
-        queryR,
+        queryR
       );
     }
   }

@@ -98,6 +98,8 @@
  *
  * ------------------------------------------------------------
  *
+ * Approach: Work in BigInt. For bit n-1..0, if A and B have the same bit, OR the mask onto both. Else give the 1-bit to the currently smaller of A and B (AND-clear the other). Return (A*B) % 1e9+7.
+ *
  * Simpler Strategy:
  *
  * Start with:

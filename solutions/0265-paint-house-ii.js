@@ -1,5 +1,9 @@
 /**
  * Paint House II
+ * Intuition: Same adjacency rule as Paint House with k colors. For house i, color c costs `costs[i][c]` plus the previous house’s cheapest color unless that cheapest used c, in which case use the second cheapest. Track those two minima in O(k) per house.
+ * Approach: 1. Empty houses or colors → 0. 2. Seed `minimumCostsBefore` from house 0. 3. For each later house, scan previous costs for smallest and second-smallest (and the min’s index). 4. New cost[c] = paint[c] + (c===minIdx ? second : first). 5. After the last house, return the min of `minimumCostsBefore`.
+ * Dry Run: costs = [[1,5,3],[2,9,4]].
+ *   - House 0 mins: 1 at color 0, second 3. House 1: color0=2+3=5, color1=9+1=10, color2=4+1=5. Overall min 5.
  * Time Complexity: O(n * k)
  * Space Complexity: O(k)
  */

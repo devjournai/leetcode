@@ -53,7 +53,7 @@ var minNonZeroProduct = function (p) {
   const powerResult = powerCalculator(
     baseExponentiation,
     numberOfPairs,
-    MODULUS,
+    MODULUS
   );
   const finalProductCalculation = (highestValue * powerResult) % MODULUS;
 

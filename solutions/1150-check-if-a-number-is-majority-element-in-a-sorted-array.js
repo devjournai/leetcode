@@ -1,5 +1,9 @@
 /**
  * Check If A Number Is Majority Element In A Sorted Array
+ * Intuition: In a sorted array the target occupies a contiguous range. Majority means that range is longer than n/2, found via binary search for first and last index.
+ * Approach: 1. Lower-bound search for the first index >= target. 2. If missing, false. 3. Upper-bound search for last index. 4. Return (last-first+1) > n/2.
+ * Dry Run: nums = [2,4,5,5,5,5,5,6,6], target = 5.
+ *   - First 5 at index 2, last at 6, count 5. n=9, 5 > 4.5. True.
  * Time Complexity: O(log N)
  * Space Complexity: O(1)
  */

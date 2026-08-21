@@ -1,5 +1,9 @@
 /**
  * Tag Validator
+ * Intuition: A valid snippet is one well-formed nested TAG_CONTENT. Scan left to right: CDATA is opaque, closing tags must match a stack of 1–9 uppercase names, text/CDATA only appear inside tags, and nothing may follow the outer close.
+ * Approach: 1. Walk `currentReadPosition`. If `isOutsideAnyTag` (pos>0 and empty `tagRepository`), fail. 2. `<![CDATA[` … `]]>` only if stack nonempty. 3. `</name>`: regex `/^[A-Z]{1,9}$/`, must equal `tagRepository.pop()`. 4. `<name>`: same regex, push. 5. Else increment if inside a tag. 6. End with empty stack.
+ * Dry Run: code = "<DIV>HELLO</DIV>".
+ *   - Push DIV, skip HELLO, pop DIV matching. Stack empty → true. Extra text after close would fail `isOutsideAnyTag`.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -24,7 +28,7 @@ var isValid = function (snippetContent) {
         currentReadPosition + cdataStartSequence.length;
       const cdataEndSequenceIndex = snippetContent.indexOf(
         "]]>",
-        cdataContentStartIndex,
+        cdataContentStartIndex
       );
       if (cdataEndSequenceIndex === -1) {
         return false;
@@ -41,14 +45,14 @@ var isValid = function (snippetContent) {
         currentReadPosition + closingTagStartSequence.length;
       const tagNameIdentifierEnd = snippetContent.indexOf(
         ">",
-        tagNameIdentifierStart,
+        tagNameIdentifierStart
       );
       if (tagNameIdentifierEnd === -1) {
         return false;
       }
       const extractedTagString = snippetContent.slice(
         tagNameIdentifierStart,
-        tagNameIdentifierEnd,
+        tagNameIdentifierEnd
       );
       if (!/^[A-Z]{1,9}$/.test(extractedTagString)) {
         return false;
@@ -72,7 +76,7 @@ var isValid = function (snippetContent) {
       }
       const tagTextContent = snippetContent.slice(
         tagContentStart,
-        tagContentEnd,
+        tagContentEnd
       );
       if (!/^[A-Z]{1,9}$/.test(tagTextContent)) {
         return false;

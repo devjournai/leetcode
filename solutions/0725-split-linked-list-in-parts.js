@@ -1,5 +1,8 @@
 /**
  * Split Linked List In Parts
+ * Intuition: Split N nodes into k parts whose sizes differ by at most 1. The first `remainderNodes` parts get one extra node; unused parts stay null.
+ * Approach: 1. Count `totalLength`. 2. `minimalLength = floor(N/k)`, `remainderNodes = N % k`. 3. For each of k parts, walk `minimalLength` or +1 nodes, cut `previousNodeInSegment.next`, and store the head in `outputSegments`.
+ * Dry Run: 1→2→3→4→5, k=3. Lengths 2,2,1 → [1→2], [3→4], [5].
  * Time Complexity: O(N)
  * Space Complexity: O(K)
  */

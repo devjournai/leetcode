@@ -1,5 +1,8 @@
 /**
  * Cherry Pickup
+ * Intuition: Two simultaneous paths from (0,0) to (n-1,n-1) with the same step count model going and returning. `memoTable[x1][x2][step]` is the best cherries when person 1 is at (x1, step-x1) and person 2 at (x2, step-x2). The same cell is counted once.
+ * Approach: 1. Init memo to -Infinity; `memoTable[0][0][0] = grid[0][0]` unless blocked. 2. For each `currentStep`, try all valid (x1,x2) not on thorns. 3. Take max of the four previous (x or x-1) states, add this cell’s cherries (both if positions differ). 4. Return the destination cell, or 0 if still -Infinity.
+ * Dry Run: 2×2 grid with cherries at (0,0) and (1,1). Both people reach (1,1) at step 2; the shared cell is counted once.
  * Time Complexity: O(N^3)
  * Space Complexity: O(N^3)
  */
@@ -7,8 +10,8 @@ var cherryPickup = function (grid) {
   const gridDimension = grid.length;
   const memoTable = Array.from({ length: gridDimension }, () =>
     Array.from({ length: gridDimension }, () =>
-      new Array(2 * gridDimension - 1).fill(-Infinity),
-    ),
+      new Array(2 * gridDimension - 1).fill(-Infinity)
+    )
   );
 
   if (grid[0][0] === -1) {
@@ -64,7 +67,7 @@ var cherryPickup = function (grid) {
               if (previousStateCherries > -Infinity) {
                 maximumPreviousCherries = Math.max(
                   maximumPreviousCherries,
-                  previousStateCherries,
+                  previousStateCherries
                 );
               }
             }

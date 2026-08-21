@@ -1,5 +1,9 @@
 /**
  * Parallel Courses
+ * Intuition: Relations form a DAG of prerequisites. Each semester take every course with indegree 0 (Kahn BFS by layers). Cycles make some courses unreachable.
+ * Approach: 1. Build adjacency and indegrees. 2. Queue all indegree-0 courses. 3. Each queue layer is one semester; decrement neighbors and enqueue when indegree hits 0. 4. Return semester count if all n courses were taken, else -1.
+ * Dry Run: n = 3, relations = [[1,3],[2,3]].
+ *   - Semester 1: take 1 and 2. Semester 2: take 3. Answer 2.
  * Time Complexity: O(N + M)
  * Space Complexity: O(N + M)
  */

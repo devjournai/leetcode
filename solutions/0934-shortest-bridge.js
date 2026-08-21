@@ -1,5 +1,8 @@
 /**
  * Shortest Bridge
+ * Intuition: Paint the first island as 2 and enqueue it, then multi-source BFS over water; the first time a 1 is reached, the BFS depth is the water cells (bridge length) between islands.
+ * Approach: 1. Scan for the first 1; DFS `exploreIsland` marks 2 and fills `expansionQueue`. 2. Level BFS: skip 2s, return `currentBridgeLength` on hitting 1, else mark water 2 and enqueue. 3. Increment length per level.
+ * Dry Run: Two islands separated by one 0. After painting island A, first expansion hits island B at depth 1 → 1.
  * Time Complexity: O(N*N)
  * Space Complexity: O(N*N)
  */

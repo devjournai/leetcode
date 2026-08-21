@@ -1,5 +1,9 @@
 /**
  * Text Justification
+ * Intuition: Greedily pack as many words as fit in maxWidth (counting single spaces between them). Then, for every line except the last, distribute leftover spaces as evenly as possible between gaps; the last line (and single-word lines) are left-justified.
+ * Approach: 1. Accumulate words into lines while the next word still fits. 2. For each non-last line with more than one word, split extra spaces across gaps (left gaps get one more if uneven). 3. Pad the last line with a single space between words and spaces to maxWidth.
+ * Dry Run: words = ["This","is","an","example"], maxWidth = 16.
+ *   - Line 1 fits "This is an" (10 letters + 2 spaces = 12) → extra 4 spaces become "This    is    an". Next line "example" left-justified and padded.
  * Time Complexity: O(N * L)
  * Space Complexity: O(N * L)
  */
@@ -53,14 +57,14 @@ var fullJustify = function (words, maxWidth) {
       const leftJustifiedSegment = lineWordsArray.join(" ");
       const additionalSpacesNeeded = maxWidth - leftJustifiedSegment.length;
       finalJustifiedOutput.push(
-        leftJustifiedSegment + " ".repeat(additionalSpacesNeeded),
+        leftJustifiedSegment + " ".repeat(additionalSpacesNeeded)
       );
     } else {
       const totalSpacesToDistribute = maxWidth - totalCharactersInWords;
       const numberOfGaps = wordsOnThisLineCount - 1;
 
       const baseSpacesPerGap = Math.floor(
-        totalSpacesToDistribute / numberOfGaps,
+        totalSpacesToDistribute / numberOfGaps
       );
       let extraSpacesForLeftGaps = totalSpacesToDistribute % numberOfGaps;
 

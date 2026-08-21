@@ -1,5 +1,10 @@
 /**
  * Majority Element II
+ * Intuition: At most two values can appear more than n/3 times. Boyer–Moore voting tracks two candidates; a second pass verifies counts against n/3.
+ * Approach: 1. First pass: increment a matching candidate, else fill an empty slot, else decrement both counts. 2. Recount both candidates. 3. Push those whose count > n/3 (skip a duplicate second candidate). 4. Return the list.
+ * Dry Run: nums = [3,2,3].
+ *   - 3 → first=3 c1=1; 2 → second=2 c2=1; 3 → c1=2.
+ *   - Verify: 3 appears 2 > 1, 2 appears 1 not > 1. Return [3].
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */

@@ -1,5 +1,10 @@
 /**
  * Open The Lock
+ * Intuition: Each lock state has eight neighbors (four wheels, ±1). Shortest turns is BFS from `"0000"`, skipping `deadends` and already `exploredStates`.
+ * Approach: 1. Put `deadends` in `forbiddenCombinations`. If `"0000"` is forbidden, return -1. 2. Queue pairs `[currentCombination, currentMoves]` starting at `["0000", 0]`. 3. Dequeue; if it equals `target`, return `currentMoves`. 4. For each `wheelIndex`, build `combinationUp` and `combinationDown` with `(d+1)%10` and `(d-1+10)%10`. 5. Enqueue unseen, non-forbidden neighbors with `currentMoves + 1`. 6. If the queue empties, return -1.
+ * Dry Run: deadends = ["0201"], target = "0001".
+ *   - "0000" is allowed. Wheel 3 down/up yields "0009" and "0001".
+ *   - Dequeue "0001" at 1 move → return 1.
  * Time Complexity: O(N * L * E)
  * Space Complexity: O(N * L)
  */

@@ -16,7 +16,7 @@
  *    a. If `check(mid)` is true, it means `mid` is a possible answer, so we store `mid` and try for a higher score (`left = mid + 1`).
  *    b. If `check(mid)` is false, `mid` is too high, so we need to reduce the score (`right = mid - 1`).
  * 4. Return the maximum `minEdgeScore` found, or -1 if no valid path exists (ans remains -1).
- *
+ * Dry Run: n = 3, edges 0→1 cost 5, 1→2 cost 4, all online, k = 10. check(4) shortest cost 9 ≤ 10; check(5) drops the 4-edge so 2 is unreachable. Answer 4.
  * Time Complexity: O((N + M) * log(MAX_COST))
  * Space Complexity: O(N + M)
  */

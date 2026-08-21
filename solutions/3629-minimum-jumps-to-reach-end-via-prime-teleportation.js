@@ -1,5 +1,8 @@
 /**
  * Minimum Jumps to Reach End via Prime Teleportation
+ * Intuition: Adjacent ±1 jumps plus, from a prime value, teleport to every index whose value is a multiple of that prime. BFS finds minimum jumps; each prime is expanded once.
+ * Approach: 1. Sieve primes to MAX_NUM. 2. Map values to index lists. 3. BFS from 0: enqueue i+1, i-1 if unvisited; if nums[i] is an unused prime, visit all remaining multiples' indices and delete those map keys. 4. Early-return when n-1 is reached.
+ * Dry Run: nums = [2, 4, 6]. From 0 (prime 2) teleport to indices of 2,4,6 including 2 in one jump. Answer 1.
  * Time Complexity: O(MAX_NUM * log log MAX_NUM + N + K)
  * Space Complexity: O(MAX_NUM + N)
  */

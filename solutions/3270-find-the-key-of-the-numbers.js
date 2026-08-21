@@ -16,7 +16,7 @@ var generateKey = function (num1, num2, num3) {
 
   for (let i = 0; i < 4; i++) {
     ans += String.fromCharCode(
-      Math.min(s1.charCodeAt(i), s2.charCodeAt(i), s3.charCodeAt(i)),
+      Math.min(s1.charCodeAt(i), s2.charCodeAt(i), s3.charCodeAt(i))
     );
   }
 

@@ -1,5 +1,9 @@
 /**
  * Max Value Of Equation
+ * Intuition: For i < j, yi+yj+|xi-xj| = yj+xj + (yi-xi) when points are sorted by x. A deque stores candidates with decreasing (y-x) and x within k of the current point.
+ * Approach: 1. Scan points left to right. 2. Drop deque front if x-distance > k. 3. If deque non-empty, update max with yj+yi+xj-xi using the front. 4. Pop back worse (y-x) values and push the current index.
+ * Dry Run: points = [[1,3],[2,0],[5,10],[6,-10]], k = 1
+ *   - pairs with |dx|<=1: (1,2) value 4; (5,6) value 13. Return 13.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -27,7 +31,7 @@ var findMaxValueOfEquation = function (points, k) {
         bestPreviousY + currentPointY + currentPointX - bestPreviousX;
       maximumPossibleValue = Math.max(
         maximumPossibleValue,
-        currentEquationValue,
+        currentEquationValue
       );
     }
 

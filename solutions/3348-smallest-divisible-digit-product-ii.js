@@ -38,6 +38,8 @@
  * 7. If no number with the same length works, construct the smallest
  *    valid number with at least n + 1 digits.
  *
+ * Dry Run: num = "1234", t = 256. 256 = 2^8, so we need eight factors of 2. The current digits 1,2,3,4 give two 2s (from 2 and 4). We bump a suffix digit and greedily fill the rest with the smallest digits that still meet the remaining 2-count (and 3/5/7 counts of 0).
+ *
  * Time Complexity: O(N * 9 + 60^2 * 6)
  * Space Complexity: O(N + 60^2)
  */

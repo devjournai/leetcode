@@ -1,8 +1,8 @@
 /**
  * Lexicographically Smallest String After Operations With Constraint
- * Approach: 1. For each prefix position, try the smallest letter reachable with remaining distance budget. 2. Distance to a letter is min(|c-t|, 26-|c-t|). 3. Spend the budget as soon as a smaller letter is possible, then continue.
- * Dry Run:
- *   s = "zbbz", k = 3 -> "aaaz" by changing z->a (cost 1) twice and leftover unused on last z? Actually first z to a costs 1, then we can change further. Standard greedy yields "aaaz" or "aaay" depending on remaining; walkccc: change towards 'a' from the left.
+ * Intuition: The lexicographically smallest string is made by turning left characters into 'a' as soon as the circular distance budget allows.
+ * Approach: 1. For each prefix position, try the smallest letter reachable with remaining distance budget. 2. Distance to a letter is min(|c-t|, 26-|c-t|). 3. If distance to 'a' fits, set 'a' and spend that cost; otherwise decrease the letter by the leftover budget and stop.
+ * Dry Run: s = "zbbz", k = 3. z->a costs 1 (k=2), b->a costs 1 (k=1), b->a costs 1 (k=0), last z stays; result "aaaz".
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -21,7 +21,7 @@ var getSmallestString = function (s, k) {
       remainingDistance -= distanceToA;
     } else {
       resultChars[charIndex] = String.fromCharCode(
-        97 + originalCode - remainingDistance,
+        97 + originalCode - remainingDistance
       );
       remainingDistance = 0;
     }

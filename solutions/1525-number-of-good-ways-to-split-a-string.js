@@ -1,5 +1,9 @@
 /**
  * Number Of Good Ways To Split A String
+ * Intuition: A split is good when distinct counts on left and right match. Prefix and suffix distinct arrays compare at each cut.
+ * Approach: 1. Left-to-right set sizes into prefix[]. 2. Right-to-left into suffix[]. 3. Count i where prefix[i]==suffix[i+1].
+ * Dry Run: s = "aacaba".
+ *   - Good cuts at 2,3,4 → 3.
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */

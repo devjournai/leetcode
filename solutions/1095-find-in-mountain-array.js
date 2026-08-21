@@ -1,5 +1,8 @@
 /**
  * Find In Mountain Array
+ * Intuition: A mountain has one peak. Three binary searches (peak, ascending left, descending right) find the leftmost target because the left side is tried first.
+ * Approach: 1. Binary search peak where a[mid]<a[mid+1] goes right else left. 2. Classic binary search on [0,peak]. 3. If missed, reverse binary search on [peak,n-1]. 4. Return index or -1.
+ * Dry Run: mountain [1,2,3,4,5,3,1], target=3. Peak index 4 (value 5). Left search hits index 2 before the right 3.
  * Time Complexity: O(log N)
  * Space Complexity: O(1)
  */

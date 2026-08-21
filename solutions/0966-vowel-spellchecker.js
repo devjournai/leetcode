@@ -1,5 +1,8 @@
 /**
  * Vowel Spellchecker
+ * Intuition: Resolve queries in priority: exact set match, then first case-insensitive word, then first vowel-masked word (`generateVowelMask` replaces vowels with `_`).
+ * Approach: 1. Index `wordList` into `exactWordSet`, `caseInsensitiveMapping`, `vowelErrorMapping` (first wins). 2. For each query, try exact, then lowercased map, then vowel mask. 3. Else push `""`. 4. Return `answerCollection`.
+ * Dry Run: wordList = ["KiTe"], queryList = ["kite","Kite"]. Exact misses; lower "kite" maps to "KiTe". Both queries become "KiTe".
  * Time Complexity: O(N*L + Q*L)
  * Space Complexity: O(N*L + Q*L)
  */

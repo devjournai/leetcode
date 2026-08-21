@@ -1,5 +1,9 @@
 /**
  * Reformat The String
+ * Intuition: Alternate letters and digits. This is possible iff their counts differ by at most one; start with the more frequent type.
+ * Approach: 1. Split characters into letters vs digits. 2. If |counts| > 1, return "". 3. Let the longer list be even indices. 4. Interleave and join.
+ * Dry Run: s = "a0b1c2".
+ *   - 3 letters, 3 digits. Start with letters: a0b1c2.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

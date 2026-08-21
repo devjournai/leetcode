@@ -50,7 +50,7 @@ var minimumFinishTime = function (tires, changeTime, numLaps) {
   const MAX_CONSECUTIVE_LAP_CONSIDERATION = 18;
 
   const minConsecutiveLapDurations = new Array(
-    MAX_CONSECUTIVE_LAP_CONSIDERATION,
+    MAX_CONSECUTIVE_LAP_CONSIDERATION
   ).fill(Infinity);
 
   for (let tireIndex = 0; tireIndex < tires.length; tireIndex++) {
@@ -74,7 +74,7 @@ var minimumFinishTime = function (tires, changeTime, numLaps) {
       }
       minConsecutiveLapDurations[sequentialLapCounter] = Math.min(
         minConsecutiveLapDurations[sequentialLapCounter],
-        cumulativeLapTime,
+        cumulativeLapTime
       );
 
       singleLapCalculatedTime *= durationMultiplier;
@@ -107,7 +107,7 @@ var minimumFinishTime = function (tires, changeTime, numLaps) {
 
         optimalTotalDurations[currentLapsTarget] = Math.min(
           optimalTotalDurations[currentLapsTarget],
-          previousLapsTime + currentSegmentDuration + transitionPenalty,
+          previousLapsTime + currentSegmentDuration + transitionPenalty
         );
       }
     }

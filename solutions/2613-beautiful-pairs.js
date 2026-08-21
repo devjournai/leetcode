@@ -168,7 +168,7 @@ var beautifulPair = function (nums1, nums2) {
           candidates[i][0],
           candidates[i][1],
           candidates[j][0],
-          candidates[j][1],
+          candidates[j][1]
         );
 
         const current = [d, p1, p2];

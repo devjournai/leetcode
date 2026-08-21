@@ -1,5 +1,10 @@
 /**
  * Validate Binary Tree Nodes
+ * Intuition: A valid binary tree has exactly one root (in-degree 0), every other node has in-degree 1, and DFS from the root must reach all n nodes without hitting a cycle.
+ * Approach: 1. Count parents for each node from leftChild and rightChild. 2. Reject any node with more than one parent. 3. Identify the unique node with zero parents as the root; reject zero or multiple roots. 4. DFS from the root, marking visits and aborting on a cycle. 5. Accept only if the DFS visits exactly n nodes.
+ * Dry Run: n = 4, leftChild = [1, -1, 3, -1], rightChild = [2, -1, -1, -1].
+ *   - Parent counts: [0, 1, 1, 1] so root = 0.
+ *   - DFS(0) visits 0, 1, 2, 3 (4 nodes). Return true.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -47,7 +52,7 @@ var validateBinaryTreeNodes = function (n, leftChild, rightChild) {
 
   const depthFirstSearchCount = (
     currentNodeForTraversal,
-    traversalVisitedSet,
+    traversalVisitedSet
   ) => {
     if (currentNodeForTraversal === -1) {
       return 0;
@@ -61,11 +66,11 @@ var validateBinaryTreeNodes = function (n, leftChild, rightChild) {
 
     const leftSubtreeNodeCount = depthFirstSearchCount(
       leftChild[currentNodeForTraversal],
-      traversalVisitedSet,
+      traversalVisitedSet
     );
     const rightSubtreeNodeCount = depthFirstSearchCount(
       rightChild[currentNodeForTraversal],
-      traversalVisitedSet,
+      traversalVisitedSet
     );
 
     if (leftSubtreeNodeCount === -1 || rightSubtreeNodeCount === -1) {
@@ -77,7 +82,7 @@ var validateBinaryTreeNodes = function (n, leftChild, rightChild) {
 
   const totalNodesReached = depthFirstSearchCount(
     designatedRoot,
-    visitedNodesRecord,
+    visitedNodesRecord
   );
 
   return totalNodesReached === n;

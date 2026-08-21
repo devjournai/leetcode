@@ -1,5 +1,8 @@
 /**
  * Sum of Distances
+ * Intuition: Distances only involve equal values. For a sorted list of indices, the sum of |pos - others| updates by a linear formula when moving to the next index.
+ * Approach: 1. Group indices by value. 2. For each group, compute the sum of distances from the first index. 3. When moving from prev to curr, add (leftCount - rightCount) * gap.
+ * Dry Run: nums = [1,3,1,1,2]. Value 1 at indices [0,2,3]. Sum at 0 is 2+3=5. Move to 2: gap=2, left=1, right=2, delta=(1-2)*2=-2, sum=3. Move to 3: gap=1, left=2, right=1, delta=1, sum=4.
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */

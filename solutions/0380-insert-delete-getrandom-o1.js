@@ -1,5 +1,8 @@
 /**
  * Insert Delete Getrandom O1
+ * Intuition: An array gives O(1) random access; a value→index map gives O(1) insert/lookup. Removal swaps the target with the last element so we can pop instead of shifting.
+ * Approach: 1. `insert` rejects duplicates, pushes, and maps the new index. 2. `remove` copies the last value onto the hole, updates that value’s index, pops, and deletes the map entry. 3. `getRandom` indexes `elementList` with `Math.random()`.
+ * Dry Run: insert 1, insert 2 (list [1,2]). remove 1 swaps 2 into index 0, pops → [2]; getRandom always 2.
  * Time Complexity: O(1)
  * Space Complexity: O(N)
  */

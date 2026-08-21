@@ -1,5 +1,9 @@
 /**
  * Second Largest Digit In A String
+ * Intuition: Collect unique digits, sort descending, and take the second if it exists.
+ * Approach: 1. Scan characters with codes 48..57 into `uniqueDigitsSet`. 2. Convert to an array and sort descending. 3. Return index 1 if length ≥ 2 else -1.
+ * Dry Run: s = "dfa12321afd".
+ *   - Digits {1,2,3} sorted 3,2,1 → 2.
  * Time Complexity: O(L)
  * Space Complexity: O(1)
  */

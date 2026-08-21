@@ -1,5 +1,8 @@
 /**
  * Long Pressed Name
+ * Intuition: typed is a long-press of name iff they have the same run-length characters and each typed run is at least as long as name’s.
+ * Approach: 1. `createCharacterRuns` walks equal-letter streaks into [char, count] pairs. 2. If run-list lengths differ, false. 3. Zip runs: same char and nameCount ≤ typedCount. 4. Else true.
+ * Dry Run: name="alex", typed="aaleex" → [a1,l1,e1,x1] vs [a2,l1,e2,x1] all typed ≥ name → true. typed="aaleexa" extra a-run → false.
  * Time Complexity: O(N + M)
  * Space Complexity: O(N + M)
  */

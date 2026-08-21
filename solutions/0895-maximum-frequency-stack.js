@@ -1,5 +1,9 @@
 /**
  * Maximum Frequency Stack
+ * Intuition: Track each value's count and a stack per frequency. Push onto the stack of the new frequency; pop from the max-frequency stack so the most recent among the most frequent wins.
+ * Approach: 1. Constructor: `elementCounts`, `frequencyStacks`, `currentMaxCount=0`. 2. `push`: increment count, update max, append val to that frequency's stack. 3. `pop`: pop from max-frequency stack, decrement the value's count; if that stack empties, delete it and decrement `currentMaxCount`. 4. Return the popped value.
+ * Dry Run: push 5,7,5,7,4,5 then pop thrice.
+ *   - After pushes, freq 3 stack is [5]. Pop 5 (freq 3 empty). Freq 2 stack [7,5] → pop 7 then 5.
  * Time Complexity: O(1)
  * Space Complexity: O(N)
  */

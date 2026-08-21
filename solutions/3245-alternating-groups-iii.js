@@ -25,7 +25,7 @@ var numberOfAlternatingGroups = function (colors, queries) {
         0,
         this.size - 1,
         minimumLength,
-        this.size - 1,
+        this.size - 1
       );
     }
 
@@ -36,7 +36,7 @@ var numberOfAlternatingGroups = function (colors, queries) {
         0,
         this.size - 1,
         minimumLength,
-        this.size - 1,
+        this.size - 1
       );
     }
 
@@ -76,7 +76,7 @@ var numberOfAlternatingGroups = function (colors, queries) {
           rangeStart,
           mid,
           queryStart,
-          queryEnd,
+          queryEnd
         ) +
         this.query(
           tree,
@@ -84,7 +84,7 @@ var numberOfAlternatingGroups = function (colors, queries) {
           mid + 1,
           rangeEnd,
           queryStart,
-          queryEnd,
+          queryEnd
         )
       );
     }
@@ -100,7 +100,7 @@ var numberOfAlternatingGroups = function (colors, queries) {
       const [, rest] = this.split(right, start + 1);
       this.root = this.merge(
         this.merge(left, this.createNode(start, end)),
-        rest,
+        rest
       );
     }
 

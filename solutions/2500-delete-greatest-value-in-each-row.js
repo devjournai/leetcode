@@ -70,7 +70,7 @@ var deleteGreatestValue = function (grid) {
     ) {
       currentMaxAcrossRows = Math.max(
         currentMaxAcrossRows,
-        grid[currentRowPointer][columnTraversalIndex],
+        grid[currentRowPointer][columnTraversalIndex]
       );
     }
     totalAccumulatedSum += currentMaxAcrossRows;

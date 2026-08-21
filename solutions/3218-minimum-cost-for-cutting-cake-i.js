@@ -13,11 +13,11 @@ var minimumCost = function (m, n, horizontalCut, verticalCut) {
   let totalCost = 0;
   let remainingHorizontalSum = horizontalCut.reduce(
     (sum, cutCost) => sum + cutCost,
-    0,
+    0
   );
   let remainingVerticalSum = verticalCut.reduce(
     (sum, cutCost) => sum + cutCost,
-    0,
+    0
   );
 
   horizontalCut.sort((leftCost, rightCost) => leftCost - rightCost);

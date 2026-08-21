@@ -184,7 +184,7 @@ var countPyramids = function (grid) {
           const minAdjacentNormalHeight = Math.min(
             heightFromLeft,
             heightFromCenter,
-            heightFromRight,
+            heightFromRight
           );
 
           pyramidMaxHeight[currentRowIdx][currentColIdx] =
@@ -242,7 +242,7 @@ var countPyramids = function (grid) {
           const minAdjacentInverseHeight = Math.min(
             inverseHeightFromLeft,
             inverseHeightFromCenter,
-            inverseHeightFromRight,
+            inverseHeightFromRight
           );
 
           inversePyramidMaxHeight[inverseRowIdx][inverseColIdx] =

@@ -1,5 +1,8 @@
 /**
  * Loud And Rich
+ * Intuition: Edge richer[a]→ from poorer b to richer a. DFS: the quietest person in x's richer-or-equal set is min(quiet) among x and all superiors (memoized).
+ * Approach: 1. Graph: for each [rich,poor] push rich onto `socialNetworkGraph[poor]`. `calculatedResults` = -1. 2. `findOptimalQuietPerson`: recurse superiors, keep least `quiet[]`. 3. Compute for every person. 4. Return array of indices.
+ * Dry Run: richer=[[1,0],[2,1]], quiet=[3,2,5]. Person 0 can reach 1 then 2; quietest among {0,1,2} is 1 (quiet 2). Answers include 1 at index 0.
  * Time Complexity: O(N + M)
  * Space Complexity: O(N + M)
  */

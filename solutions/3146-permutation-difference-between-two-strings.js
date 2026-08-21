@@ -16,7 +16,7 @@ var findPermutationDifference = function (s, t) {
   let permutationDifference = 0;
   for (let charIndex = 0; charIndex < t.length; charIndex++) {
     permutationDifference += Math.abs(
-      sourceIndexByChar[t.charCodeAt(charIndex) - 97] - charIndex,
+      sourceIndexByChar[t.charCodeAt(charIndex) - 97] - charIndex
     );
   }
   return permutationDifference;

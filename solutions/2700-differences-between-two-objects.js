@@ -59,13 +59,13 @@ function objDiff(objSource, objTarget) {
   for (const currentKey in objSource) {
     const propertyExistsInTarget = Object.prototype.hasOwnProperty.call(
       objTarget,
-      currentKey,
+      currentKey
     );
 
     if (propertyExistsInTarget) {
       const comparisonOutcome = objDiff(
         objSource[currentKey],
-        objTarget[currentKey],
+        objTarget[currentKey]
       );
       const outcomeKeysCount = Object.keys(comparisonOutcome).length;
       const outcomeIsArray = Array.isArray(comparisonOutcome);

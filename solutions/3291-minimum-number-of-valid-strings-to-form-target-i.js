@@ -36,7 +36,7 @@ var minValidStrings = function (words, target) {
     for (let i = 0; i < words.length; i++) {
       maxMatchSuffix = Math.max(
         maxMatchSuffix,
-        lpsList[i][words[i].length + unmatchedPrefix],
+        lpsList[i][words[i].length + unmatchedPrefix]
       );
     }
 

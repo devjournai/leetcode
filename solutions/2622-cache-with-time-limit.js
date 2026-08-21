@@ -66,7 +66,7 @@ var TimeLimitedCache = function () {
 TimeLimitedCache.prototype.set = function (
   incomingKey,
   newValue,
-  durationMilliseconds,
+  durationMilliseconds
 ) {
   const currentMoment = Date.now();
   const expirationTimepoint = currentMoment + durationMilliseconds;

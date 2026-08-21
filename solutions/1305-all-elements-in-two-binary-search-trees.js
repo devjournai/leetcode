@@ -1,5 +1,8 @@
 /**
  * All Elements In Two Binary Search Trees
+ * Intuition: Inorder on a BST is sorted. Two sorted lists merge in linear time into one sorted array.
+ * Approach: 1. Inorder-collect both trees. 2. Two-pointer merge, taking the smaller head. 3. Append leftovers. 4. Return the merged list.
+ * Dry Run: root1 = [2,1,4], root2 = [1,0,3] → [1,2,4] and [0,1,3] merge to [0,1,1,2,3,4].
  * Time Complexity: O(N1 + N2)
  * Space Complexity: O(N1 + N2)
  */

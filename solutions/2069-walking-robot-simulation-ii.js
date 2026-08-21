@@ -1,5 +1,8 @@
 /**
  * Walking Robot Simulation II
+ * Intuition: The robot only walks the rectangle border, so steps wrap around the perimeter. Direction stays East until the first move.
+ * Approach: 1. Store perimeter = 2*(width+height-2). 2. Reduce steps modulo perimeter (full laps leave the robot at the same spot, so treat 0 as a full lap). 3. Walk toward the next wall, turn left at corners. 4. getDir returns East until any step has run.
+ * Dry Run: width=4, height=3. step(1) from (0,0) East -> (1,0) East. step(3): walk to (3,0), turn North, one more step to (3,1) North.
  * Time Complexity: O(width + height)
  * Space Complexity: O(1)
  */

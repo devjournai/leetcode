@@ -1,5 +1,9 @@
 /**
  * Make The String Great
+ * Intuition: A bad pair is the same letter in opposite cases adjacent. Repeatedly drop all such pairs until a pass makes no change.
+ * Approach: 1. Split to chars. 2. Scan, skip two opposite-case same letters, else keep. 3. Repeat until stable. 4. Join.
+ * Dry Run: s = "leEeetcode".
+ *   - "eE" drops → "leetcode".
  * Time Complexity: O(N^2)
  * Space Complexity: O(N)
  */

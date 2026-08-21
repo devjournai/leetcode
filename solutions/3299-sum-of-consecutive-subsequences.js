@@ -30,7 +30,7 @@ var getSum = function (nums) {
       prefixSubseqs[i] = subseqsCount;
       prefixCount.set(
         nums[i],
-        ((prefixCount.get(nums[i]) || 0) + subseqsCount) % MOD,
+        ((prefixCount.get(nums[i]) || 0) + subseqsCount) % MOD
       );
     }
 
@@ -40,7 +40,7 @@ var getSum = function (nums) {
       suffixSubseqs[i] = subseqsCount;
       suffixCount.set(
         nums[i],
-        ((suffixCount.get(nums[i]) || 0) + subseqsCount) % MOD,
+        ((suffixCount.get(nums[i]) || 0) + subseqsCount) % MOD
       );
     }
 
@@ -49,7 +49,7 @@ var getSum = function (nums) {
       sequenceSum += Number(
         (((BigInt(nums[i]) * BigInt(prefixSubseqs[i])) % MODL) *
           BigInt(suffixSubseqs[i])) %
-          MODL,
+          MODL
       );
       sequenceSum %= MOD;
     }

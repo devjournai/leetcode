@@ -1,5 +1,9 @@
 /**
  * Minimum Number Of Days To Make M Bouquets
+ * Intuition: Feasibility is monotonic in the wait day: binary search the day, then greedily count adjacent groups of k flowers bloomed by that day.
+ * Approach: 1. If m*k > n return -1. 2. Binary search days in [1, max bloomDay]. 3. Mid day: scan counting consecutive bloomed flowers, forming a bouquet every k. 4. If bouquets >= m, try smaller days; else larger. Return the best mid or -1.
+ * Dry Run: bloomDay = [1,10,3,10,2], m = 3, k = 1
+ *   - day 3: flowers bloomed except index 1 and 3 -> 3 singles. Return 3.
  * Time Complexity: O(N * log(MaxDay))
  * Space Complexity: O(1)
  */
@@ -23,7 +27,7 @@ var minDays = function (bloomDay, m, k) {
 
   while (searchRangeStart <= searchRangeEnd) {
     const currentMidpointDay = Math.floor(
-      (searchRangeStart + searchRangeEnd) / 2,
+      (searchRangeStart + searchRangeEnd) / 2
     );
 
     let bouquetsAssembled = 0;

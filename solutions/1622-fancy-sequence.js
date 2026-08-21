@@ -1,5 +1,8 @@
 /**
  * Fancy Sequence
+ * Intuition: Lazy affine updates: stored[i] maps to stored[i]*mul+add. Append inverts the current transform so later mul/add still apply uniformly.
+ * Approach: 1. Keep sequenceData, currentMultiplier, currentAddend (mod 1e9+7, BigInt). 2. append(v): store (v-add)*inv(mul). 3. addAll(inc): add += inc. 4. multAll(m): mul *= m and add *= m. 5. getIndex(i): return stored[i]*mul+add, or -1 if OOB. Inverse uses extended Euclid.
+ * Dry Run: append(2), addAll(3), append(7), getIndex(0) → (2+3)=5.
  * Time Complexity: O(log(MOD))
  * Space Complexity: O(N)
  */
@@ -13,7 +16,7 @@ var Fancy = function () {
 Fancy.prototype.append = function (valueToAppend) {
   const bigIntValue = BigInt(valueToAppend);
   const currentMultiplicativeInverse = this.computeModInverse(
-    this.currentMultiplier,
+    this.currentMultiplier
   );
 
   const intermediateResult =

@@ -1,5 +1,9 @@
 /**
  * Nth Magical Number
+ * Intuition: Magical numbers are multiples of `a` or `b`. They repeat every LCM: count per cycle is `LCM/a + LCM/b - 1`. Full cycles plus a binary-searched remainder give the nth value, taken mod 1e9+7.
+ * Approach: 1. Euclidean GCD then `leastCommonMultipleValue = a*b/gcd`. 2. `numbersInCycle` as above; `numberOfFullCycles = floor(n / numbersInCycle)`, `remainingCount = n % numbersInCycle`. 3. `baseResult = (fullCycles * LCM) % mod`. If remainder is 0, return that. 4. Binary search the smallest x in `[1, LCM]` with `floor(x/a)+floor(x/b)-floor(x/LCM) >= remainingCount`. 5. Return `(baseResult + binarySearchStart) % mod`.
+ * Dry Run: n = 1, a = 2, b = 3.
+ *   - GCD=1, LCM=6, cycle size 3. 1/3 = 0 remainder 1. Search [1,6] finds 2. Return 2.
  * Time Complexity: O(log(min(a, b)) + log(a * b))
  * Space Complexity: O(log(min(a, b)))
  */

@@ -73,7 +73,7 @@ var countPalindromePaths = function (parent, s) {
 
       maskCountsStorage.set(
         nextMaskValue,
-        (maskCountsStorage.get(nextMaskValue) || 0) + 1,
+        (maskCountsStorage.get(nextMaskValue) || 0) + 1
       );
       exploreNode(childIdentifier, nextMaskValue);
     }

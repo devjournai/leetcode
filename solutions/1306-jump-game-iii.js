@@ -64,7 +64,7 @@ var canReach = function (arr, start) {
     const resultFromForwardJump = traverseJumps(
       nextPositionPositive,
       inputArray,
-      visitedTracker,
+      visitedTracker
     );
     if (resultFromForwardJump) {
       return true;
@@ -73,7 +73,7 @@ var canReach = function (arr, start) {
     const resultFromBackwardJump = traverseJumps(
       nextPositionNegative,
       inputArray,
-      visitedTracker,
+      visitedTracker
     );
     if (resultFromBackwardJump) {
       return true;

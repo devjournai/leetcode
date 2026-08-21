@@ -1,5 +1,9 @@
 /**
  * Design In Memory File System
+ * Intuition: Nested Maps model directories; a string value is a file's contents. Walk path segments from `rootDirectory`. `ls` on a file returns that name; on a directory returns sorted keys. `mkdir` creates missing Maps. File writes append strings.
+ * Approach: 1. Constructor: `this.rootDirectory = new Map()`. 2. `ls`: split path (empty for "/"), walk maps; if the leaf is a string return `[fileNameLs]`, else `Array.from(keys).sort()`. 3. `mkdir`: for each piece, `set` a new Map if missing. 4. `addContentToFile`: walk dirs, `pop` filename, concatenate onto existing string. 5. `readContentFromFile`: walk then `get(requestedFileName)`.
+ * Dry Run: mkdir("/a/b"), addContentToFile("/a/b/c","hello"), ls("/a/b").
+ *   - Maps a→b; file c="hello". ls at b sees key c (string not listed as dir) → ["c"]. readContentFromFile → "hello".
  * Time Complexity: O(1)
  * Space Complexity: O(1)
  */

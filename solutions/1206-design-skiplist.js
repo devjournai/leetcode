@@ -1,5 +1,8 @@
 /**
  * Design Skiplist
+ * Intuition: A tower of linked lists with geometric height lets search/insert/erase skip forward like a balanced tree in expected log time.
+ * Approach: 1. Head sentinel with 16 levels. 2. Search: walk down from the top, going right while next.val < target, then check level 0. 3. Add: record predecessors per level, random height, splice. 4. Erase: find predecessors and relink around the node.
+ * Dry Run: add(1), add(2), search(1) true, erase(2) true, search(2) false.
  * Time Complexity: O(log N)
  * Space Complexity: O(N)
  */

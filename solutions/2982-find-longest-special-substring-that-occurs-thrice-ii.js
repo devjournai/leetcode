@@ -41,7 +41,10 @@ var maximumLength = function (s) {
     let currentRunLength = 0;
     let innerScanPointer = scanPointer;
 
-    while (innerScanPointer < stringSize && s[innerScanPointer] === currentCharValue) {
+    while (
+      innerScanPointer < stringSize &&
+      s[innerScanPointer] === currentCharValue
+    ) {
       currentRunLength++;
       innerScanPointer++;
     }
@@ -67,13 +70,17 @@ var maximumLength = function (s) {
       let currentLengthTotalOccurrences = 0;
       for (const singleCharacterRunLength of runLengthsList) {
         if (singleCharacterRunLength >= candidateSubstringLength) {
-          currentLengthTotalOccurrences += singleCharacterRunLength - candidateSubstringLength + 1;
+          currentLengthTotalOccurrences +=
+            singleCharacterRunLength - candidateSubstringLength + 1;
         } else {
           break;
         }
       }
       if (currentLengthTotalOccurrences >= 3) {
-        overallMaxLengthFound = Math.max(overallMaxLengthFound, candidateSubstringLength);
+        overallMaxLengthFound = Math.max(
+          overallMaxLengthFound,
+          candidateSubstringLength
+        );
         break;
       }
     }

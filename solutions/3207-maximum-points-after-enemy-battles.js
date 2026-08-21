@@ -20,6 +20,6 @@ var maximumPoints = function (enemyEnergies, currentEnergy) {
     return 0;
   }
   return Math.floor(
-    (currentEnergy + energySum - minimumEnergy) / minimumEnergy,
+    (currentEnergy + energySum - minimumEnergy) / minimumEnergy
   );
 };

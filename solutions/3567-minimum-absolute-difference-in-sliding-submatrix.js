@@ -1,5 +1,8 @@
 /**
  * Minimum Absolute Difference in Sliding Submatrix
+ * Intuition: For each k×k window the answer is 0 if fewer than two distinct values, otherwise the minimum gap between consecutive sorted distinct values.
+ * Approach: 1. For every top-left (i, j) of a k×k window, collect values into a Set. 2. If size < 2, write 0. 3. Else sort distinct values and take the min adjacent difference.
+ * Dry Run: grid = [[1, 3], [2, 8]], k = 2. Distinct [1, 2, 3, 8], min gap 1. Answer [[1]].
  * Time Complexity: O(((m - k + 1) * (n - k + 1)) * k^2 * log(k^2))
  * Space Complexity: O(m * n)
  */

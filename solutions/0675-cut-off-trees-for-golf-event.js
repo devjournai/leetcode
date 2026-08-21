@@ -1,5 +1,8 @@
 /**
  * Cut Off Trees For Golf Event
+ * Intuition: Trees must be cut in increasing height order. Total steps are the sum of shortest walks between consecutive targets on the forest (0 cells blocked).
+ * Approach: 1. Collect cells with height>1 as [height,r,c] and sort by height. 2. Start at [0,0]. 3. For each tree, BFS via `calculateBfsDistance` (4-dir, skip 0, visited set, queue of [r,c,dist]). 4. If any BFS returns -1, return -1; else add distance and move current coords.
+ * Dry Run: forest=[[1,2,3],[0,0,4],[7,6,5]]. Order (0,1)→(0,2)→(1,2)→(2,2)→(2,1)→(2,0). Distances 1+1+1+1+1+1=6.
  * Time Complexity: O(T * R * C)
  * Space Complexity: O(R * C)
  */
@@ -34,7 +37,7 @@ const cutOffTree = (forestInput) => {
       currentCoordinates[1],
       targetRowPosition,
       targetColPosition,
-      forestInput,
+      forestInput
     );
 
     if (pathLengthCalculated === -1) {
@@ -53,7 +56,7 @@ const calculateBfsDistance = (
   startColCoord,
   endRowCoord,
   endColCoord,
-  gridData,
+  gridData
 ) => {
   if (startRowCoord === endRowCoord && startColCoord === endColCoord) {
     return 0;

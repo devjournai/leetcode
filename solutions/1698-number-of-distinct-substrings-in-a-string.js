@@ -1,5 +1,9 @@
 /**
  * Number Of Distinct Substrings In A String
+ * Intuition: Every unique path from the trie root is a distinct substring. Insert all suffixes; a new child node means a new substring.
+ * Approach: 1. For each `currentStartIndex`, walk from `rootNode` adding `s[currentEndIndex]`. 2. If `childPointers[offset]` is null, allocate a node and increment `distinctSubstringsFound`. 3. Return the count.
+ * Dry Run: s = "aabb"
+ * Trie inserts create 8 new nodes: a, aa, aab, aabb, ab, abb, b, bb.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N^2)
  */

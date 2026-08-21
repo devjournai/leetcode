@@ -1,5 +1,8 @@
 /**
  * Dice Roll Simulation
+ * Intuition: Count n-roll sequences by last face and current consecutive streak, never exceeding rollMax[face].
+ * Approach: 1. dp[len][face][streak]. Seed length 1 with streak 1. 2. A new streak-1 of face f is all previous sequences not ending in f. 3. Streak k≥2 copies previous streak k-1 of the same face if allowed. 4. Sum dp[n] mod 10^9+7.
+ * Dry Run: n=2, rollMax all 1. Cannot repeat; 6*5=30.
  * Time Complexity: O(n * F * R_max)
  * Space Complexity: O(n * F * R_max)
  */
@@ -13,7 +16,7 @@ var dieSimulator = function (n, rollMax) {
     .map(() =>
       new Array(totalDiceFaces)
         .fill(0)
-        .map(() => new Array(maximumRollConstraint + 1).fill(0)),
+        .map(() => new Array(maximumRollConstraint + 1).fill(0))
     );
 
   const initialRoll = 1;

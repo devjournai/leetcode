@@ -43,7 +43,7 @@ var lexicographicallySmallestArray = function (inputNumbers, swapLimit) {
     .fill(0)
     .map((_elementValue, originalPos) => originalPos);
   indexedOriginalPositions.sort(
-    (indexOne, indexTwo) => inputNumbers[indexOne] - inputNumbers[indexTwo],
+    (indexOne, indexTwo) => inputNumbers[indexOne] - inputNumbers[indexTwo]
   );
 
   const finalResult = new Array(totalElements).fill(0);
@@ -63,7 +63,7 @@ var lexicographicallySmallestArray = function (inputNumbers, swapLimit) {
 
     const currentGroupOriginalIndices = indexedOriginalPositions.slice(
       groupStartingIndex,
-      groupEndingPointer,
+      groupEndingPointer
     );
     currentGroupOriginalIndices.sort((posOne, posTwo) => posOne - posTwo);
 

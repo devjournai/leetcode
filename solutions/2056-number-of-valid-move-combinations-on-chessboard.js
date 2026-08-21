@@ -129,7 +129,7 @@ var countCombinations = function (pieces, positions) {
 
         const effectiveStepsThisTurn = Math.min(
           currentSimulationTime,
-          chosenTotalSteps,
+          chosenTotalSteps
         );
         const presentRow = initialRow + chosenDeltaRow * effectiveStepsThisTurn;
         const presentCol = initialCol + chosenDeltaCol * effectiveStepsThisTurn;
@@ -148,12 +148,12 @@ var countCombinations = function (pieces, positions) {
   function exploreMoveCombinations(
     currentPieceIndex,
     accumulatedDirectionVectors,
-    accumulatedStepCounts,
+    accumulatedStepCounts
   ) {
     if (currentPieceIndex === numberOfPieces) {
       return verifyNoCollisions(
         accumulatedDirectionVectors,
-        accumulatedStepCounts,
+        accumulatedStepCounts
       )
         ? 1
         : 0;
@@ -168,7 +168,7 @@ var countCombinations = function (pieces, positions) {
     totalPossibleCombinations += exploreMoveCombinations(
       currentPieceIndex + 1,
       [...accumulatedDirectionVectors, [0, 0]],
-      [...accumulatedStepCounts, 0],
+      [...accumulatedStepCounts, 0]
     );
 
     // Option 2: Piece moves in various directions
@@ -184,7 +184,7 @@ var countCombinations = function (pieces, positions) {
         totalPossibleCombinations += exploreMoveCombinations(
           currentPieceIndex + 1,
           [...accumulatedDirectionVectors, [deltaR, deltaC]],
-          [...accumulatedStepCounts, stepsTaken],
+          [...accumulatedStepCounts, stepsTaken]
         );
       }
     }

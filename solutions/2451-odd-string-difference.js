@@ -27,7 +27,7 @@ var oddString = function (wordsArray) {
     ) {
       const firstCharAscii = currentStringParameter.charCodeAt(characterIndex);
       const secondCharAscii = currentStringParameter.charCodeAt(
-        characterIndex + 1,
+        characterIndex + 1
       );
       const calculatedDifference = secondCharAscii - firstCharAscii;
       differenceCollector.push(calculatedDifference);

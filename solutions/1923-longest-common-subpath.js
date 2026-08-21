@@ -1,5 +1,10 @@
 /**
  * Longest Common Subpath
+ * Intuition: If a common subpath of length `L` exists, every shorter length also exists, so binary search `L`. For a candidate length, rolling hashes on the shortest path collect windows, then each other path keeps only windows whose hash (and actual cities) still match the remaining set.
+ * Approach: 1. Sort paths by length; search `searchLow..searchHigh` on the shortest path. 2. `checkIfSubpathExists` hashes every window of length `mid` on path 0 into a map of start indices. 3. For each later path, rebuild the map with windows whose hash matches and whose cities equal the original window. 4. Return false if the map empties; otherwise raise the binary-search bound.
+ * Dry Run: paths = [[1,2,3,4], [2,3,4], [2,3]].
+ *   - mid=2: windows of path0 include [2,3] and [3,4]; both later paths contain [2,3] → ok, foundLength=2
+ *   - mid=3: [2,3,4] is not in the third path → fail. Answer 2.
  * Time Complexity: O(log(min_path_len) * total_path_len)
  * Space Complexity: O(total_path_len)
  */
@@ -110,7 +115,7 @@ function checkIfSubpathExists(friendPaths, subpathLengthToCheck, maxCityId) {
 
     if (commonPathHashesAndIndices.has(friendPathCurrentHash)) {
       const potentialStartPositions = commonPathHashesAndIndices.get(
-        friendPathCurrentHash,
+        friendPathCurrentHash
       );
       for (const originalPathStart of potentialStartPositions) {
         let actualMatchFound = true;
@@ -157,7 +162,7 @@ function checkIfSubpathExists(friendPaths, subpathLengthToCheck, maxCityId) {
 
       if (commonPathHashesAndIndices.has(friendPathCurrentHash)) {
         const potentialStartPositions = commonPathHashesAndIndices.get(
-          friendPathCurrentHash,
+          friendPathCurrentHash
         );
         for (const originalPathStart of potentialStartPositions) {
           let actualMatchFound = true;

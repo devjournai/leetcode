@@ -1,5 +1,8 @@
 /**
  * 736. Parse Lisp Expression
+ * Intuition: Recursively evaluate tokens. Integers and variables are leaves; `add`/`mult` evaluate two operands; `let` binds names in a copied scope then evaluates the last expression. Tokenize by spaces only at parentheses depth 0 so nested `(...)` stay one token.
+ * Approach: 1. `parseExpression`: parseInt if numeric; else look up the variable; else strip outer parens and `tokenizeString`. 2. Dispatch `add`, `mult`, or `let` (pairs into `letBlockScope`). 3. Tokenizer tracks `currentParenthesesDepth`.
+ * Dry Run: "(let x 2 (mult x 5))" binds x=2 then returns 10. "(add (add 1 2) 3)" tokenizes the nested add as one operand → 6.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N^2)
  */
@@ -15,7 +18,7 @@ var evaluate = function (expression) {
 
     if (!currentExpressionString.startsWith("(")) {
       const foundVariableValue = currentVariableScope.get(
-        currentExpressionString,
+        currentExpressionString
       );
       return foundVariableValue;
     }
@@ -30,11 +33,11 @@ var evaluate = function (expression) {
       const secondOperandExpression = expressionParts[2];
       const firstEvaluatedValue = parseExpression(
         firstOperandExpression,
-        currentVariableScope,
+        currentVariableScope
       );
       const secondEvaluatedValue = parseExpression(
         secondOperandExpression,
-        currentVariableScope,
+        currentVariableScope
       );
       return firstEvaluatedValue + secondEvaluatedValue;
     }
@@ -44,11 +47,11 @@ var evaluate = function (expression) {
       const multiplierExpression = expressionParts[2];
       const multiplicandValue = parseExpression(
         multiplicandExpression,
-        currentVariableScope,
+        currentVariableScope
       );
       const multiplierValue = parseExpression(
         multiplierExpression,
-        currentVariableScope,
+        currentVariableScope
       );
       return multiplicandValue * multiplierValue;
     }
@@ -61,7 +64,7 @@ var evaluate = function (expression) {
         const variableValueDefinition = expressionParts[partIndex + 1];
         const evaluatedVariableValue = parseExpression(
           variableValueDefinition,
-          letBlockScope,
+          letBlockScope
         );
         letBlockScope.set(variableName, evaluatedVariableValue);
         partIndex += 2;

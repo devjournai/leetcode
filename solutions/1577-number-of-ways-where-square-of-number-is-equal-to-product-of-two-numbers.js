@@ -1,5 +1,9 @@
 /**
  * Number Of Ways Where Square Of Number Is Equal To Product Of Two Numbers
+ * Intuition: Count pairs in one array whose product equals a square from the other; do both type-1 and type-2.
+ * Approach: 1. Map all pair products (BigInt) in the second array. 2. For each first-array value add map[x*x]. 3. Sum both directions.
+ * Dry Run: nums1 = [7,4], nums2 = [5,2,8,9].
+ *   - 4^2 = 16 = 2*8 → 1 way.
  * Time Complexity: O(nums1.length^2 + nums2.length^2)
  * Space Complexity: O(nums1.length^2 + nums2.length^2)
  */
@@ -23,7 +27,7 @@ var numTriplets = function (nums1, nums2) {
           BigInt(secondArray[secondLoopIndex]);
         productMapStorage.set(
           currentElementsProduct,
-          (productMapStorage.get(currentElementsProduct) || 0) + 1,
+          (productMapStorage.get(currentElementsProduct) || 0) + 1
         );
       }
     }

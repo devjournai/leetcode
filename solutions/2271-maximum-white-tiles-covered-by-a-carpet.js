@@ -135,7 +135,7 @@
  */
 var maximumWhiteTiles = function (tiles, carpetLen) {
   tiles.sort(
-    (firstElement, secondElement) => firstElement[0] - secondElement[0],
+    (firstElement, secondElement) => firstElement[0] - secondElement[0]
   );
 
   let maxOverallCovered = 0;

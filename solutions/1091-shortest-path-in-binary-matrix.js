@@ -1,5 +1,8 @@
 /**
  * Shortest Path In Binary Matrix
+ * Intuition: Unweighted 8-direction moves make BFS the shortest clear path from (0,0) to (n-1,n-1). Marking visited cells as 1 avoids a separate set.
+ * Approach: 1. If start or end is blocked, return -1. 2. Queue (0,0,length=1) and mark start visited. 3. Pop cells; if at the end, return length. 4. Enqueue 8-neighbors that are 0. 5. Exhausted queue → -1.
+ * Dry Run: [[0,1],[1,0]]. BFS from (0,0) length 1 goes diagonally to (1,1) length 2.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N^2)
  */

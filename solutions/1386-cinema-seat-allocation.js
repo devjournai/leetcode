@@ -1,95 +1,9 @@
 /**
  * Cinema Seat Allocation
  *
- * Intuition:
- *
- * Each family needs 4 consecutive seats.
- *
- * The possible groups of 4 seats are:
- *
- *     Left:
- *     [2, 3, 4, 5]
- *
- *     Middle:
- *     [4, 5, 6, 7]
- *
- *     Right:
- *     [6, 7, 8, 9]
- *
- * ------------------------------------------------------------
- *
- * A row without any reserved seats can always accommodate
- * 2 families:
- *
- *     [2,3,4,5] + [6,7,8,9]
- *
- * Therefore, we first assume every row can accommodate 2
- * families.
- *
- * For rows containing reserved seats, we need to check the
- * three possible groups.
- *
- * ------------------------------------------------------------
- *
- * If both the left and right groups are available:
- *
- *     [2,3,4,5] [6,7,8,9]
- *
- * We can place 2 families.
- *
- * Otherwise, if at least one of:
- *
- *     left
- *     middle
- *     right
- *
- * is available, we can place 1 family.
- *
- * Otherwise, we cannot place any family in that row.
- *
- * ------------------------------------------------------------
- *
- * Important:
- *
- * We only need to process rows that actually contain reserved
- * seats.
- *
- * If there are R reserved rows, the remaining:
- *
- *     totalRows - R
- *
- * rows are completely empty and contribute:
- *
- *     2 * (totalRows - R)
- *
- * families.
- *
- * ------------------------------------------------------------
- *
- * Example:
- *
- *     n = 3
- *
- *     reserved = [[1,2]]
- *
- * Row 1:
- *
- *     left group -> unavailable
- *     middle      -> available
- *     right       -> available
- *
- * We can place 1 family in row 1.
- *
- * Rows 2 and 3 are empty:
- *
- *     2 + 2 = 4 families
- *
- * Total:
- *
- *     5
- *
- * ------------------------------------------------------------
- *
+ * Intuition: A family needs four consecutive seats in [2-5], [4-7], or [6-9]. Empty rows fit two families (left+right). Only reserved rows need extra checks.
+ * Approach: 1. Map reserved columns per row. 2. Start with 2 * (n - reservedRows). 3. For each reserved row, if left and right are free add 2; else if any of left/middle/right is free add 1.
+ * Dry Run: n=3, reserved=[[1,2]]. Empty rows 2 and 3 contribute 4. Row 1: left blocked, middle and right free → 1. Total 5.
  * Time Complexity: O(R)
  * Space Complexity: O(R)
  */

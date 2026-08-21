@@ -1,5 +1,8 @@
 /**
  * Substrings Of Size Three With Distinct Characters
+ * Intuition: A window of length 3 is good iff all three characters differ.
+ * Approach: 1. If length < 3 return 0. 2. For each start, compare charOne, charTwo, charThree. 3. Increment `totalCount` when all pairwise distinct.
+ * Dry Run: s="xyzzaz". "xyz" good, "yzz" no, "zza" no, "zaz" no. Return 1.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

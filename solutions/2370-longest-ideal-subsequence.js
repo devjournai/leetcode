@@ -70,7 +70,7 @@ var longestIdealString = function (stringInput, maxDiff) {
     while (searchIterator <= Math.min(25, rightBoundary)) {
       currentIdealLength = Math.max(
         currentIdealLength,
-        dpLengths[searchIterator],
+        dpLengths[searchIterator]
       );
       searchIterator++;
     }
@@ -78,7 +78,7 @@ var longestIdealString = function (stringInput, maxDiff) {
     dpLengths[charCodeOffset] = currentIdealLength + 1;
     maximumOverallLength = Math.max(
       maximumOverallLength,
-      dpLengths[charCodeOffset],
+      dpLengths[charCodeOffset]
     );
   }
 

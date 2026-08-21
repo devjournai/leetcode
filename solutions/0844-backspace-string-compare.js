@@ -1,5 +1,8 @@
 /**
  * Backspace String Compare
+ * Intuition: Walk both strings from the right. Skip characters cancelled by '#" (a skip counter). Compare the next "surviving" pair of characters.
+ * Approach: 1. Pointers at ends. 2. For each string, while '#" increment skip and move left; if skip>0 consume a letter. 3. Compare resolved chars (or null). 4. Step both left. Equal through both ends → true.
+ * Dry Run: s="ab#c", t="ad#c". From right: both resolve 'c', then 'a'. Equal → true. "ab##" vs "c#d#" both empty → true.
  * Time Complexity: O(lengthS + lengthT)
  * Space Complexity: O(1)
  */

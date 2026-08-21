@@ -1,5 +1,9 @@
 /**
  * Maximum Width Of Binary Tree
+ * Intuition: Width of a level is lastIndex - firstIndex + 1 in heap numbering. BFS stores BigInt indices (left 2i, right 2i+1) so deep trees do not overflow.
+ * Approach: 1. Queue `[root, 0n]`. 2. Drain the level with splice. 3. First node's index is `levelStartingIndex`; last updates `levelEndingIndex`; enqueue children. 4. Track max width, return `Number(...)`.
+ * Dry Run: [1,3,2,5,3,null,9].
+ *   - Level 0 width 1. Level 1 indices 0,1 width 2. Level 2: 0,1,3 width 4. Return 4.
  * Time Complexity: O(N)
  * Space Complexity: O(W)
  */
@@ -14,7 +18,7 @@ var widthOfBinaryTree = function (root) {
   while (nodeIndexingQueue.length > 0) {
     const nodesInThisLevel = nodeIndexingQueue.splice(
       0,
-      nodeIndexingQueue.length,
+      nodeIndexingQueue.length
     );
 
     const levelStartingIndex = nodesInThisLevel[0][1];

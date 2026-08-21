@@ -58,7 +58,7 @@ var numOfPairs = function (nums, target) {
     if (target.endsWith(currentNumberString)) {
       const prefixRequired = target.slice(
         0,
-        target.length - currentNumberString.length,
+        target.length - currentNumberString.length
       );
       const currentPrefixMatches =
         stringFrequencyTracker.get(prefixRequired) || 0;

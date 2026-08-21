@@ -69,7 +69,7 @@ var maximumBooks = function (books) {
     if (indicesStack.length === 0) {
       arithmeticSequenceLength = Math.min(
         currentShelfIndex + 1,
-        books[currentShelfIndex],
+        books[currentShelfIndex]
       );
       maxBooksDp[currentShelfIndex] =
         (arithmeticSequenceLength *

@@ -1,5 +1,8 @@
 /**
  * Prison Cells After N Days
+ * Intuition: The 8-cell rule is deterministic and finite, so states cycle. Simulate day-by-day until a `stateIdentifier` repeats, then jump the remaining days by cycle length.
+ * Approach: 1. `computeNextStateConfiguration` sets ends to 0 and middle cells to 1 iff neighbors match. 2. For each day, if the joined state was seen, compute `cyclePeriodLength` and return `sequenceOfStates[cycleStartIndex + remaining % period]`. 3. Else store the state. 4. If n is smaller than the cycle, return the last simulated state.
+ * Dry Run: cells = [0,1,0,1,1,0,0,1], n=7. Day 1 → 0,1,1,0,0,0,0,0. Continue until a repeat; remaining days index into `sequenceOfStates`. Result [0,0,1,1,0,0,0,0].
  * Time Complexity: O(1)
  * Space Complexity: O(1)
  */

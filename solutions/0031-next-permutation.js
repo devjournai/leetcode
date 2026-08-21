@@ -1,5 +1,9 @@
 /**
  * Next Permutation
+ * Intuition: Find the rightmost ascent `firstDecreasingIndex`, swap it with the next larger suffix value, then reverse the suffix so it becomes the smallest increasing tail—the next lexicographic permutation (or reverse the whole array if already max).
+ * Approach: 1. Scan from the right for `nums[i] < nums[i+1]`. 2. If none, `localReverse` the entire array and return. 3. From the right, find `swapCandidateIndex` where `nums[j] > nums[firstDecreasingIndex]`. 4. `localSwap` those two, then `localReverse` from `firstDecreasingIndex + 1`.
+ * Dry Run: nums = [1, 3, 2].
+ *   - firstDecreasingIndex=0 (1<3). swapCandidateIndex=2 (2>1). Swap → [2,3,1]. Reverse suffix → [2,1,3].
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

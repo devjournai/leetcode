@@ -106,12 +106,12 @@ var magnificentSets = function (n, edges) {
           nodeDistances[currentNeighbor] = nodeDistances[activeNode] + 1;
           currentIterationMaxGroups = Math.max(
             currentIterationMaxGroups,
-            nodeDistances[currentNeighbor],
+            nodeDistances[currentNeighbor]
           );
           bfsProcessQueue.push(currentNeighbor);
         } else if (
           Math.abs(
-            nodeDistances[currentNeighbor] - nodeDistances[activeNode],
+            nodeDistances[currentNeighbor] - nodeDistances[activeNode]
           ) !== 1
         ) {
           return -1;
@@ -121,7 +121,7 @@ var magnificentSets = function (n, edges) {
 
     componentMaxDepths[discoveredComponentRoot] = Math.max(
       componentMaxDepths[discoveredComponentRoot],
-      currentIterationMaxGroups,
+      currentIterationMaxGroups
     );
   }
 

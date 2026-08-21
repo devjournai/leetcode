@@ -70,7 +70,7 @@ var removeOnes = function (grid) {
     currentMatrix,
     matrixRowCount,
     matrixColumnCount,
-    memoizationStore,
+    memoizationStore
   ) => {
     const matrixKey = currentMatrix
       .map((rowContent) => rowContent.join(""))
@@ -97,17 +97,17 @@ var removeOnes = function (grid) {
             rowIterator,
             columnIterator,
             matrixRowCount,
-            matrixColumnCount,
+            matrixColumnCount
           );
           const recursiveResult = computeMinimumOperations(
             transformedMatrix,
             matrixRowCount,
             matrixColumnCount,
-            memoizationStore,
+            memoizationStore
           );
           minimumOperationsNeeded = Math.min(
             minimumOperationsNeeded,
-            1 + recursiveResult,
+            1 + recursiveResult
           );
         }
       }
@@ -137,7 +137,7 @@ var removeOnes = function (grid) {
     targetRowIndex,
     targetColumnIndex,
     totalRowsDimension,
-    totalColumnsDimension,
+    totalColumnsDimension
   ) => {
     const freshMatrix = originalMatrix.map((rowValues) => [...rowValues]);
 
@@ -160,6 +160,6 @@ var removeOnes = function (grid) {
     grid,
     matrixRows,
     matrixColumns,
-    memoizationCache,
+    memoizationCache
   );
 };

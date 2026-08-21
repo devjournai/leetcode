@@ -1,5 +1,9 @@
 /**
  * Faulty Sensor
+ * Intuition: One sensor dropped a value so its suffix is shifted by one. After the first mismatch, check which stream equals the other’s tail; if both explanations work, the answer is ambiguous (-1).
+ * Approach: 1. Find `mismatchIndex`. 2. If none, return -1. 3. Test whether sensor1[i]==sensor2[i+1] for the tail (`s1PotentialDefect`) and the swapped test for sensor2. 4. Return 1 or 2 if exactly one fits, else -1.
+ * Dry Run: sensor1 = [2,3,4,5], sensor2 = [2,1,3,4].
+ *   - Mismatch at 1. sensor1 matches sensor2’s tail 3,4 → sensor 2 dropped. Return 2.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

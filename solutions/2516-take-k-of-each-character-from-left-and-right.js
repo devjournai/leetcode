@@ -82,7 +82,7 @@ var takeCharacters = function (s, k) {
 
     maximumSlidingWindow = Math.max(
       maximumSlidingWindow,
-      windowRightBoundary - windowLeftBoundary + 1,
+      windowRightBoundary - windowLeftBoundary + 1
     );
   }
 

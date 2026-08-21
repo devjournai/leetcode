@@ -175,7 +175,7 @@ VideoSharingPlatform.prototype.remove = function (videoIdentification) {
 VideoSharingPlatform.prototype.watch = function (
   identificationOfVideo,
   beginningMinute,
-  endingMinute,
+  endingMinute
 ) {
   if (!this.videoRecords.has(identificationOfVideo)) {
     return "-1";
@@ -188,7 +188,7 @@ VideoSharingPlatform.prototype.watch = function (
   const actualEndingMinute = Math.min(endingMinute, videoLength - 1);
   return currentVideoData.videoContent.substring(
     beginningMinute,
-    actualEndingMinute + 1,
+    actualEndingMinute + 1
   );
 };
 

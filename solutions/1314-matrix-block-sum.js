@@ -1,5 +1,8 @@
 /**
  * Matrix Block Sum
+ * Intuition: Each answer cell is a (2k+1) box sum. A 2D prefix (integral image) queries any rectangle in O(1).
+ * Approach: 1. Build integralImage where each cell is the sum of the rectangle above-left. 2. For every (r,c) clamp the k-box to bounds. 3. Inclusion-exclusion on the four prefix corners. 4. Return the answer matrix.
+ * Dry Run: mat = [[1,2,3],[4,5,6],[7,8,9]], k=1. Center cell (1,1) sums the whole 3x3 = 45.
  * Time Complexity: O(R * C)
  * Space Complexity: O(R * C)
  */

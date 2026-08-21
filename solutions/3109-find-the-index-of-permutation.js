@@ -90,7 +90,7 @@ var getPermutationIndex = function (perm) {
   ) {
     const currentPermutationElement = perm[elementPosition];
     const countOfSmallerAvailable = numberAvailabilityTree.querySum(
-      currentPermutationElement - 1,
+      currentPermutationElement - 1
     );
 
     const remainingPositionsFactorial =

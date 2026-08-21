@@ -90,7 +90,7 @@ var minCost = function (inputArray, constantCost) {
 
       dynamicProgrammingTable[currentEndPosition] = Math.min(
         dynamicProgrammingTable[currentEndPosition],
-        dynamicProgrammingTable[currentStartPosition] + currentSplitCost,
+        dynamicProgrammingTable[currentStartPosition] + currentSplitCost
       );
       currentStartPosition -= 1;
     }

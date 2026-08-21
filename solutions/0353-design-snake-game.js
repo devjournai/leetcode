@@ -1,5 +1,8 @@
 /**
  * Design Snake Game
+ * Intuition: Keep the body as a head-first coordinate list and an occupancy set. Move by proposing a new head, temporarily dropping the tail so the snake can crawl into the cell it just vacated, then grow the tail back if that move lands on food.
+ * Approach: 1. Constructor stores board size, food list, score, body `[[0,0]]`, and set `"0,0"`. 2. `move` shifts the head by U/D/L/R, returns -1 on out-of-bounds. 3. Pop the tail and unmark it, then return -1 if the new head is still occupied. 4. Unshift the new head; if it matches the next food, push the tail back, remake occupancy, and increment score/food index.
+ * Dry Run: 2x2 board, food [[1,0]]. Move D: new head (1,0) in bounds, tail (0,0) removed then restored as food → score 1, body [(1,0),(0,0)].
  * Time Complexity: O(L)
  * Space Complexity: O(H * W + F)
  */

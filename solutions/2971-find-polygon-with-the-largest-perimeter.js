@@ -30,7 +30,7 @@ var largestPerimeter = function (nums) {
 
   let currentOverallSum = nums.reduce(
     (sumAccumulator, currentNumber) => sumAccumulator + currentNumber,
-    0,
+    0
   );
   let arrayLength = nums.length;
 

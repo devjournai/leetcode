@@ -1,5 +1,9 @@
 /**
  * Sum Of Mutated Array Closest To Target
+ * Intuition: Capping every value at v makes the sum monotone in v, so binary search v. Track the v whose capped sum is closest to target, preferring the smaller v on ties.
+ * Approach: 1. calculateSumWithCap sums min(element, cap). 2. Binary search mid in [0,100000]. 3. Update optimalAnswer by smaller absolute difference, then smaller v. 4. If sum < target search higher else lower. 5. Return optimalAnswer.
+ * Dry Run: arr=[4,9,3], target=10
+ *   cap 3: sum 10. Difference 0. Return 3.
  * Time Complexity: O(N log R)
  * Space Complexity: O(1)
  */

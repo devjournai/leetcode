@@ -1,5 +1,8 @@
 /**
  * Shortest Path To Get All Keys
+ * Intuition: BFS state is (row, col, key bitmask). Walls block; lowercase letters OR a key bit; uppercase needs that bit. Done when mask is all keys.
+ * Approach: 1. Find '@' and count keys a–f. 2. Queue [r,c,0,0], visited `r,c,mask`. 3. Four directions; skip '#', locked doors, seen states. 4. Return steps when mask==allKeys else -1.
+ * Dry Run: ["@.a.#","###.#","b.A.B"]. Pick a then unlock A, pick b. First time mask=11 at B's key path length 8.
  * Time Complexity: O(R * C * 2^K)
  * Space Complexity: O(R * C * 2^K)
  */

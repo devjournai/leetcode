@@ -1,5 +1,8 @@
 /**
  * Minimum Cost To Merge Stones
+ * Intuition: Interval DP: merge k piles at a time. Impossible unless `(n-1)%(k-1)===0`. Cost of fully merging [L,R] is min split costs plus the prefix sum of that range.
+ * Approach: 1. Return -1 if leftover constraint fails. 2. Build `prefixTotalArray`. 3. For increasing `segmentLength`, try `splitPoint` steps of `k-1`; take min of left+right DP. 4. If `(len-1)%(k-1)===0`, add range sum. 5. Return `costTable[0][n-1]`.
+ * Dry Run: stones = [3,2,4,1], k=2. Always mergeable. DP combines adjacent then larger intervals; min cost 20.
  * Time Complexity: O(n^3)
  * Space Complexity: O(n^2)
  */
@@ -37,7 +40,7 @@ var mergeStones = function (stones, k) {
         costTable[segmentStart][segmentEnd] = Math.min(
           costTable[segmentStart][segmentEnd],
           costTable[segmentStart][splitPoint] +
-            costTable[splitPoint + 1][segmentEnd],
+            costTable[splitPoint + 1][segmentEnd]
         );
       }
 

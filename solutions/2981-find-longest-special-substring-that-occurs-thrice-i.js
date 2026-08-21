@@ -105,7 +105,7 @@ var maximumLength = function (s) {
       if (currentLengthTotalOccurrences >= 3) {
         overallMaxLengthFound = Math.max(
           overallMaxLengthFound,
-          candidateSubstringLength,
+          candidateSubstringLength
         );
         break; // Optimization: found the longest for this character, move to next char
       }

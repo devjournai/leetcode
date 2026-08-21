@@ -1,5 +1,8 @@
 /**
  * Longest Balanced Substring II
+ * Intuition: s uses only a/b/c. Balanced means one letter only, two letters with equal counts, or all three equal. Prefix counts plus maps of (diffs, frozen third count) find the earliest matching prefix.
+ * Approach: 1. Prefix pa, pb, pc. 2. Maintain seven maps (A/B/C only, AB/AC/BC, ABC) storing first index of each key. 3. At k, look up the complementary prefix; if the relevant letter count increased, update maxLen = k - i.
+ * Dry Run: s = "abca". Prefix after "abc" has equal a,b,c vs empty prefix; length 3 via ABC map.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

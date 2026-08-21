@@ -40,7 +40,7 @@ var prefixCount = function (words, pref) {
     if (currentWordCandidate.length >= targetPrefixLength) {
       let segmentToCheck = currentWordCandidate.substring(
         0,
-        targetPrefixLength,
+        targetPrefixLength
       );
       if (segmentToCheck === pref) {
         matchingWordsCounter++;

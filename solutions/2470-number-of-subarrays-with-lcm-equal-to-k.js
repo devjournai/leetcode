@@ -70,7 +70,7 @@ var subarrayLCM = function (nums, k) {
 
       currentLcmValue = determineLeastCommonMultiple(
         currentLcmValue,
-        currentValue,
+        currentValue
       );
 
       if (currentLcmValue > k) {

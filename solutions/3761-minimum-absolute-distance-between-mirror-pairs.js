@@ -1,5 +1,8 @@
 /**
  * Minimum Absolute Distance Between Mirror Pairs
+ * Intuition: A pair (i, j) i<j is a mirror pair if nums[j] equals the digit reverse of nums[i]. Map each value to sorted indices and binary-search the next reverse partner.
+ * Approach: 1. Build val → increasing indices. 2. For each i, reverse(nums[i]) and lowerBound for first index > i. 3. Track min j-i, else -1.
+ * Dry Run: nums = [12, 21]. reverse(12)=21 at index 1. Distance 1.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */

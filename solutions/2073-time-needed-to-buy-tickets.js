@@ -22,16 +22,26 @@
 * Space Complexity: O(1)
 */
 var timeRequiredToBuy = function (tickets, k) {
-    const targetTicketCount = tickets[k];
-    let totalSecondsElapsed = 0;
+  const targetTicketCount = tickets[k];
+  let totalSecondsElapsed = 0;
 
-    for (let currentPersonIndex = 0; currentPersonIndex < tickets.length; currentPersonIndex++) {
-        if (currentPersonIndex <= k) {
-            totalSecondsElapsed += Math.min(tickets[currentPersonIndex], targetTicketCount);
-        } else {
-            totalSecondsElapsed += Math.min(tickets[currentPersonIndex], targetTicketCount - 1);
-        }
+  for (
+    let currentPersonIndex = 0;
+    currentPersonIndex < tickets.length;
+    currentPersonIndex++
+  ) {
+    if (currentPersonIndex <= k) {
+      totalSecondsElapsed += Math.min(
+        tickets[currentPersonIndex],
+        targetTicketCount
+      );
+    } else {
+      totalSecondsElapsed += Math.min(
+        tickets[currentPersonIndex],
+        targetTicketCount - 1
+      );
     }
+  }
 
-    return totalSecondsElapsed;
+  return totalSecondsElapsed;
 };

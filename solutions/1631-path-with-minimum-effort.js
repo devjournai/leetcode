@@ -1,5 +1,9 @@
 /**
  * Path With Minimum Effort
+ * Intuition: The min max-edge on a path is binary-searchable. For a candidate effort e, BFS/DFS can move to a neighbor iff |h diff| ≤ e.
+ * Approach: 1. Binary-search effort in [0, 1e6]. 2. BFS from (0,0) only along edges with |Δh| ≤ mid. 3. If the bottom-right is reached, try a smaller mid; else raise it. 4. Return the smallest feasible mid.
+ * Dry Run: heights=[[1,2,2],[3,8,2],[5,3,5]].
+ *   - Effort 2 reaches the end; 1 does not → 2.
  * Time Complexity: O(rows * cols * log(maxHeightDifference))
  * Space Complexity: O(rows * cols)
  */
@@ -9,7 +13,7 @@ var minimumEffortPath = function (heights) {
 
   const findPathBFS = (maximumAllowedEffort) => {
     const pathVisited = Array.from({ length: totalRows }, () =>
-      Array(totalColumns).fill(false),
+      Array(totalColumns).fill(false)
     );
     const cellsToExplore = [[0, 0]];
     pathVisited[0][0] = true;
@@ -50,7 +54,7 @@ var minimumEffortPath = function (heights) {
         ) {
           const heightDifference = Math.abs(
             heights[nextCellRow][nextCellColumn] -
-              heights[currentCellRow][currentCellColumn],
+              heights[currentCellRow][currentCellColumn]
           );
           if (heightDifference <= maximumAllowedEffort) {
             pathVisited[nextCellRow][nextCellColumn] = true;
@@ -68,7 +72,7 @@ var minimumEffortPath = function (heights) {
 
   while (binarySearchStart <= binarySearchEnd) {
     const midEffortValue = Math.floor(
-      (binarySearchStart + binarySearchEnd) / 2,
+      (binarySearchStart + binarySearchEnd) / 2
     );
     if (findPathBFS(midEffortValue)) {
       minimumEffortResult = midEffortValue;

@@ -1,5 +1,10 @@
 /**
  * Longest Line Of Consecutive One In Matrix
+ * Intuition: DP per cell stores four run lengths of 1s ending there: horizontal, vertical, main diagonal, anti-diagonal. Extend from the previous cell in that direction when the current cell is 1.
+ * Approach: 1. Empty matrix → 0. 2. `dpTable[r][c] = [h,v,diag,anti]`. 3. On a 1, h = left h+1 (or 1); v = above v+1; diag = up-left+1; anti = up-right+1. 4. Track max of those four. 5. Zeros stay [0,0,0,0]. Return `currentMaxLen`.
+ * Dry Run: mat = [[0,1,1,0],[0,1,1,0],[0,0,0,1]].
+ *   - (0,1) and (0,2) make horizontal 2; (1,2) main-diagonal from (0,1) is 2.
+ *   - (2,3) extends that diagonal to 3. Return 3.
  * Time Complexity: O(m*n)
  * Space Complexity: O(m*n)
  */
@@ -14,7 +19,7 @@ var longestLine = function (mat) {
   }
 
   const dpTable = Array.from({ length: numRows }, () =>
-    Array.from({ length: numCols }, () => [0, 0, 0, 0]),
+    Array.from({ length: numCols }, () => [0, 0, 0, 0])
   );
 
   let currentMaxLen = 0;
@@ -51,7 +56,7 @@ var longestLine = function (mat) {
           lengthHorizontal,
           lengthVertical,
           lengthMainDiagonal,
-          lengthAntiDiagonal,
+          lengthAntiDiagonal
         );
       }
     }

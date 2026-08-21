@@ -87,7 +87,7 @@ var splitMessage = function (messageInput, limitValue) {
 
         const currentMessageSegment = messageInput.slice(
           messageContentProgress,
-          messageContentProgress + availableContentCharacters,
+          messageContentProgress + availableContentCharacters
         );
         finalSplitParts.push(currentMessageSegment + partSuffixText);
         messageContentProgress += availableContentCharacters;

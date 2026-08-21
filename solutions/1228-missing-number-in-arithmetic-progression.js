@@ -1,5 +1,8 @@
 /**
  * Missing Number In Arithmetic Progression
+ * Intuition: Exactly one term is missing, so the true step is (last-first)/n, and the first adjacent gap that is not that step hides the missing value.
+ * Approach: 1. step = (arr[n-1]-arr[0])/n. 2. Scan adjacent differences; when one ≠ step return arr[i]+step. 3. Fallback arr[0]+step.
+ * Dry Run: arr=[5,7,11,13]. step=(13-5)/4=2. Gap 11-7=4 ≠ 2 → missing 9.
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */

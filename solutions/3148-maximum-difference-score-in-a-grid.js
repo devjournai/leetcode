@@ -23,11 +23,11 @@ var maxScore = function (grid) {
       if (minPrevious !== Infinity) {
         maxDifference = Math.max(
           maxDifference,
-          grid[rowIndex][columnIndex] - minPrevious,
+          grid[rowIndex][columnIndex] - minPrevious
         );
         grid[rowIndex][columnIndex] = Math.min(
           grid[rowIndex][columnIndex],
-          minPrevious,
+          minPrevious
         );
       }
     }

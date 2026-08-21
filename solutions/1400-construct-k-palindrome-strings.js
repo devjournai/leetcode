@@ -1,5 +1,9 @@
 /**
  * Construct K Palindrome Strings
+ * Intuition: Each palindrome needs at most one odd-count character. We can always split even leftovers, so we need k between the odd-count and the string length.
+ * Approach: 1. If k > length, false. 2. Count letter frequencies and how many are odd. 3. Return true iff oddCount <= k <= length.
+ * Dry Run: s = "annabelle", k = 2.
+ *   - Frequencies leave one odd letter (b). 1 <= 2 <= 9. Return true.
  * Time Complexity: O(L)
  * Space Complexity: O(1)
  */

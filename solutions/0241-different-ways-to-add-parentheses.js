@@ -1,5 +1,10 @@
 /**
  * Different Ways To Add Parentheses
+ * Intuition: Every operator is a split point: fully parenthesize the left substring, fully parenthesize the right, then combine every pair with that operator. A substring with no operator is a single integer.
+ * Approach: 1. Scan the expression for `+`, `-`, or `*`. 2. Recurse on the left and right segments around that operator. 3. For each left/right pair, apply the operator and push the result. 4. If no operator was found, return `[parseInt(expression)]`. 5. No memoization — overlapping subexpressions are recomputed.
+ * Dry Run: expression = "2-1-1".
+ *   - Split at first `-`: left [2], right ways of "1-1" → [0] → 2-0=2.
+ *   - Split at second `-`: left ways of "2-1" → [1], right [1] → 1-1=0. Return [2, 0].
  * Time Complexity: O(k^N)
  * Space Complexity: O(k^N)
  */

@@ -1,5 +1,8 @@
 /**
  * Design Search Autocomplete System
+ * Intuition: A nested-object trie stores sentences and frequencies. Each typed char walks one edge; DFS gathers completions, then sort by frequency then ASCII and take 3. `#` commits the prefix as a new sentence.
+ * Approach: 1. Constructor inserts each sentence via `incorporateSentenceToTrie`. 2. On `#`, insert current prefix with +1 and reset pointer. 3. Otherwise append the char, create a missing child (return []), else `gatherAllSentencesFromNode` and sort. 4. Return the top 3 `textValue`s.
+ * Dry Run: sentences=["i love you","island"], times=[5,3]; input 'i' → gather both, sort by freq → ["i love you","island"].
  * Time Complexity: Constructor: O(K_total)
  * Space Complexity: O(K_total + L_current + P_match * L_match).
  */
@@ -15,14 +18,14 @@ var AutocompleteSystem = function (sentencesCollection, initialTimes) {
   ) {
     this.incorporateSentenceToTrie(
       sentencesCollection[sentenceIndex],
-      initialTimes[sentenceIndex],
+      initialTimes[sentenceIndex]
     );
   }
 };
 
 AutocompleteSystem.prototype.incorporateSentenceToTrie = function (
   sentenceText,
-  countValue,
+  countValue
 ) {
   let traversalNode = this.trieRoot;
   for (const charInput of sentenceText) {
@@ -62,7 +65,7 @@ AutocompleteSystem.prototype.input = function (typedChar) {
   this.gatherAllSentencesFromNode(
     this.trieTraversalPointer,
     this.currentSearchPrefix,
-    foundSuggestions,
+    foundSuggestions
   );
 
   foundSuggestions.sort((sentenceA, sentenceB) => {
@@ -86,7 +89,7 @@ AutocompleteSystem.prototype.input = function (typedChar) {
 AutocompleteSystem.prototype.gatherAllSentencesFromNode = function (
   startOfSubtree,
   currentBuiltString,
-  resultList,
+  resultList
 ) {
   if (startOfSubtree.sentenceFrequency !== undefined) {
     resultList.push({
@@ -103,7 +106,7 @@ AutocompleteSystem.prototype.gatherAllSentencesFromNode = function (
       this.gatherAllSentencesFromNode(
         nextNodeInTrie,
         concatenatedString,
-        resultList,
+        resultList
       );
     }
   }

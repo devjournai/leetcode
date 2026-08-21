@@ -1,5 +1,8 @@
 /**
  * Lowest Common Ancestor Of A Binary Tree Iv
+ * Intuition: Generalize binary LCA to a set of nodes: if the current node is a target, return it; if both subtrees return hits, current is the LCA of the set.
+ * Approach: 1. Put all targets in a Set. 2. Recurse: null → null; node in the set → node. 3. If left and right both non-null, return current; else return the non-null side.
+ * Dry Run: targets are two leaves under different children of r → r is returned when both sides hit.
  * Time Complexity: O(N)
  * Space Complexity: O(H + M)
  */

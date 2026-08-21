@@ -1,5 +1,9 @@
 /**
  * Painting A Grid With Three Different Colors
+ * Intuition: Adjacent cells (including vertically in a column and horizontally between columns) must differ. With `m ≤ 5`, all valid column colorings can be enumerated, then DP counts ways to place compatible columns across `n` columns.
+ * Approach: 1. Recursively generate column patterns of height `m` with 3 colors and no two consecutive equal. 2. Two patterns are compatible if they differ in every row. 3. `waysToColorCurrentColumn[p]` starts at 1 (one way to use pattern `p` in column 0). 4. For each later column, add previous ways into compatible next patterns modulo 1e9+7. 5. Sum all patterns.
+ * Dry Run: m=1, n=1 → patterns [0],[1],[2], each 1 way → 3.
+ * Dry Run: m=1, n=2 → each column must differ from the previous → 3*2=6.
  * Time Complexity: O(N * (3 * 2^(M-1))^2 * M)
  * Space Complexity: O(M * 3 * 2^(M-1))
  */
@@ -16,7 +20,7 @@ var colorTheGrid = function (m, n) {
       currentPatternArr,
       totalRows,
       numColors,
-      allPatternsContainer,
+      allPatternsContainer
     ) {
       if (currentRow === totalRows) {
         allPatternsContainer.push([...currentPatternArr]);
@@ -34,7 +38,7 @@ var colorTheGrid = function (m, n) {
             currentPatternArr,
             totalRows,
             numColors,
-            allPatternsContainer,
+            allPatternsContainer
           );
           currentPatternArr.pop();
         }
@@ -46,7 +50,7 @@ var colorTheGrid = function (m, n) {
       currentPatternArray,
       gridRows,
       availableColors,
-      collectedPatterns,
+      collectedPatterns
     );
     return collectedPatterns;
   }
@@ -88,7 +92,7 @@ var colorTheGrid = function (m, n) {
         if (
           checkVerticalCompatibility(
             allValidPatterns[previousPatternIndex],
-            allValidPatterns[currentPatternIndex],
+            allValidPatterns[currentPatternIndex]
           )
         ) {
           nextWaysToColorColumn[currentPatternIndex] =

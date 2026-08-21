@@ -1,5 +1,8 @@
 /**
  * Minimum Absolute Difference Queries
+ * Intuition: Values are 1..100. Prefix counts tell which values appear in a range; the min gap between consecutive present values is the answer.
+ * Approach: 1. Build `prefixOccurrences[i][v]`. 2. For each query, walk v=1..100, detect present values, track min consecutive difference. 3. If fewer than two distinct, -1.
+ * Dry Run: nums=[1,3,4,8], queries=[[0,1]]. Present 1 and 3 → 2.
  * Time Complexity: O(N * M + Q * M)
  * Space Complexity: O(N * M + Q)
  */
@@ -7,7 +10,7 @@ var minDifference = function (nums, queries) {
   const maximumVal = 100;
 
   const prefixOccurrences = Array.from({ length: nums.length + 1 }, () =>
-    new Array(maximumVal + 1).fill(0),
+    new Array(maximumVal + 1).fill(0)
   );
 
   for (let outerIndex = 0; outerIndex < nums.length; outerIndex++) {
@@ -41,7 +44,7 @@ var minDifference = function (nums, queries) {
             valueIteration - previousSeenValue;
           minimumDifference = Math.min(
             minimumDifference,
-            absoluteDifferenceCandidate,
+            absoluteDifferenceCandidate
           );
         }
         previousSeenValue = valueIteration;

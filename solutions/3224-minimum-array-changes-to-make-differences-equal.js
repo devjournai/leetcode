@@ -19,13 +19,13 @@ var minChanges = function (nums, k) {
     const currentDifference = Math.abs(leftValue - rightValue);
     differenceFrequencies.set(
       currentDifference,
-      (differenceFrequencies.get(currentDifference) || 0) + 1,
+      (differenceFrequencies.get(currentDifference) || 0) + 1
     );
     const maxOneChangeDifference = Math.max(
       leftValue,
       rightValue,
       k - leftValue,
-      k - rightValue,
+      k - rightValue
     );
     oneChangeCount[maxOneChangeDifference]++;
   }

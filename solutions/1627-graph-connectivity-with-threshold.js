@@ -1,5 +1,9 @@
 /**
  * Graph Connectivity With Threshold
+ * Intuition: Cities a,b are connected when gcd(a,b) > threshold. Union all multiples of each factor f > threshold so those cities share a component, then answer queries with find.
+ * Approach: 1. Union-Find on 1..n. 2. For every factor f from threshold+1 to n, union f with 2f, 3f, ... 3. For each query, push whether the two cities have the same root.
+ * Dry Run: n=6, threshold=2, query [1,4].
+ *   - Factors 3,4,5,6 union 3-6 and 4. 1 stays isolated → false.
  * Time Complexity: O(N log N + Q)
  * Space Complexity: O(N + Q)
  */
@@ -12,7 +16,7 @@ var areConnected = function (cityCount, divisorThreshold, connectionQueries) {
   function retrieveRepresentative(nodeIdentifier) {
     if (cityConnections[nodeIdentifier] !== nodeIdentifier) {
       cityConnections[nodeIdentifier] = retrieveRepresentative(
-        cityConnections[nodeIdentifier],
+        cityConnections[nodeIdentifier]
       );
     }
     return cityConnections[nodeIdentifier];

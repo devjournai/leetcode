@@ -1,5 +1,9 @@
 /**
  * Day Of The Year
+ * Intuition: Add the day-of-month to the lengths of prior months, using 29 for February on leap years.
+ * Approach: 1. Parse YYYY-MM-DD. 2. Leap if divisible by 400, or by 4 but not 100. 3. Sum month lengths before MM plus DD.
+ * Dry Run: date = "2019-01-09".
+ *   - Not leap, no prior months, day 9. Answer 9.
  * Time Complexity: O(1)
  * Space Complexity: O(1)
  */

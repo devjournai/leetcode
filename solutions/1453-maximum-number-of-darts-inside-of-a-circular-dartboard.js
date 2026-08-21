@@ -1,5 +1,10 @@
 /**
  * Maximum Number Of Darts Inside Of A Circular Dartboard
+ * Intuition: An optimal circle of radius r can be assumed to pass through two darts. For each pair at distance <= 2r, compute the two candidate centers and count how many darts lie inside.
+ * Approach: 1. If no darts, return 0; start max at 1. 2. For each pair, skip if too far or coincident. 3. Place two circles of radius r through the pair via the perpendicular offset from the midpoint. 4. Count darts within r (+epsilon) and keep the max.
+ * Dry Run: darts = [[-2,0],[2,0],[0,2],[0,-2]], r = 2
+ *   - pair (-2,0) and (2,0) distance 4 = 2r, centers at (0,0) both coincide
+ *   - all 4 points lie on that circle. Return 4.
  * Time Complexity: O(N^3)
  * Space Complexity: O(1)
  */
@@ -16,7 +21,7 @@ var numPoints = function (darts, r) {
     allDarts,
     centerXCoordinate,
     centerYCoordinate,
-    circleRadius,
+    circleRadius
   ) => {
     let dartsWithinCount = 0;
     const circleRadiusSquared = circleRadius * circleRadius;
@@ -65,14 +70,14 @@ var numPoints = function (darts, r) {
 
       const halfChordDistance = Math.sqrt(distanceBetweenSquared) / 2;
       const centerOffsetHeight = Math.sqrt(
-        radiusSquare - halfChordDistance * halfChordDistance,
+        radiusSquare - halfChordDistance * halfChordDistance
       );
 
       let perpendicularVectorX = -deltaYCoord;
       let perpendicularVectorY = deltaXCoord;
       const normalizingFactor = Math.sqrt(
         perpendicularVectorX * perpendicularVectorX +
-          perpendicularVectorY * perpendicularVectorY,
+          perpendicularVectorY * perpendicularVectorY
       );
 
       perpendicularVectorX /= normalizingFactor;

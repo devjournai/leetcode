@@ -72,7 +72,7 @@ var averageHeightOfBuildings = function (buildings) {
   for (const [currentCoord, heightChange, countChange] of eventPoints) {
     if (activeBuildingCount > 0 && currentCoord > lastProcessedCoordinate) {
       const averageSegmentHeight = Math.floor(
-        cumulativeHeight / activeBuildingCount,
+        cumulativeHeight / activeBuildingCount
       );
 
       const lastOutputIndex = finalSegments.length - 1;

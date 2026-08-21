@@ -55,7 +55,7 @@ var convertTime = function (currentInput, correctInput) {
 
   for (const singleIncrementValue of possibleIncrements) {
     const countForIncrement = Math.floor(
-      totalMinuteDifference / singleIncrementValue,
+      totalMinuteDifference / singleIncrementValue
     );
     totalOperationCount += countForIncrement;
     totalMinuteDifference %= singleIncrementValue;

@@ -25,6 +25,8 @@
  *
  * ------------------------------------------------------------
  *
+ * Approach: Fill `dp` from the right. If `2*i+2 >= n`, buying i covers the rest so `dp[i]=prices[i]`. Else `dp[i]=prices[i]+min(dp[j])` for j in [i+1, min(2*i+2, n-1)]. Return `dp[0]`.
+ *
  * Dynamic Programming:
  *
  * Let:
@@ -84,7 +86,7 @@
  *
  * ------------------------------------------------------------
  *
- * Example:
+ * Dry Run:
  *
  * prices = [3, 1, 2]
  *

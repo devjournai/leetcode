@@ -1,5 +1,8 @@
 /**
  * Search In A Sorted Array Of Unknown Size
+ * Intuition: Exponentially grow a right bound until the reader hits INT_MAX or a value ≥ target, then binary search that window.
+ * Approach: 1. `firstPointer=0`, `secondPointer=1`; double second until `reader.get` is 2147483647 or ≥ target, sliding first. 2. Binary search `searchLower`..`searchUpper`; return mid on hit else -1.
+ * Dry Run: secret=[-1,0,3,5,9,12], target=9. Expand secondPointer 1→2→4; get(4)=9 ≥ target. Binary search 2..4 hits 9 at index 4.
  * Time Complexity: O(log n)
  * Space Complexity: O(1)
  */

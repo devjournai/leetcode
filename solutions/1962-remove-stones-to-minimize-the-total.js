@@ -29,7 +29,7 @@
  */
 var minStoneSum = function (piles, k) {
   const maxHeapInstance = new PriorityQueue(
-    (elementA, elementB) => elementB - elementA,
+    (elementA, elementB) => elementB - elementA
   );
   let totalStonesSum = 0;
 

@@ -68,7 +68,7 @@ CountIntervals.prototype.add = function (inputLeft, inputRight) {
 
   function findUpperBound(
     collectionForUpperSearch,
-    upperSearchTargetExclusive,
+    upperSearchTargetExclusive
   ) {
     let firstIndex = 0;
     let lastIndex = collectionForUpperSearch.length;
@@ -93,15 +93,15 @@ CountIntervals.prototype.add = function (inputLeft, inputRight) {
 
   const newLeftValue = Math.min(
     this.storedIntervals[effectiveLeftIndex][0],
-    inputLeft,
+    inputLeft
   );
   const effectiveRightIndex = findUpperBound(
     this.storedIntervals,
-    inputRight + 1,
+    inputRight + 1
   );
   const newRightValue = Math.max(
     this.storedIntervals[effectiveRightIndex - 1][1],
-    inputRight,
+    inputRight
   );
 
   let removedIntervalsLength = 0;
@@ -122,7 +122,7 @@ CountIntervals.prototype.add = function (inputLeft, inputRight) {
   this.storedIntervals.splice(
     effectiveLeftIndex,
     effectiveRightIndex - effectiveLeftIndex,
-    mergedIntervalData,
+    mergedIntervalData
   );
 };
 

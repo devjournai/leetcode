@@ -36,7 +36,7 @@ var longestPalindrome = function (words) {
   for (const initialWord of words) {
     wordFrequencies.set(
       initialWord,
-      (wordFrequencies.get(initialWord) || 0) + 1,
+      (wordFrequencies.get(initialWord) || 0) + 1
     );
   }
 

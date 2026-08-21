@@ -1,5 +1,9 @@
 /**
  * Smallest Range Covering Elements From K Lists
+ * Intuition: Flatten every list into (value, listId) pairs, sort by value, then slide a window until it contains all k lists; the shortest such window is the answer.
+ * Approach: 1. `flatMap` lists into `allSortedEntries` and sort by `value`. 2. Expand `currentWindowTraversal`; increment `listFrequencyTracker` and `listsIncludedInWindow` on first hit of a list. 3. While all k lists are inside, record `[rangeStartingValue, rangeEndingValue]` if this span is smaller (or equal span with a smaller start). 4. Shrink `currentWindowBeginning`.
+ * Dry Run: inputLists = [[4,10],[1],[8]].
+ *   Sorted: (1,list1), (4,list0), (8,list2), (10,list0). First covering window is [1,8] (diff 7). Shrinking drops list 1; later values never cover all three lists again. Return [1, 8].
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */
@@ -16,7 +20,7 @@ var smallestRange = function (inputLists) {
       singleList.map((itemValue) => ({
         value: itemValue,
         listId: listIdentifier,
-      })),
+      }))
     )
     .sort((entryA, entryB) => entryA.value - entryB.value);
 
@@ -53,11 +57,11 @@ var smallestRange = function (inputLists) {
 
       const listIdentifierAtBeginning = elementAtWindowBeginning.listId;
       const listEntryCountAtBeginning = listFrequencyTracker.get(
-        listIdentifierAtBeginning,
+        listIdentifierAtBeginning
       );
       listFrequencyTracker.set(
         listIdentifierAtBeginning,
-        listEntryCountAtBeginning - 1,
+        listEntryCountAtBeginning - 1
       );
 
       if (listEntryCountAtBeginning - 1 === 0) {

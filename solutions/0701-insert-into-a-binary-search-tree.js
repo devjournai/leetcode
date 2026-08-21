@@ -1,5 +1,8 @@
 /**
  * Insert Into A Binary Search Tree
+ * Intuition: Walk iteratively to a null child on the BST path for `val`, then attach a new `TreeNode`. Empty tree becomes that node.
+ * Approach: 1. If !root, return new TreeNode(val). 2. `currentTraversalNode` loop: if val < node go left (insert if missing) else go right. 3. Return original root.
+ * Dry Run: insert 5 into 4 / 2 7 / 1 3. 5>4 go right; 5<7, no left → attach 5 as 7.left. Return root 4.
  * Time Complexity: O(H)
  * Space Complexity: O(1)
  */

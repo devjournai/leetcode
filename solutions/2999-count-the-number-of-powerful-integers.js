@@ -43,18 +43,18 @@ var numberOfPowerfulInt = function (
   startValue,
   finishValue,
   digitLimitValue,
-  suffixStringValue,
+  suffixStringValue
 ) {
   let adjustedStartValue = startValue - 1;
   const finishPowerfulCount = determinePowerfulCountUpTo(
     finishValue,
     digitLimitValue,
-    suffixStringValue,
+    suffixStringValue
   );
   const startPowerfulCount = determinePowerfulCountUpTo(
     adjustedStartValue,
     digitLimitValue,
-    suffixStringValue,
+    suffixStringValue
   );
 
   return finishPowerfulCount - startPowerfulCount;
@@ -63,7 +63,7 @@ var numberOfPowerfulInt = function (
 function determinePowerfulCountUpTo(
   targetNumberValue,
   digitMaximum,
-  endingString,
+  endingString
 ) {
   for (
     let currentSuffixCharIndex = 0;

@@ -1,5 +1,8 @@
 /**
  * The Earliest And Latest Rounds Where Players Compete
+ * Intuition: Simulate the tournament: remaining players pair first-last. First/second players always win their other matches; every other pairing branches on who is eliminated (bitmask). Track min/max round when the two meet.
+ * Approach: 1. DFS `exploreRounds(currentEliminationBitmask, currentRoundCount)`. 2. Walk front/back surviving players; if they are playerOne and playerTwo, update min/max and return. 3. Otherwise branch masks, recurse next round on unique masks.
+ * Dry Run: n=11, first=2, second=4. Earliest 3, latest 4. Return [3,4].
  * Time Complexity: O(R * (N * S_max))
  * Space Complexity: O(R * S_max)
  */
@@ -52,7 +55,7 @@ var earliestAndLatest = function (totalPlayers, playerOne, playerTwo) {
       ) {
         for (const individualMaskFromRound of possibleMasksForCurrentRound) {
           eliminationOptionsForPair.push(
-            individualMaskFromRound | (1n << BigInt(backPlayerPosition)),
+            individualMaskFromRound | (1n << BigInt(backPlayerPosition))
           );
         }
       }
@@ -63,7 +66,7 @@ var earliestAndLatest = function (totalPlayers, playerOne, playerTwo) {
       ) {
         for (const individualMaskFromRound of possibleMasksForCurrentRound) {
           eliminationOptionsForPair.push(
-            individualMaskFromRound | (1n << BigInt(frontPlayerPosition)),
+            individualMaskFromRound | (1n << BigInt(frontPlayerPosition))
           );
         }
       }
@@ -81,7 +84,7 @@ var earliestAndLatest = function (totalPlayers, playerOne, playerTwo) {
 
     const uniqueNextRoundMasks = new Set(possibleMasksForCurrentRound);
     uniqueNextRoundMasks.forEach((nextRoundMask) =>
-      exploreRounds(nextRoundMask, currentRoundCount),
+      exploreRounds(nextRoundMask, currentRoundCount)
     );
   }
 };

@@ -1,5 +1,9 @@
 /**
  * Sudoku Solver
+ * Intuition: DFS fills the first empty cell with digits 1–9 that pass `checkValidity` (row, column, and 3×3 box), recurses, and backtracks by restoring `'.'` on failure until the board is complete.
+ * Approach: 1. `checkValidity` scans 9 positions for row, column, and mapped box cell. 2. `backtrackSolve` finds the next `'.'`. 3. Try each digit string; if valid, write it and recurse. 4. On recursive success return true; else undo. 5. If no digit works return false; if no empty cells remain return true. Call `backtrackSolve(board)`.
+ * Dry Run: a nearly full board with one empty cell that can only be "4".
+ *   - Find '.', try 1–3 invalid, place "4", recurse finds no empties → true. Board solved.
  * Time Complexity: O(9^(N*N))
  * Space Complexity: O(N*N)
  */
@@ -35,7 +39,7 @@ var solveSudoku = function (board) {
               currentGrid,
               rowCoord,
               colCoord,
-              digitAsString,
+              digitAsString
             );
             if (canPlaceHere) {
               currentGrid[rowCoord][colCoord] = digitAsString;

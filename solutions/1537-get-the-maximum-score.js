@@ -1,5 +1,9 @@
 /**
  * Get The Maximum Score
+ * Intuition: Shared values are portals. Track two path sums and at each common number take max(sum1,sum2)+that value.
+ * Approach: 1. Two pointers. 2. Advance the smaller, adding to its sum. 3. On equal, both sums = max+value. 4. Drain tails; return max % (1e9+7).
+ * Dry Run: nums1 = [2,4,5,8,10], nums2 = [4,6,8,9].
+ *   - Paths meet at 4 and 8; max score 30.
  * Time Complexity: O(m + n)
  * Space Complexity: O(1)
  */

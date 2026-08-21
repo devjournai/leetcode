@@ -93,13 +93,13 @@ var minOperationsQueries = function (numberOfNodes, allEdges, allQueries) {
   const nodeDepthLevel = new Array(numberOfNodes).fill(0);
   const pathWeightFrequencyAccumulator = Array.from(
     { length: numberOfNodes },
-    () => new Array(27).fill(0),
+    () => new Array(27).fill(0)
   );
 
   function buildTreeMetadata(
     currentVisitedNode,
     previousVisitedNode,
-    currentDepthValue,
+    currentDepthValue
   ) {
     nodeParentArray[currentVisitedNode] = previousVisitedNode;
     nodeDepthLevel[currentVisitedNode] = currentDepthValue;
@@ -151,7 +151,7 @@ var minOperationsQueries = function (numberOfNodes, allEdges, allQueries) {
         buildTreeMetadata(
           neighborNode,
           currentVisitedNode,
-          currentDepthValue + 1,
+          currentDepthValue + 1
         );
       }
     }
@@ -183,7 +183,7 @@ var minOperationsQueries = function (numberOfNodes, allEdges, allQueries) {
     const [startNodeQuery, endNodeQuery] = currentQueryRequest;
     const commonAncestorIdentifier = findLowestCommonAncestor(
       startNodeQuery,
-      endNodeQuery,
+      endNodeQuery
     );
 
     const pathEdgeWeightTallies = new Array(27).fill(0);

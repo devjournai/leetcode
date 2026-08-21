@@ -1,5 +1,8 @@
 /**
  * Score Of Parentheses
+ * Intuition: Each "()" at depth d contributes 2^d. Nested pairs multiply by 2 via extra depth; adjacent pairs add. Track depth; score only on a close that immediately follows an open.
+ * Approach: 1. Scan: '(' increment `depthLevel`. 2. On ')': decrement; if previous char is '(', add `2^depthLevel`. 3. Return `accumulatedScore`.
+ * Dry Run: "(()(()))". () at depth 1 → +2; inner () at depth 2 → +4; total 6.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

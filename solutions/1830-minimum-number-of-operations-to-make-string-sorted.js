@@ -1,5 +1,9 @@
 /**
  * Minimum Number Of Operations To Make String Sorted
+ * Intuition: Each operation is the previous permutation. The number of operations is the rank of s among its permutations (how many strings are lexicographically smaller), computed with factorials and inverse factorials modulo 1e9+7.
+ * Approach: 1. Precompute `factStorage` and modular inverses `invStorage`. 2. Scan s from the right, updating `characterFrequencies`. 3. Count letters smaller than s[i] among the suffix, multiply by multinomial permutations of the rest, add to `finalResult`. 4. Return Number(result).
+ * Dry Run: s = "cba".
+ *   - Smaller permutations: "abc","acb","bac","bca","cab" → 5 operations to reach sorted "abc" from "cba"? Rank of "cba" is 5, answer 5.
  * Time Complexity: O(N * log(MOD))
  * Space Complexity: O(N)
  */
@@ -42,7 +46,7 @@ var makeStringSorted = function (s) {
   ) {
     invStorage[loopCounterTwo] = getModInverse(
       factStorage[loopCounterTwo],
-      BigInt(modulus),
+      BigInt(modulus)
     );
   }
 

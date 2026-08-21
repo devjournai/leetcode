@@ -42,7 +42,7 @@ Function.prototype.callPolyfill = function (
 
   executionContext[temporaryPropertyKey] = originalMethod;
   const methodExecutionResult = executionContext[temporaryPropertyKey](
-    ...additionalArguments,
+    ...additionalArguments
   );
   delete executionContext[temporaryPropertyKey];
   return methodExecutionResult;

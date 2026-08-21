@@ -1,5 +1,10 @@
 /**
  * Largest 1 Bordered Square
+ * Intuition: A 1-bordered square is determined by its bottom-right cell and side length. Consecutive 1s running left and up from each cell let us check the other two sides in O(1).
+ * Approach: 1. dpH[r][c] / dpV[r][c] = consecutive 1s ending at (r,c) left/up. 2. For each 1, try side from min(dpH,dpV) down while larger than the best. 3. Side k works if top row has >=k horizontal 1s at the right column and left column has >=k vertical 1s at the bottom row. 4. Return side^2.
+ * Dry Run: grid = [[1,1,1],[1,0,1],[1,1,1]].
+ *   - At (2,2) dpH=3, dpV=3. Top-right (0,2) has horizontal 3, bottom-left (2,0) has vertical 3. Side 3.
+ *   - Answer 9.
  * Time Complexity: O(rows * cols * min(rows, cols))
  * Space Complexity: O(rows * cols)
  */
@@ -26,7 +31,7 @@ var largest1BorderedSquare = function (grid) {
 
         let currentSideLength = Math.min(
           dpHorizontal[rowIndex][colIndex],
-          dpVertical[rowIndex][colIndex],
+          dpVertical[rowIndex][colIndex]
         );
 
         while (currentSideLength > maximumSquareSide) {

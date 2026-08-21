@@ -1,5 +1,9 @@
 /**
  * Possible Bipartition
+ * Intuition: Dislike edges form an undirected graph that must be 2-colored. DFS assigns group `1` or `-1` and fails if a neighbor already has the same group.
+ * Approach: 1. Build `adjacencyList` for people 1..n. 2. `assignedGroups` starts at 0. 3. `depthFirstSearchCheck(node, assignment)` sets the group, rejects same-group neighbors, and recurses on uncolored neighbors with `-assignment`. 4. For each uncolored person, DFS with group 1; any false → false. Else true.
+ * Dry Run: n = 4, dislikes = [[1,2],[1,3],[2,4]].
+ *   - 1 gets group 1; 2 and 3 get -1; 4 gets 1. No conflicts → true.
  * Time Complexity: O(N + E)
  * Space Complexity: O(N + E)
  */

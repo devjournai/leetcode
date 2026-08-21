@@ -67,11 +67,11 @@ var minScore = function (grid) {
   }
 
   originalElements.sort(
-    (firstElement, secondElement) => firstElement[0] - secondElement[0],
+    (firstElement, secondElement) => firstElement[0] - secondElement[0]
   );
 
   const resultGrid = Array.from({ length: matrixRows }, () =>
-    Array(matrixCols).fill(0),
+    Array(matrixCols).fill(0)
   );
   const rowMaximumTracker = new Array(matrixRows).fill(0);
   const columnMaximumTracker = new Array(matrixCols).fill(0);
@@ -84,7 +84,7 @@ var minScore = function (grid) {
     const assignedNumber =
       Math.max(
         rowMaximumTracker[elementRow],
-        columnMaximumTracker[elementCol],
+        columnMaximumTracker[elementCol]
       ) + 1;
 
     resultGrid[elementRow][elementCol] = assignedNumber;

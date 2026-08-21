@@ -1,5 +1,9 @@
 /**
  * Number Of Restricted Paths From First To Last Node
+ * Intuition: A restricted path always steps to a neighbor closer (by shortest distance) to node n. Dijkstra from n gives those distances; then DP from node 1 counts decreasing-distance walks modulo 1e9+7.
+ * Approach: 1. Build undirected `adjacenciesMap`. 2. Dijkstra with `MinPriorityQueue` from n into `nodeDistances`. 3. `computeRestrictedPaths(u)` sums memoized paths over neighbors v with dist[u] > dist[v]. 4. Return paths from 1; base case node n is 1.
+ * Dry Run: n=5, a short path 1-2-5 with dist 5>3>0.
+ *   - Only decreasing hops are counted; isolated uphill edges add 0. Example answer 3 for the standard graph.
  * Time Complexity: O(E log V)
  * Space Complexity: O(V + E)
  */

@@ -1,5 +1,8 @@
 /**
  * Map Sum Pairs
+ * Intuition: Prefix sums live on a trie: each node’s `pathSum` is the total of values of keys that pass through it. Re-inserting a key adds only the delta so old values are overwritten.
+ * Approach: 1. `insert`: delta = val - previous from `keyToValueMap`; walk the key, creating `TrieNode`s, add delta to each `pathSum`. 2. `sum`: walk the prefix; missing child → 0, else return that node’s `pathSum`.
+ * Dry Run: insert("apple",3) then sum("ap")=3. insert("app",2): delta=2 along a,p,p. sum("ap")=5.
  * Time Complexity: O(L)
  * Space Complexity: O(N*L)
  */

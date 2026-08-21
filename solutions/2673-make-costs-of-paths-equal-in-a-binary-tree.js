@@ -52,7 +52,7 @@ var minIncrements = function (n, cost) {
 
     let maximumChildPathValue = Math.max(
       leftPathCurrentSum,
-      rightPathCurrentSum,
+      rightPathCurrentSum
     );
 
     totalRequiredIncrements += maximumChildPathValue - leftPathCurrentSum;

@@ -1,12 +1,16 @@
 /**
  * Minimize Hamming Distance After Swap Operations
+ * Intuition: Allowed swaps form a graph; each connected component can permute freely. Hamming distance is how many target values cannot be matched from the source multiset of that component.
+ * Approach: 1. Union-find on `allowedSwapsInput`. 2. Group source/target values by root. 3. Count source frequencies; for each target value, increment distance if the count is 0 else decrement. 4. Return `finalHammingDistance`.
+ * Dry Run: source = [1,2,3,4], target = [2,1,4,5], swaps = [[0,1],[2,3]]
+ * Comp {0,1}: {1,2} vs {2,1} match; {2,3}: {3,4} vs {4,5} → one mismatch. Distance 1.
  * Time Complexity: O(N + M * α(N))
  * Space Complexity: O(N)
  */
 var minimumHammingDistance = function (
   sourceInput,
   targetInput,
-  allowedSwapsInput,
+  allowedSwapsInput
 ) {
   const dataLength = sourceInput.length;
   const parentDisjointSet = Array(dataLength)
@@ -54,7 +58,7 @@ var minimumHammingDistance = function (
     }
     currentGroupStructure.originalValues.push(sourceInput[arrayTraversalIndex]);
     currentGroupStructure.comparisonValues.push(
-      targetInput[arrayTraversalIndex],
+      targetInput[arrayTraversalIndex]
     );
     arrayTraversalIndex++;
   }

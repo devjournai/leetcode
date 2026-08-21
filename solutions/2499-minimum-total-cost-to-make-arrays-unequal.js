@@ -47,7 +47,7 @@ var minimumTotalCost = function (nums1, nums2) {
       problematicIndices.push(initialIndex);
       valueFrequencies.set(
         nums1[initialIndex],
-        (valueFrequencies.get(nums1[initialIndex]) || 0) + 1,
+        (valueFrequencies.get(nums1[initialIndex]) || 0) + 1
       );
     }
   }
@@ -92,7 +92,7 @@ var minimumTotalCost = function (nums1, nums2) {
     ...nonConflictingCandidateIndices,
   ];
   allInvolvedIndices.sort(
-    (firstElement, secondElement) => firstElement - secondElement,
+    (firstElement, secondElement) => firstElement - secondElement
   );
 
   let totalMinimumCost = 0;

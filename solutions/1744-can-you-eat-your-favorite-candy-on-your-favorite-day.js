@@ -1,5 +1,9 @@
 /**
  * Can You Eat Your Favorite Candy On Your Favorite Day
+ * Intuition: You eat 1..cap candies per day in type order. Favorite type occupies prefix-sum interval [S[t], S[t+1]). You can still be eating it on day d iff you have not finished it in the first d days (eat 1/day) and you can reach it by day d (eat cap/day).
+ * Approach: 1. Build `cumulativeCandies`. 2. For each query, `canReachType` = (d+1)*cap > typeStart; `notFinishedTypeTooEarly` = d ≤ typeEnd. 3. AND them into `queryResults`.
+ * Dry Run: candiesCount = [7,4,5,3,8], query [0,2,2]
+ * type 0 occupies [0,6]; day 2 max eat 6, min eat 2; 6>0 and 2≤6 → true.
  * Time Complexity: O(N + Q)
  * Space Complexity: O(N + Q)
  */

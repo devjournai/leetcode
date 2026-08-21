@@ -80,7 +80,7 @@ var minimumDeletions = function (word, k) {
     }
     overallMinDeletions = Math.min(
       overallMinDeletions,
-      currentIterationDeletions,
+      currentIterationDeletions
     );
   }
 

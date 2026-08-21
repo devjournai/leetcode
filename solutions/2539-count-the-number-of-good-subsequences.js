@@ -116,7 +116,7 @@ var countGoodSubsequences = function (s) {
       if (currentCharacterFrequency >= targetFrequencyK) {
         let combinationsForChar = combinationsNck(
           currentCharacterFrequency,
-          targetFrequencyK,
+          targetFrequencyK
         );
         let termForProduct =
           (1n + combinationsForChar) % BigInt(moduloConstant);

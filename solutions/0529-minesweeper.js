@@ -1,5 +1,9 @@
 /**
  * Minesweeper
+ * Intuition: Clicking a mine becomes `'X'`. Clicking empty `'E'` counts adjacent mines; if any, write the digit, otherwise write `'B'` and DFS the eight neighbors.
+ * Approach: 1. If click is `'M'`, set `'X'` and return. 2. `dfsReveal` ignores out-of-bounds and non-`'E'` cells. 3. Count `'M'` in 8 directions; if >0 write the count, else `'B'` and recurse on neighbors.
+ * Dry Run: 1x2 board `[["E","M"]]`, click [0,0].
+ *   - Cell is E, one adjacent mine → write `"1"`. Board `[["1","M"]]`.
  * Time Complexity: O(M*N)
  * Space Complexity: O(M*N)
  */

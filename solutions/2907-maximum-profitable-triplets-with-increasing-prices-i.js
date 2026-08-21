@@ -56,7 +56,7 @@ var maxProfit = function (itemPrices, itemProfits) {
       if (itemPrices[leftItemSearchIndex] < itemPrices[middleItemIndex]) {
         bestLeftProfit = Math.max(
           bestLeftProfit,
-          itemProfits[leftItemSearchIndex],
+          itemProfits[leftItemSearchIndex]
         );
         foundLeftItem = true;
       }
@@ -70,7 +70,7 @@ var maxProfit = function (itemPrices, itemProfits) {
       if (itemPrices[middleItemIndex] < itemPrices[rightItemSearchIndex]) {
         bestRightProfit = Math.max(
           bestRightProfit,
-          itemProfits[rightItemSearchIndex],
+          itemProfits[rightItemSearchIndex]
         );
         foundRightItem = true;
       }

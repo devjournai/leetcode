@@ -28,11 +28,11 @@ var sortPeople = function (names, heights) {
   }));
 
   personDataCollection.sort(
-    (firstPerson, secondPerson) => secondPerson.height - firstPerson.height,
+    (firstPerson, secondPerson) => secondPerson.height - firstPerson.height
   );
 
   const resultNames = personDataCollection.map(
-    (individualPerson) => individualPerson.name,
+    (individualPerson) => individualPerson.name
   );
 
   return resultNames;

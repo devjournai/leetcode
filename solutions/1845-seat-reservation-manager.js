@@ -1,5 +1,8 @@
 /**
  * Seat Reservation Manager
+ * Intuition: Always hand out the smallest free seat. Unused seats grow as 1, 2, 3, … until someone unreserves; returned seats go into a min-heap so they can be reused before later consecutive seats.
+ * Approach: 1. Track `nextConsecutiveAvailable` and a `MinHeap` of unreserved seats. 2. `reserve`: if the heap’s smallest is less than `nextConsecutiveAvailable`, extract it; else take the consecutive counter and increment. 3. `unreserve`: insert the seat into the heap.
+ * Dry Run: n=5. reserve → 1 (counter becomes 2). reserve → 2. unreserve(1) → heap=[1]. reserve → 1 from the heap.
  * Time Complexity: O(log N)
  * Space Complexity: O(N)
  */
@@ -89,7 +92,7 @@ class MinHeap {
     ) {
       this.exchangeElements(
         this.retrieveParentIndex(currentElementIndex),
-        currentElementIndex,
+        currentElementIndex
       );
       currentElementIndex = this.retrieveParentIndex(currentElementIndex);
     }

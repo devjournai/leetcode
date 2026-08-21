@@ -1,5 +1,9 @@
 /**
  * Jump Game Vi
+ * Intuition: `dp[i] = nums[i] + max(dp[i-k..i-1])`. A monotonic decreasing deque of indices stores candidates for that window max in O(1).
+ * Approach: 1. `dynamicProgrammingScores[0] = nums[0]`; deque holds 0. 2. For each `currentPosition`, drop indices `< currentPosition-k`, take front as max, then pop back while last dp ≤ current dp, push i. 3. Return `dynamicProgrammingScores[n-1]`.
+ * Dry Run: nums = [1,-1,-2,4,-7,3], k = 2
+ * dp: 1; 1-1=0; 0-2=-2; 0+4=4; 4-7=-3; 4+3=7. Answer 7.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

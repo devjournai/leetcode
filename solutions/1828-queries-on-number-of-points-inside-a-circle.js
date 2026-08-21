@@ -1,5 +1,9 @@
 /**
  * Queries On Number Of Points Inside A Circle
+ * Intuition: A point is inside iff squared distance to the center is ≤ r², which avoids square roots.
+ * Approach: 1. For each query (x,y,r) compute r². 2. Count points whose dx²+dy² ≤ r². 3. Push counts into `answerCollection`. 4. Return it.
+ * Dry Run: points = [[1,3],[3,3],[5,3],[2,2]], queries = [[2,3,1],[4,3,1],[1,1,2]].
+ *   - Circles contain 3, 2, and 2 points.
  * Time Complexity: O(M * N)
  * Space Complexity: O(M)
  */

@@ -35,7 +35,7 @@ function buildZArray(text) {
     if (index < windowRight) {
       zValues[index] = Math.min(
         windowRight - index,
-        zValues[index - windowLeft],
+        zValues[index - windowLeft]
       );
     }
     while (

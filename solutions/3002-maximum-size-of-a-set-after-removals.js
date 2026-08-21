@@ -66,7 +66,7 @@ var maximumSetSize = function (nums1, nums2) {
     (arrayLength / 2 - keptFromSecondOnly);
   const keptFromIntersection = Math.min(
     intersectionElementsCount,
-    neededCommonElementsCapacity,
+    neededCommonElementsCapacity
   );
 
   return keptFromFirstOnly + keptFromSecondOnly + keptFromIntersection;

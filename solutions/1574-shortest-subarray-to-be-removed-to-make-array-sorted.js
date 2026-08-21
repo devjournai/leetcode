@@ -1,5 +1,9 @@
 /**
  * Shortest Subarray To Be Removed To Make Array Sorted
+ * Intuition: Keep a nondecreasing prefix and suffix; remove the middle. Also try joining prefix[i] with the first suffix value ≥ arr[i].
+ * Approach: 1. Grow prefix while sorted; if whole array, 0. 2. Grow suffix. 3. Min of deleting after prefix or before suffix. 4. Two-pointer merge.
+ * Dry Run: arr = [1,2,3,10,4,2,3,5].
+ *   - Shortest removable middle has length 3.
  * Time Complexity: O(arraySize)
  * Space Complexity: O(1)
  */
@@ -43,7 +47,7 @@ var findLengthOfShortestSubarray = function (arr) {
     }
     resultMinLength = Math.min(
       resultMinLength,
-      currentSuffixTraverser - currentPrefixTraverser - 1,
+      currentSuffixTraverser - currentPrefixTraverser - 1
     );
   }
 

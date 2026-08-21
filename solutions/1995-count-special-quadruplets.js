@@ -92,7 +92,7 @@ var countQuadruplets = function (nums) {
         const currentThirdNumberCandidate = nums[fourthIndex - 1];
         thirdNumberFrequencies.set(
           currentThirdNumberCandidate,
-          (thirdNumberFrequencies.get(currentThirdNumberCandidate) || 0) + 1,
+          (thirdNumberFrequencies.get(currentThirdNumberCandidate) || 0) + 1
         );
         const targetThirdNumber = nums[fourthIndex] - currentSumOfTwo;
         if (thirdNumberFrequencies.has(targetThirdNumber)) {

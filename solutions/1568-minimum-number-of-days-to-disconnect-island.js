@@ -1,5 +1,9 @@
 /**
  * Minimum Number Of Days To Disconnect Island
+ * Intuition: 0 if already not one island; else try removing one land cell; if still one island, answer is 2.
+ * Approach: 1. DFS count islands. 2. If ≠1 return 0. 3. Flip each 1 to 0; if islands≠1 return 1. 4. Else 2.
+ * Dry Run: grid = [[0,1,1,0],[0,1,1,0],[0,0,0,0]].
+ *   - One island with no 1-cut → 2.
  * Time Complexity: O((R * C)^2)
  * Space Complexity: O(R * C)
  */

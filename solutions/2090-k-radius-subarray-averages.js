@@ -56,7 +56,7 @@ var getAverages = function (nums, k) {
 
   const firstCenterIndex = k;
   averagesResult[firstCenterIndex] = Math.floor(
-    accumulatedSum / currentWindowSize,
+    accumulatedSum / currentWindowSize
   );
 
   for (
@@ -69,7 +69,7 @@ var getAverages = function (nums, k) {
     accumulatedSum =
       accumulatedSum - nums[elementToRemoveIndex] + nums[elementToAddIndex];
     averagesResult[currentCenterForAverage] = Math.floor(
-      accumulatedSum / currentWindowSize,
+      accumulatedSum / currentWindowSize
     );
   }
 

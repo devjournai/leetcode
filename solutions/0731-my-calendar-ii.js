@@ -1,5 +1,8 @@
 /**
  * My Calendar Ii
+ * Intuition: Double booking is allowed; triple is not. Store all booked intervals and the pairwise overlaps (`conflictingEvents`). A new booking is rejected if it hits any existing overlap.
+ * Approach: 1. Scan `conflictingEvents`; overlap (`startTime < end && endTime > start`) returns false. 2. For each `scheduledEvents` interval that overlaps, push the intersection onto `conflictingEvents`. 3. Push the new event and return true.
+ * Dry Run: [10,20) then [50,60) then [10,40) OK (double on [10,20)). [5,15) hits the overlap [10,20) ∩ [10,40) = [10,20) → false.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N)
  */

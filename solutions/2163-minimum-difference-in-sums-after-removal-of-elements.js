@@ -96,7 +96,7 @@ var minimumDifference = function (nums) {
       firstPartSums[loopIndexE] - secondPartSums[loopIndexE + 1];
     minimumDifferenceValue = Math.min(
       minimumDifferenceValue,
-      currentDifference,
+      currentDifference
     );
   }
 

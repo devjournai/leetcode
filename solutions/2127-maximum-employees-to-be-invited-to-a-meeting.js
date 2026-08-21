@@ -99,7 +99,7 @@ var maximumInvitations = function (favoriteEmployees) {
     currentEmployee++
   ) {
     predecessorAdjacency[favoriteEmployees[currentEmployee]].push(
-      currentEmployee,
+      currentEmployee
     );
   }
 
@@ -108,7 +108,7 @@ var maximumInvitations = function (favoriteEmployees) {
   function calculateLongestFeeder(
     currentNodeIdentifier,
     forbiddenTargetIdentifier,
-    visitedArray,
+    visitedArray
   ) {
     visitedArray[currentNodeIdentifier] = true;
     let maxPathSegment = 0;
@@ -124,8 +124,8 @@ var maximumInvitations = function (favoriteEmployees) {
         calculateLongestFeeder(
           predecessorNode,
           forbiddenTargetIdentifier,
-          visitedArray,
-        ),
+          visitedArray
+        )
       );
     }
     return 1 + maxPathSegment;
@@ -137,12 +137,12 @@ var maximumInvitations = function (favoriteEmployees) {
       let chainOneLength = calculateLongestFeeder(
         idxFirst,
         idxSecond,
-        globalVisitedStatus,
+        globalVisitedStatus
       );
       let chainTwoLength = calculateLongestFeeder(
         idxSecond,
         idxFirst,
-        globalVisitedStatus,
+        globalVisitedStatus
       );
       maximumOverallAttendees += chainOneLength + chainTwoLength;
     }
@@ -168,7 +168,7 @@ var maximumInvitations = function (favoriteEmployees) {
           currentDepthCount - currentCyclePath.get(explorerNode);
         maximumOverallAttendees = Math.max(
           maximumOverallAttendees,
-          cycleCurrentLength,
+          cycleCurrentLength
         );
         break;
       }

@@ -97,7 +97,7 @@ var countCompleteComponents = function (n, edges) {
         return false;
       }
       return [...adjacencyStructure[componentVertex]].every((connectedPeer) =>
-        potentialComponent.has(connectedPeer),
+        potentialComponent.has(connectedPeer)
       );
     });
   };

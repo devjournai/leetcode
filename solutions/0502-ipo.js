@@ -1,5 +1,10 @@
 /**
  * Ipo
+ * Intuition: Always start the affordable project with the largest profit. Sorting by capital unlocks projects as wealth grows; a max-heap of profits picks the best among those currently affordable.
+ * Approach: 1. Pair `[capital, profit]` into `projectDetails` and sort by capital. 2. For up to `k` picks, push every project with capital ≤ `currentCapital` onto a max-heap (`addProfitToQueue`). 3. If the heap is empty, stop; else `extractMaxProfit` and add it to `currentCapital`.
+ * Dry Run: k=2, w=0, profits=[1,2,3], capital=[0,1,1].
+ *   - Affordable at 0: profit 1. Pick 1 → capital=1.
+ *   - Affordable: profits 2 and 3. Pick 3 → capital=4. Return 4.
  * Time Complexity: O((N + K) log N)
  * Space Complexity: O(N)
  */

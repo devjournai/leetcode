@@ -1,24 +1,10 @@
 /**
  * Path Existence Queries in a Graph II
- * Intuition: Processing a BFS or modifying a Segment Tree for every query is too slow, leading to TLE when Q and N are up to 10^5. Because edges exist between nodes with a value difference <= maxDiff, sorting the nodes by value transforms the graph into contiguous reachable segments. Since reaching the furthest possible node in one direction is always optimal for shortest paths, we can precalculate these maximum reaches. This monotonic property perfectly suits Binary Lifting (Jump Pointers), allowing us to answer each query in O(log N) time instead of O(N).
- *
- * Approach:
- * 1.  **Sort & Map**: Create an array of objects containing the original node values and their initial indices. Sort this array by value. Create a reverse map (`pos`) to easily find a node's new sorted index given its original index.
- * 2.  **Sliding Window (1-Step Boundaries)**: Use a two-pointer approach on the sorted array to precompute two arrays: `L` and `R`. `L[i]` stores the furthest left index reachable from `i` in 1 step, and `R[i]` stores the furthest right index reachable from `i` in 1 step.
- * 3.  **Binary Lifting (DP Setup)**: Initialize a constant `K = 19` (since 2^18 > 10^5). Create flat DP arrays `upL` and `upR` where `upR[k * n + i]` represents the furthest right index reachable from `i` in 2^k steps.
- * * Base case: `upR[i] = R[i]` and `upL[i] = L[i]` (for 2^0 = 1 step).
- * * Transition: `upR[k][i] = upR[k-1][upR[k-1][i]]`.
- * 4.  **Process Queries in O(log N)**: For each query `(u, v)`:
- * * Convert to their sorted indices `u_prime` and `v_prime`.
- * * If `u_prime === v_prime`, distance is 0.
- * * Determine direction (left if `u_prime > v_prime`, right if `u_prime < v_prime`).
- * * Check if the target is reachable at all using the maximum jump (k = K - 1). If not, return -1.
- * * Iterate `k` downwards from `K - 1` to 0. If a jump of 2^k steps does *not* reach or pass `v_prime`, take the jump, update the current position, and add 2^k to the step count.
- * * Add 1 to the final step count to cover the final jump to `v_prime`.
- *
- * Complexity Analysis:
- * - Time Complexity: O(N log N + N * K + Q * K)
- * - Space Complexity: O(N * K)
+ * Intuition: Edges exist between values differing by at most maxDiff, so sorting by value turns reachability into contiguous spans. Furthest one-step left/right jumps are monotonic, so binary lifting answers shortest jumps in O(log N).
+ * Approach: 1. Sort nodes by value and map original ids to sorted positions. 2. Two pointers compute 1-step furthest left L[i] and right R[i]. 3. Build K=19 binary-lifting tables upL/upR. 4. For each query, convert to sorted indices; if equal, distance 0; else greedy-lift toward the target, or -1 if even the 2^(K-1) jump cannot reach. Add 1 after the last incomplete jump.
+ * Dry Run: nums = [1, 3, 6], maxDiff = 2, query (0, 2). Sorted positions 0→1→2. R[0]=1, R[1]=2. From 0, 1-step cannot reach 2, two 1-steps can: answer 2.
+ * Time Complexity: O(N log N + N * K + Q * K)
+ * Space Complexity: O(N * K)
  */
 
 var pathExistenceQueries = function (n, nums, maxDiff, queries) {

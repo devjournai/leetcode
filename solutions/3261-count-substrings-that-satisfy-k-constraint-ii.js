@@ -46,7 +46,8 @@ var countKConstraintSubstrings = function (s, k, queries) {
     const r = queries[i][1];
     if (r > leftToRight[l]) {
       const sz = leftToRight[l] - l + 1;
-      ans[i] = (sz * (sz + 1)) / 2 + (prefix[r + 1] - prefix[leftToRight[l] + 1]);
+      ans[i] =
+        (sz * (sz + 1)) / 2 + (prefix[r + 1] - prefix[leftToRight[l] + 1]);
     } else {
       const sz = r - l + 1;
       ans[i] = (sz * (sz + 1)) / 2;

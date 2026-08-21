@@ -101,7 +101,7 @@ var shortestSubstrings = function (arr) {
       ) {
         const extractedSubstringValue = currentExaminedString.substring(
           substringStartingPosition,
-          substringEndingPosition,
+          substringEndingPosition
         );
         if (!substringIndexMap.has(extractedSubstringValue)) {
           substringIndexMap.set(extractedSubstringValue, new Set());
@@ -136,7 +136,7 @@ var shortestSubstrings = function (arr) {
       ) {
         const candidateSub = targetString.substring(
           potentialStart,
-          potentialStart + potentialLength,
+          potentialStart + potentialLength
         );
         const containingSet = substringIndexMap.get(candidateSub);
 

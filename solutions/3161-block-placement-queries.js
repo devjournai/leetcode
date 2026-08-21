@@ -79,7 +79,7 @@ var getResults = function (queries) {
     maxFree[nodeIdx] = Math.max(
       maxFree[leftChild],
       maxFree[rightChild],
-      rightFree[leftChild] + leftFree[rightChild],
+      rightFree[leftChild] + leftFree[rightChild]
     );
   }
 
@@ -135,7 +135,7 @@ var getResults = function (queries) {
       maxFree: Math.max(
         leftRes.maxFree,
         rightRes.maxFree,
-        leftRes.rightFree + rightRes.leftFree,
+        leftRes.rightFree + rightRes.leftFree
       ),
       leftFree: mergedLeftFree,
       rightFree: mergedRightFree,

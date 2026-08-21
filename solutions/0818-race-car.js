@@ -1,5 +1,8 @@
 /**
  * Race Car
+ * Intuition: DP to each position. Reach `2^k-1` with k A's. Else overshoot then reverse, or A k-1 times, reverse some B's, reverse again, and finish with a smaller DP remainder.
+ * Approach: 1. `dpValues[0]=0`. 2. k = ceil(log2(pos+1)); if `2^k-1 === pos`, dp = k. 3. Else start with k+1+dp[overshoot-pos]. 4. For reverse length r < k-1, cost `(k-1)+1+r+1+dp[pos - ((2^{k-1}-1)-(2^r-1))]`.
+ * Dry Run: target = 3. 2^2-1 = 3 → 2 instructions "AA".
  * Time Complexity: O(T log T)
  * Space Complexity: O(T)
  */
@@ -50,7 +53,7 @@ var racecar = function (target) {
         dpValues[neededRemainingDistance];
       dpValues[currentPositionTarget] = Math.min(
         dpValues[currentPositionTarget],
-        combinedPathCost,
+        combinedPathCost
       );
     }
   }

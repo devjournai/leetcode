@@ -68,7 +68,7 @@ var decodeMessage = function (keyString, messageString) {
       const alphabetCharacterCode = 97 + currentAlphabetIndex;
       substitutionMapping.set(
         currentCharFromKey,
-        String.fromCharCode(alphabetCharacterCode),
+        String.fromCharCode(alphabetCharacterCode)
       );
       currentAlphabetIndex++;
     }

@@ -74,7 +74,7 @@ class UnionFindStructure {
   findRoot(elementIndex) {
     if (this.parentArray[elementIndex] !== elementIndex) {
       this.parentArray[elementIndex] = this.findRoot(
-        this.parentArray[elementIndex],
+        this.parentArray[elementIndex]
       );
     }
     return this.parentArray[elementIndex];
@@ -136,7 +136,7 @@ var groupStrings = function (inputWords) {
     if (maskToRepresentativeIndex.has(currentMaskValue)) {
       disjointSet.unite(
         maskToRepresentativeIndex.get(currentMaskValue),
-        indexIterator,
+        indexIterator
       );
     } else {
       maskToRepresentativeIndex.set(currentMaskValue, indexIterator);
@@ -164,7 +164,7 @@ var groupStrings = function (inputWords) {
         if (maskToRepresentativeIndex.has(maskAfterAdd)) {
           disjointSet.unite(
             wordScanner,
-            maskToRepresentativeIndex.get(maskAfterAdd),
+            maskToRepresentativeIndex.get(maskAfterAdd)
           );
         }
       }
@@ -174,7 +174,7 @@ var groupStrings = function (inputWords) {
         if (maskToRepresentativeIndex.has(maskAfterDelete)) {
           disjointSet.unite(
             wordScanner,
-            maskToRepresentativeIndex.get(maskAfterDelete),
+            maskToRepresentativeIndex.get(maskAfterDelete)
           );
         }
 
@@ -187,7 +187,7 @@ var groupStrings = function (inputWords) {
             if (maskToRepresentativeIndex.has(maskAfterReplacement)) {
               disjointSet.unite(
                 wordScanner,
-                maskToRepresentativeIndex.get(maskAfterReplacement),
+                maskToRepresentativeIndex.get(maskAfterReplacement)
               );
             }
           }

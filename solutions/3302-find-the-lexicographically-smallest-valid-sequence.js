@@ -72,6 +72,8 @@
  *
  * ------------------------------------------------------------
  *
+ * Approach: 1. Scan word1 from right to left to fill last[j], the latest index that can match word2[j] as a suffix. 2. Scan left to right: take a match always; otherwise take a mismatch if the skip is still available and (this is the last character or i < last[j+1]). 3. Return the index array if word2 is fully covered, else [].
+ *
  * Dry Run:
  *
  * word1 = "vbcca"

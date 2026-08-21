@@ -1,11 +1,15 @@
 /**
  * Put Boxes Into The Warehouse II
+ * Intuition: Boxes may enter from either end. Place the largest remaining box at the currently shorter-constrained end if it fits.
+ * Approach: 1. Sort boxes. 2. Two pointers on warehouse with running min heights from each end. 3. From the largest box, occupy left, right, or skip.
+ * Dry Run: boxes = [1,2,2,3,4], warehouse = [3,4,1,2].
+ *   - Place from both ends → 4 boxes.
  * Time Complexity: O(N log N + M)
  * Space Complexity: O(log N)
  */
 var maxBoxesInWarehouse = function (boxes, warehouse) {
   boxes.sort(
-    (firstDimension, secondDimension) => firstDimension - secondDimension,
+    (firstDimension, secondDimension) => firstDimension - secondDimension
   );
 
   let currentLeftIndex = 0;
@@ -30,7 +34,7 @@ var maxBoxesInWarehouse = function (boxes, warehouse) {
         if (currentLeftIndex <= currentRightIndex) {
           minimumPassThroughHeightLeft = Math.min(
             warehouse[currentLeftIndex],
-            minimumPassThroughHeightLeft,
+            minimumPassThroughHeightLeft
           );
         }
       } else {
@@ -39,7 +43,7 @@ var maxBoxesInWarehouse = function (boxes, warehouse) {
         if (currentRightIndex >= currentLeftIndex) {
           minimumPassThroughHeightRight = Math.min(
             warehouse[currentRightIndex],
-            minimumPassThroughHeightRight,
+            minimumPassThroughHeightRight
           );
         }
       }
@@ -49,7 +53,7 @@ var maxBoxesInWarehouse = function (boxes, warehouse) {
       if (currentLeftIndex <= currentRightIndex) {
         minimumPassThroughHeightLeft = Math.min(
           warehouse[currentLeftIndex],
-          minimumPassThroughHeightLeft,
+          minimumPassThroughHeightLeft
         );
       }
     } else if (canOccupyRight) {
@@ -58,7 +62,7 @@ var maxBoxesInWarehouse = function (boxes, warehouse) {
       if (currentRightIndex >= currentLeftIndex) {
         minimumPassThroughHeightRight = Math.min(
           warehouse[currentRightIndex],
-          minimumPassThroughHeightRight,
+          minimumPassThroughHeightRight
         );
       }
     } else {

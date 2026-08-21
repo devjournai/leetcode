@@ -79,7 +79,7 @@ var componentValue = function (nums, edges) {
   function performDfsForComponents(
     currentNodeIdentifier,
     parentNodeIdentifier,
-    targetSumPerComponent,
+    targetSumPerComponent
   ) {
     let currentSubtreeValueAccumulator = nums[currentNodeIdentifier];
     let totalComponentsFormedInSubtree = 0;
@@ -91,7 +91,7 @@ var componentValue = function (nums, edges) {
         const childResultPair = performDfsForComponents(
           adjacentNodeIdentifier,
           currentNodeIdentifier,
-          targetSumPerComponent,
+          targetSumPerComponent
         );
         const childSubtreeResidualSum = childResultPair[0];
         const childComponentsFound = childResultPair[1];

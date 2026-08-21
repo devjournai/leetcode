@@ -69,7 +69,7 @@ var seePeople = function (heights) {
   const gridRowCount = heights.length;
   const gridColCount = heights[0].length;
   const visiblePeopleCount = Array.from({ length: gridRowCount }, () =>
-    Array(gridColCount).fill(0),
+    Array(gridColCount).fill(0)
   );
 
   for (let rowIterator = 0; rowIterator < gridRowCount; rowIterator++) {

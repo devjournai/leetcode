@@ -1,5 +1,10 @@
 /**
  * Simplified Fractions
+ * Intuition: Every proper fraction numerator/denominator with 1 <= num < den <= n is simplified iff gcd is 1.
+ * Approach: 1. Euclidean gcd helper. 2. For denominator 2..n and numerator 1..denominator-1, if gcd==1 push "num/den". 3. Return the list.
+ * Dry Run: n = 3
+ *   - 1/2 gcd 1; 1/3 gcd 1; 2/3 gcd 1
+ *   - ["1/2","1/3","2/3"]
  * Time Complexity: O(n^2 * log n)
  * Space Complexity: O(n^2 * log n)
  */
@@ -26,11 +31,11 @@ var simplifiedFractions = function (n) {
     while (numeratorCandidate < denominatorCandidate) {
       const currentGcdResult = calculateGreatestCommonDivisor(
         numeratorCandidate,
-        denominatorCandidate,
+        denominatorCandidate
       );
       if (currentGcdResult === 1) {
         fractionsCollection.push(
-          `${numeratorCandidate}/${denominatorCandidate}`,
+          `${numeratorCandidate}/${denominatorCandidate}`
         );
       }
       numeratorCandidate++;

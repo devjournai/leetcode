@@ -1,5 +1,9 @@
 /**
  * Minimum Score Triangulation Of Polygon
+ * Intuition: Interval DP: for vertices i..j, try each split k and add triangle (i,k,j) plus the two sub-polygons.
+ * Approach: 1. Zero an n x n table. 2. For span 2..n-1, for each start, end=start+span. 3. Minimize over k in (start,end): dp[start][k]+dp[k][end]+values[start]*values[k]*values[end]. 4. Return dp[0][n-1].
+ * Dry Run: values = [1,2,3].
+ *   - Only one triangle, score 1*2*3=6.
  * Time Complexity: O(N^3)
  * Space Complexity: O(N^2)
  */
@@ -35,7 +39,7 @@ var minScoreTriangulation = function (values) {
           values[startVertex] * values[splitVertex] * values[endVertex];
         memoTable[startVertex][endVertex] = Math.min(
           memoTable[startVertex][endVertex],
-          currentTriangulationScore,
+          currentTriangulationScore
         );
       }
     }

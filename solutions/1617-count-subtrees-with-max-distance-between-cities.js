@@ -1,5 +1,9 @@
 /**
  * Count Subtrees With Max Distance Between Cities
+ * Intuition: Every nonempty city subset is a candidate subtree. It is valid if BFS from one member visits the whole subset. Diameter is the longest shortest path, found by two BFS passes.
+ * Approach: 1. Build an adjacency list. 2. Enumerate bitmasks 1..2^n-1. 3. Skip size < 2. 4. BFS from one selected city; skip if not all selected cities are reached. 5. BFS from the farthest city to get the diameter d; increment answer[d-1].
+ * Dry Run: n=4, edges form a line 1-2-3-4.
+ *   - Subset {1,2,3,4} diameter 3 → answer[2] += 1, plus smaller connected subsets.
  * Time Complexity: O(2^n * n)
  * Space Complexity: O(n)
  */
@@ -14,7 +18,7 @@ var countSubgraphsForEachDiameter = function (n, connections) {
 
   const calculateFarthestNodeAndDistance = (
     subsetInclusionFlags,
-    startingCityIndex,
+    startingCityIndex
   ) => {
     const currentDistancesArray = new Array(n).fill(-1);
     const bfsExecutionQueue = [startingCityIndex];
@@ -74,7 +78,7 @@ var countSubgraphsForEachDiameter = function (n, connections) {
 
     const bfsResultFirst = calculateFarthestNodeAndDistance(
       activeCitySelection,
-      initialCityForBFS,
+      initialCityForBFS
     );
 
     if (bfsResultFirst.visitedNodeTotal !== currentSubsetSize) {
@@ -83,7 +87,7 @@ var countSubgraphsForEachDiameter = function (n, connections) {
 
     const bfsResultSecond = calculateFarthestNodeAndDistance(
       activeCitySelection,
-      bfsResultFirst.farthestNode,
+      bfsResultFirst.farthestNode
     );
 
     const currentDiameterValue = bfsResultSecond.maximumDistance;

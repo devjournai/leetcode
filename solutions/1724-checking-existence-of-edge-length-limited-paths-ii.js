@@ -1,5 +1,9 @@
 /**
  * Checking Existence Of Edge Length Limited Paths II
+ * Intuition: Offline 1697 as a class: for each distinct query limit, union all edges with weight < limit and cache that DSU so later queries with the same limit reuse it.
+ * Approach: 1. Constructor sorts `orderedEdges` by weight. 2. `query`: if `distanceRestriction` unseen, build `CustomUnionFind`, unite edges with weight < limit, cache it. 3. Return `areConnected(start, end)`.
+ * Dry Run: n=3, edges=[[0,1,2],[1,2,4]], query(0,2,5)
+ * Union 0-1 (2) and 1-2 (4); 0 and 2 connected → true. query(0,2,3) unions only 0-1 → false.
  * Time Complexity: O(E log E + Q * E * α(N))
  * Space Complexity: O(E + Q * N)
  */
@@ -9,7 +13,7 @@ var DistanceLimitedPathsExist = function (n, edgeList) {
     .slice()
     .sort(
       (firstEdgeDetails, secondEdgeDetails) =>
-        firstEdgeDetails[2] - secondEdgeDetails[2],
+        firstEdgeDetails[2] - secondEdgeDetails[2]
     );
   this.limitToUnionFindMap = new Map();
   this.cachedLimits = new Set();
@@ -18,7 +22,7 @@ var DistanceLimitedPathsExist = function (n, edgeList) {
 DistanceLimitedPathsExist.prototype.query = function (
   startNodeIdentifier,
   endNodeIdentifier,
-  distanceRestriction,
+  distanceRestriction
 ) {
   if (!this.cachedLimits.has(distanceRestriction)) {
     const currentUnionFindStructure = new CustomUnionFind(this.totalNodes);
@@ -37,7 +41,7 @@ DistanceLimitedPathsExist.prototype.query = function (
 
     this.limitToUnionFindMap.set(
       distanceRestriction,
-      currentUnionFindStructure,
+      currentUnionFindStructure
     );
     this.cachedLimits.add(distanceRestriction);
   }
@@ -45,7 +49,7 @@ DistanceLimitedPathsExist.prototype.query = function (
   const fetchedUnionFinder = this.limitToUnionFindMap.get(distanceRestriction);
   return fetchedUnionFinder.areConnected(
     startNodeIdentifier,
-    endNodeIdentifier,
+    endNodeIdentifier
   );
 };
 
@@ -53,7 +57,7 @@ class CustomUnionFind {
   constructor(initialCapacity) {
     this.representativeArray = Array.from(
       { length: initialCapacity },
-      (_, itemIndex) => itemIndex,
+      (_, itemIndex) => itemIndex
     );
     this.rankValueArray = new Array(initialCapacity).fill(0);
   }
@@ -61,7 +65,7 @@ class CustomUnionFind {
   findRoot(itemToFind) {
     if (this.representativeArray[itemToFind] !== itemToFind) {
       this.representativeArray[itemToFind] = this.findRoot(
-        this.representativeArray[itemToFind],
+        this.representativeArray[itemToFind]
       );
     }
     return this.representativeArray[itemToFind];

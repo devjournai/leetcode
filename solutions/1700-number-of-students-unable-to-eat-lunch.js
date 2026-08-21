@@ -1,5 +1,9 @@
 /**
  * Number Of Students Unable To Eat Lunch
+ * Intuition: Students cycle until the stack top matches someone's preference. Counting how many want 0 vs 1 is enough: walk sandwiches in order; if nobody wants the current top, the rest of that preference queue is stuck.
+ * Approach: 1. Count `zeroPreferenceCounter` and `onePreferenceCounter`. 2. For each `topSandwichType`, decrement the matching counter or return the other counter if it is 0. 3. If the stack empties, return 0.
+ * Dry Run: students = [1,1,0,0], sandwiches = [0,1,0,1]
+ * counts 0:2, 1:2. Serve 0,1,0,1 all match → 0 unable.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

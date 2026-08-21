@@ -1,5 +1,8 @@
 /**
  * Parsing A Boolean Expression
+ * Intuition: Nested ! & | expressions evaluate with a stack: on ')' pop operands back to '(', then apply the operator just below. t/f become booleans; commas are ignored.
+ * Approach: 1. Scan chars. 2. On ')', collect operands until '(', pop the operator. 3. Apply NOT/AND/OR and push the boolean. 4. Otherwise push t/f/operator/'('. 5. Return the last stack value.
+ * Dry Run: &(t,f). Push &, (, t, f; on ')' AND them → false.
  * Time Complexity: O(L)
  * Space Complexity: O(L)
  */

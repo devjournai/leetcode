@@ -62,7 +62,7 @@ var maxKDivisibleComponents = function (n, edges, values, k) {
       if (connectedNeighbor !== parentOfCurrentNode) {
         const childSubtreeContribution = exploreNodeForSum(
           connectedNeighbor,
-          currentTraversalNode,
+          currentTraversalNode
         );
         aggregateSubtreeValue += childSubtreeContribution;
       }

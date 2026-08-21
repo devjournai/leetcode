@@ -43,12 +43,16 @@
  *   Final totalEqualCountSubstrings = 7.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
-*/
+ */
 var equalCountSubstrings = function (s, count) {
   const stringLength = s.length;
   let totalEqualCountSubstrings = 0;
 
-  for (let currentUniqueCharacterCount = 1; currentUniqueCharacterCount <= 26; currentUniqueCharacterCount++) {
+  for (
+    let currentUniqueCharacterCount = 1;
+    currentUniqueCharacterCount <= 26;
+    currentUniqueCharacterCount++
+  ) {
     const requiredSubstringLength = currentUniqueCharacterCount * count;
 
     if (requiredSubstringLength > stringLength) {
@@ -58,10 +62,15 @@ var equalCountSubstrings = function (s, count) {
     const windowCharFrequencies = new Map();
     let charactersMeetingTargetCount = 0;
 
-    for (let windowEndIndex = 0; windowEndIndex < stringLength; windowEndIndex++) {
+    for (
+      let windowEndIndex = 0;
+      windowEndIndex < stringLength;
+      windowEndIndex++
+    ) {
       const charAtEnd = s[windowEndIndex];
 
-      const updatedFrequencyEnd = (windowCharFrequencies.get(charAtEnd) || 0) + 1;
+      const updatedFrequencyEnd =
+        (windowCharFrequencies.get(charAtEnd) || 0) + 1;
       windowCharFrequencies.set(charAtEnd, updatedFrequencyEnd);
 
       if (updatedFrequencyEnd === count) {
@@ -73,7 +82,10 @@ var equalCountSubstrings = function (s, count) {
       if (windowEndIndex >= requiredSubstringLength - 1) {
         const windowStartIndex = windowEndIndex - requiredSubstringLength + 1;
 
-        if (charactersMeetingTargetCount === currentUniqueCharacterCount && windowCharFrequencies.size === currentUniqueCharacterCount) {
+        if (
+          charactersMeetingTargetCount === currentUniqueCharacterCount &&
+          windowCharFrequencies.size === currentUniqueCharacterCount
+        ) {
           totalEqualCountSubstrings++;
         }
 

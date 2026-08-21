@@ -1,5 +1,11 @@
 /**
  * Sort List
+ * Intuition: Merge sort on a linked list splits at the middle with tortoise/hare, sorts each half recursively, then merges two sorted lists in linear time without extra node allocation beyond recursion.
+ * Approach: 1. `mergeSortedSublists` walks both lists, always attaching the smaller head to a dummy `resultHead`. 2. `sortList`: if 0 or 1 node, return `head`. 3. Advance `hare` by two and `tortoise` by one, tracking `priorNodeToMid`; cut with `priorNodeToMid.next = null`. 4. Recurse on `firstPart` (original head) and `secondPart` (`tortoise`). 5. Return the merge of the two sorted halves.
+ * Dry Run: 4 → 2 → 1 → 3
+ * Split: 4 → 2 and 1 → 3
+ * Sort halves: 2 → 4 and 1 → 3
+ * Merge: 1 → 2 → 3 → 4
  * Time Complexity: O(N log N)
  * Space Complexity: O(log N)
  */

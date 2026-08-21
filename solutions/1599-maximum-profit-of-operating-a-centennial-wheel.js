@@ -1,12 +1,16 @@
 /**
  * Maximum Profit Of Operating A Centennial Wheel
+ * Intuition: Simulate rotations: board min(4, waiting), profit = boarded*boardingCost - rotations*runningCost; track the first max positive profit rotation.
+ * Approach: 1. While customers remain in input or queue. 2. Add the next batch, board ≤4. 3. Update profit and best rotation. 4. Return best if profit>0 else -1.
+ * Dry Run: customers = [8,3], boardingCost = 5, runningCost = 6.
+ *   - Max profit after 3 rotations → 3.
  * Time Complexity: O(N + S/C)
  * Space Complexity: O(1)
  */
 var minOperationsMaxProfit = function (
   inputCustomers,
   singleBoardCost,
-  singleRunCost,
+  singleRunCost
 ) {
   let pendingCustomers = 0;
   let totalPassengersServed = 0;
@@ -28,7 +32,7 @@ var minOperationsMaxProfit = function (
 
     const passengersBoardingThisTurn = Math.min(
       pendingCustomers,
-      gondolaMaxCapacity,
+      gondolaMaxCapacity
     );
 
     pendingCustomers -= passengersBoardingThisTurn;

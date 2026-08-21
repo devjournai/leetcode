@@ -54,11 +54,11 @@ var maximumSum = function (nums) {
       const priorMaxElement = digitSumToGreatestValueMap.get(computedDigitSum);
       maximumAchievedSum = Math.max(
         maximumAchievedSum,
-        elementValue + priorMaxElement,
+        elementValue + priorMaxElement
       );
       digitSumToGreatestValueMap.set(
         computedDigitSum,
-        Math.max(priorMaxElement, elementValue),
+        Math.max(priorMaxElement, elementValue)
       );
     } else {
       digitSumToGreatestValueMap.set(computedDigitSum, elementValue);

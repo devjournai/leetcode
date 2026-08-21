@@ -66,7 +66,7 @@ var punishmentNumber = function (n) {
   function checkPartitionValidity(
     inputStringValue,
     desiredSumValue,
-    currentStartIndex,
+    currentStartIndex
   ) {
     if (currentStartIndex === inputStringValue.length) {
       return desiredSumValue === 0;
@@ -94,7 +94,7 @@ var punishmentNumber = function (n) {
         checkPartitionValidity(
           inputStringValue,
           desiredSumValue - segmentAccumulator,
-          currentParseIndex + 1,
+          currentParseIndex + 1
         )
       ) {
         return true;

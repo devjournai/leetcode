@@ -1,5 +1,9 @@
 /**
  * Maximum Number Of Accepted Invitations
+ * Intuition: This is bipartite matching: boys to girls with grid[boy][girl]=1. Kuhn’s DFS augmenting-path algorithm assigns each boy a girl, possibly reassigning previous matches.
+ * Approach: 1. `girlInvitationStatus[girl]` stores the matched boy or -1. 2. For each boy, DFS `attemptMatchForBoy` over unused girls he likes. 3. If the girl is free or her current boy can rematch, assign her. 4. Count successful matches.
+ * Dry Run: grid = [[1,1,1],[1,0,1],[0,0,1]].
+ *   - Three augmenting assignments possible → 3.
  * Time Complexity: O(m * n * (m + n))
  * Space Complexity: O(m + n)
  */
@@ -35,7 +39,7 @@ var maximumInvitations = function (grid) {
           girlInvitationStatus[currentGirlOption] === -1 ||
           attemptMatchForBoy(
             girlInvitationStatus[currentGirlOption],
-            visitedGirlsInPath,
+            visitedGirlsInPath
           )
         ) {
           girlInvitationStatus[currentGirlOption] = currentBoyConsidering;

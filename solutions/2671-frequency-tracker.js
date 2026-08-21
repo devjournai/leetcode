@@ -107,7 +107,7 @@ FrequencyTracker.prototype.add = function (number) {
   if (oldFrequency > 0) {
     this.frequencyCount.set(
       oldFrequency,
-      this.frequencyCount.get(oldFrequency) - 1,
+      this.frequencyCount.get(oldFrequency) - 1
     );
   }
 
@@ -117,7 +117,7 @@ FrequencyTracker.prototype.add = function (number) {
 
   this.frequencyCount.set(
     newFrequency,
-    (this.frequencyCount.get(newFrequency) || 0) + 1,
+    (this.frequencyCount.get(newFrequency) || 0) + 1
   );
 };
 
@@ -130,7 +130,7 @@ FrequencyTracker.prototype.deleteOne = function (number) {
 
   this.frequencyCount.set(
     oldFrequency,
-    this.frequencyCount.get(oldFrequency) - 1,
+    this.frequencyCount.get(oldFrequency) - 1
   );
 
   const newFrequency = oldFrequency - 1;
@@ -142,7 +142,7 @@ FrequencyTracker.prototype.deleteOne = function (number) {
 
     this.frequencyCount.set(
       newFrequency,
-      (this.frequencyCount.get(newFrequency) || 0) + 1,
+      (this.frequencyCount.get(newFrequency) || 0) + 1
     );
   }
 };

@@ -2,6 +2,14 @@
  * Number of Strings Which Can Be Rearranged to Contain Substring
  *
  * Intuition:
+ * A string is good if it has at least one `l`, two `e`s, and one `t`
+ * (enough to rearrange into substring "leet"). Count strings of length n
+ * over 26 letters that reach those counts.
+ *
+ * Approach: Memoized DFS `dfs(i, l, e, t)` on remaining length i and capped
+ * counts (l<=1, e<=2, t<=1). From each state add 23 other letters, one `l`,
+ * one `e`, and one `t` (modulo 1e9+7). Base: i===0 succeeds iff l===1, e===2, t===1.
+ *
  * A string is good if its characters can be rearranged to contain
  * "leet" as a substring.
  *

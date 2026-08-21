@@ -96,7 +96,7 @@ var closestNodes = function (treeRoot, inputQueries) {
 
     while (leftSearchBoundary <= rightSearchBoundary) {
       const midPoint = Math.floor(
-        (leftSearchBoundary + rightSearchBoundary) / 2,
+        (leftSearchBoundary + rightSearchBoundary) / 2
       );
       const midVal = sortedTreeValues[midPoint];
 

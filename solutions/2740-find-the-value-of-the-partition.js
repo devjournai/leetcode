@@ -38,7 +38,7 @@ var findValueOfPartition = function (nums) {
       currentNumberInSequence - precedingNumberInSequence;
     smallestDifferenceFound = Math.min(
       smallestDifferenceFound,
-      calculatedDifferenceBetween,
+      calculatedDifferenceBetween
     );
     iterationPointer++;
   }

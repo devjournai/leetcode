@@ -1,5 +1,9 @@
 /**
  * Strings Differ By One Character
+ * Intuition: Two strings are almost equal if Hamming distance is exactly 1.
+ * Approach: 1. Compare every pair. 2. Count diffs, abort if >1. 3. Return true if exactly 1.
+ * Dry Run: dict = ["abcd","acbd","aacd"].
+ *   - "abcd" vs "aacd" differ once → true.
  * Time Complexity: O(N^2 * M)
  * Space Complexity: O(1)
  */

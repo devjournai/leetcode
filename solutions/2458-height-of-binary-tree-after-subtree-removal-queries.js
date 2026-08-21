@@ -61,7 +61,7 @@ var treeQueries = function (root, queries) {
   const calculateMaxHeightInternal = (
     nodeTraversal,
     currentTreeDepth,
-    longestAlternativePathHeight,
+    longestAlternativePathHeight
   ) => {
     if (!nodeTraversal) {
       return;
@@ -76,28 +76,28 @@ var treeQueries = function (root, queries) {
 
     const maxPossibleHeightWhenRemoved = Math.max(
       longestAlternativePathHeight,
-      currentTreeDepth - 1,
+      currentTreeDepth - 1
     );
     treeMaxHeightExcluding.set(nodeTraversal.val, maxPossibleHeightWhenRemoved);
 
     const alternativePathForLeft = Math.max(
       longestAlternativePathHeight,
-      currentTreeDepth + 1 + rightChildSubtreeHeight,
+      currentTreeDepth + 1 + rightChildSubtreeHeight
     );
     calculateMaxHeightInternal(
       nodeTraversal.left,
       currentTreeDepth + 1,
-      alternativePathForLeft,
+      alternativePathForLeft
     );
 
     const alternativePathForRight = Math.max(
       longestAlternativePathHeight,
-      currentTreeDepth + 1 + leftChildSubtreeHeight,
+      currentTreeDepth + 1 + leftChildSubtreeHeight
     );
     calculateMaxHeightInternal(
       nodeTraversal.right,
       currentTreeDepth + 1,
-      alternativePathForRight,
+      alternativePathForRight
     );
   };
 

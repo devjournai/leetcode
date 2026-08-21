@@ -82,7 +82,7 @@ var idealArrays = function (arrayLength, maxElementValue) {
   const comboLimitCol = maxPrimePowerExponent + 1;
 
   const pascalCombinations = Array.from({ length: comboLimitRow }, () =>
-    new Array(comboLimitCol).fill(0),
+    new Array(comboLimitCol).fill(0)
   );
   const smallestPrimeFactors = new Array(maxSieveValue).fill(0);
   const primeExponentLists = Array.from({ length: maxSieveValue }, () => []);
@@ -146,7 +146,7 @@ var idealArrays = function (arrayLength, maxElementValue) {
           BigInt(
             pascalCombinations[arrayLength + currentExponentCount - 1][
               currentExponentCount
-            ],
+            ]
           )) %
         BigInt(modulusValue);
     }

@@ -64,7 +64,7 @@ var maximumSumScore = function (nums) {
       entireArraySum - currentRunningPrefixSum + nums[loopIndex];
     const currentIterationScore = Math.max(
       currentRunningPrefixSum,
-      calculatedSuffixSum,
+      calculatedSuffixSum
     );
     greatestSumScore = Math.max(greatestSumScore, currentIterationScore);
     loopIndex++;

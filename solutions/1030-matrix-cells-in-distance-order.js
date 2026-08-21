@@ -1,5 +1,9 @@
 /**
  * Matrix Cells In Distance Order
+ * Intuition: BFS from the center visits cells in nondecreasing Manhattan distance.
+ * Approach: 1. Queue the center and mark visited. 2. Pop cells into the result. 3. Enqueue unvisited 4-neighbors. 4. Return the visit order.
+ * Dry Run: rows=2, cols=2, rCenter=0, cCenter=1.
+ *   - Start [0,1]. Neighbors [0,0] then [1,1], then [1,0]. Order [[0,1],[0,0],[1,1],[1,0]].
  * Time Complexity: O(rows * cols)
  * Space Complexity: O(rows * cols)
  */

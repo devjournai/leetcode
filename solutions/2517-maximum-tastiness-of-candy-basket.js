@@ -52,7 +52,7 @@ var maximumTastiness = function (price, k) {
 
   while (lowerSearchBound <= upperSearchBound) {
     const currentMidTastiness = Math.floor(
-      (lowerSearchBound + upperSearchBound) / 2,
+      (lowerSearchBound + upperSearchBound) / 2
     );
 
     let selectedCandiesCount = 1;

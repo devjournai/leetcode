@@ -33,7 +33,7 @@ var arrayRankTransform = function (arr) {
   }
 
   initialIndexedValues.sort(
-    (itemA, itemB) => itemA.elementValue - itemB.elementValue,
+    (itemA, itemB) => itemA.elementValue - itemB.elementValue
   );
 
   let transformedRanks = new Array(arr.length);

@@ -23,7 +23,7 @@
  */
 var minimumCost = function (candiesInputArray) {
   const sortedCosts = [...candiesInputArray].sort(
-    (candyPriceA, candyPriceB) => candyPriceB - candyPriceA,
+    (candyPriceA, candyPriceB) => candyPriceB - candyPriceA
   );
   let totalAccumulatedCost = 0;
   let itemIndex = 0;

@@ -1,83 +1,8 @@
 /**
  * Count of Sub-Multisets With Bounded Sum
- *
- * Intuition:
- * Treat equal values together.
- *
- * Suppose a value v appears c times.
- * We may choose it:
- *
- *      0,1,2,...,c times.
- *
- * Instead of processing every occurrence independently,
- * process every distinct value once using bounded knapsack DP.
- *
- * -----------------------------------------------------------------------
- *
- * DP
- *
- * dp[s]
- * =
- * number of ways to obtain sum s.
- *
- * Initially
- *
- *      dp[0] = 1
- *
- * -----------------------------------------------------------------------
- *
- * Transition
- *
- * For value = v with frequency = c
- *
- * We need
- *
- * newDp[s]
- * =
- * dp[s]
- * + dp[s-v]
- * + dp[s-2v]
- * + ...
- * + dp[s-cv]
- *
- * Computing this directly is O(c·sum).
- *
- * Instead use prefix sums over residues modulo v.
- *
- * -----------------------------------------------------------------------
- *
- * Prefix Optimization
- *
- * For every remainder
- *
- *      rem = 0...v-1
- *
- * Process
- *
- *      rem,
- *      rem+v,
- *      rem+2v...
- *
- * Maintain a sliding window of size (c+1).
- *
- * This gives O(sum).
- *
- * -----------------------------------------------------------------------
- *
- * Special Case
- *
- * Value = 0
- *
- * Choosing any number of zeros doesn't change the sum.
- *
- * If there are cnt zeros,
- *
- * every dp value is multiplied by
- *
- *      cnt + 1
- *
- * -----------------------------------------------------------------------
- *
+ * Intuition: Group equal values and run bounded knapsack. Zeros only multiply the number of ways; other values use a sliding window over residue classes.
+ * Approach: 1. Count frequencies. 2. dp[0]=1. 3. For zeros, multiply every dp[s] by (count+1). 4. For value v with count c, rebuild next[s] as a sliding window of size c+1 on sums congruent modulo v. 5. Sum dp[l..r].
+ * Dry Run: nums = [1,2,2,3], l = 6, r = 6. Bounded knapsack has one way to make 6 ({1,2,3}). Answer 1.
  * Time Complexity: O(S)
  * Space Complexity: O(S)
  */

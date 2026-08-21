@@ -1,5 +1,8 @@
 /**
  * Search In A Binary Search Tree
+ * Intuition: BST order: go left if val is smaller than the node, right if larger, return the node on match.
+ * Approach: 1. Null → null. 2. `root.val === val` → root. 3. Else recurse `searchBST` on left or right.
+ * Dry Run: tree 4 / 2 7 / 1 3, val=2. 2<4 go left; 2==2 return that node.
  * Time Complexity: O(H)
  * Space Complexity: O(H)
  */

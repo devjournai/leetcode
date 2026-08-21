@@ -60,7 +60,7 @@ var minimumTime = function (timeCollection, targetTotalTrips) {
 
   while (lowerBoundSearch <= upperBoundSearch) {
     const candidateDuration = Math.floor(
-      (lowerBoundSearch + upperBoundSearch) / 2,
+      (lowerBoundSearch + upperBoundSearch) / 2
     );
     let accumulatedTrips = 0;
 

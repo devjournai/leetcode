@@ -24,26 +24,26 @@
  *   6. Return `0`.
  * Time Complexity: O(N), where N is the length of the `nums` array. We iterate through the array exactly once.
  * Space Complexity: O(1), as we use a constant amount of extra space for variables.
-*/
-var longestSubsequence = function(nums) {
-    let totalXOR = 0;
-    let hasNonZeroElement = false;
-    const n = nums.length;
+ */
+var longestSubsequence = function (nums) {
+  let totalXOR = 0;
+  let hasNonZeroElement = false;
+  const n = nums.length;
 
-    for (let i = 0; i < n; i++) {
-        totalXOR ^= nums[i];
-        if (nums[i] !== 0) {
-            hasNonZeroElement = true;
-        }
+  for (let i = 0; i < n; i++) {
+    totalXOR ^= nums[i];
+    if (nums[i] !== 0) {
+      hasNonZeroElement = true;
     }
+  }
 
-    if (totalXOR !== 0) {
-        return n;
+  if (totalXOR !== 0) {
+    return n;
+  } else {
+    if (hasNonZeroElement) {
+      return n - 1;
     } else {
-        if (hasNonZeroElement) {
-            return n - 1;
-        } else {
-            return 0;
-        }
+      return 0;
     }
+  }
 };

@@ -68,7 +68,7 @@ var largestLocal = function (grid) {
           const actualGridCol = outputColIterator + colOffset;
           currentWindowMaximum = Math.max(
             currentWindowMaximum,
-            grid[actualGridRow][actualGridCol],
+            grid[actualGridRow][actualGridCol]
           );
         }
       }

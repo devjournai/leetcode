@@ -121,7 +121,7 @@ var numberOfPairs = function (points) {
       totalValidPairs++;
       maxIntermediateYCoordinate = Math.max(
         maxIntermediateYCoordinate,
-        bobPointY,
+        bobPointY
       );
     }
   }

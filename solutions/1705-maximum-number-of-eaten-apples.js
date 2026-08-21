@@ -1,5 +1,9 @@
 /**
  * Maximum Number Of Eaten Apples
+ * Intuition: Each day eat one apple from the batch that expires soonest (min-heap on last edible day). Keep processing after harvest ends while apples remain.
+ * Approach: 1. `ExpiryMinHeap` stores [lastEdibleDay, count]. 2. Each `currentMoment`, offer today's apples with expiry `currentMoment + rotDurations - 1`. 3. Poll expired batches; eat one from `peekEarliest`. 4. Return `totalEatenCount`.
+ * Dry Run: fruitQuantities = [1,2,3,5,2], rotDurations = [3,2,1,4,2]
+ * Day0: batch exp 2 qty1, eat 1. Continue preferring earliest expiry; total eaten = 7.
  * Time Complexity: O((N + D_max) * log N)
  * Space Complexity: O(N)
  */
@@ -113,7 +117,7 @@ var eatenApples = function (fruitQuantities, rotDurations) {
       const actualRottenThreshold = decayDay - 1;
       availableApples.offerItem(
         actualRottenThreshold,
-        fruitQuantities[currentMoment],
+        fruitQuantities[currentMoment]
       );
     }
 

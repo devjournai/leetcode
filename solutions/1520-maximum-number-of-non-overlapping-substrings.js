@@ -1,5 +1,9 @@
 /**
  * Maximum Number Of Non Overlapping Substrings
+ * Intuition: A valid substring for a letter must cover every occurrence of every letter inside it. Take those closed intervals and greedily pick by earliest end.
+ * Approach: 1. Record first/last index per letter. 2. Expand each letter's span until all inner letters fit; skip if some letter starts before the span. 3. Sort by end and pick non-overlapping.
+ * Dry Run: s = "abab".
+ *   - 'a' and 'b' both expand to [0,3] → one substring "abab".
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -14,11 +18,11 @@ var maxNumOfSubstrings = function (s) {
     const charValue = s.charCodeAt(currentStringIndex) - 97;
     characterBounds[charValue][0] = Math.min(
       characterBounds[charValue][0],
-      currentStringIndex,
+      currentStringIndex
     );
     characterBounds[charValue][1] = Math.max(
       characterBounds[charValue][1],
-      currentStringIndex,
+      currentStringIndex
     );
   }
 
@@ -39,7 +43,7 @@ var maxNumOfSubstrings = function (s) {
       }
       substringFinish = Math.max(
         substringFinish,
-        characterBounds[charAtScanIndex][1],
+        characterBounds[charAtScanIndex][1]
       );
       scanIndex++;
     }
@@ -69,7 +73,7 @@ var maxNumOfSubstrings = function (s) {
 
     if (currentIntervalStart > lastAcceptedFinish) {
       finalResult.push(
-        s.substring(currentIntervalStart, currentIntervalEnd + 1),
+        s.substring(currentIntervalStart, currentIntervalEnd + 1)
       );
       lastAcceptedFinish = currentIntervalEnd;
     }

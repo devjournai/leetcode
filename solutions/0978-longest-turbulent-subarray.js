@@ -1,5 +1,8 @@
 /**
  * Longest Turbulent Subarray
+ * Intuition: Track the longest run ending here that last went up (`currentTurbulenceAscending`) vs down (`currentTurbulenceDescending`). A peak/valley extends the opposite run.
+ * Approach: 1. Length < 2 returns that length. 2. For each adjacent pair: equal resets both to 1; greater sets ascending = prev descending + 1; lesser sets descending = prev ascending + 1. 3. Track `longestSubarrayLength`. 4. Return it.
+ * Dry Run: inputElements = [9,4,2,10,7,8,8,1,9]. 9>4>2 then 2<10>7<8 resets at 8=8. Longest turbulent is 5 (4,2,10,7,8).
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */
@@ -31,7 +34,7 @@ var maxTurbulenceSize = function (inputElements) {
     longestSubarrayLength = Math.max(
       longestSubarrayLength,
       currentTurbulenceAscending,
-      currentTurbulenceDescending,
+      currentTurbulenceDescending
     );
   }
 

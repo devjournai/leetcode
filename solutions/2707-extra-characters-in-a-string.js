@@ -55,7 +55,7 @@ var minExtraChar = function (s, dictionary) {
       if (wordCollection.has(subsegmentValue)) {
         dynamicProgrammingState[currentPosition] = Math.min(
           dynamicProgrammingState[currentPosition],
-          dynamicProgrammingState[segmentStart],
+          dynamicProgrammingState[segmentStart]
         );
       }
     }

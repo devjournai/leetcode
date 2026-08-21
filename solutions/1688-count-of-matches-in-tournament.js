@@ -1,5 +1,9 @@
 /**
  * Count Of Matches In Tournament
+ * Intuition: Each match eliminates one team, so a tournament that ends with one winner always plays `n-1` matches. Simulating even/odd pairing yields the same total.
+ * Approach: 1. While `currentTeamsCount > 1`, if even play `n/2` matches and `n/2` advance; if odd play `(n-1)/2` and `(n-1)/2+1` advance. 2. Add `matchesThisRound` to `totalMatchesPlayed`. 3. Return the total.
+ * Dry Run: n = 7
+ * 7 odd → 3 matches, 4 advance; 4 even → 2 matches, 2 advance; 2 even → 1 match. Total = 6 (= n−1).
  * Time Complexity: O(log n)
  * Space Complexity: O(1)
  */

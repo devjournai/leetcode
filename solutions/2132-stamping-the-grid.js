@@ -63,10 +63,10 @@ var possibleToStamp = function (gridInput, stampHeight, stampWidth) {
   const colsCount = gridInput[0].length;
 
   const prefixSumOfGrid = Array.from({ length: rowsCount + 1 }, () =>
-    Array(colsCount + 1).fill(0),
+    Array(colsCount + 1).fill(0)
   );
   const differenceMatrix = Array.from({ length: rowsCount + 1 }, () =>
-    Array(colsCount + 1).fill(0),
+    Array(colsCount + 1).fill(0)
   );
 
   for (let currentGridRow = 0; currentGridRow < rowsCount; currentGridRow++) {
@@ -108,7 +108,7 @@ var possibleToStamp = function (gridInput, stampHeight, stampWidth) {
   }
 
   const stampedCells = Array.from({ length: rowsCount }, () =>
-    Array(colsCount).fill(0),
+    Array(colsCount).fill(0)
   );
 
   for (let coveredMapRow = 0; coveredMapRow < rowsCount; coveredMapRow++) {

@@ -66,7 +66,7 @@ class PriorityQueue {
       if (
         this.comparator(
           this.heapContainer[currentElementIndex],
-          this.heapContainer[parentElementIndex],
+          this.heapContainer[parentElementIndex]
         ) < 0
       ) {
         [
@@ -97,7 +97,7 @@ class PriorityQueue {
         leftChildCandidateIndex < this.size() &&
         this.comparator(
           this.heapContainer[leftChildCandidateIndex],
-          this.heapContainer[smallestChildCandidateIndex],
+          this.heapContainer[smallestChildCandidateIndex]
         ) < 0
       ) {
         smallestChildCandidateIndex = leftChildCandidateIndex;
@@ -107,7 +107,7 @@ class PriorityQueue {
         rightChildCandidateIndex < this.size() &&
         this.comparator(
           this.heapContainer[rightChildCandidateIndex],
-          this.heapContainer[smallestChildCandidateIndex],
+          this.heapContainer[smallestChildCandidateIndex]
         ) < 0
       ) {
         smallestChildCandidateIndex = rightChildCandidateIndex;

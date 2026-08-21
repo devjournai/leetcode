@@ -1,5 +1,9 @@
 /**
  * Split Concatenated Strings
+ * Intuition: The loop can start at any character of any string, and each string may be reversed. For a lexicographic max, keep every non-cut string in its better orientation, then try both orientations of the cut string at every cut index.
+ * Approach: 1. `processedStrings[i]` = max(strs[i], reverse(strs[i])). 2. For each cut segment, concat all other processed strings in loop order. 3. For original and reversed of the cut string, for each `cutPoint`, form `suffix + middle + prefix`. 4. Keep the lexicographically largest candidate.
+ * Dry Run: strs = ["abc","xyz"].
+ *   - Processed: "cba","zyx". Cutting "abc" at 0 with others "zyx" gives candidates; best is "zyxcba".
  * Time Complexity: O(L^2)
  * Space Complexity: O(L)
  */

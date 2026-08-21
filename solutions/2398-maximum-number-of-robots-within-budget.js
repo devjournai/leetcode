@@ -139,7 +139,7 @@ var maximumRobots = function (chargeTimes, runningCosts, budget) {
 
     maximumRobotCountValue = Math.max(
       maximumRobotCountValue,
-      windowEndingIndex - windowStartingIndex + 1,
+      windowEndingIndex - windowStartingIndex + 1
     );
   }
 

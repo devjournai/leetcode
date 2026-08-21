@@ -33,7 +33,7 @@ var bestHand = function (ranks, suits) {
     suitCounts.set(currentSuit, (suitCounts.get(currentSuit) || 0) + 1);
     rankFrequencies.set(
       currentRank,
-      (rankFrequencies.get(currentRank) || 0) + 1,
+      (rankFrequencies.get(currentRank) || 0) + 1
     );
   }
 

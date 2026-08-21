@@ -36,65 +36,65 @@
  *
  * Time Complexity: O(N)
  * Space Complexity: O(N)
-*/
+ */
 var RangeFreqQuery = function (arr) {
-    this.valueToIndicesMap = new Map();
+  this.valueToIndicesMap = new Map();
 
-    let currentIndex = 0;
-    let totalLength = arr.length;
-    while (currentIndex < totalLength) {
-        let currentValue = arr[currentIndex];
-        if (!this.valueToIndicesMap.has(currentValue)) {
-            this.valueToIndicesMap.set(currentValue, []);
-        }
-        let valueIndicesList = this.valueToIndicesMap.get(currentValue);
-        valueIndicesList.push(currentIndex);
-        currentIndex++;
+  let currentIndex = 0;
+  let totalLength = arr.length;
+  while (currentIndex < totalLength) {
+    let currentValue = arr[currentIndex];
+    if (!this.valueToIndicesMap.has(currentValue)) {
+      this.valueToIndicesMap.set(currentValue, []);
     }
+    let valueIndicesList = this.valueToIndicesMap.get(currentValue);
+    valueIndicesList.push(currentIndex);
+    currentIndex++;
+  }
 };
 
 RangeFreqQuery.prototype.query = function (left, right, value) {
-    if (!this.valueToIndicesMap.has(value)) {
-        return 0;
+  if (!this.valueToIndicesMap.has(value)) {
+    return 0;
+  }
+
+  const targetValueOccurrences = this.valueToIndicesMap.get(value);
+  const occurrenceCount = targetValueOccurrences.length;
+
+  let searchOneLow = 0;
+  let searchOneHigh = occurrenceCount - 1;
+  let foundFirstIndex = -1;
+
+  while (searchOneLow <= searchOneHigh) {
+    let searchOneMid = Math.floor((searchOneLow + searchOneHigh) / 2);
+    let currentValuePosition = targetValueOccurrences[searchOneMid];
+    if (currentValuePosition >= left) {
+      foundFirstIndex = searchOneMid;
+      searchOneHigh = searchOneMid - 1;
+    } else {
+      searchOneLow = searchOneMid + 1;
     }
+  }
 
-    const targetValueOccurrences = this.valueToIndicesMap.get(value);
-    const occurrenceCount = targetValueOccurrences.length;
+  let searchTwoLow = 0;
+  let searchTwoHigh = occurrenceCount - 1;
+  let foundLastIndex = -1;
 
-    let searchOneLow = 0;
-    let searchOneHigh = occurrenceCount - 1;
-    let foundFirstIndex = -1;
-
-    while (searchOneLow <= searchOneHigh) {
-        let searchOneMid = Math.floor((searchOneLow + searchOneHigh) / 2);
-        let currentValuePosition = targetValueOccurrences[searchOneMid];
-        if (currentValuePosition >= left) {
-            foundFirstIndex = searchOneMid;
-            searchOneHigh = searchOneMid - 1;
-        } else {
-            searchOneLow = searchOneMid + 1;
-        }
+  while (searchTwoLow <= searchTwoHigh) {
+    let searchTwoMid = Math.floor((searchTwoLow + searchTwoHigh) / 2);
+    let compareValuePosition = targetValueOccurrences[searchTwoMid];
+    if (compareValuePosition <= right) {
+      foundLastIndex = searchTwoMid;
+      searchTwoLow = searchTwoMid + 1;
+    } else {
+      searchTwoHigh = searchTwoMid - 1;
     }
+  }
 
-    let searchTwoLow = 0;
-    let searchTwoHigh = occurrenceCount - 1;
-    let foundLastIndex = -1;
+  if (foundFirstIndex === -1 || foundLastIndex === -1) {
+    return 0;
+  }
 
-    while (searchTwoLow <= searchTwoHigh) {
-        let searchTwoMid = Math.floor((searchTwoLow + searchTwoHigh) / 2);
-        let compareValuePosition = targetValueOccurrences[searchTwoMid];
-        if (compareValuePosition <= right) {
-            foundLastIndex = searchTwoMid;
-            searchTwoLow = searchTwoMid + 1;
-        } else {
-            searchTwoHigh = searchTwoMid - 1;
-        }
-    }
-
-    if (foundFirstIndex === -1 || foundLastIndex === -1) {
-        return 0;
-    }
-
-    let resultFrequency = foundLastIndex - foundFirstIndex + 1;
-    return resultFrequency;
+  let resultFrequency = foundLastIndex - foundFirstIndex + 1;
+  return resultFrequency;
 };

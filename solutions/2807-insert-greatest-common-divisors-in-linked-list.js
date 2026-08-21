@@ -44,7 +44,7 @@ var insertGreatestCommonDivisors = function (head) {
     let nextOriginalNode = currentOriginalNode.next;
     let computedGcdValue = calculateGreatestCommonDivisor(
       currentOriginalNode.val,
-      nextOriginalNode.val,
+      nextOriginalNode.val
     );
     let intermediateNode = new ListNode(computedGcdValue, nextOriginalNode);
     currentOriginalNode.next = intermediateNode;

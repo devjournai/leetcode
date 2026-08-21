@@ -1,5 +1,9 @@
 /**
  * Defuse The Bomb
+ * Intuition: code[i] becomes the sum of the next k (or previous |k|) circular entries, or 0 if k=0. Maintain a sliding window on the circular array.
+ * Approach: 1. If k=0 return zeros. 2. If k>0, sum code[1..k], then slide: subtract code[i], add code[i+k]. 3. If k<0, sum the |k| cells before 0, then slide similarly wrapping with modulo.
+ * Dry Run: code=[5,7,1,4], k=3.
+ *   - Windows: 7+1+4=12, 1+4+5=10, 4+5+7=16, 5+7+1=13.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

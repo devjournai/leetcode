@@ -19,7 +19,7 @@ var minimumSum = function (grid) {
         ans,
         top +
           minimumArea(grid, i + 1, m - 1, 0, j) +
-          minimumArea(grid, i + 1, m - 1, j + 1, n - 1),
+          minimumArea(grid, i + 1, m - 1, j + 1, n - 1)
       );
     }
   }
@@ -31,7 +31,7 @@ var minimumSum = function (grid) {
         ans,
         bottom +
           minimumArea(grid, 0, i - 1, 0, j) +
-          minimumArea(grid, 0, i - 1, j + 1, n - 1),
+          minimumArea(grid, 0, i - 1, j + 1, n - 1)
       );
     }
   }
@@ -43,7 +43,7 @@ var minimumSum = function (grid) {
         ans,
         left +
           minimumArea(grid, 0, i, j + 1, n - 1) +
-          minimumArea(grid, i + 1, m - 1, j + 1, n - 1),
+          minimumArea(grid, i + 1, m - 1, j + 1, n - 1)
       );
     }
   }
@@ -55,7 +55,7 @@ var minimumSum = function (grid) {
         ans,
         right +
           minimumArea(grid, 0, i, 0, j - 1) +
-          minimumArea(grid, i + 1, m - 1, 0, j - 1),
+          minimumArea(grid, i + 1, m - 1, 0, j - 1)
       );
     }
   }
@@ -66,7 +66,7 @@ var minimumSum = function (grid) {
         ans,
         minimumArea(grid, 0, i1, 0, n - 1) +
           minimumArea(grid, i1 + 1, i2, 0, n - 1) +
-          minimumArea(grid, i2 + 1, m - 1, 0, n - 1),
+          minimumArea(grid, i2 + 1, m - 1, 0, n - 1)
       );
     }
   }
@@ -77,7 +77,7 @@ var minimumSum = function (grid) {
         ans,
         minimumArea(grid, 0, m - 1, 0, j1) +
           minimumArea(grid, 0, m - 1, j1 + 1, j2) +
-          minimumArea(grid, 0, m - 1, j2 + 1, n - 1),
+          minimumArea(grid, 0, m - 1, j2 + 1, n - 1)
       );
     }
   }

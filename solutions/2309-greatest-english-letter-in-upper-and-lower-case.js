@@ -57,7 +57,7 @@ var greatestLetter = function (s) {
   ) {
     const potentialUpperLetter = String.fromCharCode(greatestLetterAscii);
     const potentialLowerLetter = String.fromCharCode(
-      greatestLetterAscii + (ascii_a - asciiA),
+      greatestLetterAscii + (ascii_a - asciiA)
     );
 
     if (

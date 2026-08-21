@@ -1,5 +1,10 @@
 /**
  * Erect The Fence II
+ * Intuition: The smallest enclosing circle is uniquely determined by at most three boundary points. Welzl's randomized algorithm: shuffle points, recursively enclose the rest, and if the next point lies outside, force it onto the boundary and rebuild.
+ * Approach: 1. Shuffle a copy of `trees`. 2. Recurse `solveMinimumEnclosingCircle(remaining, boundary)`: if 3 boundary points or no remaining points, build a 0/1/2/3-point circle (circumcircle or the smallest of the three diameters if collinear). 3. Otherwise enclose the tail; if the head point is inside, keep that circle, else add it to the boundary and recurse. 4. Return `[centerX, centerY, radius]`.
+ * Dry Run: trees = [[0,0],[1,0]].
+ *   - Shuffle, remaining=[0,0] then [1,0]. Empty remaining + empty boundary → [0,0,0].
+ *   - [1,0] is outside → boundary={[1,0]}, enclose [0,0]: [0,0] outside → two-point circle midpoint (0.5,0) radius 0.5.
  * Time Complexity: O(N)
  * Space Complexity: O(N^2)
  */
@@ -40,7 +45,7 @@ var outerTrees = function (trees) {
   const attemptCircleFromThreePoints = (
     pointTripleOne,
     pointTripleTwo,
-    pointTripleThree,
+    pointTripleThree
   ) => {
     const [xVal1, yVal1] = pointTripleOne;
     const [xVal2, yVal2] = pointTripleTwo;
@@ -68,7 +73,7 @@ var outerTrees = function (trees) {
       determinantDivisor;
     const finalRadiusValue = computeDistance(
       [centerXValue, centerYValue],
-      pointTripleOne,
+      pointTripleOne
     );
 
     return [centerXValue, centerYValue, finalRadiusValue];
@@ -86,7 +91,7 @@ var outerTrees = function (trees) {
 
   const solveMinimumEnclosingCircle = (
     remainingPointSet,
-    currentBoundarySet,
+    currentBoundarySet
   ) => {
     const boundarySetSize = currentBoundarySet.length;
     const pointSetSize = remainingPointSet.length;
@@ -107,7 +112,7 @@ var outerTrees = function (trees) {
       if (boundarySetSize === 2) {
         return formCircleFromTwoPoints(
           currentBoundarySet[0],
-          currentBoundarySet[1],
+          currentBoundarySet[1]
         );
       }
 
@@ -118,7 +123,7 @@ var outerTrees = function (trees) {
       const candidateCircleFromThree = attemptCircleFromThreePoints(
         firstBoundaryElement,
         secondBoundaryElement,
-        thirdBoundaryElement,
+        thirdBoundaryElement
       );
       if (candidateCircleFromThree) {
         return candidateCircleFromThree;
@@ -126,20 +131,20 @@ var outerTrees = function (trees) {
 
       const twoPointCircleA = formCircleFromTwoPoints(
         firstBoundaryElement,
-        secondBoundaryElement,
+        secondBoundaryElement
       );
       const twoPointCircleB = formCircleFromTwoPoints(
         firstBoundaryElement,
-        thirdBoundaryElement,
+        thirdBoundaryElement
       );
       const twoPointCircleC = formCircleFromTwoPoints(
         secondBoundaryElement,
-        thirdBoundaryElement,
+        thirdBoundaryElement
       );
 
       const isThirdEnclosedByOneTwo = checkPointInsideCircle(
         thirdBoundaryElement,
-        twoPointCircleA,
+        twoPointCircleA
       );
       if (isThirdEnclosedByOneTwo) {
         return twoPointCircleA;
@@ -147,7 +152,7 @@ var outerTrees = function (trees) {
 
       const isSecondEnclosedByOneThree = checkPointInsideCircle(
         secondBoundaryElement,
-        twoPointCircleB,
+        twoPointCircleB
       );
       if (isSecondEnclosedByOneThree) {
         return twoPointCircleB;
@@ -161,11 +166,11 @@ var outerTrees = function (trees) {
 
     const recursedCircleA = solveMinimumEnclosingCircle(
       slicedPointsArray,
-      currentBoundarySet,
+      currentBoundarySet
     );
     const isPointEnclosed = checkPointInsideCircle(
       processedPoint,
-      recursedCircleA,
+      recursedCircleA
     );
     if (isPointEnclosed) {
       return recursedCircleA;
@@ -174,7 +179,7 @@ var outerTrees = function (trees) {
     const extendedBoundarySet = currentBoundarySet.concat([processedPoint]);
     const recursedCircleB = solveMinimumEnclosingCircle(
       slicedPointsArray,
-      extendedBoundarySet,
+      extendedBoundarySet
     );
     return recursedCircleB;
   };

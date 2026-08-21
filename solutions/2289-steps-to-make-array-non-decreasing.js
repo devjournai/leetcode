@@ -69,7 +69,7 @@ var totalSteps = function (nums) {
       const poppedIdx = elementStack.pop();
       currentElementRemovalCount = Math.max(
         currentElementRemovalCount + 1,
-        removalSteps[poppedIdx],
+        removalSteps[poppedIdx]
       );
     }
     removalSteps[currentIdx] = currentElementRemovalCount;

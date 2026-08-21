@@ -53,7 +53,7 @@ var numberOfPairs = function (nums1, nums2, diff) {
     }
 
     const middlePointIndex = Math.floor(
-      (segmentStartBoundary + segmentEndBoundary) / 2,
+      (segmentStartBoundary + segmentEndBoundary) / 2
     );
     countAndSortSegments(segmentStartBoundary, middlePointIndex);
     countAndSortSegments(middlePointIndex, segmentEndBoundary);
@@ -77,7 +77,7 @@ var numberOfPairs = function (nums1, nums2, diff) {
     }
 
     const temporaryBuffer = new Array(
-      segmentEndBoundary - segmentStartBoundary,
+      segmentEndBoundary - segmentStartBoundary
     );
     let temporaryBufferIndex = 0;
     let mergeLeftSegmentPointer = segmentStartBoundary;

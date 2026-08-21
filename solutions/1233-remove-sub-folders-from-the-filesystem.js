@@ -1,5 +1,8 @@
 /**
  * Remove Sub Folders From The Filesystem
+ * Intuition: Lexicographic sort puts a parent immediately before its subfolders, so skip any path that starts with parent+"/".
+ * Approach: 1. Sort paths. 2. Keep a path if the result is empty or it does not start with currentRoot+"/". 3. Update currentRoot when keeping.
+ * Dry Run: ["/a","/a/b","/c/d"] → keep "/a", skip "/a/b", keep "/c/d".
  * Time Complexity: O(N * L * log N)
  * Space Complexity: O(N * L)
  */

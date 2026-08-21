@@ -81,7 +81,7 @@ var leftRightDifference = function (nums) {
     currentPosition++
   ) {
     answerResult[currentPosition] = Math.abs(
-      leftPrefixSums[currentPosition] - rightSuffixSums[currentPosition],
+      leftPrefixSums[currentPosition] - rightSuffixSums[currentPosition]
     );
   }
 

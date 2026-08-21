@@ -167,7 +167,7 @@ var maxScore = function (edges) {
     ]) {
       const [childFreeScore, childOccupiedScore] = calculateMaxScores(
         childNode,
-        edgeWeightToChild,
+        edgeWeightToChild
       );
 
       sumOfMaxChildScores += Math.max(childFreeScore, childOccupiedScore);
@@ -179,7 +179,7 @@ var maxScore = function (edges) {
         Math.max(childFreeScore, childOccupiedScore);
       maxAdditionalGainFromOneChildEdge = Math.max(
         maxAdditionalGainFromOneChildEdge,
-        currentChildEdgeGain,
+        currentChildEdgeGain
       );
     }
 

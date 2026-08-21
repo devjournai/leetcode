@@ -1,5 +1,11 @@
 /**
  * Longest Continuous Subarray With Absolute Diff Less Than Or Equal To Limit
+ * Intuition: Maintain a sliding window whose max-min <= limit using two monotonic deques of indices (decreasing max, increasing min). Shrink from the left when the window violates the limit.
+ * Approach: 1. Expand rightBoundary. 2. Push into max/min deques, popping stale worse values. 3. While window max - min > limit, drop the left index from deques if needed and increment leftBoundary. 4. Track max window size.
+ * Dry Run: nums = [8,2,4,7], limit = 4
+ *   - [8]: ok size 1
+ *   - [8,2]: 8-2=6>4, shrink to [2] size 1
+ *   - [2,4] size 2; [2,4,7] 7-2=5>4 shrink to [4,7] size 2. Return 2.
  * Time Complexity: O(dataSize)
  * Space Complexity: O(dataSize)
  */

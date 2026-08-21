@@ -1,5 +1,9 @@
 /**
  * Alien Dictionary
+ * Intuition: Consecutive words give a directed letter-order edge at the first differing character. A valid alphabet is a topological order of that graph; a prefix-of-longer-word inversion or a cycle makes the order impossible.
+ * Approach: 1. Initialize adjacency sets and indegrees for every letter. 2. For each adjacent word pair, if prev is longer and starts with curr, return "". 3. At the first mismatch, add edge prev→curr (once) and bump indegree, then break. 4. Kahn: queue indegree 0, append to `resultOrder`, decrement neighbors. 5. Return the order iff it contains every letter; else "".
+ * Dry Run: words = ["wrt","wrf","er","ett","rftt"].
+ *   - Edges t→f, w→e, r→t, e→r. Unique topo wrtf. Return "wertf".
  * Time Complexity: O(N + V + E)
  * Space Complexity: O(V + E)
  */
@@ -45,7 +49,7 @@ var alienOrder = function (words) {
           letterDependencies.get(charFromPrevious).add(charFromCurrent);
           entryDegrees.set(
             charFromCurrent,
-            entryDegrees.get(charFromCurrent) + 1,
+            entryDegrees.get(charFromCurrent) + 1
           );
         }
         break;
@@ -66,7 +70,7 @@ var alienOrder = function (words) {
     resultOrder += dequeuedCharacter;
 
     for (const dependentCharacter of letterDependencies.get(
-      dequeuedCharacter,
+      dequeuedCharacter
     )) {
       const updatedDegree = entryDegrees.get(dependentCharacter) - 1;
       entryDegrees.set(dependentCharacter, updatedDegree);

@@ -1,5 +1,9 @@
 /**
  * Split Array With Equal Sum
+ * Intuition: Need indices i < j < k splitting into four equal-sum segments (cuts are excluded). Prefix sums give O(1) range sums. Fix middle cut `j`, collect equal left-pair sums, then check if a right pair matches one of those sums.
+ * Approach: 1. Reject length < 7. 2. Build `cumulativeSums`. 3. For each `j` from 3 to n-4: for each valid `i`, if left two segments match, add that sum to a Set. 4. For each valid `k`, if right two segments match and that sum is in the Set, return true. 5. Else false.
+ * Dry Run: nums = [1,2,1,2,1,2,1].
+ *   - j=3: i=1 gives segments 1 and 1; Set {1}. k=5 gives 1 and 1, in Set. Return true.
  * Time Complexity: O(N^3)
  * Space Complexity: O(N)
  */
@@ -28,7 +32,7 @@ var splitArray = function (nums) {
       const leftmostSum = segmentSumFinder(0, candidateIndexI - 1);
       const middleLeftSum = segmentSumFinder(
         candidateIndexI + 1,
-        pivotIndexJ - 1,
+        pivotIndexJ - 1
       );
       if (leftmostSum === middleLeftSum) {
         establishedSums.add(leftmostSum);

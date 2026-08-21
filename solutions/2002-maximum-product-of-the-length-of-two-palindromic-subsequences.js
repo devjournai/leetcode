@@ -41,7 +41,7 @@ var maxProduct = function (s) {
   const checkPalindromeAndGetLength = (
     inputString,
     currentMask,
-    totalLength,
+    totalLength
   ) => {
     const subsequenceLetters = [];
     for (
@@ -81,7 +81,7 @@ var maxProduct = function (s) {
     const firstSubseqLength = checkPalindromeAndGetLength(
       s,
       firstMaskOption,
-      stringLength,
+      stringLength
     );
     if (firstSubseqLength === 0) {
       continue;
@@ -99,7 +99,7 @@ var maxProduct = function (s) {
       const secondSubseqLength = checkPalindromeAndGetLength(
         s,
         secondMaskOption,
-        stringLength,
+        stringLength
       );
       if (secondSubseqLength === 0) {
         continue;

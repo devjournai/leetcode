@@ -38,7 +38,7 @@ var wordCount = function (originalStartWords, targetCandidateWords) {
       characterArray.sort();
       const sortedCharacterString = characterArray.join("");
       return sortedCharacterString;
-    }),
+    })
   );
 
   let numberOfObtainableTargets = 0;

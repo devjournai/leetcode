@@ -1,5 +1,9 @@
 /**
  * Palindrome Partitioning III
+ * Intuition: Precompute how many changes make s[i..j] a palindrome. Then DP min changes to split a prefix into exactly p palindromic parts.
+ * Approach: 1. Fill minChangesToPalindrome by expanding length: inner cost plus 1 if ends differ. 2. minTotalChanges[len][parts] tries every last-piece start. 3. Return minTotalChanges[n][k].
+ * Dry Run: s="abc", k=2
+ *   "a|bc": cost 0 + 1 (bc->bb) = 1. "ab|c": 1+0=1. Return 1.
  * Time Complexity: O(n^2 * k)
  * Space Complexity: O(n^2)
  */
@@ -7,7 +11,7 @@ var palindromePartition = function (s, k) {
   const stringLength = s.length;
 
   const minChangesToPalindrome = Array.from({ length: stringLength }, () =>
-    new Array(stringLength).fill(0),
+    new Array(stringLength).fill(0)
   );
 
   for (
@@ -28,7 +32,7 @@ var palindromePartition = function (s, k) {
   }
 
   const minTotalChanges = Array.from({ length: stringLength + 1 }, () =>
-    new Array(k + 1).fill(Infinity),
+    new Array(k + 1).fill(Infinity)
   );
   minTotalChanges[0][0] = 0;
 
@@ -59,7 +63,7 @@ var palindromePartition = function (s, k) {
           minChangesToPalindrome[splitPointIndex][currentPrefixLength - 1];
         minTotalChanges[currentPrefixLength][actualNumPartitions] = Math.min(
           minTotalChanges[currentPrefixLength][actualNumPartitions],
-          previousTotalChanges + currentPartitionCost,
+          previousTotalChanges + currentPartitionCost
         );
       }
     }

@@ -1,5 +1,9 @@
 /**
  * Closest Room
+ * Intuition: Process queries from largest minSize to smallest so the set of eligible rooms only grows. Among rooms that are large enough, pick the id closest to preferred (smaller id on a tie).
+ * Approach: 1. Sort rooms and queries by size descending. 2. For each query, insert all remaining rooms with size ≥ requiredMinimumSize into sorted `candidateRoomNumbers`. 3. Binary-search `discoverClosestId` for preferredRoomIdentifier. 4. Write answers back by originalPosition.
+ * Dry Run: rooms=[[2,2],[1,2],[3,2]], queries=[[3,1]].
+ *   - minSize 1: all rooms eligible, preferred 3 → id 3. Return [3].
  * Time Complexity: O(N log N + K log K + N^2 + K log N)
  * Space Complexity: O(N + K)
  */
@@ -34,14 +38,14 @@ var closestRoom = function (rooms, queries) {
     ) {
       performSortedInsertion(
         allRoomsData[roomDataPointer][0],
-        candidateRoomNumbers,
+        candidateRoomNumbers
       );
       roomDataPointer++;
     }
 
     finalRoomAssignments[originalPosition] = discoverClosestId(
       preferredRoomIdentifier,
-      candidateRoomNumbers,
+      candidateRoomNumbers
     );
   }
 
@@ -52,7 +56,7 @@ var closestRoom = function (rooms, queries) {
     let searchUpperBoundary = targetList.length;
     while (searchLowerBoundary < searchUpperBoundary) {
       const centralPoint = Math.floor(
-        (searchLowerBoundary + searchUpperBoundary) / 2,
+        (searchLowerBoundary + searchUpperBoundary) / 2
       );
       if (targetList[centralPoint] < newRoomNumberValue) {
         searchLowerBoundary = centralPoint + 1;
@@ -75,7 +79,7 @@ var closestRoom = function (rooms, queries) {
 
     while (initialLowerBound <= initialUpperBound) {
       const midPointLocation = Math.floor(
-        (initialLowerBound + initialUpperBound) / 2,
+        (initialLowerBound + initialUpperBound) / 2
       );
       const currentRoomId = searchList[midPointLocation];
       const currentAbsoluteDifference = Math.abs(currentRoomId - targetNumber);

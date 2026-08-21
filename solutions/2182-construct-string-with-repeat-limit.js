@@ -76,7 +76,7 @@ var repeatLimitedString = function (stringInput, repeatConstraint) {
 
     const currentAppendCount = Math.min(
       characterFrequencies[currentCharCodeIndex],
-      repeatConstraint,
+      repeatConstraint
     );
 
     for (

@@ -50,7 +50,7 @@ var minimumSum = function (nums) {
   for (let loopIndexOne = 1; loopIndexOne < arrayLength; loopIndexOne++) {
     leftMinimums[loopIndexOne] = Math.min(
       leftMinimums[loopIndexOne - 1],
-      nums[loopIndexOne],
+      nums[loopIndexOne]
     );
   }
 
@@ -58,7 +58,7 @@ var minimumSum = function (nums) {
   for (let loopIndexTwo = arrayLength - 2; loopIndexTwo >= 0; loopIndexTwo--) {
     rightMinimums[loopIndexTwo] = Math.min(
       rightMinimums[loopIndexTwo + 1],
-      nums[loopIndexTwo],
+      nums[loopIndexTwo]
     );
   }
 

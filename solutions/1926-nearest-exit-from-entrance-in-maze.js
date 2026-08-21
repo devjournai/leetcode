@@ -1,5 +1,10 @@
 /**
  * Nearest Exit From Entrance In Maze
+ * Intuition: An exit is any empty border cell other than the entrance. Unweighted steps mean BFS from the entrance finds the shortest path to the first such border cell.
+ * Approach: 1. Enqueue `[entranceRow, entranceCol, 0]` and mark visited. 2. While the queue is nonempty, dequeue a cell; if it is on the border and `steps > 0`, return `steps`. 3. Push unvisited non-wall neighbors with `steps+1`. 4. If BFS ends, return -1.
+ * Dry Run: maze empty 3x3, entrance = [1,1].
+ *   - Start (1,1) step 0 is not an exit (steps==0).
+ *   - Neighbors (0,1),(2,1),(1,0),(1,2) are borders with step 1 → return 1.
  * Time Complexity: O(M * N)
  * Space Complexity: O(M * N)
  */

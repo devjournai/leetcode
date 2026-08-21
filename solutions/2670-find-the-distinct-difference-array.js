@@ -57,7 +57,7 @@ var distinctDifferenceArray = function (nums) {
   for (const initialElement of nums) {
     suffixFrequencyMap.set(
       initialElement,
-      (suffixFrequencyMap.get(initialElement) || 0) + 1,
+      (suffixFrequencyMap.get(initialElement) || 0) + 1
     );
   }
 

@@ -1,5 +1,9 @@
 /**
  * Maximize Sum Of Array After K Negations
+ * Intuition: Negating a negative number always helps. After negatives are gone, leftover odd k should flip the smallest remaining value.
+ * Approach: 1. Sort ascending. 2. Flip negatives from the left while k remains. 3. If k is odd, sort again and flip the new minimum. 4. Return the sum.
+ * Dry Run: nums = [4,2,3], k = 1.
+ *   - Sorted [2,3,4], no negatives. k odd -> flip 2 to -2. Sum = 5.
  * Time Complexity: O(n log n)
  * Space Complexity: O(1)
  */

@@ -1,5 +1,9 @@
 /**
  * The Number Of The Smallest Unoccupied Chair
+ * Intuition: Process arrivals and departures in time order (departures first on ties) so freed chairs are reusable. Always give the smallest-numbered free chair, allocating a new high-water chair only when none are free. Stop when the target friend sits.
+ * Approach: 1. Build `[time, arrival|departure, friendId]` events and sort by time, with departures before arrivals. 2. Min-heap of free chair ids; map of friend→chair. 3. On leave, push that chair; on arrive, pop the smallest free chair or assign `nextAvailableChairNumber++`. 4. When `desiredFriendId` arrives, return their chair.
+ * Dry Run: times = [[1,4],[2,3],[4,6]], targetFriend = 1.
+ *   - t=1 friend0 sits chair 0; t=2 friend1 sits chair 1 → return 1.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */
@@ -82,7 +86,7 @@ class MinChairPriorityQueue {
     ) {
       this.exchangeValues(
         this.getParentPosition(currentElementIndex),
-        currentElementIndex,
+        currentElementIndex
       );
       currentElementIndex = this.getParentPosition(currentElementIndex);
     }

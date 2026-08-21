@@ -1,5 +1,9 @@
 /**
  * Confusing Number
+ * Intuition: Only 0,1,6,8,9 rotate to valid digits (6<->9). Reverse-rotate the digits; it is confusing if the new number differs from n.
+ * Approach: 1. Map rotatable digits. 2. Walk n's digits right to left; fail if a digit is unmapped. 3. Append the rotated digit. 4. Parse and compare to n.
+ * Dry Run: n = 6.
+ *   - Rotate reverse "9" != 6 -> true.
  * Time Complexity: O(log N)
  * Space Complexity: O(log N)
  */

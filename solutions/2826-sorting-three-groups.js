@@ -60,7 +60,7 @@ var minimumOperations = function (nums) {
   const maximumAchievableLength = Math.max(
     longestEndingOne,
     longestEndingTwo,
-    longestEndingThree,
+    longestEndingThree
   );
   const minimumOperationsCount = numbersLength - maximumAchievableLength;
   return minimumOperationsCount;

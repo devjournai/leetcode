@@ -1,5 +1,10 @@
 /**
  * Paint House III
+ * Intuition: DP on (houseIndex, previousColor, neighborhoodsUsed). Painted houses are fixed; unpainted ones try colors 1..n, starting a new neighborhood when color changes. Exceeding target neighborhoods is impossible.
+ * Approach: 1. Memoize by house:prevColor:groups. 2. If groups > target return Infinity; if past last house return 0 iff groups==target. 3. If house already colored, recurse with updated group count. 4. Else try each paint cost + recurse; return -1 if Infinity.
+ * Dry Run: houses=[0,0,0,0,0], m=5, n=2, target=3 with given costs
+ *   - must form exactly 3 color groups while minimizing paint cost
+ *   - DP finds the sample minimum 9
  * Time Complexity: O(m * n^2 * target)
  * Space Complexity: O(m * n * target)
  */
@@ -9,7 +14,7 @@ var minCost = function (houses, cost, m, n, target) {
   const calculateMinimumPaintCost = (
     houseIndex,
     previousHouseColor,
-    currentNeighborhoodCount,
+    currentNeighborhoodCount
   ) => {
     if (currentNeighborhoodCount > target) {
       return Infinity;
@@ -34,7 +39,7 @@ var minCost = function (houses, cost, m, n, target) {
       minimumCostSoFar = calculateMinimumPaintCost(
         houseIndex + 1,
         currentHouseColorValue,
-        updatedNeighborhoodCount,
+        updatedNeighborhoodCount
       );
     } else {
       for (let paintOption = 1; paintOption <= n; paintOption++) {
@@ -47,7 +52,7 @@ var minCost = function (houses, cost, m, n, target) {
           calculateMinimumPaintCost(
             houseIndex + 1,
             paintOption,
-            updatedNeighborhoodCount,
+            updatedNeighborhoodCount
           );
         minimumCostSoFar = Math.min(minimumCostSoFar, costForCurrentOption);
       }

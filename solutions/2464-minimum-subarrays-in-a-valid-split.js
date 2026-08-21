@@ -75,7 +75,7 @@ var validSubarraySplit = function (nums) {
         if (calculateGcd(startElement, endElement) > 1) {
           minimumSubarrayCounts[currentPrefixLengthIndex] = Math.min(
             minimumSubarrayCounts[currentPrefixLengthIndex],
-            minimumSubarrayCounts[previousSplitPointIndex] + 1,
+            minimumSubarrayCounts[previousSplitPointIndex] + 1
           );
         }
       }

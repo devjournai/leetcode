@@ -1,5 +1,9 @@
 /**
  * Guess The Majority In A Hidden Array
+ * Intuition: query of four indices returns how many equal the majority of those four. Compare queries that swap index 0 vs later indices to count who matches a[0].
+ * Approach: 1. Special-case n=4. 2. Base query(0,1,2,3); for i≥4 query(i,1,2,3) vs base to classify i vs a[0]. 3. Compare 1,2,3 against query(...,4). 4. Return 0, a differing index, or -1 if tie.
+ * Dry Run: hidden = [0,0,1,0,0].
+ *   - More indices match a[0] than not → return 0.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

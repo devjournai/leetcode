@@ -75,7 +75,7 @@ var subStrHash = function (s, power, modulo, k, hashValue) {
       charPositionInWindow++
     ) {
       const charNumericValue = BigInt(
-        s.charCodeAt(windowBeginIndex + charPositionInWindow) - charAOffset + 1,
+        s.charCodeAt(windowBeginIndex + charPositionInWindow) - charAOffset + 1
       );
       currentWindowHash =
         (currentWindowHash +

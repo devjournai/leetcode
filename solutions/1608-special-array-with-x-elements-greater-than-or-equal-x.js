@@ -1,5 +1,9 @@
 /**
  * Special Array With X Elements Greater Than Or Equal X
+ * Intuition: X can only be 0..n, so try each candidate and count how many values are ≥ X; the array is special when that count equals X.
+ * Approach: 1. For possibleX from 0 to n, scan the array and count values ≥ possibleX. 2. If the count equals possibleX, return it. 3. If none match, return -1.
+ * Dry Run: nums = [3,5].
+ *   - X=0 count=2; X=1 count=2; X=2 count=2 → return 2.
  * Time Complexity: O(N^2)
  * Space Complexity: O(1)
  */

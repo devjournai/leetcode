@@ -18,6 +18,8 @@
  *
  * ------------------------------------------------------------
  *
+ * Approach: Let `effectiveShiftValue = k % columnDimension`. For even rows compare `mat[r][c]` with `mat[r][(c+shift)%cols]`; for odd rows with `mat[r][(c-shift+cols)%cols]`. Return false on any mismatch.
+ *
  * Instead of actually shifting the matrix, we can calculate
  * where every element would move.
  *

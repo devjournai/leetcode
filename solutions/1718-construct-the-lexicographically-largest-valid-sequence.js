@@ -1,5 +1,9 @@
 /**
  * Construct The Lexicographically Largest Valid Sequence
+ * Intuition: Length 2n−1: place each k>1 twice with distance k, and 1 once. Backtrack from the left trying large numbers first for a lexicographically largest sequence.
+ * Approach: 1. `solutionArray` of zeros, `isNumberUsed`. 2. `findSequence(currentIdx)` skips filled slots; try `candidateVal` from n down to 1; place second copy at `idx+val` if needed. 3. Backtrack on failure. 4. Return `solutionArray`.
+ * Dry Run: n = 3
+ * Place 3 at 0 and 3, then 2 at 1 and 3 conflict; 2 at 1 and 3... result [3,1,2,3,2].
  * Time Complexity: O(n^2 * 2^n)
  * Space Complexity: O(n)
  */

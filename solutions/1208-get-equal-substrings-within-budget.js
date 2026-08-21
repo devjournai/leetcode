@@ -1,5 +1,8 @@
 /**
  * Get Equal Substrings Within Budget
+ * Intuition: Changing s[i] to t[i] costs |s[i]-t[i]|; the longest affordable contiguous change is a sliding window on that cost array.
+ * Approach: 1. Expand right, adding the abs char-code cost. 2. While cost > maxCost shrink from the left. 3. Track max window length.
+ * Dry Run: s="abcd", t="bcdf", maxCost=3. Costs [1,1,1,2]. Window of length 3 costs 3 → 3.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

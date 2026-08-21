@@ -56,7 +56,7 @@ var Bank = function (initialBalancesArray) {
 Bank.prototype.transfer = function (
   sourceAccountIdentifier,
   destinationAccountIdentifier,
-  transferAmount,
+  transferAmount
 ) {
   const sourceIndexForTransfer = sourceAccountIdentifier - 1;
   const destinationIndexForTransfer = destinationAccountIdentifier - 1;
@@ -102,7 +102,7 @@ Bank.prototype.deposit = function (targetAccountIdentifier, depositAmount) {
 
 Bank.prototype.withdraw = function (
   withdrawalAccountIdentifier,
-  withdrawalAmount,
+  withdrawalAmount
 ) {
   const withdrawAccountIndex = withdrawalAccountIdentifier - 1;
   const accountOutOfBoundsWithdraw =

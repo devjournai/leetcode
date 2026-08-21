@@ -36,6 +36,8 @@
  *
  * ------------------------------------------------------------
  *
+ * Approach: Build a 26x26 min-cost matrix from original→changed, run Floyd-Warshall, then sum charMap[source[i]][target[i]] for mismatches (return -1 if any Infinity).
+ *
  * Step 1:
  *
  * Create a 26 x 26 matrix.
@@ -108,7 +110,7 @@
  *
  * ------------------------------------------------------------
  *
- * Example:
+ * Dry Run:
  *
  * source = "abc"
  * target = "bcd"
@@ -158,7 +160,7 @@ var minimumCost = function (source, target, original, changed, cost) {
     const currentChangeCost = cost[transformationIndex];
     charMap[originChar][destChar] = Math.min(
       charMap[originChar][destChar],
-      currentChangeCost,
+      currentChangeCost
     );
   }
 
@@ -171,7 +173,7 @@ var minimumCost = function (source, target, original, changed, cost) {
         ) {
           charMap[startChar][endChar] = Math.min(
             charMap[startChar][endChar],
-            charMap[startChar][middleChar] + charMap[middleChar][endChar],
+            charMap[startChar][middleChar] + charMap[middleChar][endChar]
           );
         }
       }

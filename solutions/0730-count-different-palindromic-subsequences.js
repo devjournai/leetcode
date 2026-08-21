@@ -1,5 +1,8 @@
 /**
  * Count Different Palindromic Subsequences
+ * Intuition: `dynamicProgrammingTable[i][j]` counts distinct palindromic subsequences in `s[i..j]`. If ends differ, inclusion-exclusion of the two smaller intervals. If they match letter `c`, double the inner count and add/subtract inner `c...c` palindromes depending how many times `c` appears inside.
+ * Approach: 1. Precompute `nextLetterPosition` / `prevLetterPosition` for all 26 letters. 2. Length-1 intervals are 1. 3. Increasing length: unmatched ends combine inner DPs; matched ends use first/last inner `c` to choose +2, +1, or subtract the open inner interval. 4. Mod 1e9+7; return dp[0][n-1].
+ * Dry Run: "bccb". Distinct palindromes include b, c, bb, cc, bcb, bccb → 6.
  * Time Complexity: O(n^2)
  * Space Complexity: O(n^2)
  */

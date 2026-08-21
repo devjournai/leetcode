@@ -1,5 +1,9 @@
 /**
  * Delivering Boxes From Storage To Ports
+ * Intuition: `dpMinTrips[i]` is min trips to deliver the first `i` boxes. A ship load is a window of consecutive boxes under `maxBoxes`/`maxWeight`; trips for that load equal (port changes in the window) + 2 (storage round trips). Slide the left bound so the window is always an optimal last load.
+ * Approach: 1. Maintain `windowBeginPointer`, `portTripChanges`, remaining box/weight capacity. 2. Expand to `boxIndex`; shrink while over capacity or while `dpMinTrips[windowBeginPointer+1]===dpMinTrips[windowBeginPointer]` (drop a useless prefix). 3. Set `dpMinTrips[boxIndex+1] = portTripChanges + 2 + dpMinTrips[windowBeginPointer]`. 4. Return `dpMinTrips[totalBoxes]`.
+ * Dry Run: boxes = [[1,1],[2,1],[1,1]], portsCount=2, maxBoxes=3, maxWeight=3
+ * After all three in one window: one port change (1→2→1) → 1+2=3 trips; dp ends at 3.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

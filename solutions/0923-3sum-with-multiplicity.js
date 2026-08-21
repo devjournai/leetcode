@@ -1,5 +1,8 @@
 /**
  * 3sum With Multiplicity
+ * Intuition: Values are 0–100, so count frequencies and enumerate a≤b≤c with a+b+c=target, using combinations for equal values.
+ * Approach: 1. Fill `valueFrequencies[0..100]`. 2. Nested loops indexOne≤indexTwo; indexThree=target−a−b, require c≥b and c≤100. 3. Combinations: all equal nC3; a=b≠c nC2*freq_c; a≠b=c freq_a*nC2; else product of three freqs. 4. Sum mod 1e9+7.
+ * Dry Run: [1,1,2,2,3,3,4,4,5,5], target=8. (1,2,5)=8; (1,3,4)=8; (2,2,4)=(2*1/2)*2=2; (2,3,3)=2*(2*1/2)=2. Total 20.
  * Time Complexity: O(N + M^2)
  * Space Complexity: O(M)
  */

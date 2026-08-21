@@ -63,7 +63,7 @@ var sameEndSubstringCount = function (s, queries) {
         allPrefixCounts[charTypeIterator][queryRightBoundary + 1] -
         allPrefixCounts[charTypeIterator][queryLeftBoundary];
       querySubstringsTotal += Math.floor(
-        (charTypeFrequency * (charTypeFrequency + 1)) / 2,
+        (charTypeFrequency * (charTypeFrequency + 1)) / 2
       );
     }
     queryResults.push(querySubstringsTotal);

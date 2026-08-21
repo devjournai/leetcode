@@ -55,10 +55,10 @@ var minimumOperations = function (grid) {
     [0, 1],
   ];
   const matchingPartner = Array.from({ length: rowCount }, () =>
-    new Array(colCount).fill(-1),
+    new Array(colCount).fill(-1)
   );
   const visitedMarker = Array.from({ length: rowCount }, () =>
-    new Array(colCount).fill(-1),
+    new Array(colCount).fill(-1)
   );
 
   for (let currentRow = 0; currentRow < rowCount; currentRow++) {
@@ -72,7 +72,7 @@ var minimumOperations = function (grid) {
         maxBipartiteMatching += findAugmentingPath(
           currentRow,
           currentCol,
-          visitIdentifier,
+          visitIdentifier
         );
       }
     }
@@ -98,7 +98,7 @@ var minimumOperations = function (grid) {
           findAugmentingPath(
             Math.floor(matchingPartner[nextRow][nextCol] / colCount),
             matchingPartner[nextRow][nextCol] % colCount,
-            visitIdentifier,
+            visitIdentifier
           )
         ) {
           matchingPartner[nextRow][nextCol] =

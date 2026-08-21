@@ -1,5 +1,9 @@
 /**
  * Count Substrings That Differ By One Character
+ * Intuition: Every pair of positions (i,j) where s[i]≠t[j] can be the unique mismatch. Multiply (1 + equal run to the left) by (1 + equal run to the right).
+ * Approach: 1. DP forward: longest matching suffix ending at (i,j). 2. DP backward: longest matching prefix starting at (i,j). 3. For each mismatch, add (left+1)*(right+1).
+ * Dry Run: s="aba", t="baba".
+ *   - Several one-diff alignments; total 6.
  * Time Complexity: O(s.length * t.length)
  * Space Complexity: O(s.length * t.length)
  */

@@ -1,5 +1,8 @@
 /**
  * Making A Large Island
+ * Intuition: Paint each island with a unique id ≥2 and record sizes. Flipping one 0 joins up to four neighboring distinct islands plus 1.
+ * Approach: 1. DFS paint 1s to ids, store sizes, track max existing. 2. All-zero grid → 1. 3. For each 0, unique neighbor ids (Set), sum mapped sizes + 1, update max.
+ * Dry Run: [[1,0],[0,1]]. Two size-1 islands; flipping a 0 neighbors both → 3.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N^2)
  */
@@ -14,7 +17,7 @@ var largestIsland = function (gridInput) {
     currentGrid,
     identifierToUse,
     currentRowPosition,
-    currentColPosition,
+    currentColPosition
   ) => {
     if (
       currentRowPosition < 0 ||
@@ -35,25 +38,25 @@ var largestIsland = function (gridInput) {
         currentGrid,
         identifierToUse,
         currentRowPosition + 1,
-        currentColPosition,
+        currentColPosition
       ) +
         depthFirstSearch(
           currentGrid,
           identifierToUse,
           currentRowPosition - 1,
-          currentColPosition,
+          currentColPosition
         ) +
         depthFirstSearch(
           currentGrid,
           identifierToUse,
           currentRowPosition,
-          currentColPosition + 1,
+          currentColPosition + 1
         ) +
         depthFirstSearch(
           currentGrid,
           identifierToUse,
           currentRowPosition,
-          currentColPosition - 1,
+          currentColPosition - 1
         ))
     );
   };
@@ -69,7 +72,7 @@ var largestIsland = function (gridInput) {
           gridInput,
           nextAvailableIdentifier,
           outerGridRow,
-          innerGridCol,
+          innerGridCol
         );
         islandSizeMapping.set(nextAvailableIdentifier, islandArea);
         nextAvailableIdentifier++;
@@ -122,7 +125,7 @@ var largestIsland = function (gridInput) {
 
         currentMaxIslandSize = Math.max(
           currentMaxIslandSize,
-          potentialIslandSize,
+          potentialIslandSize
         );
       }
     }

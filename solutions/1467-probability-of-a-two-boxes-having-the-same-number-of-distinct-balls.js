@@ -1,12 +1,17 @@
 /**
  * Probability Of A Two Boxes Having The Same Number Of Distinct Balls
+ * Intuition: Split each color's balls between two equal-size boxes. Probability is multinomial ways with equal distinct-color counts divided by all balanced splits.
+ * Approach: 1. Precompute factorials up to n/2. 2. Backtrack how many balls of each color go to box 1 (exactly n/2 total). 3. Complement is box 2; add ways1*ways2 to total, and to favorable if distinct counts match. 4. Return favorable/total.
+ * Dry Run: balls = [1,1]
+ *   - two colors, one each; only splits put one ball per box
+ *   - both boxes have 1 distinct color. Probability 1.
  * Time Complexity: O(C(totalBalls/2 + numColors - 1, numColors - 1) * numColors)
  * Space Complexity: O(numColors + totalBalls/2)
  */
 var getProbability = function (balls) {
   const totalBallQuantity = balls.reduce(
     (summation, currentCount) => summation + currentCount,
-    0,
+    0
   );
   const halfQuantityTarget = totalBallQuantity / 2;
   const numberOfColors = balls.length;
@@ -72,19 +77,19 @@ var getProbability = function (balls) {
         }
 
         const distinctCountFirst = determineDistinctColorCount(
-          firstBoxConfiguration,
+          firstBoxConfiguration
         );
         const distinctCountSecond = determineDistinctColorCount(
-          secondBoxConfiguration,
+          secondBoxConfiguration
         );
 
         const waysForFirstBox = calculateMultinomialCoefficient(
           firstBoxConfiguration,
-          halfQuantityTarget,
+          halfQuantityTarget
         );
         const waysForSecondBox = calculateMultinomialCoefficient(
           secondBoxConfiguration,
-          halfQuantityTarget,
+          halfQuantityTarget
         );
 
         const currentCombinationWays = waysForFirstBox * waysForSecondBox;
@@ -109,7 +114,7 @@ var getProbability = function (balls) {
         firstBoxConfiguration[colorIndexIteration] = currentColorsCount;
         findDistributions(
           colorIndexIteration + 1,
-          currentFirstBoxTotalBalls + currentColorsCount,
+          currentFirstBoxTotalBalls + currentColorsCount
         );
       }
     }

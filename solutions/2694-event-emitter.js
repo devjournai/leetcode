@@ -78,7 +78,7 @@ class EventEmitter {
 
     const registeredHandlers = this.eventListenersRegistry.get(triggerName);
     return registeredHandlers.map((handlerFunc) =>
-      handlerFunc(...invocationArguments),
+      handlerFunc(...invocationArguments)
     );
   }
 }

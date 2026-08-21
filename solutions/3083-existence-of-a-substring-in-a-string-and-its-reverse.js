@@ -26,7 +26,7 @@ var isSubstringPresent = function (s) {
   while (currentTraversalIndex < stringLength - 1) {
     const currentTwoCharSub = s.slice(
       currentTraversalIndex,
-      currentTraversalIndex + 2,
+      currentTraversalIndex + 2
     );
     if (reversedInputString.includes(currentTwoCharSub)) {
       return true;

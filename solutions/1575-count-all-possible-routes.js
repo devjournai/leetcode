@@ -1,5 +1,9 @@
 /**
  * Count All Possible Routes
+ * Intuition: From city u with fuel f, count routes (including staying if u is finish) by trying every other city with remaining fuel.
+ * Approach: 1. memo[city][fuel]. 2. Base fuel<0 → 0. 3. Start count 1 if city==finish, add dfs to others. 4. Mod 1e9+7.
+ * Dry Run: locations = [2,3,6,8], start = 1, finish = 3, fuel = 5.
+ *   - 4 routes.
  * Time Complexity: O(N^2 * F)
  * Space Complexity: O(N * F)
  */
@@ -26,13 +30,13 @@ var countRoutes = function (locations, start, finish, fuel) {
     while (destinationCityIndex < numberOfCities) {
       if (destinationCityIndex !== presentCityIndex) {
         const travelCost = Math.abs(
-          locations[presentCityIndex] - locations[destinationCityIndex],
+          locations[presentCityIndex] - locations[destinationCityIndex]
         );
         pathCount =
           (pathCount +
             computeRouteCounts(
               destinationCityIndex,
-              remainingFuelLevel - travelCost,
+              remainingFuelLevel - travelCost
             )) %
           routeModulus;
       }

@@ -61,6 +61,8 @@
  *
  * The challenge is finding this maximum efficiently.
  *
+ * Approach: Compress ranks of `nums[i]-i`. Scan left to right; Fenwick max-query rank of the current transformed value, set dp = nums[i] + max(0, bestPrevious), update the tree, and track the global max.
+ *
  * A simple DP would take O(n²), which is too slow for n = 10^5.
  *
  * We need a data structure that supports:

@@ -106,7 +106,7 @@ var minSpaceWastedKResizing = function (nums, k) {
           memoTable[currentPrefixLength][currentSegmentCount] = Math.min(
             memoTable[currentPrefixLength][currentSegmentCount],
             memoTable[splitPointIndex][currentSegmentCount - 1] +
-              currentSegmentWastedValue,
+              currentSegmentWastedValue
           );
         }
       }
@@ -121,7 +121,7 @@ var minSpaceWastedKResizing = function (nums, k) {
   ) {
     minimumTotalWaste = Math.min(
       minimumTotalWaste,
-      memoTable[arrayLength][finalSegmentCount],
+      memoTable[arrayLength][finalSegmentCount]
     );
   }
 

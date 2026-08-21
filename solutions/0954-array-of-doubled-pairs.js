@@ -1,5 +1,8 @@
 /**
  * Array Of Doubled Pairs
+ * Intuition: Pair each leftover value with twice itself. Process by increasing |x| so the smaller-magnitude partner is claimed before 2x.
+ * Approach: 1. Count values in `numberFrequencies`. 2. Sort a copy by `Math.abs`. 3. For each unused `candidateNumber`, if `targetDouble = candidateNumber * 2` has count 0, fail; else decrement both counts. 4. Return true if every value paired.
+ * Dry Run: arr = [4,-2,2,-4]. Sorted by abs: -2,2,-4,4. Pair -2 with -4, then 2 with 4. All counts hit 0. True.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */
@@ -9,7 +12,7 @@ var canReorderDoubled = function (arr) {
   for (const currentNumber of arr) {
     numberFrequencies.set(
       currentNumber,
-      (numberFrequencies.get(currentNumber) || 0) + 1,
+      (numberFrequencies.get(currentNumber) || 0) + 1
     );
   }
 

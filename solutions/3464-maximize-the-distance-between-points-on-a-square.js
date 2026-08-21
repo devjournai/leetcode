@@ -1,12 +1,15 @@
 /**
  * Maximize the Distance Between Points on a Square
+ * Intuition: Points lie on the square boundary, so map them to a circle of length 4*side and binary-search the maximum circular spacing.
+ * Approach: Convert each point to a perimeter coordinate, sort, and duplicate the array shifted by the full perimeter. Binary-search distance d; for each start index greedily binary-search the next points at least d away and check wrap-around spacing back to the start.
+ * Dry Run: side=2, points at (0,0) and (2,2), k=2 -> perimeter positions 0 and 4, max min-distance 4.
  * Time Complexity: O(N log N + N * K * log N * log D)
  * Space Complexity: O(N)
  */
 var maxDistance = function (
   squareSideLength,
   pointCoordinates,
-  pointsToSelect,
+  pointsToSelect
 ) {
   const totalPointCount = pointCoordinates.length;
   const perimeterPositions = new Array(totalPointCount);
@@ -50,7 +53,7 @@ var maxDistance = function (
 
   while (searchLowerBound <= searchUpperBound) {
     const midCandidateDistance = Math.floor(
-      (searchLowerBound + searchUpperBound) / 2,
+      (searchLowerBound + searchUpperBound) / 2
     );
     if (canWePlacePoints(midCandidateDistance)) {
       finalResult = midCandidateDistance;
@@ -87,7 +90,7 @@ var maxDistance = function (
 
         while (searchLeftEdge < searchRightEdge) {
           const searchMidPoint = Math.floor(
-            (searchLeftEdge + searchRightEdge) / 2,
+            (searchLeftEdge + searchRightEdge) / 2
           );
           if (
             extendedPerimeterPositions[searchMidPoint] < nextRequiredPosition

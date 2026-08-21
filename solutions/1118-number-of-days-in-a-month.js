@@ -1,5 +1,8 @@
 /**
  * Number Of Days In A Month
+ * Intuition: Month lengths are a fixed calendar table except February, which uses the Gregorian leap rule (divisible by 400, or by 4 but not by 100).
+ * Approach: 1. If month is 2, return 29 on leap else 28. 2. Apr/Jun/Sep/Nov → 30. 3. Else 31.
+ * Dry Run: year=2019, month=2 → not leap → 28. year=2000, month=2 → 29.
  * Time Complexity: O(1)
  * Space Complexity: O(1)
  */

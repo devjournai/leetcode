@@ -1,5 +1,8 @@
 /**
  * Intersection Of Three Sorted Arrays
+ * Intuition: Three pointers on sorted arrays advance the smallest head until all three match or one array ends.
+ * Approach: 1. While all pointers in range, compare the three current values. 2. If equal, record and advance all. 3. Else advance the pointer at the strictly smaller value (or the third if the first two are ≥ the third).
+ * Dry Run: [1,2,3], [2,3,4], [2,3,5] → skip 1, match 2, match 3 → [2,3].
  * Time Complexity: O(N + M + K)
  * Space Complexity: O(min(N, M, K))
  */

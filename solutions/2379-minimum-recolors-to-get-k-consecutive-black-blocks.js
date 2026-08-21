@@ -64,7 +64,7 @@ var minimumRecolors = function (blocks, k) {
     if (endWindow - startWindow + 1 === k) {
       minOperationsRequired = Math.min(
         minOperationsRequired,
-        currentWindowWhiteCount,
+        currentWindowWhiteCount
       );
 
       if (blocks[startWindow] === "W") {

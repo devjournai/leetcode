@@ -1,5 +1,9 @@
 /**
  * Longest Uncommon Subsequence II
+ * Intuition: The longest uncommon subsequence is the longest string that is not a subsequence of any other string. Check longest candidates first.
+ * Approach: 1. `verifySubsequence` walks `stringBeta` to see if `stringAlpha` is a subsequence. 2. Sort the array by length descending. 3. For each string, if no other string contains it as a subsequence, return its length. 4. Else -1.
+ * Dry Run: ["aba","cdc","eae"].
+ *   - Sorted same lengths. "aba" is not a subsequence of "cdc" or "eae". Return 3.
  * Time Complexity: O(N^2 * L_max)
  * Space Complexity: O(1)
  */
@@ -20,7 +24,7 @@ var findLUSlength = function (stringCollection) {
   };
 
   stringCollection.sort(
-    (firstElement, secondElement) => secondElement.length - firstElement.length,
+    (firstElement, secondElement) => secondElement.length - firstElement.length
   );
 
   const collectionLength = stringCollection.length;
@@ -37,7 +41,7 @@ var findLUSlength = function (stringCollection) {
         primaryIndex !== secondaryIndex &&
         verifySubsequence(
           stringCollection[primaryIndex],
-          stringCollection[secondaryIndex],
+          stringCollection[secondaryIndex]
         )
       ) {
         isTrulyUncommon = false;

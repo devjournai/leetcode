@@ -1,5 +1,8 @@
 /**
  * Unique Paths III
+ * Intuition: DFS from the start cell, marking visited as −1, counting paths that reach 2 only after visiting every walkable square (`stepsTaken === allWalkableSquaresCount`).
+ * Approach: 1. Count cells in {0,1,2} and record start. 2. `pathFinder` returns 0 off-grid or on −1; on 2 return 1 iff all squares used. 3. Mark current −1, recurse 4 dirs with `stepsTaken+1`, restore. 4. Start with steps 1.
+ * Dry Run: grid = [[1,0,0,0],[0,0,0,0],[0,0,2,-1]]. Walkable 8; two Hamiltonian paths from 1 to 2. Answer 2.
  * Time Complexity: O(rows * cols * 4^W)
  * Space Complexity: O(rows * cols)
  */
@@ -67,7 +70,7 @@ var uniquePathsIII = function (grid) {
       const recursiveResult = pathFinder(
         nextVisitRow,
         nextVisitCol,
-        stepsTaken + 1,
+        stepsTaken + 1
       );
       totalPathsFromHere += recursiveResult;
     }

@@ -1,5 +1,8 @@
 /**
  * Maximize Distance To Closest Person
+ * Intuition: For each empty seat, distance to closest person is min(dist to left occupied, dist to right occupied). Use a large sentinel (`totalSeats`) when a side has no person.
+ * Approach: 1. Left pass: last person index, fill `distancesToLeft`. 2. Right pass similarly. 3. For empty seats take min of both, track max. 4. Return it.
+ * Dry Run: [1,0,0,0,1,0,1]. Empty at 1,2,3: mins 1,2,1; empty at 5: min 1. Max 2.
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */
@@ -51,7 +54,7 @@ var maxDistToClosest = function (seats) {
       const currentSeatRightDistance = distancesToRight[finalCheckIndex];
       const minOfTwoDistances = Math.min(
         currentSeatLeftDistance,
-        currentSeatRightDistance,
+        currentSeatRightDistance
       );
       if (minOfTwoDistances > maxOverallDistance) {
         maxOverallDistance = minOfTwoDistances;

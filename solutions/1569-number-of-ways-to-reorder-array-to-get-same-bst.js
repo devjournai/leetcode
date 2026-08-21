@@ -1,5 +1,9 @@
 /**
  * Number Of Ways To Reorder Array To Get Same Bst
+ * Intuition: BST shape is fixed by the first root. Ways = C(n-1, |left|) * ways(left) * ways(right); subtract the original order.
+ * Approach: 1. BigInt factorials for combinations. 2. Recurse split <root / ≥root. 3. Return (ways-1) mod 1e9+7.
+ * Dry Run: nums = [2,1,3].
+ *   - Interleavings besides the original: 1.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N^2)
  */
@@ -57,7 +61,7 @@ var numOfWays = function (nums) {
 
     const combinationsValue = calculateCombinations(
       totalRemainingNodes,
-      numLeftNodes,
+      numLeftNodes
     );
 
     const permutationResult =

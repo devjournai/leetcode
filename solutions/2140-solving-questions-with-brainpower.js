@@ -58,7 +58,7 @@ var mostPoints = function (questions) {
 
     const nextQuestionToConsider = Math.min(
       totalQuestionsCount,
-      questionIndex + skipDuration + 1,
+      questionIndex + skipDuration + 1
     );
 
     const scoreIfSolved =

@@ -1,5 +1,9 @@
 /**
  * Parallel Courses Ii
+ * Intuition: Bitmask DP over the set of completed courses. From a mask, collect courses whose prereqs are done and choose up to k of them for the next semester.
+ * Approach: 1. Build a prereq mask per course. 2. Recurse on taken mask; if full, 0 semesters. 3. Bit-OR all currently available courses. 4. Recursively choose subsets of size min(k, available), memoize the min 1+rest.
+ * Dry Run: n=4, relations=[[2,1],[3,1],[1,4]], k=2
+ *   - semester 1: take 2 and 3; semester 2: take 1; semester 3: take 4. Return 3.
  * Time Complexity: O(2^n * (n + n * C(n, k)))
  * Space Complexity: O(2^n)
  */
@@ -53,7 +57,7 @@ var minNumberOfSemesters = function (n, relations, k) {
     function recursiveSemesterChooser(
       currentSelectionBitPosition,
       currentRemainingCount,
-      accumulatedSelectionMask,
+      accumulatedSelectionMask
     ) {
       if (currentRemainingCount === 0 || currentSelectionBitPosition === n) {
         if (accumulatedSelectionMask > 0) {
@@ -61,8 +65,8 @@ var minNumberOfSemesters = function (n, relations, k) {
             minimumRequiredSemesterCount,
             1 +
               computeMinSemesters(
-                currentTakenCoursesMask | accumulatedSelectionMask,
-              ),
+                currentTakenCoursesMask | accumulatedSelectionMask
+              )
           );
         }
         return;
@@ -74,22 +78,22 @@ var minNumberOfSemesters = function (n, relations, k) {
         recursiveSemesterChooser(
           currentSelectionBitPosition + 1,
           currentRemainingCount - 1,
-          accumulatedSelectionMask | currentCourseConsiderationBit,
+          accumulatedSelectionMask | currentCourseConsiderationBit
         );
       }
       recursiveSemesterChooser(
         currentSelectionBitPosition + 1,
         currentRemainingCount,
-        accumulatedSelectionMask,
+        accumulatedSelectionMask
       );
     }
 
     const availableCoursesToChooseFrom = countSetBitsInMask(
-      potentialCoursesForNextSemesterMask,
+      potentialCoursesForNextSemesterMask
     );
     const maximumSelectableCoursesForCurrentSemester = Math.min(
       k,
-      availableCoursesToChooseFrom,
+      availableCoursesToChooseFrom
     );
     recursiveSemesterChooser(0, maximumSelectableCoursesForCurrentSemester, 0);
 

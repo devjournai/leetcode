@@ -18,7 +18,7 @@ var maximumSubarraySum = function (nums, k) {
         maxGoodSum,
         prefixBeforeCurrent +
           currentValue -
-          minPrefixByValue.get(currentValue + k),
+          minPrefixByValue.get(currentValue + k)
       );
     }
     if (minPrefixByValue.has(currentValue - k)) {
@@ -26,7 +26,7 @@ var maximumSubarraySum = function (nums, k) {
         maxGoodSum,
         prefixBeforeCurrent +
           currentValue -
-          minPrefixByValue.get(currentValue - k),
+          minPrefixByValue.get(currentValue - k)
       );
     }
     const previousMin = minPrefixByValue.has(currentValue)
@@ -34,7 +34,7 @@ var maximumSubarraySum = function (nums, k) {
       : Infinity;
     minPrefixByValue.set(
       currentValue,
-      Math.min(previousMin, prefixBeforeCurrent),
+      Math.min(previousMin, prefixBeforeCurrent)
     );
     runningPrefix += currentValue;
   }

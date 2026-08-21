@@ -1,5 +1,8 @@
 /**
  * Max Increase To Keep City Skyline
+ * Intuition: A cell can rise to `min(max of its row, max of its column)` without changing those skylines.
+ * Approach: 1. Compute `rowMaximumHeights` and `colMaximumHeights`. 2. Sum `min(rowMax, colMax) - grid[r][c]` over all cells.
+ * Dry Run: [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]. Corner (0,1) 0 → min(8,3)=3, gain 3. Total 35.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N)
  */
@@ -44,7 +47,7 @@ var maxIncreaseKeepingSkyline = function (grid) {
       const maxPossibleColumnHeight = colMaximumHeights[cIndex];
       const ultimateMaxHeight = Math.min(
         maxPossibleRowHeight,
-        maxPossibleColumnHeight,
+        maxPossibleColumnHeight
       );
       totalIncreaseAmount += ultimateMaxHeight - existingBuildingHeight;
     }

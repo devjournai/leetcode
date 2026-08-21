@@ -1,11 +1,16 @@
 /**
  * Allocate Mailboxes
+ * Intuition: Optimal mailbox for a contiguous house segment sits at the median. Precompute that cost for every segment, then DP partition the sorted houses into k segments.
+ * Approach: 1. Sort houses and build prefix sums. 2. Fill singleMailboxCostMatrix[l][r] as sum of distances to the median. 3. Recurse (offset, mailboxesLeft) trying every end of the next segment. 4. Memoize; return the min total.
+ * Dry Run: houses = [1,4,8,10,20], k = 3
+ *   - three clusters e.g. [1,4], [8,10], [20]
+ *   - median costs sum to 5
  * Time Complexity: O(N^2 * K)
  * Space Complexity: O(N^2)
  */
 var minDistance = function (houseLocations, kMailboxes) {
   houseLocations.sort(
-    (firstElement, secondElement) => firstElement - secondElement,
+    (firstElement, secondElement) => firstElement - secondElement
   );
   const totalHouseCount = houseLocations.length;
 
@@ -33,7 +38,7 @@ var minDistance = function (houseLocations, kMailboxes) {
       endHouseAddress++
     ) {
       const medianPositionIndex = Math.floor(
-        (startHouseAddress + endHouseAddress) / 2,
+        (startHouseAddress + endHouseAddress) / 2
       );
       const medianHouseValue = houseLocations[medianPositionIndex];
 
@@ -55,7 +60,7 @@ var minDistance = function (houseLocations, kMailboxes) {
 
   function calculateMinTotalDistance(
     currentLocationOffset,
-    mailboxesRemainingCount,
+    mailboxesRemainingCount
   ) {
     if (currentLocationOffset === totalHouseCount) {
       return mailboxesRemainingCount === 0 ? 0 : Infinity;
@@ -80,13 +85,13 @@ var minDistance = function (houseLocations, kMailboxes) {
         singleMailboxCostMatrix[currentLocationOffset][segmentEndIndex];
       const resultForRemaining = calculateMinTotalDistance(
         segmentEndIndex + 1,
-        mailboxesRemainingCount - 1,
+        mailboxesRemainingCount - 1
       );
 
       if (resultForRemaining !== Infinity) {
         overallMinimumDistance = Math.min(
           overallMinimumDistance,
-          costForCurrentMailbox + resultForRemaining,
+          costForCurrentMailbox + resultForRemaining
         );
       }
     }

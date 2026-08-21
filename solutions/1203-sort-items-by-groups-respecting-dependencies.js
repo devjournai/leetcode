@@ -1,5 +1,8 @@
 /**
  * Sort Items By Groups Respecting Dependencies
+ * Intuition: Give each ungrouped item its own group, then topologically sort groups and items so both group-level and intra-group prerequisites hold.
+ * Approach: 1. Assign unique ids to group=-1 items. 2. Edges across groups go on the group graph; same-group edges go on the item graph. 3. Kahn-sort both. 4. Emit items in group order, using the item topo order inside each group.
+ * Dry Run: Two groups with item A before B in different groups: group topo puts A's group first, then B.
  * Time Complexity: O(N + M + sum(beforeItems[i].length))
  * Space Complexity: O(N + M + sum(beforeItems[i].length))
  */
@@ -18,7 +21,7 @@ var sortItems = function (n, m, group, beforeItems) {
 
   const groupGraphAdjacency = Array.from(
     { length: currentNextGroupId },
-    () => [],
+    () => []
   );
   const groupIncomingEdgeCount = new Array(currentNextGroupId).fill(0);
 
@@ -47,7 +50,7 @@ var sortItems = function (n, m, group, beforeItems) {
   const performTopologicalSort = (
     dependencyGraph,
     incomingCounts,
-    graphSize,
+    graphSize
   ) => {
     const processingQueue = [];
     const orderedElements = [];
@@ -76,7 +79,7 @@ var sortItems = function (n, m, group, beforeItems) {
   const sortedGroupSequence = performTopologicalSort(
     groupGraphAdjacency,
     groupIncomingEdgeCount,
-    currentNextGroupId,
+    currentNextGroupId
   );
   if (sortedGroupSequence.length === 0) {
     return [];
@@ -85,7 +88,7 @@ var sortItems = function (n, m, group, beforeItems) {
   const sortedItemSequence = performTopologicalSort(
     itemGraphAdjacency,
     itemIncomingEdgeCount,
-    n,
+    n
   );
   if (sortedItemSequence.length === 0) {
     return [];

@@ -1,5 +1,10 @@
 /**
  * Next Palindrome Using Same Digits
+ * Intuition: A palindrome is fully determined by its left half (plus a middle digit if the length is odd). The next palindrome using the same digits is the next permutation of that left half, mirrored.
+ * Approach: 1. Take `originalLeftHalf` as the first `halfSize` digits. 2. Call `advanceToNextPermutation` (next-permutation: find pivot, swap with next larger suffix digit, reverse suffix). 3. If none exists, return "". 4. Mirror the new left half, keep the original middle digit when `inputLength` is odd, and concatenate.
+ * Dry Run: num = "1221".
+ *   - halfSize=2, originalLeftHalf=['1','2']. Next permutation → ['2','1'].
+ *   - Mirror right half "12". Return "2112".
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

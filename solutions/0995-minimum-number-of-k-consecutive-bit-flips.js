@@ -1,5 +1,8 @@
 /**
  * Minimum Number Of K Consecutive Bit Flips
+ * Intuition: A 0 (after prior flips) must start a length-k flip. `currentActiveFlips` and `flipEndPoints` expire flips at index i+k.
+ * Approach: 1. At each i, drop ended flips. 2. `netValueAfterFlips = (nums[i] + currentActiveFlips) % 2`. 3. If 0, if i+k exceeds n return -1; else increment total/active and push i+k. 4. Return `totalFlipsNeeded`.
+ * Dry Run: nums = [0,1,0], k=1. Flip at 0, skip 1, flip at 2. Answer 2.
  * Time Complexity: O(N)
  * Space Complexity: O(K)
  */

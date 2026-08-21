@@ -31,43 +31,45 @@
  * 5. Return `[4, 2]`.
  * Time Complexity: O(N log N + M log N)
  * Space Complexity: O(N + M)
-*/
+ */
 var maximumBeauty = function (items, queries) {
-    const sortedItemData = [...items].sort((firstItem, secondItem) => firstItem[0] - secondItem[0]);
+  const sortedItemData = [...items].sort(
+    (firstItem, secondItem) => firstItem[0] - secondItem[0]
+  );
 
-    const maxBeautyAccumulator = new Array(sortedItemData.length);
-    let currentMaximumBeauty = 0;
+  const maxBeautyAccumulator = new Array(sortedItemData.length);
+  let currentMaximumBeauty = 0;
 
-    for (let itemIndex = 0; itemIndex < sortedItemData.length; itemIndex++) {
-        const [, itemBeautyValue] = sortedItemData[itemIndex];
-        currentMaximumBeauty = Math.max(currentMaximumBeauty, itemBeautyValue);
-        maxBeautyAccumulator[itemIndex] = currentMaximumBeauty;
+  for (let itemIndex = 0; itemIndex < sortedItemData.length; itemIndex++) {
+    const [, itemBeautyValue] = sortedItemData[itemIndex];
+    currentMaximumBeauty = Math.max(currentMaximumBeauty, itemBeautyValue);
+    maxBeautyAccumulator[itemIndex] = currentMaximumBeauty;
+  }
+
+  const answerArray = new Array(queries.length).fill(0);
+
+  for (let queryIndex = 0; queryIndex < queries.length; queryIndex++) {
+    const currentQueryValue = queries[queryIndex];
+    let lowBound = 0;
+    let highBound = sortedItemData.length - 1;
+    let rightmostMatchIndex = -1;
+
+    while (lowBound <= highBound) {
+      const midPoint = Math.floor(lowBound + (highBound - lowBound) / 2);
+      const itemPricePoint = sortedItemData[midPoint][0];
+
+      if (itemPricePoint <= currentQueryValue) {
+        rightmostMatchIndex = midPoint;
+        lowBound = midPoint + 1;
+      } else {
+        highBound = midPoint - 1;
+      }
     }
 
-    const answerArray = new Array(queries.length).fill(0);
-
-    for (let queryIndex = 0; queryIndex < queries.length; queryIndex++) {
-        const currentQueryValue = queries[queryIndex];
-        let lowBound = 0;
-        let highBound = sortedItemData.length - 1;
-        let rightmostMatchIndex = -1;
-
-        while (lowBound <= highBound) {
-            const midPoint = Math.floor(lowBound + (highBound - lowBound) / 2);
-            const itemPricePoint = sortedItemData[midPoint][0];
-
-            if (itemPricePoint <= currentQueryValue) {
-                rightmostMatchIndex = midPoint;
-                lowBound = midPoint + 1;
-            } else {
-                highBound = midPoint - 1;
-            }
-        }
-
-        if (rightmostMatchIndex !== -1) {
-            answerArray[queryIndex] = maxBeautyAccumulator[rightmostMatchIndex];
-        }
+    if (rightmostMatchIndex !== -1) {
+      answerArray[queryIndex] = maxBeautyAccumulator[rightmostMatchIndex];
     }
+  }
 
-    return answerArray;
+  return answerArray;
 };

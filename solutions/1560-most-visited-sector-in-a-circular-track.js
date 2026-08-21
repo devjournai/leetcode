@@ -1,5 +1,9 @@
 /**
  * Most Visited Sector In A Circular Track
+ * Intuition: Count visits on each open interval of rounds (exclude the segment end until the final destination is counted once).
+ * Approach: 1. For each consecutive pair, walk start→end-1 on the circle incrementing counts. 2. Increment the last sector. 3. Collect sectors with max count.
+ * Dry Run: n = 4, rounds = [1,3,1,2].
+ *   - Most visited sectors [1,2].
  * Time Complexity: O(M * N)
  * Space Complexity: O(N)
  */
@@ -24,7 +28,7 @@ var mostVisited = function (n, rounds) {
       sectorVisitsArray[currentPathSector]++;
       maxVisitsAchieved = Math.max(
         maxVisitsAchieved,
-        sectorVisitsArray[currentPathSector],
+        sectorVisitsArray[currentPathSector]
       );
 
       currentPathSector = currentPathSector === n ? 1 : currentPathSector + 1;
@@ -35,7 +39,7 @@ var mostVisited = function (n, rounds) {
   sectorVisitsArray[finalDestinationSector]++;
   maxVisitsAchieved = Math.max(
     maxVisitsAchieved,
-    sectorVisitsArray[finalDestinationSector],
+    sectorVisitsArray[finalDestinationSector]
   );
 
   const mostVisitedList = [];

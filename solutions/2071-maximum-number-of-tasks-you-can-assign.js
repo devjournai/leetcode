@@ -44,75 +44,87 @@
 * Space Complexity: O(N + M)
 */
 var maxTaskAssign = function (tasks, workers, pills, strength) {
-    tasks.sort((taskA, taskB) => taskA - taskB);
-    workers.sort((workerA, workerB) => workerA - workerB);
+  tasks.sort((taskA, taskB) => taskA - taskB);
+  workers.sort((workerA, workerB) => workerA - workerB);
 
-    const taskCount = tasks.length;
-    const workerCount = workers.length;
+  const taskCount = tasks.length;
+  const workerCount = workers.length;
 
-    let lowBoundary = 0;
-    let highBoundary = Math.min(taskCount, workerCount);
-    let maximumAssignableTasks = 0;
+  let lowBoundary = 0;
+  let highBoundary = Math.min(taskCount, workerCount);
+  let maximumAssignableTasks = 0;
 
-    while (lowBoundary <= highBoundary) {
-        const currentMiddle = Math.floor((lowBoundary + highBoundary) / 2);
+  while (lowBoundary <= highBoundary) {
+    const currentMiddle = Math.floor((lowBoundary + highBoundary) / 2);
 
-        if (currentMiddle === 0) {
-            maximumAssignableTasks = Math.max(maximumAssignableTasks, currentMiddle);
-            lowBoundary = currentMiddle + 1;
-            continue;
-        }
-
-        if (checkPossibility(currentMiddle)) {
-            maximumAssignableTasks = Math.max(maximumAssignableTasks, currentMiddle);
-            lowBoundary = currentMiddle + 1;
-        } else {
-            highBoundary = currentMiddle - 1;
-        }
+    if (currentMiddle === 0) {
+      maximumAssignableTasks = Math.max(maximumAssignableTasks, currentMiddle);
+      lowBoundary = currentMiddle + 1;
+      continue;
     }
 
-    return maximumAssignableTasks;
-
-    function checkPossibility(tasksToAssignCount) {
-        if (tasksToAssignCount === 0) {
-            return true;
-        }
-
-        const slicedTaskRequirements = tasks.slice(0, tasksToAssignCount);
-        const availableWorkerStrengths = workers.slice(workerCount - tasksToAssignCount);
-        let currentPillsRemaining = pills;
-
-        let taskProcessIndex = tasksToAssignCount - 1;
-        let allTasksAssignable = true;
-
-        while (taskProcessIndex >= 0 && allTasksAssignable) {
-            const currentTaskRequirement = slicedTaskRequirements[taskProcessIndex];
-            let assignedThisTask = false;
-
-            if (availableWorkerStrengths.length > 0 && availableWorkerStrengths[availableWorkerStrengths.length - 1] >= currentTaskRequirement) {
-                availableWorkerStrengths.pop();
-                assignedThisTask = true;
-            } else {
-                if (currentPillsRemaining > 0) {
-                    let workerSearchIndex = 0;
-                    while (workerSearchIndex < availableWorkerStrengths.length && !assignedThisTask) {
-                        if (availableWorkerStrengths[workerSearchIndex] + strength >= currentTaskRequirement) {
-                            availableWorkerStrengths.splice(workerSearchIndex, 1);
-                            currentPillsRemaining--;
-                            assignedThisTask = true;
-                        }
-                        workerSearchIndex++;
-                    }
-                }
-            }
-
-            if (!assignedThisTask) {
-                allTasksAssignable = false;
-            }
-
-            taskProcessIndex--;
-        }
-
-        return allTasksAssignable;
+    if (checkPossibility(currentMiddle)) {
+      maximumAssignableTasks = Math.max(maximumAssignableTasks, currentMiddle);
+      lowBoundary = currentMiddle + 1;
+    } else {
+      highBoundary = currentMiddle - 1;
     }
+  }
+
+  return maximumAssignableTasks;
+
+  function checkPossibility(tasksToAssignCount) {
+    if (tasksToAssignCount === 0) {
+      return true;
+    }
+
+    const slicedTaskRequirements = tasks.slice(0, tasksToAssignCount);
+    const availableWorkerStrengths = workers.slice(
+      workerCount - tasksToAssignCount
+    );
+    let currentPillsRemaining = pills;
+
+    let taskProcessIndex = tasksToAssignCount - 1;
+    let allTasksAssignable = true;
+
+    while (taskProcessIndex >= 0 && allTasksAssignable) {
+      const currentTaskRequirement = slicedTaskRequirements[taskProcessIndex];
+      let assignedThisTask = false;
+
+      if (
+        availableWorkerStrengths.length > 0 &&
+        availableWorkerStrengths[availableWorkerStrengths.length - 1] >=
+          currentTaskRequirement
+      ) {
+        availableWorkerStrengths.pop();
+        assignedThisTask = true;
+      } else {
+        if (currentPillsRemaining > 0) {
+          let workerSearchIndex = 0;
+          while (
+            workerSearchIndex < availableWorkerStrengths.length &&
+            !assignedThisTask
+          ) {
+            if (
+              availableWorkerStrengths[workerSearchIndex] + strength >=
+              currentTaskRequirement
+            ) {
+              availableWorkerStrengths.splice(workerSearchIndex, 1);
+              currentPillsRemaining--;
+              assignedThisTask = true;
+            }
+            workerSearchIndex++;
+          }
+        }
+      }
+
+      if (!assignedThisTask) {
+        allTasksAssignable = false;
+      }
+
+      taskProcessIndex--;
+    }
+
+    return allTasksAssignable;
+  }
 };

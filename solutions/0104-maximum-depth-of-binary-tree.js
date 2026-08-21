@@ -1,5 +1,8 @@
 /**
  * Maximum Depth Of Binary Tree
+ * Intuition: Depth is the number of BFS levels from the root to the farthest leaf; increment a counter once per level while the queue is non-empty.
+ * Approach: 1. Null root → 0. 2. Queue the root. 3. While the queue has nodes, increment depth, then dequeue the current level’s count of nodes and enqueue their children. 4. Return the depth counter.
+ * Dry Run: [3,9,20,null,null,15,7] → three levels processed → 3
  * Time Complexity: O(N)
  * Space Complexity: O(H)
  */

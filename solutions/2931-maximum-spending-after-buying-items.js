@@ -43,6 +43,8 @@
  * If we globally sort ALL items in ascending order, the items
  * from each individual shop also appear in the correct order.
  *
+ * Approach: Flatten every shop into `items`, sort ascending, then add `items[i] * (i+1)` using BigInt and return Number(answer).
+ *
  * So we can simply:
  *
  *     1. Put all items into one array.

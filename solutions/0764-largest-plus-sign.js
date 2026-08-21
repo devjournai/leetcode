@@ -1,5 +1,10 @@
 /**
  * Largest Plus Sign
+ * Intuition: The order of a plus centered at (r,c) is the min consecutive ones stretching left, right, up, and down. Precompute those four arm lengths on an n×n grid with mines set to 0.
+ * Approach: 1. Fill `gridInitialized` with 1s, then zero each mine. 2. Forward pass: `leftConsecutiveOnes` / `upConsecutiveOnes` = 1 + previous cell, or 0 if the cell is a mine. 3. Backward pass: same for `rightConsecutiveOnes` / `downConsecutiveOnes`. 4. For every cell take `Math.min` of the four arms and keep `largestPlusOrder`.
+ * Dry Run: n = 5, mines = [[4,2]].
+ *   - Cell (2,2) has left/right/up consecutive ones of 3, but down stops before the mine: `downConsecutiveOnes` = 2.
+ *   - Min arm = 2; no center yields more. Return 2.
  * Time Complexity: O(n^2)
  * Space Complexity: O(n^2)
  */
@@ -93,7 +98,7 @@ var orderOfLargestPlusSign = function (n, mines) {
         leftConsecutiveOnes[finalRowIndex][finalColIndex],
         rightConsecutiveOnes[finalRowIndex][finalColIndex],
         upConsecutiveOnes[finalRowIndex][finalColIndex],
-        downConsecutiveOnes[finalRowIndex][finalColIndex],
+        downConsecutiveOnes[finalRowIndex][finalColIndex]
       );
       largestPlusOrder = Math.max(largestPlusOrder, currentMinArmLength);
     }

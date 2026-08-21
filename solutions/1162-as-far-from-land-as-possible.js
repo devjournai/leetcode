@@ -1,5 +1,10 @@
 /**
  * As Far From Land As Possible
+ * Intuition: Multi-source BFS from every land cell. Water cells fill layer by layer; the last layer’s distance is the farthest water from land. All-land or all-water is -1.
+ * Approach: 1. Enqueue all 1s and count 0s; if either is 0 return -1. 2. BFS 4-direction, marking water as land when visited. 3. Increment distance each layer. 4. Return the last distance (or -1 if 0).
+ * Dry Run: grid = [[1,0,1],[0,0,0],[1,0,1]].
+ *   - Lands at corners. After 1 step the edge waters fill; center fills at distance 2.
+ *   - Answer 2.
  * Time Complexity: O(N*M)
  * Space Complexity: O(N*M)
  */

@@ -38,7 +38,7 @@ var resultArray = function (nums) {
 
 function getRanks(nums) {
   const uniqueSortedValues = [...new Set(nums)].sort(
-    (leftValue, rightValue) => leftValue - rightValue,
+    (leftValue, rightValue) => leftValue - rightValue
   );
   const ranks = new Map();
   for (let rank = 0; rank < uniqueSortedValues.length; rank++) {

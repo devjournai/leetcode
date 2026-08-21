@@ -113,7 +113,7 @@ var jsonParse = function (str) {
         numberEndIndex++;
       }
       parsedValueCandidate = Number(
-        str.substring(numberStartIndex, numberEndIndex),
+        str.substring(numberStartIndex, numberEndIndex)
       );
       advanceToIndex = numberEndIndex;
     } else {

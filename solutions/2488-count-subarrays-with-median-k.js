@@ -39,7 +39,7 @@ var countSubarrays = function (nums, k) {
     currentRightBalance += nums[firstLoopIndex] > k ? 1 : -1;
     rightBalanceMap.set(
       currentRightBalance,
-      (rightBalanceMap.get(currentRightBalance) || 0) + 1,
+      (rightBalanceMap.get(currentRightBalance) || 0) + 1
     );
   }
 

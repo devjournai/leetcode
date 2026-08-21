@@ -1,5 +1,8 @@
 /**
  * Redundant Connection II
+ * Intuition: A rooted tree plus one extra directed edge either creates two parents, a cycle, or both. Skip union on the later two-parent edge; then pick that edge, the cycle edge, or the earlier parent of the two-parent node.
+ * Approach: 1. Track `nodeParents`. 2. If a node already has a parent, set `duplicateParentEdgeIndex` and skip union; else union and set `cycleFormingEdgeIndex` on failure. 3. No duplicate → cycle edge. Duplicate and no cycle → that later edge. Both → `[nodeParents[target], target]` of the duplicate.
+ * Dry Run: edges=[[1,2],[1,3],[2,3]]. Node 3 gets a second parent at index 2; unions of first two succeed. cycle=-1 → return [2,3].
  * Time Complexity: O(N * α(N))
  * Space Complexity: O(N)
  */
@@ -8,7 +11,7 @@ var findRedundantDirectedConnection = function (edges) {
 
   const dsuRepresentatives = Array.from(
     { length: edgeCount + 1 },
-    (_, indexValue) => indexValue,
+    (_, indexValue) => indexValue
   );
   const dsuRanks = new Uint32Array(edgeCount + 1);
   const nodeParents = new Int32Array(edgeCount + 1).fill(-1);

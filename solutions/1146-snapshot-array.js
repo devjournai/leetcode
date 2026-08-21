@@ -1,5 +1,9 @@
 /**
  * Snapshot Array
+ * Intuition: Store only sparse writes per snapshot id. get walks snapshot ids downward until it finds a write for that index, else 0.
+ * Approach: 1. Constructor keeps updatesList[], snapCount, length. 2. set writes into a Map at updatesList[snapCount]. 3. snap returns snapCount then increments. 4. get scans desiredSnapId..0 for the index.
+ * Dry Run: SnapshotArray(3); set(0,5); snap(); set(0,6); get(0,0).
+ *   - snap 0 map {0:5}, then snapCount=1, then snap 1 {0:6}. get(0,0) finds 5.
  * Time Complexity: O(1)
  * Space Complexity: O(M)
  */

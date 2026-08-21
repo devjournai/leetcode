@@ -1,5 +1,8 @@
 /**
  * Minimum Time To Build Blocks
+ * Intuition: Huffman-style combining: repeatedly merge the two cheapest remaining times, paying split plus the max of the two.
+ * Approach: 1. Put all block times in a min-heap. 2. While more than one remains, pop two, push split + max(a,b). 3. The last value is the total time.
+ * Dry Run: blocks=[1,2,3], split=1. Merge 1 and 2 → 1+max(1,2)=3. Heap [3,3]. Merge → 1+3=4.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */
@@ -36,7 +39,7 @@ var minBuildTime = function (blocksInput, splitValue) {
         if (
           this.heapComparator(
             this.heapElements[currentElementIndex],
-            this.heapElements[parentElementIndex],
+            this.heapElements[parentElementIndex]
           ) < 0
         ) {
           [
@@ -65,7 +68,7 @@ var minBuildTime = function (blocksInput, splitValue) {
           leftChildNodeIndex < totalElementsCount &&
           this.heapComparator(
             this.heapElements[leftChildNodeIndex],
-            this.heapElements[smallestNodeIndex],
+            this.heapElements[smallestNodeIndex]
           ) < 0
         ) {
           smallestNodeIndex = leftChildNodeIndex;
@@ -75,7 +78,7 @@ var minBuildTime = function (blocksInput, splitValue) {
           rightChildNodeIndex < totalElementsCount &&
           this.heapComparator(
             this.heapElements[rightChildNodeIndex],
-            this.heapElements[smallestNodeIndex],
+            this.heapElements[smallestNodeIndex]
           ) < 0
         ) {
           smallestNodeIndex = rightChildNodeIndex;

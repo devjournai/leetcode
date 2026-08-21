@@ -1,5 +1,9 @@
 /**
  * Restore The Array From Adjacent Pairs
+ * Intuition: Adjacent pairs form a path graph. Endpoints have degree 1; walk from one end following the unused neighbor.
+ * Approach: 1. Build `adjacencyMap` lists. 2. Find `arrayStartElement` with one neighbor. 3. Walk until `reconstructedPath` has n = pairs+1 nodes, always stepping to the neighbor ≠ `priorValueInPath`. 4. Return the path.
+ * Dry Run: adjacentPairs = [[2,1],[3,4],[3,2]]
+ * Start 1 → 2 → 3 → 4.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -12,11 +16,11 @@ var restoreArray = function (adjacentPairs) {
 
     adjacencyMap.set(
       firstNumber,
-      (adjacencyMap.get(firstNumber) || []).concat(secondNumber),
+      (adjacencyMap.get(firstNumber) || []).concat(secondNumber)
     );
     adjacencyMap.set(
       secondNumber,
-      (adjacencyMap.get(secondNumber) || []).concat(firstNumber),
+      (adjacencyMap.get(secondNumber) || []).concat(firstNumber)
     );
   }
 

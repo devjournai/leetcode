@@ -30,44 +30,54 @@
  *   Return [1, 5].
  * Time Complexity: O(N)
  * Space Complexity: O(1)
-*/
+ */
 var nodesBetweenCriticalPoints = function (head) {
-    if (!head || !head.next || !head.next.next) {
-        return [-1, -1];
+  if (!head || !head.next || !head.next.next) {
+    return [-1, -1];
+  }
+
+  let firstCriticalFoundIndex = -1;
+  let lastCriticalFoundIndex = -1;
+  let minCalculatedDifference = Infinity;
+
+  let nodePointerOne = head;
+  let nodePointerTwo = head.next;
+  let nodePointerThree = head.next.next;
+  let nodePositionCounter = 2;
+
+  while (nodePointerThree !== null) {
+    const isLocalMaxima =
+      nodePointerTwo.val > nodePointerOne.val &&
+      nodePointerTwo.val > nodePointerThree.val;
+    const isLocalMinima =
+      nodePointerTwo.val < nodePointerOne.val &&
+      nodePointerTwo.val < nodePointerThree.val;
+
+    if (isLocalMaxima || isLocalMinima) {
+      if (firstCriticalFoundIndex === -1) {
+        firstCriticalFoundIndex = nodePositionCounter;
+      } else {
+        minCalculatedDifference = Math.min(
+          minCalculatedDifference,
+          nodePositionCounter - lastCriticalFoundIndex
+        );
+      }
+      lastCriticalFoundIndex = nodePositionCounter;
     }
 
-    let firstCriticalFoundIndex = -1;
-    let lastCriticalFoundIndex = -1;
-    let minCalculatedDifference = Infinity;
+    nodePointerOne = nodePointerTwo;
+    nodePointerTwo = nodePointerThree;
+    nodePointerThree = nodePointerThree.next;
+    nodePositionCounter++;
+  }
 
-    let nodePointerOne = head;
-    let nodePointerTwo = head.next;
-    let nodePointerThree = head.next.next;
-    let nodePositionCounter = 2;
+  if (
+    firstCriticalFoundIndex === -1 ||
+    firstCriticalFoundIndex === lastCriticalFoundIndex
+  ) {
+    return [-1, -1];
+  }
 
-    while (nodePointerThree !== null) {
-        const isLocalMaxima = nodePointerTwo.val > nodePointerOne.val && nodePointerTwo.val > nodePointerThree.val;
-        const isLocalMinima = nodePointerTwo.val < nodePointerOne.val && nodePointerTwo.val < nodePointerThree.val;
-
-        if (isLocalMaxima || isLocalMinima) {
-            if (firstCriticalFoundIndex === -1) {
-                firstCriticalFoundIndex = nodePositionCounter;
-            } else {
-                minCalculatedDifference = Math.min(minCalculatedDifference, nodePositionCounter - lastCriticalFoundIndex);
-            }
-            lastCriticalFoundIndex = nodePositionCounter;
-        }
-
-        nodePointerOne = nodePointerTwo;
-        nodePointerTwo = nodePointerThree;
-        nodePointerThree = nodePointerThree.next;
-        nodePositionCounter++;
-    }
-
-    if (firstCriticalFoundIndex === -1 || firstCriticalFoundIndex === lastCriticalFoundIndex) {
-        return [-1, -1];
-    }
-
-    const maxDistanceResult = lastCriticalFoundIndex - firstCriticalFoundIndex;
-    return [minCalculatedDifference, maxDistanceResult];
+  const maxDistanceResult = lastCriticalFoundIndex - firstCriticalFoundIndex;
+  return [minCalculatedDifference, maxDistanceResult];
 };

@@ -1,5 +1,8 @@
 /**
  * Shortest Path Visiting All Nodes
+ * Intuition: State is (node, bitmask of visited). BFS from every start; first time the mask is all-ones is the shortest covering walk (nodes may be revisited).
+ * Approach: 1. N=1 → 0. 2. `targetMask = (1<<N)-1`. Enqueue every (i, 1<<i, 0). 3. Expand neighbors with `newMask |= 1<<nb`; skip seen `(nb, mask)`. 4. Return pathLength when mask==target, else -1.
+ * Dry Run: graph=[[1,2,3],[0],[0],[0]]. Start 0 mask 0001. Visit 1 → 0011, 2 → 0111, 3 → 1111 in 4 steps? From 0 to 1, back 0, to 2, back 0, to 3 = 4. BFS finds 4.
  * Time Complexity: O(N^2 * 2^N)
  * Space Complexity: O(N * 2^N)
  */

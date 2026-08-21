@@ -45,7 +45,7 @@ var minPathCost = function (grid, moveCost) {
   const numColumns = grid[0].length;
 
   const minCostPath = Array.from({ length: numRows }, () =>
-    new Array(numColumns).fill(Infinity),
+    new Array(numColumns).fill(Infinity)
   );
 
   for (
@@ -64,7 +64,7 @@ var minPathCost = function (grid, moveCost) {
           minCostPath[currentRow + 1][targetCol],
           minCostPath[currentRow][currentCol] +
             grid[currentRow + 1][targetCol] +
-            moveCost[valueFromCell][targetCol],
+            moveCost[valueFromCell][targetCol]
         );
       }
     }
@@ -74,7 +74,7 @@ var minPathCost = function (grid, moveCost) {
   for (let finalColumn = 0; finalColumn < numColumns; finalColumn++) {
     overallMinimum = Math.min(
       overallMinimum,
-      minCostPath[numRows - 1][finalColumn],
+      minCostPath[numRows - 1][finalColumn]
     );
   }
 

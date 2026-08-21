@@ -1,5 +1,10 @@
 /**
  * 01 Matrix
+ * Intuition: Every 0 is already at distance 0, so multi-source BFS from all zeros yields each cell's nearest-zero distance: the first time a 1 is reached is the shortest path.
+ * Approach: 1. Allocate `distanceMap`; enqueue every 0 with distance 0 and set 1-cells to Infinity. 2. Dequeue cells and try the four neighbors. 3. If a neighbor is still Infinity, set distance = current + 1 and enqueue it. 4. Return `distanceMap`.
+ * Dry Run: matrix = [[0,0,0],[0,1,0],[1,1,1]].
+ *   - Zeros start at 0; (1,1) is Infinity then becomes 1 from a neighbor 0.
+ *   - (2,0) and (2,2) become 1; (2,1) becomes 2. Result [[0,0,0],[0,1,0],[1,2,1]].
  * Time Complexity: O(rows * cols)
  * Space Complexity: O(rows * cols)
  */

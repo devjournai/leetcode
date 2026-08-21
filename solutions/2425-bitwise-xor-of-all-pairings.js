@@ -39,7 +39,7 @@ var xorAllNums = function (nums1, nums2) {
   const xorValueTwo = nums2.reduce(
     (accumulatorForNums2, currentValueFromNums2) =>
       accumulatorForNums2 ^ currentValueFromNums2,
-    0,
+    0
   );
 
   let overallXorResult = 0;

@@ -76,12 +76,12 @@ var numberOfWays = function (startPos, endPos, k) {
     const waysFromLeftStep = calculateWays(
       currentPosition - 1,
       finalPosition,
-      stepsLeft - 1,
+      stepsLeft - 1
     );
     const waysFromRightStep = calculateWays(
       currentPosition + 1,
       finalPosition,
-      stepsLeft - 1,
+      stepsLeft - 1
     );
 
     const totalWays = (waysFromLeftStep + waysFromRightStep) % modulusValue;

@@ -1,5 +1,9 @@
 /**
  * Numbers With Repeated Digits
+ * Intuition: Count numbers <= n with all unique digits via digit DP-style permutations, then subtract from n.
+ * Approach: 1. Count unique-digit numbers with fewer digits than n (9 * P(9, len-1)). 2. Walk n's digits: for each prefix, add permutations of unused digits for smaller choices. 3. Stop if a digit repeats. 4. Include n itself if all digits unique. 5. Return n minus that count.
+ * Dry Run: n = 20.
+ *   - 1-digit unique: 9. Two-digit prefixes starting with 1 add 9 more unique numbers. 20 itself is unique. Unique total 19, so answer 20-19=1.
  * Time Complexity: O(logN)
  * Space Complexity: O(logN)
  */
@@ -47,7 +51,7 @@ var numDupDigitsAtMostN = function (n) {
         const availableForRemaining = 10 - encounteredDigits.size - 1;
         distinctNumberAccumulator += calculatePermutations(
           remainingPlaces,
-          availableForRemaining,
+          availableForRemaining
         );
       }
     }

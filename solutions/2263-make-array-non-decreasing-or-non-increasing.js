@@ -64,7 +64,7 @@
 */
 var convertArray = function (nums) {
   const possibleTargetValues = [...new Set(nums)].sort(
-    (valueA, valueB) => valueA - valueB,
+    (valueA, valueB) => valueA - valueB
   );
   const reversedInputNums = [...nums].reverse();
 
@@ -82,11 +82,11 @@ var convertArray = function (nums) {
         currentPrefixMinimumResult = Math.min(
           currentPrefixMinimumResult,
           dynamicProgrammingMap.get(levelValueIterator) +
-            Math.abs(currentElementValue - levelValueIterator),
+            Math.abs(currentElementValue - levelValueIterator)
         );
         updatedDynamicProgrammingMap.set(
           levelValueIterator,
-          currentPrefixMinimumResult,
+          currentPrefixMinimumResult
         );
       }
 
@@ -101,7 +101,7 @@ var convertArray = function (nums) {
   const nonDecreasingCost = calculateMinOperations(nums, possibleTargetValues);
   const nonIncreasingCost = calculateMinOperations(
     reversedInputNums,
-    possibleTargetValues,
+    possibleTargetValues
   );
 
   return Math.min(nonDecreasingCost, nonIncreasingCost);

@@ -1,5 +1,8 @@
 /**
  * Champagne Tower
+ * Intuition: Each glass keeps 1 and splits leftover equally to the two glasses below; simulate row by row until `targetGlassRow`.
+ * Approach: 1. `currentAmountInRow[0] = pouredCups`. 2. For each row < target, excess `(vol-1)/2` goes to next row at col and col+1 if positive. 3. Return `min(1, currentAmountInRow[targetGlassColumn])`.
+ * Dry Run: poured = 1, row = 1, glass = 1. Row 0 has 1, no overflow → row 1 is 0. Return 0.
  * Time Complexity: O(queryRow^2)
  * Space Complexity: O(queryRow)
  */

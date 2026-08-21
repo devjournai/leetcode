@@ -1,5 +1,9 @@
 /**
  * Snakes And Ladders
+ * Intuition: BFS on square numbers 1..n². A dice roll 1..6 lands on a boustrophedon cell; if that cell is not -1, teleport. First time we dequeue n² is the minimum rolls.
+ * Approach: 1. `calculateCellCoordinates` maps square to (row, col) from the bottom, reversing the column on odd rows-from-bottom. 2. Queue starts at 1, `visitedPathNodes` has 1. 3. Level-order: for each square, if it is n² return `minimumRolls`; else try +1..+6, skip > n², dest = board or the square itself, enqueue if unvisited. 4. Increment rolls per level. Empty queue → -1.
+ * Dry Run: board = [[-1,-1],[-1,3]] (n=2, goal 4).
+ *   - From 1 a roll of 3 lands on 4 with dest -1. Dequeue 4 at rolls=1 → return 1.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N^2)
  */
@@ -50,7 +54,7 @@ var snakesAndLadders = function (board) {
 
         const [targetCellRow, targetCellCol] = calculateCellCoordinates(
           possibleNextSquare,
-          boardLengthValue,
+          boardLengthValue
         );
 
         const finalMoveDestination =

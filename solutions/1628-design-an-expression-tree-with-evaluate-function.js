@@ -1,5 +1,9 @@
 /**
  * Design An Expression Tree With Evaluate Function
+ * Intuition: Postfix tokens build a binary expression tree with a stack: numbers become operand nodes; operators pop two children and wrap them in + - * / nodes whose evaluate() recurses.
+ * Approach: 1. OperandNode stores an integer. 2. Operator subclasses evaluate left and right (division is floor). 3. Builder: scan tokens; if operator, pop right then left and push a new operator node; else push OperandNode. 4. The remaining stack node is the tree root.
+ * Dry Run: tokens = ["3","4","+","2","*","7","/"].
+ *   - Tree is ((3+4)*2)/7 → evaluate() = 2.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -99,13 +103,13 @@ class ExpressionTreeBuilder {
           case "-":
             newOperatorNode = new SubtractionOperatorNode(
               operandOne,
-              operandTwo,
+              operandTwo
             );
             break;
           case "*":
             newOperatorNode = new MultiplicationOperatorNode(
               operandOne,
-              operandTwo,
+              operandTwo
             );
             break;
           case "/":

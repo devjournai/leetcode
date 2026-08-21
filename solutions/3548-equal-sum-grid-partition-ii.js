@@ -1,5 +1,8 @@
 /**
  * Equal Sum Grid Partition II
+ * Intuition: After a row or column cut, either the two rectangles already match, or the larger side can drop one cell whose value equals the difference (with extra endpoint-only rules on 1-row/1-col pieces).
+ * Approach: 1. Build 2D prefix sums and per-value bounding boxes. 2. For every horizontal/vertical cut, compare rectangle sums. 3. If unequal, try to discount |sum1-sum2| from the larger section: any occurrence in a 2D block, or only the two endpoints on a 1×W / H×1 strip. 4. Return true on first success.
+ * Dry Run: grid = [[1, 2], [3, 4]]. Horizontal cut: 3 vs 7, diff 4. Larger bottom is 1×2 so only endpoints 3 and 4; 4 exists → true.
  * Time Complexity: O(m * n + MAX_VAL)
  * Space Complexity: O(m * n + MAX_VAL)
  */

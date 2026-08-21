@@ -1,5 +1,9 @@
 /**
  * Robot Return To Origin
+ * Intuition: R/L and U/D cancel. The robot is back iff both net deltas are zero.
+ * Approach: 1. Track `horizontalCoordinate` and `verticalCoordinate`. 2. R++, L--, U++, D--. 3. Return both === 0.
+ * Dry Run: moves = "UD".
+ *   - U → v=1. D → v=0. h=0,v=0 → true.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

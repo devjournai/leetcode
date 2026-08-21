@@ -1,5 +1,8 @@
 /**
  * Adding Two Negabinary Numbers
+ * Intuition: Base −2 addition is like binary from the LSB, but carry is (sum−bit)/(−2) because 2×(−2)^k = −(−2)^{k+1}. Extra carry may create a new higher digit; then strip leading zeros.
+ * Approach: 1. Walk both arrays from the end with carry. 2. Digit = sum & 1; carry = (sum−digit)/(−2). 3. Reverse the digits. 4. Drop leading zeros except the last zero.
+ * Dry Run: [1,1,1,1,1] + [1,0,1] → process LSBs with carry through −2; result [1,0,0,0,0].
  * Time Complexity: O(max(N, M))
  * Space Complexity: O(max(N, M))
  */

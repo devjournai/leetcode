@@ -1,5 +1,8 @@
 /**
  * Candy Crush
+ * Intuition: Repeat until stable: mark every run of three or more equal candies (using absolute value so already-marked cells still match), then gravity drops positives and zeros crushed cells.
+ * Approach: 1. Loop `performCrushAndMark` then `applyGravitySimulation` while any crush happened. 2. Horizontal then vertical scans of windows of 3 write negative type ids. 3. Per column, compact positive values downward from the bottom (`writeTargetRow`) and zero the rest.
+ * Dry Run: Three 2’s in a row become -2, gravity clears them to 0, and the loop stops when no further triples exist.
  * Time Complexity: O((M * N)^2)
  * Space Complexity: O(1)
  */
@@ -27,7 +30,7 @@ var candyCrush = function (board) {
         currentColIndex++
       ) {
         const horizontalCandyType = Math.abs(
-          board[currentRowIndex][currentColIndex],
+          board[currentRowIndex][currentColIndex]
         );
         if (
           horizontalCandyType !== 0 &&
@@ -55,7 +58,7 @@ var candyCrush = function (board) {
         currentVerticalRowIndex++
       ) {
         const verticalCandyType = Math.abs(
-          board[currentVerticalRowIndex][currentColumnIndex],
+          board[currentVerticalRowIndex][currentColumnIndex]
         );
         if (
           verticalCandyType !== 0 &&

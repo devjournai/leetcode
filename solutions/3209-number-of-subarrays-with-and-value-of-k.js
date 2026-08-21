@@ -20,7 +20,7 @@ var countSubarrays = function (nums, k) {
       const mergedAndValue = previousAndValue & currentNumber;
       currentAndFrequencies.set(
         mergedAndValue,
-        (currentAndFrequencies.get(mergedAndValue) || 0) + frequency,
+        (currentAndFrequencies.get(mergedAndValue) || 0) + frequency
       );
     }
     subarrayCount += currentAndFrequencies.get(k) || 0;

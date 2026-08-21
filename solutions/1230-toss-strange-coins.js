@@ -1,5 +1,8 @@
 /**
  * Toss Strange Coins
+ * Intuition: dp[h] is the probability of exactly h heads so far; each coin mixes tails (stay) and heads (shift).
+ * Approach: 1. dp[0]=1. 2. For each coin, new[0]=old[0]*(1-p); new[h]=old[h]*(1-p)+old[h-1]*p for h=1..target. 3. Return dp[target].
+ * Dry Run: prob=[0.4], target=1 → 0.4.
  * Time Complexity: O(prob.length * target)
  * Space Complexity: O(target)
  */

@@ -1,5 +1,8 @@
 /**
  * Friends Of Appropriate Ages
+ * Intuition: Requests depend only on ages. Count people per age 1..120, then for every (x,y) pair of ages apply the three LeetCode inequalities, multiplying counts (minus self when x=y).
+ * Approach: 1. Histogram `ageGroupCounts`. 2. Nested ages; require y > 0.5x+7, y ≤ x, and not (y>100 && x<100). 3. Same age: count*(count-1); else product.
+ * Dry Run: ages = [16,16]. 16 > 0.5*16+7 = 15, same age so 2*(2-1) = 2 requests.
  * Time Complexity: O(N + MAX_AGE^2)
  * Space Complexity: O(MAX_AGE)
  */

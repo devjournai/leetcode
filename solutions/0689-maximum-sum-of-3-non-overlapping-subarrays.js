@@ -1,5 +1,8 @@
 /**
  * Maximum Sum Of 3 Non Overlapping Subarrays
+ * Intuition: Slide three adjacent windows of length k. Keep the best first window, the best pair (first+second), and the best triple; lexicographically earliest indices win because updates use strict `>`.
+ * Approach: 1. Seed `currentSumOne/Two/Three` on [0,k), [k,2k), [2k,3k). 2. For `currentStart` from 1 to n-3k, slide each window. 3. Update `maximumSumOne`/`indexOneMax`, then pair using that best first plus current second, then triple using best pair plus current third into `finalIndices`.
+ * Dry Run: nums=[1,2,1,2,6,7,5,1], k=2. Seed windows sums 3,3,13 at indices [0,2,4]. Sliding updates the best first/pair/triple; finalIndices=[0,3,5] (sums 3+8+12).
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

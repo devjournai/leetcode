@@ -1,5 +1,11 @@
 /**
  * Avoid Flood In The City
+ * Intuition: Rain days fill a lake; a later rain on the same lake floods unless a dry day after the previous rain is assigned to that lake. Keep last-rain days and unused dry slots.
+ * Approach: 1. Answer starts as -1s. 2. On 0, push the dry index. 3. On rain, if the lake rained before, find the first dry slot after that day, assign the lake, and splice it out; else flood []. 4. Remaining dry days become 1.
+ * Dry Run: rains = [1,2,0,0,2,1]
+ *   - rain 1, rain 2, dry, dry
+ *   - second 2 uses first dry for lake 2; second 1 uses second dry for lake 1
+ *   - [-1,-1,2,1,-1,-1]
  * Time Complexity: O(N^2)
  * Space Complexity: O(N)
  */

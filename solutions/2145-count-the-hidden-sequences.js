@@ -46,11 +46,11 @@ var numberOfArrays = function (differencesArray, lowerBound, upperBound) {
     currentRelativeSum += differencesArray[currentIndex];
     overallMinimumRelative = Math.min(
       overallMinimumRelative,
-      currentRelativeSum,
+      currentRelativeSum
     );
     overallMaximumRelative = Math.max(
       overallMaximumRelative,
-      currentRelativeSum,
+      currentRelativeSum
     );
   }
 

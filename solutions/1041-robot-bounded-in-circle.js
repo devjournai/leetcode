@@ -1,5 +1,9 @@
 /**
  * Robot Bounded In Circle
+ * Intuition: After one cycle the robot is bounded iff it is back at the origin or no longer facing north (so repeats will rotate and close).
+ * Approach: 1. Start at (0,0) facing (0,1). 2. G moves by the direction; L/R rotate the direction vector. 3. Return true if position is origin or direction is not north.
+ * Dry Run: instructions = "GGLLGG".
+ *   - Two G north to (0,2), two L face south, two G to (0,0). Origin -> true.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

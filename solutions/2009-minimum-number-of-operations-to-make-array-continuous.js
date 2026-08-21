@@ -30,7 +30,7 @@
 var minOperations = function (nums) {
   const arrayLength = nums.length;
   const distinctSortedElements = [...new Set(nums)].sort(
-    (firstValue, secondValue) => firstValue - secondValue,
+    (firstValue, secondValue) => firstValue - secondValue
   );
   let minimumOperations = arrayLength;
   const distinctCount = distinctSortedElements.length;
@@ -50,7 +50,7 @@ var minOperations = function (nums) {
     const currentWindowElements = rightPointer - leftPointer;
     minimumOperations = Math.min(
       minimumOperations,
-      arrayLength - currentWindowElements,
+      arrayLength - currentWindowElements
     );
   }
 

@@ -1,5 +1,8 @@
 /**
  * Find Eventual Safe States
+ * Intuition: Safe nodes never reach a cycle. Terminals have out-degree 0; reversing edges, Kahn from terminals peels nodes whose remaining out-degree hits 0.
+ * Approach: 1. Build `reversedAdjacencyList` and `initialOutDegrees`. 2. Queue all out-degree 0. 3. Pop, record as safe, decrement predecessors, enqueue when 0. 4. Sort ids and return.
+ * Dry Run: graph = [[1,2],[2,3],[5],[0],[5],[],[]]. Terminals 5,6 peel to safe [2,4,5,6] after sort.
  * Time Complexity: O(N + E + N log N)
  * Space Complexity: O(N + E)
  */

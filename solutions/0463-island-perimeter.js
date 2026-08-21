@@ -1,5 +1,8 @@
 /**
  * Island Perimeter
+ * Intuition: Each land cell starts with 4 sides; every 4-direction neighbor that is also land removes one side.
+ * Approach: 1. For each cell === 1, add 4. 2. Check offsets (-1,0),(1,0),(0,-1),(0,1). 3. If the neighbor is in bounds and land, decrement. 4. Return `perimeterSum`.
+ * Dry Run: [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]. Each land-land edge subtracts; total 16.
  * Time Complexity: O(R * C)
  * Space Complexity: O(1)
  */

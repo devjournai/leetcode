@@ -1,5 +1,8 @@
 /**
  * Design Linked List
+ * Intuition: Singly linked list with `listHead` and `listSize`. Index ops walk from the head; head insert is O(1), tail walks to the last node.
+ * Approach: 1. `get` walks `indexQuery` nodes or -1. 2. `addAtHead` prepends. 3. `addAtTail` walks to null next. 4. `addAtIndex` delegates 0/size to head/tail else splice after index-1. 5. `deleteAtIndex` relinks around the node.
+ * Dry Run: addAtHead(1) → [1]; addAtTail(3) → [1,3]; addAtIndex(1,2) → [1,2,3]; get(1)=2; deleteAtIndex(1) → [1,3]; get(1)=3.
  * Time Complexity: MyLinkedList(): O(1), get(): O(N), addAtHead(): O(1), addAtTail(): O(N), addAtIndex(): O(N), deleteAtIndex(): O(N)
  * Space Complexity: MyLinkedList(): O(1), get(): O(1), addAtHead(): O(1), addAtTail(): O(1), addAtIndex(): O(1), deleteAtIndex(): O(1)
  */

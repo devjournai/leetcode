@@ -93,7 +93,7 @@ var minimumMoves = function (grid) {
 
         recurseAndCalculate(
           currentSourceIndex + 1,
-          accumulatedMoves + manhattanDistance,
+          accumulatedMoves + manhattanDistance
         );
 
         emptyTargets[targetIterationIndex] = savedTargetData;

@@ -51,7 +51,7 @@ var assignEdgeWeights = function (edges, queries) {
 
   const depth = new Int32Array(N + 1).fill(0);
   const parent = Array.from({ length: N + 1 }, () =>
-    new Int32Array(MAX_LOG_N).fill(0),
+    new Int32Array(MAX_LOG_N).fill(0)
   );
 
   const queue = [1];

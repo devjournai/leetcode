@@ -1,5 +1,9 @@
 /**
  * Sell Diminishing Valued Colored Balls
+ * Intuition: Always sell from the currently tallest piles. After sorting descending, sell the gap between this height and the next in arithmetic-series batches (mod 1e9+7).
+ * Approach: 1. Sort inventory descending. 2. While orders remain, let w = number of piles at the current height (index+1) and drop = height - nextHeight. 3. If orders cover the full batch, add the arithmetic sum of that rectangle and continue. 4. Else sell full rows of w plus a leftover of (height-rows) and stop.
+ * Dry Run: inventory=[2,5], orders=4.
+ *   - Sell 5,4,3,2 → profit 14.
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */
@@ -44,7 +48,7 @@ var maxProfit = function (inventory, orders) {
       remainingOrders -= sellableBallsInBatch;
     } else {
       let ballsPerColorToSell = Math.floor(
-        remainingOrders / distinctColorsAtCurrentLevel,
+        remainingOrders / distinctColorsAtCurrentLevel
       );
       let remainingSingleSales = remainingOrders % distinctColorsAtCurrentLevel;
 
@@ -66,7 +70,7 @@ var maxProfit = function (inventory, orders) {
 
       if (remainingSingleSales > 0) {
         let valueForRemainingBalls = BigInt(
-          currentLevelCount - ballsPerColorToSell,
+          currentLevelCount - ballsPerColorToSell
         );
         let remainderProfitBig =
           (valueForRemainingBalls * BigInt(remainingSingleSales)) %

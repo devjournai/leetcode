@@ -46,6 +46,8 @@
  *
  * ------------------------------------------------------------
  *
+ * Approach: Precompute factorials. Start with answer = healthyCount!. For each gap of size L, multiply by inverse(L!). For internal gaps (between two sick people) also multiply by 2^(L-1) via modular pow. Return modulo 1e9+7.
+ *
  * Step 1:
  *
  * Find the number of healthy people in every gap.
@@ -187,7 +189,7 @@
  *
  * ------------------------------------------------------------
  *
- * Example 1:
+ * Dry Run:
  *
  *     n = 5
  *     sick = [0,4]

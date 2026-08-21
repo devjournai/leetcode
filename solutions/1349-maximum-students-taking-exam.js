@@ -1,5 +1,8 @@
 /**
  * Maximum Students Taking Exam
+ * Intuition: Seats in a row are a bitmask. No adjacent seats in-row or diagonally to the previous row. DP over row and previous mask.
+ * Approach: 1. Valid mask: no '#', no neighboring 1s, no diagonal clash with previous mask. 2. Recurse row by row trying all 2^cols masks, add popcount. 3. Memo (row, prevMask). 4. Start from row 0 with prev 0.
+ * Dry Run: seats = [["#",".","#","#",".","#"],[".","#","#","#","#","."],["#",".","#","#",".","#"]]. Max students 4.
  * Time Complexity: O(m * 4^n * n)
  * Space Complexity: O(m * 2^n)
  */
@@ -11,7 +14,7 @@ var maxStudents = function (seats) {
   const checkConfigurationValidity = (
     rowUnderValidation,
     currentMaskToCheck,
-    previousMaskUsed,
+    previousMaskUsed
   ) => {
     for (let columnIndex = 0; columnIndex < totalCols; columnIndex++) {
       if (!(currentMaskToCheck & (1 << columnIndex))) {
@@ -79,7 +82,7 @@ var maxStudents = function (seats) {
         !checkConfigurationValidity(
           currentProcessingRowIdx,
           currentMaskOption,
-          previousRowConfiguration,
+          previousRowConfiguration
         )
       ) {
         continue;
@@ -88,11 +91,11 @@ var maxStudents = function (seats) {
       const currentStudentsInRow = countOnesInMask(currentMaskOption);
       const recursiveOutcome = calculateMax(
         currentProcessingRowIdx + 1,
-        currentMaskOption,
+        currentMaskOption
       );
       maximumCountForSubproblem = Math.max(
         maximumCountForSubproblem,
-        currentStudentsInRow + recursiveOutcome,
+        currentStudentsInRow + recursiveOutcome
       );
     }
 

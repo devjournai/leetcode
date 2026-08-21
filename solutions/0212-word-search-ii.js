@@ -1,5 +1,11 @@
 /**
  * Word Search II
+ * Intuition: Put all words in a trie so one DFS from each board cell can match many words at once. Marking a cell '#' prevents reuse; clearing _word after a hit avoids duplicate results.
+ * Approach: 1. Insert every word into a trie, storing the full string at _word. 2. From each cell whose letter is a trie child, DFS. 3. If the node has _word, add it and unset _word. 4. Mark the cell visited, recurse to 4-neighbors, then restore the letter. 5. Return the set as an array.
+ * Dry Run: board = [["a","b"],["c","d"]], words = ["ab","cd"].
+ *   - Trie has ab and cd.
+ *   - DFS from [0][0] 'a' → [0][1] 'b' hits _word "ab" and unsets it.
+ *   - DFS from [1][0] 'c' → [1][1] 'd' hits "cd". Return ["ab","cd"].
  * Time Complexity: O(M * N * 3^K)
  * Space Complexity: O(L)
  */

@@ -85,7 +85,7 @@ var matrixMedian = function (grid) {
       totalElementsCount += countElementsSmallerOrEqual(
         currentRow,
         currentGuessMedian,
-        matrixCols,
+        matrixCols
       );
     }
 

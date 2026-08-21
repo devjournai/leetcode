@@ -22,8 +22,14 @@ var canMakePalindromeQueries = function (s, queries) {
 
   const getMirroredDiffs = (text) => {
     const diffs = [0];
-    for (let leftIndex = 0, rightIndex = text.length - 1; leftIndex < rightIndex; leftIndex++, rightIndex--) {
-      diffs.push(diffs[diffs.length - 1] + (text[leftIndex] !== text[rightIndex] ? 1 : 0));
+    for (
+      let leftIndex = 0, rightIndex = text.length - 1;
+      leftIndex < rightIndex;
+      leftIndex++, rightIndex--
+    ) {
+      diffs.push(
+        diffs[diffs.length - 1] + (text[leftIndex] !== text[rightIndex] ? 1 : 0)
+      );
     }
     return diffs;
   };
@@ -67,9 +73,12 @@ var canMakePalindromeQueries = function (s, queries) {
     const reflectedD = stringLength - d;
 
     if (
-      (Math.min(a, reflectedD) > 0 && mirroredDiffs[Math.min(a, reflectedD)] > 0) ||
+      (Math.min(a, reflectedD) > 0 &&
+        mirroredDiffs[Math.min(a, reflectedD)] > 0) ||
       (stringLength / 2 > Math.max(b, reflectedC) &&
-        mirroredDiffs[stringLength / 2] - mirroredDiffs[Math.max(b, reflectedC)] > 0) ||
+        mirroredDiffs[stringLength / 2] -
+          mirroredDiffs[Math.max(b, reflectedC)] >
+          0) ||
       (reflectedD > b && mirroredDiffs[reflectedD] - mirroredDiffs[b] > 0) ||
       (a > reflectedC && mirroredDiffs[a] - mirroredDiffs[reflectedC] > 0)
     ) {

@@ -1,5 +1,10 @@
 /**
  * Rearrange Words In A Sentence
+ * Intuition: Stable-group words by length so original order among equal lengths is kept, then lowercase everything and capitalize the first character.
+ * Approach: 1. Split on spaces. 2. Bucket words by length. 3. Concatenate buckets from length 1 upward. 4. Join, toLowerCase, uppercase char 0, return.
+ * Dry Run: text = "Leetcode is cool"
+ *   - lengths: is(2), cool(4), Leetcode(8) preserving order within length
+ *   - "is cool leetcode" -> "Is cool leetcode"
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

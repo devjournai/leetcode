@@ -1,5 +1,9 @@
 /**
  * Number Of Ways To Split A String
+ * Intuition: Three parts need equal ones. If ones%3≠0 → 0; if 0 ones, C(n-1,2). Else gaps between the 1/3 and 2/3 one-boundaries multiply.
+ * Approach: 1. Collect one indices. 2. Handle %3 and zero cases. 3. ways = (idx[t]-idx[t-1])*(idx[2t]-idx[2t-1]) mod 1e9+7.
+ * Dry Run: s = "10101".
+ *   - 3 ones, t=1; both gaps are 1 → 1 way.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

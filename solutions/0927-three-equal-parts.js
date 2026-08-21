@@ -1,5 +1,8 @@
 /**
  * Three Equal Parts
+ * Intuition: Equal binary values means the same 1-count per third and the same bit string from each part’s first 1 through a length fixed by the last part (including its trailing zeros). Extra zeros between those windows become leading zeros of the next part.
+ * Approach: 1. Count 1s; none → [0, n-1]; not multiple of 3 → [-1,-1]. 2. Locate the 1st, (ones/3+1)th, and (2*ones/3+1)th one. 3. Pattern length = n − thirdStart; require enough room between starts. 4. Compare the three slices; return [firstStart+len-1, secondStart+len].
+ * Dry Run: [1,0,1,0,1]. ones=3, starts 0,2,4, len=1. Bits 1=1=1. Return [0, 3] → parts [1] | [0,1,0] | [1] as values 1,1,1.
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */

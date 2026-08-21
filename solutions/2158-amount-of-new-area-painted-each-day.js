@@ -45,7 +45,7 @@ var amountPainted = function (paintOperations) {
     let newlyPaintedLength = activeSegmentRight - activeSegmentLeft;
 
     const sortedSegmentStarts = Array.from(paintedSegments.keys()).sort(
-      (firstKey, secondKey) => firstKey - secondKey,
+      (firstKey, secondKey) => firstKey - secondKey
     );
     const segmentsForRemoval = [];
     let initialOverlapHandled = false;
@@ -67,7 +67,7 @@ var amountPainted = function (paintOperations) {
       ) {
         newlyPaintedLength = Math.max(
           0,
-          currentSegmentEnd - Math.max(currentSegmentStart, existingSegmentEnd),
+          currentSegmentEnd - Math.max(currentSegmentStart, existingSegmentEnd)
         );
         activeSegmentLeft = Math.min(activeSegmentLeft, existingSegmentStart);
         activeSegmentRight = Math.max(activeSegmentRight, existingSegmentEnd);

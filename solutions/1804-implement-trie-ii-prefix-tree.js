@@ -1,5 +1,8 @@
 /**
  * Implement Trie II Prefix Tree
+ * Intuition: Each node stores `wordCount` (words ending here) and `prefixCount` (words passing through) so insert, equal-to, starts-with, and erase are O(length).
+ * Approach: 1. Root is `{children, wordCount, prefixCount}`. 2. `insert` creates nodes and increments prefixCount on each step, wordCount at the end. 3. Count methods walk the path or return 0. 4. `erase` decrements prefixCount along the word and wordCount at the leaf.
+ * Dry Run: insert "apple" twice, insert "app". countWordsEqualTo("apple")=2, countWordsStartingWith("app")=3, erase "apple" → equal 1 and prefix 2.
  * Time Complexity: O(L)
  * Space Complexity: O(TotalNodes * AlphabetSize)
  */

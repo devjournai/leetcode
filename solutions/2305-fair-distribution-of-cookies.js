@@ -70,7 +70,7 @@ var distributeCookies = function (cookies, k) {
       const currentMaxSum = Math.max(...childrenTotals);
       minimalOverallUnfairness = Math.min(
         minimalOverallUnfairness,
-        currentMaxSum,
+        currentMaxSum
       );
       return;
     }

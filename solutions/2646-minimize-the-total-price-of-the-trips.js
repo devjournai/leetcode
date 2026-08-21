@@ -49,7 +49,7 @@ var minimumTotalPrice = function (
   totalNodes,
   edgeConnections,
   nodePrices,
-  allTrips,
+  allTrips
 ) {
   const nodeAdjacencyMap = Array.from({ length: totalNodes }, () => []);
   for (const [firstNode, secondNode] of edgeConnections) {
@@ -63,7 +63,7 @@ var minimumTotalPrice = function (
     currentSearchNode,
     targetPathNode,
     searchParentNode,
-    pathTraversalHistory,
+    pathTraversalHistory
   ) => {
     pathTraversalHistory.push(currentSearchNode);
     if (currentSearchNode === targetPathNode) {
@@ -80,7 +80,7 @@ var minimumTotalPrice = function (
             adjacentNodeIdentifier,
             targetPathNode,
             currentSearchNode,
-            pathTraversalHistory,
+            pathTraversalHistory
           )
         ) {
           return true;
@@ -98,7 +98,7 @@ var minimumTotalPrice = function (
 
   const computeMinimumCosts = (
     currentComputationNode,
-    computationParentNode,
+    computationParentNode
   ) => {
     const currentNodesPriceValue = nodePrices[currentComputationNode];
     const currentNodesVisitCountValue = tripVisitCounts[currentComputationNode];
@@ -114,7 +114,7 @@ var minimumTotalPrice = function (
       }
       const [childPriceIfFull, childPriceIfHalved] = computeMinimumCosts(
         neighboringNodeId,
-        currentComputationNode,
+        currentComputationNode
       );
       notHalvedSubtreeCost += Math.min(childPriceIfFull, childPriceIfHalved);
       halvedSubtreeCost += childPriceIfFull;

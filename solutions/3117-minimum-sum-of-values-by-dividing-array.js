@@ -35,8 +35,7 @@ var minimumValueSum = function (nums, andValues) {
     } else if (updatedMask === andValues[andIndex]) {
       bestSum = Math.min(
         minimumSumFrom(numsIndex + 1, andIndex, updatedMask),
-        nums[numsIndex] +
-          minimumSumFrom(numsIndex + 1, andIndex + 1, FULL_MASK),
+        nums[numsIndex] + minimumSumFrom(numsIndex + 1, andIndex + 1, FULL_MASK)
       );
     } else {
       bestSum = minimumSumFrom(numsIndex + 1, andIndex, updatedMask);

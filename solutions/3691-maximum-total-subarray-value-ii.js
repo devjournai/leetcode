@@ -1,20 +1,8 @@
 /**
  * Maximum Total Subarray Value II
- * Intuition: This problem asks for the sum of the `k` largest values of `max(subarray) - min(subarray)`. This is a classic "sum of top K" problem, which can often be solved efficiently using a binary search approach on the value space.
- * Approach:
- *   1. Define a `calculateMetrics(threshold)` function: This function takes an integer `threshold` and returns an array `[count, sumActualValues]`.
- *      - `count`: The number of distinct non-empty subarrays `nums[l..r]` such that `max(nums[l..r]) - min(nums[l..r]) >= threshold`.
- *      - `sumActualValues`: The sum of `(max(nums[l..r]) - min(nums[l..r]))` for all such counted subarrays.
- *      This function is crucial and must run in `O(N)` time to meet the overall complexity requirements.
- *      The `O(N)` implementation uses a two-pointer sliding window (`j` for left, `i` for right) and two monotonic deques (`minDeque`, `maxDeque`).
- *      For each `i` (right pointer), we add `nums[i]` to the deques. Then, we advance `j` (left pointer) as long as the condition `max(nums[j..i]) - min(nums[j..i]) >= threshold` is met.
- *      The key insight for calculating the sum is that if the window `[j, i]` satisfies the condition, then for all subarrays `[p, i]` where `p` is from `j` to `min(maxDeque[0], minDeque[0])`, the `max` and `min` elements (and thus the value `max-min`) remain the same as for `[j, i]`. These subarrays contribute `(min(maxDeque[0], minDeque[0]) - j + 1)` to the count and sum. After accounting for these, `j` is advanced past the 'critical' index (`maxDeque[0]` or `minDeque[0]`) to continue finding new valid windows.
- *   2. Binary Search for `targetThreshold`: We perform a binary search for `targetThreshold` in the range `[0, 10^9]` (maximum possible value for `max-min`). The `targetThreshold` is defined such that there are at least `k` subarrays with value `>= targetThreshold`, but fewer than `k` subarrays with value `>= targetThreshold + 1`. This `targetThreshold` effectively represents the `k`-th largest value.
- *   3. Calculate Final Total Value:
- *     Once `targetThreshold` is found:
- *      - We get `[countGreater, sumGreater]` by calling `calculateMetrics(targetThreshold + 1)`. `countGreater` is the number of subarrays with value strictly greater than `targetThreshold`, and `sumGreater` is the sum of their actual `max-min` values.
- *      - The remaining `k - countGreater` subarrays must have a value exactly equal to `targetThreshold`.
- *      - The total maximum value is `sumGreater + (k - countGreater) * targetThreshold`.
+ * Intuition: Subarray value is max-min. Sparse tables answer any [l,r] in O(1). A max-heap enumerates intervals by a unique parent split: always shrink left, and shrink right only when l===0, so each interval is generated once while extracting the k largest values.
+ * Approach: 1. Build RMQ sparse tables for max and min. 2. Push [0, n-1] onto a max-heap keyed by getVal(l,r). 3. k times: pop the best interval, add its value, push [l+1,r] if nonempty, and if l===0 also push [l, r-1]. 4. Return the sum.
+ * Dry Run: nums = [1, 3, 2], k = 2. [0,2] value 2; push [1,2] (val 1) and [0,1] (val 2). Next pop 2. Total 4.
  * Time Complexity: O(N * log(MAX_VAL))
  * Space Complexity: O(N)
  */
@@ -34,11 +22,11 @@ var maxTotalValue = function (nums, k) {
     for (let i = 0; i + (1 << j) <= n; i++) {
       max_st[i][j] = Math.max(
         max_st[i][j - 1],
-        max_st[i + (1 << (j - 1))][j - 1],
+        max_st[i + (1 << (j - 1))][j - 1]
       );
       min_st[i][j] = Math.min(
         min_st[i][j - 1],
-        min_st[i + (1 << (j - 1))][j - 1],
+        min_st[i + (1 << (j - 1))][j - 1]
       );
     }
   }

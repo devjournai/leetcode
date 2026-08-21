@@ -30,7 +30,7 @@ var checkContradictions = function (equations, values) {
     originVariable,
     destinationVariable,
     pathVisitedNodes,
-    currentProduct,
+    currentProduct
   ) {
     if (originVariable === destinationVariable) {
       return currentProduct;
@@ -50,7 +50,7 @@ var checkContradictions = function (equations, values) {
           nextNeighbor,
           destinationVariable,
           pathVisitedNodes,
-          currentProduct * nextRatio,
+          currentProduct * nextRatio
         );
         if (foundRatioFromPath !== null) {
           return foundRatioFromPath;
@@ -84,7 +84,7 @@ var checkContradictions = function (equations, values) {
       sourceIdentifier,
       targetIdentifier,
       currentPathVisited,
-      1.0,
+      1.0
     );
 
     const epsilonThreshold = 1e-5;

@@ -1,5 +1,9 @@
 /**
  * Maximum Sum Obtained Of Any Permutation
+ * Intuition: Assign largest nums to indices requested most often. A difference array builds frequencies, then sort both descending.
+ * Approach: 1. +1 at L, -1 at R+1. 2. Prefix to frequencies. 3. Sort nums and freq descending; sum products mod 1e9+7.
+ * Dry Run: nums = [1,2,3,4,5], requests = [[1,3],[0,1]].
+ *   - Pair largest values with highest frequencies → 19.
  * Time Complexity: O(N log N + M)
  * Space Complexity: O(N)
  */

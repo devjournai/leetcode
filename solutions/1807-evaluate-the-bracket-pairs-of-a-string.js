@@ -1,5 +1,9 @@
 /**
  * Evaluate The Bracket Pairs Of A String
+ * Intuition: Bracket pairs are keys. Replace each "(key)" with the knowledge value or "?" if missing, and copy other characters unchanged.
+ * Approach: 1. Load `knowledge` into `knowledgeMap`. 2. Scan `s`; on '(', parse until ')' and push the mapping or "?". 3. Otherwise push the character. 4. Join `outputParts`.
+ * Dry Run: s = "(name)is(age)yearsold", knowledge = [["name","bob"],["age","two"]].
+ *   - "bob" + "is" + "two" + "yearsold" → "bobistwoyearsold".
  * Time Complexity: O(s.length + sum(key.length for key in s) + sum(key.length + value.length for key,value in knowledge))
  * Space Complexity: O(s.length + sum(key.length + value.length for key,value in knowledge))
  */

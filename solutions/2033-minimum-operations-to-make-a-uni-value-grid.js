@@ -1,5 +1,8 @@
 /**
  * Minimum Operations to Make a Uni-Value Grid
+ * Intuition: All cells can become the same value iff they share the same remainder modulo x. The cheapest common value is the median of the flattened grid.
+ * Approach: 1. Flatten the grid. 2. If any value has a different remainder modulo x, return -1. 3. Sort and take the median as the target. 4. Sum |value - median| / x.
+ * Dry Run: grid = [[2,4],[6,8]], x = 2. Flatten [2,4,6,8], all even. Median = 6. Ops = (4+2+0+2)/2 = 4.
  * Time Complexity: O(m * n log(m * n))
  * Space Complexity: O(m * n)
  */

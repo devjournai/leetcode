@@ -1,5 +1,9 @@
 /**
  * Sign Of The Product Of An Array
+ * Intuition: The product is 0 if any zero appears; otherwise its sign is negative iff there is an odd number of negatives.
+ * Approach: 1. Scan nums. 2. Return 0 on a zero. 3. Count negatives. 4. Return 1 if that count is even else -1.
+ * Dry Run: nums = [-1,-2,-3,-4,3,2,1].
+ *   - Four negatives, even → 1.
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */

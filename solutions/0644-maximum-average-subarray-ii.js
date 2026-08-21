@@ -1,5 +1,8 @@
 /**
  * Maximum Average Subarray II
+ * Intuition: Binary-search the average. A subarray of length ≥ k has average ≥ mid iff some window of transformed values (nums[i]-mid) has a non-negative prefix after subtracting the min prefix of the dropped prefix.
+ * Approach: 1. Bound search by min/max of nums. 2. While `upperBound - lowerBound > 1e-5`, test `canFindSubarrayWithAverage`. 3. Helper sums first k transformed values; then slides, tracking `globalMinimumPastSum` of the prefix before the window. 4. Raise lower bound on success.
+ * Dry Run: nums=[1,12,-5,-6,50,3], k=4. Search between -6 and 50; mid averages that pass keep rising until ~12.75 (the length-4 window summing to 51).
  * Time Complexity: O(N log(MAX_VAL - MIN_VAL / PRECISION))
  * Space Complexity: O(1)
  */
@@ -62,7 +65,7 @@ function canFindSubarrayWithAverage(inputValues, minimumLength, targetAverage) {
       inputValues[iterateIndex - minimumLength] - targetAverage;
     globalMinimumPastSum = Math.min(
       globalMinimumPastSum,
-      pastWindowTransformedSum,
+      pastWindowTransformedSum
     );
 
     if (windowTransformedSum - globalMinimumPastSum >= 0) {

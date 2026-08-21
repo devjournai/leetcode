@@ -1,5 +1,8 @@
 /**
  * Range Module
+ * Intuition: Keep disjoint half-open intervals in `trackedIntervals`. Add merges anything that overlaps `[left, right)`; remove splits leftovers; query succeeds only if some stored interval fully covers the query.
+ * Approach: 1. `addRange` copies intervals completely left of the new range, unions overlapping ones into `[leftValueToAdd, rightValueToAdd)`, then copies intervals completely to the right. 2. `queryRange` scans until an interval starts after `queryLeft` or one contains `[queryLeft, queryRight)`. 3. `removeRange` keeps disjoint intervals and clips overlap into a left stub and/or a right stub.
+ * Dry Run: add [10,20), add [20,25) → [10,25). query [10,25) true. remove [14,16) → [10,14) and [16,25).
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

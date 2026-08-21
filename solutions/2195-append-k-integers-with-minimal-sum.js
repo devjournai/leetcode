@@ -43,7 +43,7 @@
  */
 var minimalKSum = function (nums, k) {
   const uniqueNumbersSorted = [...new Set(nums)].sort(
-    (valueA, valueB) => valueA - valueB,
+    (valueA, valueB) => valueA - valueB
   );
   let finalSum = BigInt(0);
   let numbersNeeded = k;
@@ -60,7 +60,7 @@ var minimalKSum = function (nums, k) {
       if (countToAppendInGap > 0) {
         const firstTerm = BigInt(currentPositiveInteger);
         const lastTerm = BigInt(
-          currentPositiveInteger + countToAppendInGap - 1,
+          currentPositiveInteger + countToAppendInGap - 1
         );
         const termsCount = BigInt(countToAppendInGap);
         finalSum += ((firstTerm + lastTerm) * termsCount) / BigInt(2);
@@ -76,7 +76,7 @@ var minimalKSum = function (nums, k) {
   if (numbersNeeded > 0) {
     const startOfRemainingRange = BigInt(currentPositiveInteger);
     const endOfRemainingRange = BigInt(
-      currentPositiveInteger + numbersNeeded - 1,
+      currentPositiveInteger + numbersNeeded - 1
     );
     const remainingTermsCount = BigInt(numbersNeeded);
     finalSum +=

@@ -1,11 +1,15 @@
 /**
  * Super Palindromes
+ * Intuition: A super-palindrome is a palindrome that is the square of a palindrome. Generate palindromic bases by mirroring 1..99999 as odd- and even-length strings, square with BigInt, and test range plus palindrome-ness of the square.
+ * Approach: 1. Parse bounds as BigInt. 2. For each base, build odd palindrome (mirror without last digit) and even palindrome (full mirror). 3. If square is in [low, high] and `checkPalindromeString` on the square, increment. 4. Early-return if square exceeds high and the palindrome itself is > 1e9. 5. Return the count.
+ * Dry Run: left = "4", right = "1000".
+ *   - Bases 1..: 2²=4 palindrome, 3²=9, 11²=121, 22²=484. Others out of range or square not palindrome. Count 4.
  * Time Complexity: O(R^(1/4) * log(R)^2)
  * Space Complexity: O(log R)
  */
 var superpalindromesInRange = function (
   lowerBoundAsString,
-  upperBoundAsString,
+  upperBoundAsString
 ) {
   const lowerLimitBigInt = BigInt(lowerBoundAsString);
   const upperLimitBigInt = BigInt(upperBoundAsString);

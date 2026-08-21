@@ -30,6 +30,8 @@
  * Therefore, we split the string into independent segments where
  * every adjacent pair differs by at most 2.
  *
+ * Approach: Split `word` wherever adjacent chars differ by more than 2. In each segment, for distinct=1..26 slide a window of size distinct*k, maintaining counts, `present`, and `exactlyK`; increment when both equal `distinct`.
+ *
  * ------------------------------------------------------------
  *
  * Inside one valid segment:
@@ -64,7 +66,7 @@
  *
  * ------------------------------------------------------------
  *
- * Example:
+ * Dry Run:
  *
  *     word = "aaabbbccc"
  *     k = 3

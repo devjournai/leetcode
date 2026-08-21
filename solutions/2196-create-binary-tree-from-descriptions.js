@@ -30,7 +30,7 @@ var createBinaryTree = function (descriptions) {
     if (!treeNodesRegistry.has(currentParentValue)) {
       treeNodesRegistry.set(
         currentParentValue,
-        new TreeNode(currentParentValue),
+        new TreeNode(currentParentValue)
       );
     }
     if (!treeNodesRegistry.has(currentChildValue)) {

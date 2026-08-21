@@ -1,5 +1,8 @@
 /**
  * Circular Permutation In Binary Representation
+ * Intuition: Standard binary-reflected Gray code visits every n-bit number with one-bit steps, including wrap-around; XOR with start rotates it to begin at start.
+ * Approach: 1. Build Gray code: for bit b, append the reverse of the current list with 2^b added. 2. XOR every codeword with start.
+ * Dry Run: n=2, start=3. Gray [0,1,3,2] XOR 3 → [3,2,0,1].
  * Time Complexity: O(2^n)
  * Space Complexity: O(2^n)
  */

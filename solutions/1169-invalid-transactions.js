@@ -1,5 +1,9 @@
 /**
  * Invalid Transactions
+ * Intuition: A transaction is invalid if amount > 1000, or the same name appears in a different city within 60 minutes. Flag both sides of each conflicting pair.
+ * Approach: 1. Parse name,time,amount,city. 2. Mark amount>1000. 3. Nested scan: same name, different city, |time|<=60, mark both original indices. 4. Return the original strings at those indices.
+ * Dry Run: ["alice,20,800,mtv","alice,50,100,beijing"].
+ *   - Amounts ok, but same name, 30 minutes apart, different cities. Both invalid.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N)
  */
@@ -18,7 +22,7 @@ var invalidTransactions = function (transactionsInput) {
         city: transactionCityName,
         originalIndex: currentOriginalIndex,
       };
-    },
+    }
   );
 
   const invalidEntryIndices = new Set();
@@ -41,7 +45,7 @@ var invalidTransactions = function (transactionsInput) {
         primaryIterator !== secondaryIterator &&
         firstTransactionComparison.name === secondTransactionComparison.name &&
         Math.abs(
-          firstTransactionComparison.time - secondTransactionComparison.time,
+          firstTransactionComparison.time - secondTransactionComparison.time
         ) <= 60 &&
         firstTransactionComparison.city !== secondTransactionComparison.city
       ) {

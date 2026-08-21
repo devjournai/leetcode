@@ -1,5 +1,9 @@
 /**
  * Design Underground System
+ * Intuition: Store each in-progress check-in by id, and accumulate total time and trip count per (start, end) pair so averages are O(1).
+ * Approach: 1. checkIn maps id → {station, time}. 2. checkOut looks up the check-in, adds (t - start) to route "start-end", increments the trip count, and deletes the check-in. 3. getAverageTime returns totalTime / tripCount for that pair.
+ * Dry Run: checkIn(45,"Leyton",3); checkOut(45,"Waterloo",15); getAverageTime("Leyton","Waterloo").
+ *   - Travel 12. Average 12 / 1 = 12.
  * Time Complexity: O(1)
  * Space Complexity: O(U + S^2)
  */
@@ -38,7 +42,7 @@ UndergroundSystem.prototype.checkOut = function (id, stationName, t) {
 
 UndergroundSystem.prototype.getAverageTime = function (
   startStation,
-  endStation,
+  endStation
 ) {
   const queryKey = `${startStation}-${endStation}`;
   const recordedStats = this.routeDurations.get(queryKey);

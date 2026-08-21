@@ -1,5 +1,10 @@
 /**
  * Max Dot Product Of Two Subsequences
+ * Intuition: DP[i][j] is the best non-empty subsequence dot product using prefixes nums1[:i] and nums2[:j]: take the pair, skip one side, or extend a previous pairing.
+ * Approach: 1. Table (m+1)x(n+1) filled with -Infinity. 2. For each pair of indices, product = nums1[i-1]*nums2[j-1]. 3. Candidate is max(product, product + dp[i-1][j-1] if finite, dp[i-1][j], dp[i][j-1]). 4. Return dp[m][n].
+ * Dry Run: nums1 = [2,1,-2,5], nums2 = [3,0,-6]
+ *   - pairing 2*3=6 then -2*-6=12 extra -> 18
+ *   - DP settles on 18
  * Time Complexity: O(m * n)
  * Space Complexity: O(m * n)
  */
@@ -32,7 +37,7 @@ var maxDotProduct = function (nums1, nums2) {
         maxIncludingCurrentPair = Math.max(
           maxIncludingCurrentPair,
           currentElementProduct +
-            memoizationTable[firstArrayIndex - 1][secondArrayIndex - 1],
+            memoizationTable[firstArrayIndex - 1][secondArrayIndex - 1]
         );
       }
 
@@ -44,7 +49,7 @@ var maxDotProduct = function (nums1, nums2) {
       memoizationTable[firstArrayIndex][secondArrayIndex] = Math.max(
         maxIncludingCurrentPair,
         maxSkippingFirst,
-        maxSkippingSecond,
+        maxSkippingSecond
       );
     }
   }

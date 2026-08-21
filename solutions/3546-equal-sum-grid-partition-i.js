@@ -1,5 +1,8 @@
 /**
  * Can Partition Grid
+ * Intuition: A horizontal or vertical cut works iff some prefix of rows or columns sums to exactly half the grid, so the two parts are equal.
+ * Approach: 1. Sum the grid and build rowSums/colSums. 2. If total is odd, return false. 3. Scan prefix row sums and prefix column sums (leaving at least one row/col on the other side) for target = total/2.
+ * Dry Run: grid = [[1, 4], [2, 3]]. Total 10, target 5. Row prefixes: 5 then stop — horizontal cut after row 0 works.
  * Time Complexity: O(m * n)
  * Space Complexity: O(m + n)
  */

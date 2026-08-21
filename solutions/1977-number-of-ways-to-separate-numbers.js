@@ -111,7 +111,7 @@ var numberOfCombinations = function (num) {
         function compareSubstrings(
           firstStartIndex,
           secondStartIndex,
-          comparisonLength,
+          comparisonLength
         ) {
           const commonMatchLength =
             longestCommonPrefix[firstStartIndex][secondStartIndex];
@@ -128,7 +128,7 @@ var numberOfCombinations = function (num) {
           !compareSubstrings(
             previousNumberStart,
             currentNumberStart,
-            currentNumberLen,
+            currentNumberLen
           )
         ) {
           totalWaysAccumulated =

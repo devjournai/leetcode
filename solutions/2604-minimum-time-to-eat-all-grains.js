@@ -63,7 +63,7 @@ var minimumTime = function (hensPositions, grainLocations) {
   const minCoord = Math.min(grainLocations[0], hensPositions[0]);
   const maxCoord = Math.max(
     grainLocations[grainLocations.length - 1],
-    hensPositions[hensPositions.length - 1],
+    hensPositions[hensPositions.length - 1]
   );
   let upperTimeBound = 2 * (maxCoord - minCoord);
   let finalAnswerTime = upperTimeBound;
@@ -106,7 +106,7 @@ var minimumTime = function (hensPositions, grainLocations) {
         maximalRightwardReach = Math.max(
           0,
           timeToEvaluate - 2 * leftwardDistance,
-          Math.floor((timeToEvaluate - leftwardDistance) / 2),
+          Math.floor((timeToEvaluate - leftwardDistance) / 2)
         );
       }
 

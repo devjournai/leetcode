@@ -1,5 +1,8 @@
 /**
  * Maximum Equal Frequency
+ * Intuition: After one deletion, remaining frequencies should all be equal: either one extra occurrence, or one unique element of frequency 1, or all frequencies 1.
+ * Approach: 1. Maintain value→freq and freq→how-many-values. 2. After each prefix, if 1 distinct freq (all 1s or one value) or 2 freqs (a lone 1, or one value at max=min+1), record the prefix length.
+ * Dry Run: nums=[2,2,1,1,5,3,3,5]. Prefix length 7 can be made equal-freq → 7.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -18,7 +21,7 @@ var maxEqualFreq = function (nums) {
     if (previousCount > 0) {
       frequencyCount.set(
         previousCount,
-        (frequencyCount.get(previousCount) || 0) - 1,
+        (frequencyCount.get(previousCount) || 0) - 1
       );
       if (frequencyCount.get(previousCount) === 0) {
         frequencyCount.delete(previousCount);
@@ -26,7 +29,7 @@ var maxEqualFreq = function (nums) {
     }
     frequencyCount.set(
       currentCount,
-      (frequencyCount.get(currentCount) || 0) + 1,
+      (frequencyCount.get(currentCount) || 0) + 1
     );
 
     const currentFreqMapSize = frequencyCount.size;
@@ -38,7 +41,7 @@ var maxEqualFreq = function (nums) {
       }
     } else if (currentFreqMapSize === 2) {
       const distinctFrequencies = [...frequencyCount.keys()].sort(
-        (valA, valB) => valA - valB,
+        (valA, valB) => valA - valB
       );
       const lowerFrequency = distinctFrequencies[0];
       const higherFrequency = distinctFrequencies[1];

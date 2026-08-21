@@ -1,5 +1,8 @@
 /**
  * Get Maximum In Generated Array
+ * Intuition: Build nums[0..n] from the given even/odd recurrence and track the running maximum.
+ * Approach: 1. Handle n=0. 2. Set nums[0]=0, nums[1]=1. 3. For i=2..n, even: nums[i]=nums[i/2]; odd: nums[i]=nums[floor(i/2)]+nums[floor(i/2)+1]. 4. Update the max.
+ * Dry Run: n=7 → array [0,1,1,2,1,3,2,3], max 3.
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */

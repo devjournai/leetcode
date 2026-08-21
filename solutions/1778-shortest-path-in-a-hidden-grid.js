@@ -1,5 +1,9 @@
 /**
  * Shortest Path In A Hidden Grid
+ * Intuition: The grid is hidden, so first DFS with the master API maps every reachable empty cell and records the target. Then BFS on that discovered graph yields the shortest path length.
+ * Approach: 1. `exploreGrid` marks `reachableCells`, backtracks with opposite moves, and stores `finalTargetLocation` when `master.isTarget()`. 2. If no target, return -1. 3. BFS from (0,0) over reachable unvisited neighbors. 4. Return distance when the target is dequeued.
+ * Dry Run: start (0,0), target two steps right with open cells.
+ *   - DFS records (0,0),(1,0),(2,0) and target (2,0). BFS distances 0,1,2 → return 2.
  * Time Complexity: O(R)
  * Space Complexity: O(R)
  */

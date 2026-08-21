@@ -1,5 +1,9 @@
 /**
  * Find Distance In A Binary Tree
+ * Intuition: Distance between p and q is path-length(p)+path-length(q)−2*path-length(LCA). Recover root-to-node paths and drop the shared prefix.
+ * Approach: 1. If p===q return 0. 2. `discoverPath` DFS records values until the target. 3. Count `commonPrefixSegments`. 4. Return (lenP − common) + (lenQ − common).
+ * Dry Run: tree [3,5,1,6,2,0,8,null,null,7,4], p=5, q=0
+ * paths 3-5 and 3-1-0 share prefix [3]; distance (2-1)+(3-1)=3.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */
@@ -24,7 +28,7 @@ var findDistance = function (root, p, q) {
     let leftTraversalResult = discoverPath(
       pathTraversalNode.left,
       pathTargetValue,
-      currentSequence,
+      currentSequence
     );
     if (leftTraversalResult !== null) {
       return leftTraversalResult;
@@ -33,7 +37,7 @@ var findDistance = function (root, p, q) {
     let rightTraversalResult = discoverPath(
       pathTraversalNode.right,
       pathTargetValue,
-      currentSequence,
+      currentSequence
     );
     if (rightTraversalResult !== null) {
       return rightTraversalResult;

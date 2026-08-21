@@ -10,7 +10,7 @@ var maximumStrength = function (nums, k) {
   const arrayLength = nums.length;
   const NEGATIVE_INFINITY = Number.MIN_SAFE_INTEGER / 2;
   const memoizedStrength = Array.from({ length: arrayLength }, () =>
-    Array.from({ length: k + 1 }, () => [undefined, undefined]),
+    Array.from({ length: k + 1 }, () => [undefined, undefined])
   );
 
   const computeStrength = (elementIndex, remainingSubarrays, isFreshStart) => {
@@ -49,7 +49,7 @@ var maximumStrength = function (nums, k) {
     const bestStrength = Math.max(
       skipStrength,
       includeAndContinue,
-      includeAndFreshStart,
+      includeAndFreshStart
     );
     memoizedStrength[elementIndex][remainingSubarrays][freshFlag] =
       bestStrength;

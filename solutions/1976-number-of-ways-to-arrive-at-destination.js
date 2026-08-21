@@ -146,7 +146,7 @@ var countPaths = function (n, roads) {
         totalWays[neighborIntersection] = totalWays[currentIntersection];
         processingQueue.push([newCalculatedTime, neighborIntersection]);
         processingQueue.sort(
-          (firstElement, secondElement) => firstElement[0] - secondElement[0],
+          (firstElement, secondElement) => firstElement[0] - secondElement[0]
         );
       } else if (newCalculatedTime === minimumTimes[neighborIntersection]) {
         totalWays[neighborIntersection] =

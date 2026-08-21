@@ -1,5 +1,10 @@
 /**
  * Maximum Number Of Points With Cost
+ * Intuition: Score from row `r` column `c` is `points[r][c]` plus the previous row's best, minus `|c - prevC|`. The abs-cost can be precomputed with a left sweep (`prev[j]` vs `left[j-1]-1`) and a right sweep so each cell takes O(1).
+ * Approach: 1. `previousRowMaximums` starts as row 0. 2. For each later row, fill `leftSideOptimal` left-to-right and `rightSideOptimal` right-to-left. 3. `current[c] = points[r][c] + max(left[c], right[c])`. 4. After the last row, return the max of `previousRowMaximums`.
+ * Dry Run: points = [[1,2,3],[1,5,1],[3,1,1]].
+ *   - Row0: [1,2,3]
+ *   - Row1 after left/right sweeps: [2,7,4]. Final max is 9.
  * Time Complexity: O(m * n)
  * Space Complexity: O(n)
  */
@@ -26,7 +31,7 @@ var maxPoints = function (pointsMatrix) {
     ) {
       leftSideOptimal[forwardColumnIndex] = Math.max(
         leftSideOptimal[forwardColumnIndex - 1] - 1,
-        previousRowMaximums[forwardColumnIndex],
+        previousRowMaximums[forwardColumnIndex]
       );
     }
 
@@ -38,7 +43,7 @@ var maxPoints = function (pointsMatrix) {
     ) {
       rightSideOptimal[backwardColumnIndex] = Math.max(
         rightSideOptimal[backwardColumnIndex + 1] - 1,
-        previousRowMaximums[backwardColumnIndex],
+        previousRowMaximums[backwardColumnIndex]
       );
     }
 
@@ -51,7 +56,7 @@ var maxPoints = function (pointsMatrix) {
         pointsMatrix[currentRowIndex][finalColumnIndex] +
         Math.max(
           leftSideOptimal[finalColumnIndex],
-          rightSideOptimal[finalColumnIndex],
+          rightSideOptimal[finalColumnIndex]
         );
     }
 

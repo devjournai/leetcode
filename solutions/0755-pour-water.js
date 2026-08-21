@@ -1,5 +1,12 @@
 /**
  * Pour Water
+ * Intuition: Each drop falls at `initialDropPoint` and first seeks the leftmost lower surface (terrain + water), else the rightmost lower surface, else stays. Repeat `totalWaterUnits` times.
+ * Approach: 1. Keep `waterAmounts` per index. 2. For each drop, scan left from `initialDropPoint - 1`; track `candidateLeftIndex` whenever the combined height is strictly lower; stop when a cell is strictly higher. 3. If a left candidate exists, land there; else scan right the same way. 4. Increment `waterAmounts[finalLandingSpot]`. 5. Return `terrainElevation[i] + waterAmounts[i]` for all i.
+ * Dry Run: terrainElevation = [2,1,1,2,1,2,2], totalWaterUnits = 4, initialDropPoint = 3.
+ *   - Drop 1: left finds index 1 (height 1) → land 1.
+ *   - Drop 2: left finds index 2 → land 2.
+ *   - Drop 3: left is flat at 2; right finds index 4 → land 4.
+ *   - Drop 4: no lower left/right → land 3. Heights become [2,2,2,3,2,2,2].
  * Time Complexity: O(V * N)
  * Space Complexity: O(N)
  */

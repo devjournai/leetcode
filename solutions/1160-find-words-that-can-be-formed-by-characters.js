@@ -1,5 +1,9 @@
 /**
  * Find Words That Can Be Formed By Characters
+ * Intuition: A word is “good” if it can be spelled from chars without reusing a letter more times than chars provides. Sum lengths of good words.
+ * Approach: 1. Count letters in chars. 2. For each word, copy the counts and decrement; if any letter runs out, skip. 3. Add the word’s length when it fully spells.
+ * Dry Run: words = ["cat","bt","hat","tree"], chars = "atach".
+ *   - cat and hat fit; bt and tree do not. Lengths 3+3=6.
  * Time Complexity: O(L + N * M)
  * Space Complexity: O(1)
  */
@@ -13,7 +17,7 @@ var countCharacters = function (words, chars) {
     const singleSourceChar = chars[charIndexInSource];
     sourceCharacterCounts.set(
       singleSourceChar,
-      (sourceCharacterCounts.get(singleSourceChar) || 0) + 1,
+      (sourceCharacterCounts.get(singleSourceChar) || 0) + 1
     );
   }
 
@@ -34,7 +38,7 @@ var countCharacters = function (words, chars) {
         }
         currentWordCharacterMap.set(
           letterForValidation,
-          currentWordCharacterMap.get(letterForValidation) - 1,
+          currentWordCharacterMap.get(letterForValidation) - 1
         );
         wordCharPosition++;
       }
@@ -43,7 +47,7 @@ var countCharacters = function (words, chars) {
         ? accumulatedGoodLength + nextWordCandidate.length
         : accumulatedGoodLength;
     },
-    0,
+    0
   );
 
   return finalSumOfLengths;

@@ -1,5 +1,8 @@
 /**
  * Shortest Common Supersequence
+ * Intuition: SCS length is |s|+|t|−LCS. DP stores SCS length of prefixes; backtracking prefers a shared character or the neighbor with smaller DP, reconstructing one shortest supersequence.
+ * Approach: 1. dp[i][j] = 1+dp[i-1][j-1] on match, else 1+min of skip-s or skip-t. 2. Walk from (n,m) appending the chosen character. 3. Drain leftover prefixes. 4. Return the built string.
+ * Dry Run: cabac and cbba. DP prefers merging the common c,b,a; one SCS is cabbac.
  * Time Complexity: O(str1.length * str2.length)
  * Space Complexity: O(str1.length * str2.length)
  */
@@ -8,7 +11,7 @@ var shortestCommonSupersequence = function (str1, str2) {
   const secondaryStringLength = str2.length;
 
   const dpGrid = Array.from({ length: primaryStringLength + 1 }, () =>
-    Array(secondaryStringLength + 1).fill(0),
+    Array(secondaryStringLength + 1).fill(0)
   );
 
   for (

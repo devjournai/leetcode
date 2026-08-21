@@ -1,5 +1,9 @@
 /**
  * Lonely Pixel II
+ * Intuition: A black is valid when its row and column each have exactly `target` blacks and every row that has a black in that column is identical. Count row patterns that already have `target` blacks, then score whole columns.
+ * Approach: 1. Count blacks per row/col; for rows with count===target, increment `patternMap` of the joined row. 2. For each column with count===target, find a black in a row with count===target whose pattern appears exactly `target` times; add `target` and break that column.
+ * Dry Run: picture rows ["WBB","WBB"], target=2.
+ *   - Both rows identical with 2 blacks; cols 1 and 2 have 2 blacks. Each such col adds 2. Return 4.
  * Time Complexity: O(rows * cols)
  * Space Complexity: O(rows * cols)
  */

@@ -1,5 +1,11 @@
 /**
  * Ip To Cidr
+ * Intuition: Convert `ip` to an integer and greedily emit the largest CIDR block that is aligned with `currentIpNumeric` and does not exceed `remainingBlockSize`.
+ * Approach: 1. `convertIpToNumber` packs four octets; `convertNumberToIp` unpacks with `>>>`. 2. While `remainingBlockSize > 0`, take `rightmostBitMagnitude = currentIpNumeric & -currentIpNumeric` (or 2^32 if that is 0). 3. Cap with `remainingBlockSize`, then strip bits until `effectiveBlockSize` is a power of two. 4. Count right-shifts of that size to get `determinedPrefixIdentifier` (from 32). 5. Push `"ip/prefix"`, add the size to `currentIpNumeric`, and subtract from `remainingBlockSize`.
+ * Dry Run: ip = "255.0.0.7", n = 10.
+ *   - Start at 255.0.0.7; alignment 1 → "255.0.0.7/32", remaining 9.
+ *   - Next 255.0.0.8; alignment 8, remaining 9 → size 8 → "255.0.0.8/29", remaining 1.
+ *   - Next 255.0.0.16; size 1 → "255.0.0.16/32". Return those three blocks.
  * Time Complexity: O(1)
  * Space Complexity: O(1)
  */
@@ -38,7 +44,7 @@ var ipToCIDR = function (ip, n) {
 
     let candidateBlockLength = Math.min(
       rightmostBitMagnitude,
-      remainingBlockSize,
+      remainingBlockSize
     );
     let effectiveBlockSize = candidateBlockLength;
 
@@ -54,7 +60,7 @@ var ipToCIDR = function (ip, n) {
     }
 
     collectedCidrBlocks.push(
-      `${convertNumberToIp(currentIpNumeric)}/${determinedPrefixIdentifier}`,
+      `${convertNumberToIp(currentIpNumeric)}/${determinedPrefixIdentifier}`
     );
 
     currentIpNumeric += effectiveBlockSize;

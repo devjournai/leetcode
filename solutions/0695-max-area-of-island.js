@@ -1,5 +1,8 @@
 /**
  * Max Area Of Island
+ * Intuition: Each connected 4-direction block of 1s is an island. BFS from every unvisited land cell counts its size; track the max.
+ * Approach: 1. Scan cells. 2. On land not in `visitedCellsTracker`, BFS with `bfsQueue`/`queuePointer`, 4-dir `rowDirections`/`colDirections`. 3. Increment `currentIslandSize` per dequeued cell. 4. Update `maximumIslandArea`.
+ * Dry Run: grid=[[0,0,1,0,0],[1,1,1,0,0]]. Start (0,2) size 1 then BFS to (1,2) then (1,1),(1,0) → size 4.
  * Time Complexity: O(R * C)
  * Space Complexity: O(R * C)
  */

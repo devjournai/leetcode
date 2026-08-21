@@ -151,7 +151,7 @@ var subsequencePairCount = function (nums) {
 
   const gcdTable = Array.from(
     { length: MAX + 1 },
-    () => new Int32Array(MAX + 1),
+    () => new Int32Array(MAX + 1)
   );
   for (let i = 0; i <= MAX; i++) {
     for (let j = 0; j <= MAX; j++) {

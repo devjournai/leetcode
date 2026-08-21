@@ -1,5 +1,9 @@
 /**
  * Range Sum Query 2d Immutable
+ * Intuition: A (R+1)×(C+1) prefix grid stores the sum of every rectangle from (0,0). Inclusion-exclusion yields any sub-rectangle in O(1).
+ * Approach: 1. prefix[i+1][j+1] = cell + prefix[i][j+1] + prefix[i+1][j] - prefix[i][j]. 2. sumRegion = prefix[r2+1][c2+1] - prefix[r1][c2+1] - prefix[r2+1][c1] + prefix[r1][c1].
+ * Dry Run: matrix=[[3,0,1],[5,6,3]].
+ *   - prefix[2][2]=3+0+5+6=14. sumRegion(0,0,1,1)=14.
  * Time Complexity: O(R * C)
  * Space Complexity: O(R * C)
  */

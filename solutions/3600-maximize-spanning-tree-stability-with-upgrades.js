@@ -1,5 +1,8 @@
 /**
  * Maximize Spanning Tree Stability with Upgrades
+ * Intuition: Maximum min-edge spanning-tree strength is binary-searchable. Must-have edges cannot be upgraded; optional edges may double strength using up to k upgrades.
+ * Approach: 1. Binary search targetStability. 2. check: union all must edges if each si >= target (fail on cycle or weak must-edge). 3. Collect optional edges with si >= target (cost 0) or 2*si >= target (cost 1), sort by cost, Kruskal until n-1 edges or upgrades exceed k. 4. Return the largest feasible mid, or -1.
+ * Dry Run: n = 3, must edge 0-1 strength 5, optional 1-2 strength 3, k = 1, target 5. Optional 3*2 >= 5 uses 1 upgrade; tree of 2 edges succeeds.
  * Time Complexity: O(E log E * log(MaxStability))
  * Space Complexity: O(N + E)
  */

@@ -1,5 +1,8 @@
 /**
  * Distinct Echo Substrings
+ * Intuition: An echo is XX for some string X. Sliding a window of length L and counting L consecutive equal pairs finds those concatenations.
+ * Approach: 1. For each half-length L, scan i vs i+L. 2. Track consecutive character matches. 3. When matches hit L, record text[i-L+1 .. i+L] in a set and decrement the streak. 4. Return set size.
+ * Dry Run: text = "abcabcabc". Echoes include "abcabc" (twice overlapping) and "bcabca", "cabcab" → 3 distinct.
  * Time Complexity: O(N^3)
  * Space Complexity: O(N^3)
  */

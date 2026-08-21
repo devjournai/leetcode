@@ -1,5 +1,9 @@
 /**
  * Closest Dessert Cost
+ * Intuition: Each topping may be used 0, 1, or 2 times. DFS from every base cost enumerates topping combinations and keeps the cost closest to `target`, preferring the cheaper one on ties.
+ * Approach: 1. `traverseToppings` updates `bestPossibleCost` by absolute difference (then by smaller cost). 2. Stop when toppings are exhausted or cost already exceeds target. 3. Recurse with +0, +1, and +2 of the current topping. 4. Try every `singleBaseValue`.
+ * Dry Run: baseCosts = [1,7], toppingCosts = [3,4], target = 10.
+ *   - Base 7 + one 3 = 10 exactly. Return 10.
  * Time Complexity: O(n * 3^m)
  * Space Complexity: O(m)
  */

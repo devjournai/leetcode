@@ -1,5 +1,9 @@
 /**
  * Minimum Path Cost In A Hidden Grid
+ * Intuition: DFS with the master API maps every reachable cell cost, then Dijkstra from (0,0) finds the cheapest path to the recorded target (entering a cell costs that cell's value, start is free).
+ * Approach: 1. `exploreGridDfs` records `costsGrid` and `finalTargetCoordinates`, backtracking with `returnMoves`. 2. If no target, return -1. 3. Priority queue Dijkstra using neighbor costs from the map. 4. Return cost when the target is finalized.
+ * Dry Run: start (0,0) cost 0, right cell cost 2 is the target.
+ *   - Dijkstra pops (0,0,0) then (0,1,2). Return 2.
  * Time Complexity: O(R * C * log(R * C))
  * Space Complexity: O(R * C)
  */
@@ -20,7 +24,7 @@ var findShortestPath = function (master) {
 
   const processedPathCells = new Set();
   const pathQueue = new PriorityQueue(
-    (elementA, elementB) => elementA[2] - elementB[2],
+    (elementA, elementB) => elementA[2] - elementB[2]
   );
   pathQueue.enqueue([0, 0, 0]);
 

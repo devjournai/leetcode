@@ -104,7 +104,7 @@ var maxPalindromes = function (s, k) {
       if (isPalindromeMatrix[currentStartPosition][currentEndPosition - 1]) {
         dpMaxCounts[currentEndPosition] = Math.max(
           dpMaxCounts[currentEndPosition],
-          dpMaxCounts[currentStartPosition] + 1,
+          dpMaxCounts[currentStartPosition] + 1
         );
       }
     }

@@ -39,7 +39,7 @@ var buildWall = function (height, width, bricks) {
 
   const recursivelyGeneratePatterns = (
     currentAccumulatedWidth,
-    currentPatternSegment,
+    currentPatternSegment
   ) => {
     if (currentAccumulatedWidth === width) {
       allPossiblePatterns.push([...currentPatternSegment]);
@@ -51,7 +51,7 @@ var buildWall = function (height, width, bricks) {
         currentPatternSegment.push(singleBrickWidth);
         recursivelyGeneratePatterns(
           currentAccumulatedWidth + singleBrickWidth,
-          currentPatternSegment,
+          currentPatternSegment
         );
         currentPatternSegment.pop();
       }
@@ -66,7 +66,7 @@ var buildWall = function (height, width, bricks) {
 
   const doPatternsAlign = (
     firstPatternArrangement,
-    secondPatternArrangement,
+    secondPatternArrangement
   ) => {
     const cutsOfFirstPattern = new Set();
     const cutsOfSecondPattern = new Set();
@@ -99,7 +99,7 @@ var buildWall = function (height, width, bricks) {
   const createCompatibilityGraph = () => {
     const compatibilityLinkage = Array.from(
       { length: allPossiblePatterns.length },
-      () => [],
+      () => []
     );
 
     for (
@@ -115,11 +115,11 @@ var buildWall = function (height, width, bricks) {
         if (
           doPatternsAlign(
             allPossiblePatterns[firstPatternIdentifier],
-            allPossiblePatterns[secondPatternIdentifier],
+            allPossiblePatterns[secondPatternIdentifier]
           )
         ) {
           compatibilityLinkage[firstPatternIdentifier].push(
-            secondPatternIdentifier,
+            secondPatternIdentifier
           );
         }
       }
@@ -159,6 +159,6 @@ var buildWall = function (height, width, bricks) {
   return waysFromPreviousRow.reduce(
     (totalFinalWays, layoutCount) =>
       (totalFinalWays + layoutCount) % wallModuloValue,
-    0,
+    0
   );
 };

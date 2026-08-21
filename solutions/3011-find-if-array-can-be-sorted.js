@@ -38,7 +38,7 @@ var canSortArray = function (nums) {
   }
 
   let perfectlySortedOriginal = [...nums].sort(
-    (elementA, elementB) => elementA - elementB,
+    (elementA, elementB) => elementA - elementB
   );
   let totalElements = nums.length;
   let overallProgressPointer = 0;
@@ -64,7 +64,7 @@ var canSortArray = function (nums) {
     }
 
     let sortedBlockValues = blockValues.sort(
-      (valueX, valueY) => valueX - valueY,
+      (valueX, valueY) => valueX - valueY
     );
     let blockActualSize = sortedBlockValues.length;
 

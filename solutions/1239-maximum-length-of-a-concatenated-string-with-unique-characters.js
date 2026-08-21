@@ -1,5 +1,8 @@
 /**
  * Maximum Length Of A Concatenated String With Unique Characters
+ * Intuition: Drop strings with internal duplicates, encode the rest as bitmasks, and DFS combinations whose masks are disjoint.
+ * Approach: 1. Build (mask, length) for duplicate-free words. 2. Recurse over remaining words; if mask & candidate == 0, OR and add lengths. 3. Track max length.
+ * Dry Run: arr=["un","iq","ue"]. "un"+"iq"="uniq" length 4; adding "ue" overlaps → 4.
  * Time Complexity: O(N * L + N * 2^N)
  * Space Complexity: O(N)
  */
@@ -31,11 +34,11 @@ var maxLength = function (arr) {
   function buildUniqueCombinations(
     currentConcatenatedMask,
     currentConcatenatedLength,
-    arrayIndexStart,
+    arrayIndexStart
   ) {
     overallMaximumLength = Math.max(
       overallMaximumLength,
-      currentConcatenatedLength,
+      currentConcatenatedLength
     );
 
     for (
@@ -51,7 +54,7 @@ var maxLength = function (arr) {
         buildUniqueCombinations(
           currentConcatenatedMask | candidateStringMask,
           currentConcatenatedLength + candidateStringLength,
-          iterationIndex + 1,
+          iterationIndex + 1
         );
       }
     }

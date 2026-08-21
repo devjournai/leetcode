@@ -1,5 +1,9 @@
 /**
  * Maximum Score Words Formed By Letters
+ * Intuition: Each word is taken or skipped, so 2^N subsets. Recurse with remaining letter counts; a word is legal only if every letter still has stock.
+ * Approach: 1. Build a 26-count from letters. 2. Recurse from currentWordPosition: skip the word, or if letters suffice, subtract them, add the word score, and recurse. 3. Return the max of skip vs take. 4. Base case at the end of words is 0.
+ * Dry Run: words=["dog","cat"], letters enough for both, scores make dog=5, cat=3
+ *   skip both=0; take dog then cat=8; take cat only=3. Max 8.
  * Time Complexity: O(2^N * L + M)
  * Space Complexity: O(N + Alpha)
  */
@@ -15,7 +19,7 @@ var maxScoreWords = function (words, letters, score) {
 
   const findMaximumPossibleScore = (
     currentWordPosition,
-    currentLetterAvailability,
+    currentLetterAvailability
   ) => {
     if (currentWordPosition === words.length) {
       return 0;
@@ -23,7 +27,7 @@ var maxScoreWords = function (words, letters, score) {
 
     const scoreFromSkippingCurrentWord = findMaximumPossibleScore(
       currentWordPosition + 1,
-      currentLetterAvailability,
+      currentLetterAvailability
     );
 
     const targetWordForEvaluation = words[currentWordPosition];
@@ -49,7 +53,7 @@ var maxScoreWords = function (words, letters, score) {
         accumulatedWordScore +
         findMaximumPossibleScore(
           currentWordPosition + 1,
-          temporaryLetterStateCopy,
+          temporaryLetterStateCopy
         );
     }
 
@@ -58,7 +62,7 @@ var maxScoreWords = function (words, letters, score) {
 
   const finalComputedScore = findMaximumPossibleScore(
     0,
-    initialLettersFrequency,
+    initialLettersFrequency
   );
   return finalComputedScore;
 };

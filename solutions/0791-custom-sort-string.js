@@ -1,5 +1,8 @@
 /**
  * Custom Sort String
+ * Intuition: Count letters in `tSourceString`, emit them in `sOrderString` order, then leftover a–z in alphabet order.
+ * Approach: 1. Fill `characterFrequencies[26]` from `tSourceString`. 2. For each `s` char, push that many copies and zero the count. 3. Scan 0–25 and append remaining counts. 4. `join` `resultArray`.
+ * Dry Run: s = "cba", t = "abcd". Counts a:1 b:1 c:1 d:1. Emit c,b,a then leftover d → "cbad".
  * Time Complexity: O(S_LEN + T_LEN)
  * Space Complexity: O(T_LEN)
  */

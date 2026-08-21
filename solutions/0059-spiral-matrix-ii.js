@@ -1,5 +1,9 @@
 /**
  * Spiral Matrix II
+ * Intuition: Fill an n×n grid with 1..n² in the same clockwise layer order as reading a spiral: right, down, left, up, then shrink bounds.
+ * Approach: 1. Allocate an n×n zero matrix and four bounds. 2. While the next value is ≤ n², write along the top row then increment top, down the right column then decrement right, and similarly for bottom and left, breaking if bounds cross.
+ * Dry Run: n = 3.
+ *   - Fill 1,2,3 on row 0; 4,5 down the right; 6,7 on the bottom; 8 up the left; 9 in the center. Result [[1,2,3],[8,9,4],[7,6,5]].
  * Time Complexity: O(n^2)
  * Space Complexity: O(n^2)
  */

@@ -1,5 +1,8 @@
 /**
  * Cat And Mouse
+ * Intuition: Terminal states are known: mouse at hole 0 wins; mouse and cat on the same node (not 0) means the cat wins. Working backward, a player wins a state if they can move to a winning successor; they lose it only when every remaining legal move is losing.
+ * Approach: 1. `stateOutcome[mouse][cat][turn]` starts DRAW. 2. Enqueue every (0, cat, turn) as mouse-win and every (i,i,turn) i>0 as cat-win. 3. `remainingMovesCount` is degree; cat cannot move to 0 so those edges are subtracted. 4. BFS predecessors: if the previous player’s move reaches their own win, color that state; else decrement remaining moves and color when they hit 0. 5. Return `stateOutcome[1][2][MOUSE_PLAYER_TURN]`.
+ * Dry Run: graph=[[2,5],[3],[0,4,5],[1,4,5],[2,3],[0,2,3]]. Hole 0 is mouse-win. Start mouse=1, cat=2, mouse to move; reverse coloring yields 0 (draw) for this classic instance.
  * Time Complexity: O(N^3)
  * Space Complexity: O(N^2)
  */

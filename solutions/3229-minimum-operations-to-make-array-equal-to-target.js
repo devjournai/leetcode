@@ -17,7 +17,7 @@ var minimumOperations = function (nums, target) {
     } else if (currentDiff <= 0 && previousDiff <= 0) {
       operationCount += Math.max(
         0,
-        Math.abs(currentDiff) - Math.abs(previousDiff),
+        Math.abs(currentDiff) - Math.abs(previousDiff)
       );
     } else {
       operationCount += Math.abs(currentDiff);

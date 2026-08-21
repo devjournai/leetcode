@@ -36,7 +36,7 @@ var minimumDiameterAfterMerge = function (edges1, edges2) {
       }
       maximumDiameter = Math.max(
         maximumDiameter,
-        deepestChild + secondDeepestChild,
+        deepestChild + secondDeepestChild
       );
       return 1 + deepestChild;
     };

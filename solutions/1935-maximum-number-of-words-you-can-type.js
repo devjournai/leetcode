@@ -1,5 +1,10 @@
 /**
  * Maximum Number Of Words You Can Type
+ * Intuition: A word is typeable iff none of its letters is in the broken-letter set. Count such words after splitting on spaces.
+ * Approach: 1. Put `brokenLetters` into a Set. 2. Split `text` on spaces. 3. For each word, scan characters; if any is broken, skip, else increment `typedWordsCount`. 4. Return the count.
+ * Dry Run: text = "hello world", brokenLetters = "ad".
+ *   - hello: no a/d → count=1
+ *   - world: has d → skip. Return 1.
  * Time Complexity: O(N + L)
  * Space Complexity: O(N + L)
  */

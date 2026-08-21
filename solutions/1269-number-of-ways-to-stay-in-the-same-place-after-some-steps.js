@@ -1,5 +1,9 @@
 /**
  * Number Of Ways To Stay In The Same Place After Some Steps
+ * Intuition: You cannot go farther than min(steps, arrLen-1). DP[pos] is ways to be there after the current step, combining stay/left/right from the previous row, mod 1e9+7.
+ * Approach: 1. Cap positions at maxAllowedPosition. 2. waysAtCurrentStep[0]=1. 3. For each step rebuild nextWaysArray: from i-1, i, i+1. 4. Return ways at index 0.
+ * Dry Run: steps=3, arrLen=2
+ *   pos 0,1. After 1 step: pos0=1 (stay), pos1=1 (right). After 2: pos0=2, pos1=2. After 3: pos0=4. Return 4.
  * Time Complexity: O(steps * min(steps, arrLen))
  * Space Complexity: O(min(steps, arrLen))
  */

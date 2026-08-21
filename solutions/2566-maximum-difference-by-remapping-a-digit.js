@@ -46,7 +46,7 @@ var minMaxDifference = function (num) {
 
   const stringDigitsArray = numStringRepresentation.split("");
   const firstNonZeroDigit = stringDigitsArray.find(
-    (charValue) => charValue !== "0",
+    (charValue) => charValue !== "0"
   );
 
   let minValueString;

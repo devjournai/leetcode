@@ -1,5 +1,8 @@
 /**
  * Push Dominoes
+ * Intuition: Assign decaying right-force from each 'R' (N, N-1, …) and left-force from each 'L'. Net sign decides R, L, or '.' (balanced).
+ * Approach: 1. Forward: on 'R' set force=N, on 'L' 0, else decay. Add to `resultingForces`. 2. Backward: on 'L' set N, on 'R' 0, else decay; subtract. 3. Map >0→R, <0→L, 0→'.'. Join.
+ * Dry Run: "R.L". Forward forces [N, N-1, 0]. Backward subtract [0, N-1, N] → net [N, 0, -N] → "R.L".
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

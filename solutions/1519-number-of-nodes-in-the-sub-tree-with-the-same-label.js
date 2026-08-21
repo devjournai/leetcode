@@ -1,5 +1,9 @@
 /**
  * Number Of Nodes In The Sub Tree With The Same Label
+ * Intuition: DFS with a 26-count: the subtree answer for a node is how much its label increased while exploring that subtree.
+ * Approach: 1. Build undirected adj. 2. DFS: record count[label] before children, increment, recurse, set ans[node]=count[label]-before. 3. Start at 0.
+ * Dry Run: n=4, edges=[[0,1],[1,2],[0,3]], labels="abab".
+ *   - node2 'a'→1, node1 'b'→1, node3 'b'→1, node0 'a'→2.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

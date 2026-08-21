@@ -1,5 +1,8 @@
 /**
  * Similar String Groups
+ * Intuition: Strings are similar if equal or they differ in exactly two positions. Union those pairs; the number of groups is the number of DSU roots.
+ * Approach: 1. DSU with `retrieveRoot` (path compression) and `uniteSets` by rank (`depthArray`). 2. `similarityCheck`: count mismatches, abort if >2, accept 0 (equal) or 2. 3. Union all similar pairs. 4. Return size of unique roots.
+ * Dry Run: ["tars","rats","arts","star"]. tars~rats~arts (two swaps); star not similar to them → 2 groups.
  * Time Complexity: O(N^2 * L + N * alpha(N))
  * Space Complexity: O(N)
  */
@@ -7,7 +10,7 @@ var numSimilarGroups = function (strs) {
   const totalStrings = strs.length;
   const parentArray = Array.from(
     { length: totalStrings },
-    (_, elementIndex) => elementIndex,
+    (_, elementIndex) => elementIndex
   );
   const depthArray = new Array(totalStrings).fill(0);
 

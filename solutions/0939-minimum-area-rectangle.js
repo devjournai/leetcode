@@ -1,5 +1,8 @@
 /**
  * Minimum Area Rectangle
+ * Intuition: An axis-aligned rectangle is two distinct x-columns sharing at least two y’s. Area is |Δx|·|Δy| for each pair of shared y’s; take the min.
+ * Approach: 1. Map x → Set of y. 2. For every pair of x-keys, collect common y’s. 3. If ≥2 common y’s, try all y pairs and update `minCalculatedArea`. 4. Return 0 if still Infinity.
+ * Dry Run: points (1,1),(1,3),(3,1),(3,3) → x=1 and x=3 share y=1,3 → area 2*2=4.
  * Time Complexity: O(N^2)
  * Space Complexity: O(N)
  */

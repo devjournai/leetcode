@@ -1,5 +1,9 @@
 /**
  * Maximum Average Pass Ratio
+ * Intuition: Each extra student should go to the class with the largest increase in pass ratio, (p+1)/(t+1) - p/t. A max-heap of those gains assigns students greedily.
+ * Approach: 1. `calculateRatioGain` and heap helpers manage `passRatioHeap` of [gain, pass, total]. 2. Build the heap from all classes. 3. `extraStudents` times extract max, add one student, reinsert with new gain. 4. Average the final pass ratios.
+ * Dry Run: classes = [[1,2],[3,5],[2,2]], extraStudents = 2.
+ *   - [1,2] has the biggest gain; both extras go there → ratios 0.75, 0.6, 1.0, average 0.78333.
  * Time Complexity: O(N + E log N)
  * Space Complexity: O(N)
  */
@@ -85,7 +89,7 @@ var maxAverageRatio = function (classes, extraStudents) {
     const initialTotalCount = currentClassArr[1];
     const initialProfitMetric = calculateRatioGain(
       initialPassCount,
-      initialTotalCount,
+      initialTotalCount
     );
     passRatioHeap.push([
       initialProfitMetric,
@@ -109,7 +113,7 @@ var maxAverageRatio = function (classes, extraStudents) {
     const updatedClassTotal = currentClassTotal + 1;
     const updatedProfitMetric = calculateRatioGain(
       updatedClassPass,
-      updatedClassTotal,
+      updatedClassTotal
     );
     insertElement([updatedProfitMetric, updatedClassPass, updatedClassTotal]);
   }

@@ -1,5 +1,8 @@
 /**
  * Dinner Plate Stacks
+ * Intuition: Keep an array of stacks of capacity C and a sorted list of indices that still have room. push uses the leftmost open index (or a new stack); pop uses the rightmost nonempty; popAtStack frees that index for future pushes.
+ * Approach: 1. MinIndexTracker stores open indices, inserting in sorted order. 2. push pops an open index if any, else appends a new stack; if that stack is full, create another. 3. pop trims empty rightmost stacks then pops. 4. popAtStack pops stack i and records i as open.
+ * Dry Run: capacity 2; push 1,2,3,4,5; popAtStack(0) returns 2; pop returns 5 then 4 then 3 then 1.
  * Time Complexity: O(1)
  * Space Complexity: O(N)
  */
@@ -115,7 +118,7 @@ DinnerPlates.prototype.pop = function () {
   ) {
     const finalRightmostEmptyIndex = adjustedPlatesCount - 1;
     this.openStackIndexRegister.removeRightmostMatching(
-      finalRightmostEmptyIndex,
+      finalRightmostEmptyIndex
     );
     this.platesContainerArray.pop();
     adjustedPlatesCount--;

@@ -1,5 +1,8 @@
 /**
  * Brace Expansion II
+ * Intuition: The grammar is union (comma) of concatenations of atoms (letter or nested {}). Recursive descent with sets implements union as set union and concatenation as Cartesian product, then sort unique words.
+ * Approach: 1. parseUnion: sequences joined by ','. 2. parseConcat: product of atoms until ',' or '}'. 3. parseAtom: letter or '{ union }'. 4. Sort the final set.
+ * Dry Run: {a,b}{c,{d,e}}. Concat of {a,b} and {c,d,e} → ac,ad,ae,bc,bd,be sorted.
  * Time Complexity: O(N * W^2 * L + W_final * L_final * log(W_final))
  * Space Complexity: O(N * W * L)
  */
@@ -41,7 +44,7 @@ var braceExpansionII = function (expression) {
       const nextAtomicTerm = parseAtomicTerm();
       concatenatedWords = createCartesianProduct(
         concatenatedWords,
-        nextAtomicTerm,
+        nextAtomicTerm
       );
     }
     return concatenatedWords;

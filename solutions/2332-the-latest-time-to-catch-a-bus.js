@@ -31,7 +31,7 @@
 var latestTimeCatchTheBus = function (buses, passengers, capacity) {
   buses.sort((firstBus, secondBus) => firstBus - secondBus);
   passengers.sort(
-    (firstPassenger, secondPassenger) => firstPassenger - secondPassenger,
+    (firstPassenger, secondPassenger) => firstPassenger - secondPassenger
   );
 
   let currentPassengerIndex = 0;

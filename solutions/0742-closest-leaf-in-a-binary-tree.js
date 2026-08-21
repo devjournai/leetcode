@@ -1,5 +1,8 @@
 /**
  * Closest Leaf In A Binary Tree
+ * Intuition: Parent pointers make the tree an undirected graph. BFS from value `k` reaches the nearest leaf (including `k` itself if it is a leaf).
+ * Approach: 1. `buildUndirectedGraph` records leaves in `allLeafValues` and undirected edges in `treeAdjacencyList`. 2. BFS from `k` with `nodesVisitedDuringBfs`. 3. Return the first dequeued value that is in `allLeafValues`.
+ * Dry Run: Root 1 with left leaf 2 and right child 3→4(leaf). k=3. BFS 3 then 1 and 4; 4 is the closest leaf.
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

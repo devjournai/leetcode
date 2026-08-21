@@ -1,5 +1,9 @@
 /**
  * Maximum Number Of Events That Can Be Attended II
+ * Intuition: Attend at most `k` non-overlapping events for max value. Sort by start; `dp[k'][i]` is the best from events i.. using up to k' attendances. Binary search the next event that starts after the current end.
+ * Approach: 1. Sort `events` by start. 2. `findNextAvailableEvent` lower-bounds start > end day. 3. Fill `dpTable` from the right: skip vs take + dp[k-1][next]. 4. Return `dpTable[k][0]`.
+ * Dry Run: events = [[1,2,4],[3,4,3],[2,3,1]], k = 2
+ * Take [1,2,4] then [3,4,3] = 7 (cannot take all three).
  * Time Complexity: O(N * K * logN)
  * Space Complexity: O(N * K)
  */
@@ -8,7 +12,7 @@ var maxValue = function (events, k) {
   const totalEventsCount = events.length;
 
   const dpTable = Array.from({ length: k + 1 }, () =>
-    new Array(totalEventsCount + 1).fill(0),
+    new Array(totalEventsCount + 1).fill(0)
   );
 
   const findNextAvailableEvent = (startIndexForSearch, endingDayToBeat) => {
@@ -16,7 +20,7 @@ var maxValue = function (events, k) {
     let currentHighBound = totalEventsCount;
     let resultIndex = totalEventsCount;
 
-    for (; currentLowBound < currentHighBound; ) {
+    for (; currentLowBound < currentHighBound;) {
       const centerPoint = Math.floor((currentLowBound + currentHighBound) / 2);
       if (events[centerPoint][0] > endingDayToBeat) {
         resultIndex = centerPoint;
@@ -46,7 +50,7 @@ var maxValue = function (events, k) {
 
       const nextPossibleEventIndex = findNextAvailableEvent(
         eventCursor + 1,
-        currentEventEndingDay,
+        currentEventEndingDay
       );
 
       const valueForAttending =
@@ -55,7 +59,7 @@ var maxValue = function (events, k) {
 
       dpTable[currentEventsAllowed][eventCursor] = Math.max(
         valueForSkipping,
-        valueForAttending,
+        valueForAttending
       );
     }
   }

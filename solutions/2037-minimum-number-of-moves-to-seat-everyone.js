@@ -38,7 +38,7 @@ var minMovesToSeat = function (seats, students) {
     const seatAtCurrentPos = seats[loopIndex];
     const studentAtCurrentPos = students[loopIndex];
     const currentDifferenceMagnitude = Math.abs(
-      seatAtCurrentPos - studentAtCurrentPos,
+      seatAtCurrentPos - studentAtCurrentPos
     );
     totalMovesCalculation += currentDifferenceMagnitude;
   }

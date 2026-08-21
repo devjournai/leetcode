@@ -51,6 +51,8 @@
  *
  * for up to 50,000 queries.
  *
+ * Approach: Build a max segment tree on heights. For each query swap so a<=b. If a===b return a; if heights[a]<heights[b] return b; else leftmost-search the tree from index b+1 for height > heights[a] (or -1).
+ *
  * We can use:
  *
  *     Binary Search + Segment Tree

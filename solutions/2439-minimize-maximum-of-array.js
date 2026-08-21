@@ -37,7 +37,7 @@ var minimizeArrayValue = function (nums) {
     currentPrefixTotal = currentPrefixTotal + BigInt(nums[arrayIndex]);
     prefixElementCount = prefixElementCount + 1;
     const currentPrefixMaximum = Math.ceil(
-      Number(currentPrefixTotal) / prefixElementCount,
+      Number(currentPrefixTotal) / prefixElementCount
     );
     maximumOverallValue = Math.max(maximumOverallValue, currentPrefixMaximum);
   }

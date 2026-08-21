@@ -31,7 +31,7 @@ var differenceOfDistinctValues = function (grid) {
   const rowsCount = grid.length;
   const colsCount = grid[0].length;
   const answerMatrix = Array.from({ length: rowsCount }, () =>
-    new Array(colsCount).fill(0),
+    new Array(colsCount).fill(0)
   );
 
   for (let rowIndex = 0; rowIndex < rowsCount; rowIndex++) {
@@ -55,7 +55,7 @@ var differenceOfDistinctValues = function (grid) {
       }
 
       answerMatrix[rowIndex][colIndex] = Math.abs(
-        distinctLeftAboveValues.size - distinctRightBelowValues.size,
+        distinctLeftAboveValues.size - distinctRightBelowValues.size
       );
     }
   }

@@ -39,7 +39,7 @@ var countDaysTogether = function (
   arriveAlice,
   leaveAlice,
   arriveBob,
-  leaveBob,
+  leaveBob
 ) {
   const daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 

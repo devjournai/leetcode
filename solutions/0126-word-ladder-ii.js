@@ -1,34 +1,20 @@
 /**
  * Word Ladder II
+ * Intuition: All shortest ladders share the BFS distance from beginWord. First BFS records every one-letter successor on those shortest layers, then DFS walks that DAG from begin to end.
+ * Approach: 1. If endWord is missing, []. 2. Level BFS: try all 26 substitutions per position; on first visit set distance and enqueue; also link parent→child when the child is on this same new level. 3. Remove a level from the dictionary after it is processed. 4. DFS from beginWord following successor sets, copying a path when endWord is reached.
+ * Dry Run: begin=hit, end=cog, list [hot,dot,dog,lot,log,cog]. BFS links hit→hot→dot/lot→dog/log→cog. DFS yields [hit,hot,dot,dog,cog] and [hit,hot,lot,log,cog].
  * Time Complexity: O(N * L^2 + M * D * L)
  * Space Complexity: O(N * L^2 + M * D * L)
  */
 var findLadders = function (beginWord, endWord, wordList) {
-  const calculateOneLetterDifference = (firstWord, secondWord) => {
-    let characterDifferenceCounter = 0;
-    for (
-      let characterPosition = 0;
-      characterPosition < firstWord.length;
-      ++characterPosition
-    ) {
-      if (firstWord[characterPosition] !== secondWord[characterPosition]) {
-        characterDifferenceCounter++;
-      }
-      if (characterDifferenceCounter > 1) {
-        return false;
-      }
-    }
-    return characterDifferenceCounter === 1;
-  };
-
   const dictionaryWords = new Set(wordList);
   if (!dictionaryWords.has(endWord)) {
     return [];
   }
 
   const explorationQueue = [beginWord];
-  const pathSuccessors = new Map(); // Maps a word to a set of words that can directly follow it in a shortest path BFS
-  const shortestDistanceTracker = new Map(); // Maps a word to its shortest distance from beginWord
+  const pathSuccessors = new Map();
+  const shortestDistanceTracker = new Map();
 
   shortestDistanceTracker.set(beginWord, 0);
   let endPathFound = false;
@@ -68,7 +54,7 @@ var findLadders = function (beginWord, endWord, wordList) {
             if (!shortestDistanceTracker.has(alteredWordCandidate)) {
               shortestDistanceTracker.set(
                 alteredWordCandidate,
-                currentLadderLevel,
+                currentLadderLevel
               );
               if (!pathSuccessors.has(currentSourceVertex)) {
                 pathSuccessors.set(currentSourceVertex, new Set());
@@ -110,7 +96,7 @@ var findLadders = function (beginWord, endWord, wordList) {
     finalDestinationWord,
     successorGraphData,
     discoveredLadders,
-    temporaryPath,
+    temporaryPath
   ) => {
     if (currentPositionWord === finalDestinationWord) {
       discoveredLadders.push([...temporaryPath]);
@@ -129,7 +115,7 @@ var findLadders = function (beginWord, endWord, wordList) {
         finalDestinationWord,
         successorGraphData,
         discoveredLadders,
-        temporaryPath,
+        temporaryPath
       );
       temporaryPath.pop();
     }
@@ -140,7 +126,7 @@ var findLadders = function (beginWord, endWord, wordList) {
     endWord,
     pathSuccessors,
     completeLadderSequences,
-    currentPathAccumulator,
+    currentPathAccumulator
   );
 
   return completeLadderSequences;

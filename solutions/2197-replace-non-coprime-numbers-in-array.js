@@ -48,7 +48,7 @@ var replaceNonCoprimes = function (nums) {
       const topElement = stackForResults[stackForResults.length - 1];
       const calculatedGCD = findGreatestCommonDivisor(
         topElement,
-        currentNumber,
+        currentNumber
       );
 
       if (calculatedGCD === 1) {

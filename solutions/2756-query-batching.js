@@ -79,7 +79,7 @@ QueryBatcher.prototype.getValue = function (inputKey) {
     } else {
       const remainingDelay = Math.max(
         0,
-        this.throttleDuration - timeSinceLastCall,
+        this.throttleDuration - timeSinceLastCall
       );
       this.batchTimer = setTimeout(() => {
         this.executeBatchProcess();
@@ -105,7 +105,7 @@ QueryBatcher.prototype.executeBatchProcess = async function () {
   }
 
   const keysToQuery = currentRequestsToProcess.map(
-    (requestObject) => requestObject.key,
+    (requestObject) => requestObject.key
   );
 
   this.lastQueryStartTime = Date.now();
@@ -118,7 +118,7 @@ QueryBatcher.prototype.executeBatchProcess = async function () {
     resultIndex++
   ) {
     currentRequestsToProcess[resultIndex].singleKeyResolve(
-      queryResults[resultIndex],
+      queryResults[resultIndex]
     );
   }
 };

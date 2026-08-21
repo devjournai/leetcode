@@ -1,5 +1,9 @@
 /**
  * Minimum Moves To Move A Box To Their Target Location
+ * Intuition: Only box pushes count. BFS over (box, player) states; a push is legal if the player can walk to the cell behind the box without crossing the box.
+ * Approach: 1. Locate S, B, T. 2. Queue states [boxR, boxC, playerR, playerC, pushes]. 3. For each of 4 push directions, if the destination is in-bounds and not '#', check canPlayerReachPosition to the cell opposite the push. 4. After a push the player sits on the old box cell. 5. Return pushes when the box hits T, else -1.
+ * Dry Run: Small grid S next to B, T one push away, no walls
+ *   Player already behind the box -> one BFS push, box lands on T, return 1.
  * Time Complexity: O((rows * cols)^3)
  * Space Complexity: O((rows * cols)^2)
  */
@@ -33,7 +37,7 @@ var minPushBox = function (grid) {
   ];
   const visitedBoxPlayerStates = new Set();
   visitedBoxPlayerStates.add(
-    `${initialBoxPosition[0]}-${initialBoxPosition[1]}-${initialPlayerPosition[0]}-${initialPlayerPosition[1]}`,
+    `${initialBoxPosition[0]}-${initialBoxPosition[1]}-${initialPlayerPosition[0]}-${initialPlayerPosition[1]}`
   );
 
   const moveDirectionOffsets = [
@@ -46,14 +50,14 @@ var minPushBox = function (grid) {
   const canPlayerReachPosition = (
     startPlayerCoords,
     destinationPlayerCoords,
-    currentBoxCoords,
+    currentBoxCoords
   ) => {
     const playerPathfindingQueue = [
       [startPlayerCoords[0], startPlayerCoords[1]],
     ];
     const playerVisitedGridCells = new Set();
     playerVisitedGridCells.add(
-      `${startPlayerCoords[0]}-${startPlayerCoords[1]}`,
+      `${startPlayerCoords[0]}-${startPlayerCoords[1]}`
     );
 
     let playerQueueReadIndex = 0;
@@ -148,7 +152,7 @@ var minPushBox = function (grid) {
         !canPlayerReachPosition(
           [currentPlayerRowPosition, currentPlayerColPosition],
           [playerRequiredRowToPush, playerRequiredColToPush],
-          [currentBoxRowPosition, currentBoxColPosition],
+          [currentBoxRowPosition, currentBoxColPosition]
         )
       ) {
         continue;

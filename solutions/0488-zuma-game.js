@@ -1,8 +1,13 @@
 /**
  * Zuma Game
+ * Intuition: Insert a hand ball next to a matching group (or between two groups that can merge), then repeatedly collapse any run of 3+ same colors. Search the fewest insertions to clear the board, memoizing board + remaining hand.
+ * Approach: 1. Count hand colors. 2. `resolveBoard` loops until stable: scan groups, delete length ≥ 3, restart scan. 3. DFS: empty board → 0; empty hand → -1. Key is board plus sorted `color+count`. 4. For each color still in hand, try each insert index (skip obviously useless splits), recurse on the resolved board, take min steps+1. Restore the hand count. 5. Cache -1 or that min.
+ * Dry Run: board = "RR", hand = "R".
+ *   - Insert R next to the pair → "RRR"; `resolveBoard` deletes the group of 3 → empty board. DFS returns 1.
+ *   - board = "WRRBBW", hand = "RB": every insertion leaves leftover balls that cannot be cleared → -1.
  * Time Complexity: O(S_B * S_H * H_C * L^3)
  * Space Complexity: O(S_B * S_H * (L + H_C))
-*/
+ */
 var findMinStep = function (board, hand) {
   const handInventory = {};
   for (const singleBall of hand) {
@@ -21,9 +26,11 @@ var findMinStep = function (board, hand) {
       }
     }
 
-    availableBallsList.sort((itemOne, itemTwo) => itemOne[0].localeCompare(itemTwo[0]));
+    availableBallsList.sort((itemOne, itemTwo) =>
+      itemOne[0].localeCompare(itemTwo[0])
+    );
 
-    let handStringIdentifier = '';
+    let handStringIdentifier = "";
     for (const colorCountPair of availableBallsList) {
       handStringIdentifier += colorCountPair[0] + colorCountPair[1];
     }
@@ -40,12 +47,18 @@ var findMinStep = function (board, hand) {
 
       while (boardScanIndex < dynamicBoardString.length) {
         let groupEndIndex = boardScanIndex;
-        while (groupEndIndex < dynamicBoardString.length && dynamicBoardString[groupEndIndex] === dynamicBoardString[boardScanIndex]) {
+        while (
+          groupEndIndex < dynamicBoardString.length &&
+          dynamicBoardString[groupEndIndex] ===
+            dynamicBoardString[boardScanIndex]
+        ) {
           groupEndIndex++;
         }
 
         if (groupEndIndex - boardScanIndex >= 3) {
-          dynamicBoardString = dynamicBoardString.substring(0, boardScanIndex) + dynamicBoardString.substring(groupEndIndex);
+          dynamicBoardString =
+            dynamicBoardString.substring(0, boardScanIndex) +
+            dynamicBoardString.substring(groupEndIndex);
           boardModified = true;
           boardScanIndex = 0;
         } else {
@@ -69,7 +82,8 @@ var findMinStep = function (board, hand) {
     }
     if (allHandBallsUsed) return -1;
 
-    const memoizationKey = currentBoardState + generateHandKeyString(currentHandState);
+    const memoizationKey =
+      currentBoardState + generateHandKeyString(currentHandState);
     if (globalMemoization.has(memoizationKey)) {
       return globalMemoization.get(memoizationKey);
     }
@@ -81,28 +95,46 @@ var findMinStep = function (board, hand) {
 
       currentHandState[currentChosenColor]--;
 
-      for (let insertPosition = 0; insertPosition <= currentBoardState.length; insertPosition++) {
+      for (
+        let insertPosition = 0;
+        insertPosition <= currentBoardState.length;
+        insertPosition++
+      ) {
         if (insertPosition > 0 && insertPosition < currentBoardState.length) {
           const charBefore = currentBoardState[insertPosition - 1];
           const charAfter = currentBoardState[insertPosition];
-          if (charBefore !== currentChosenColor && charAfter !== currentChosenColor && charBefore !== charAfter) {
+          if (
+            charBefore !== currentChosenColor &&
+            charAfter !== currentChosenColor &&
+            charBefore !== charAfter
+          ) {
             continue;
           }
         }
 
-        let boardWithNewBall = currentBoardState.slice(0, insertPosition) + currentChosenColor + currentBoardState.slice(insertPosition);
+        let boardWithNewBall =
+          currentBoardState.slice(0, insertPosition) +
+          currentChosenColor +
+          currentBoardState.slice(insertPosition);
         let boardAfterRemovals = resolveBoard(boardWithNewBall);
 
-        const subsequentOperationResult = depthFirstSearch(boardAfterRemovals, currentHandState);
+        const subsequentOperationResult = depthFirstSearch(
+          boardAfterRemovals,
+          currentHandState
+        );
 
         if (subsequentOperationResult !== -1) {
-          minimumRequiredSteps = Math.min(minimumRequiredSteps, subsequentOperationResult + 1);
+          minimumRequiredSteps = Math.min(
+            minimumRequiredSteps,
+            subsequentOperationResult + 1
+          );
         }
       }
       currentHandState[currentChosenColor]++;
     }
 
-    const finalResultForState = minimumRequiredSteps === Infinity ? -1 : minimumRequiredSteps;
+    const finalResultForState =
+      minimumRequiredSteps === Infinity ? -1 : minimumRequiredSteps;
     globalMemoization.set(memoizationKey, finalResultForState);
     return finalResultForState;
   }

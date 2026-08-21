@@ -1,5 +1,9 @@
 /**
  * Count Ways To Make Array With Product
+ * Intuition: Fill an array of length n whose product is k. Factor k; for each prime p^e, distribute e indistinguishable exponents into n positions: C(e+n-1, e). Multiply over primes.
+ * Approach: 1. Precompute factorials and inverse factorials mod 1e9+7. 2. For each query, factor `targetProduct`; for each exponent compute combinations via `calculateCombinations`. 3. k=1 → 1 way. 4. Push Number of the product of combinations.
+ * Dry Run: queries = [[2,6]]
+ * 6=2*3, each exponent 1 → C(1+2-1,1)^2 = C(2,1)^2 = 4.
  * Time Complexity: O(MAX_COMBINATION_INPUT + Q * sqrt(k_max))
  * Space Complexity: O(MAX_COMBINATION_INPUT + Q)
  */
@@ -38,7 +42,7 @@ var waysToFillArray = function (queries) {
   inverseFactorialValues[MAX_COMBINATION_INPUT] = powerModulo(
     factorialValues[MAX_COMBINATION_INPUT],
     MODULUS_VAL - 2n,
-    MODULUS_VAL,
+    MODULUS_VAL
   );
   for (
     let currentIdx = MAX_COMBINATION_INPUT - 1;

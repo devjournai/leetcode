@@ -1,5 +1,8 @@
 /**
  * Maximum Value After Insertion
+ * Intuition: For a positive number insert x at the first position where it is strictly larger than the digit (greedy left). For a negative number insert where x is strictly smaller, to make the magnitude smaller.
+ * Approach: 1. If n starts with '-', scan the numeric part until x < digit or end. 2. Else scan until x > digit or end. 3. Splice x into that index and return the string.
+ * Dry Run: n="99", x=9 → insert at end "999". n="-13", x=2 → insert before 3 giving "-123".
  * Time Complexity: O(N^2)
  * Space Complexity: O(N)
  */

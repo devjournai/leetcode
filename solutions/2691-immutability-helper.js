@@ -59,7 +59,7 @@ ImmutableHelper.prototype.produce = function (mutatorFunction) {
     (fieldIdentifier, fieldValue) => {
       topLevelMutableWrapper[fieldIdentifier] = fieldValue;
       return topLevelMutableWrapper;
-    },
+    }
   ).rootContent;
 
   mutatorFunction(mutatorProxyTarget);
@@ -69,7 +69,7 @@ ImmutableHelper.prototype.produce = function (mutatorFunction) {
   function wrapAndTrackChanges(
     mutableEntityContainer,
     originalEntityContainer,
-    entityUpdateCallback,
+    entityUpdateCallback
   ) {
     let currentMutableObject = mutableEntityContainer;
     let currentOriginalObject = originalEntityContainer;
@@ -78,7 +78,7 @@ ImmutableHelper.prototype.produce = function (mutatorFunction) {
       set(proxyHandlerTarget, propertyKey, assignedPropertyNewValue) {
         currentMutableObject = entityUpdateCallback(
           propertyKey,
-          assignedPropertyNewValue,
+          assignedPropertyNewValue
         );
         return true;
       },
@@ -104,12 +104,12 @@ ImmutableHelper.prototype.produce = function (mutatorFunction) {
 
                 currentMutableObject = entityUpdateCallback(
                   propertyKey,
-                  mutableValueAtPath,
+                  mutableValueAtPath
                 );
               }
               mutableValueAtPath[nestedKeyToSet] = nestedValueToAssign;
               return mutableValueAtPath;
-            },
+            }
           );
         }
       },

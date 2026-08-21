@@ -46,7 +46,7 @@ var areaOfMaxDiagonal = function (dimensions) {
       }
       return accumulatorObject;
     },
-    { currentMaxDiagonalSquared: 0, currentMaxArea: 0 },
+    { currentMaxDiagonalSquared: 0, currentMaxArea: 0 }
   );
 
   return finalAccumulatedResult.currentMaxArea;

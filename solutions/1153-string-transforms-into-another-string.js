@@ -1,5 +1,9 @@
 /**
  * String Transforms Into Another String
+ * Intuition: Each source letter can map to only one target letter. A mapping graph with a cycle needs a free unused letter as a temporary, so conversion is impossible if all 26 letters already appear in str2 (unless the strings are equal).
+ * Approach: 1. Equal strings: true. 2. Build a map str1[i]->str2[i]; conflict if one source maps to two targets. 3. Collect distinct target letters; return whether fewer than 26.
+ * Dry Run: str1 = "aabcc", str2 = "ccdee".
+ *   - a->c, b->d, c->e, consistent; targets {c,d,e} size 3 < 26. True.
  * Time Complexity: O(N)
  * Space Complexity: O(1)
  */

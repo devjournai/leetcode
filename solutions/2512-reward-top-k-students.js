@@ -30,7 +30,7 @@ var topStudents = function (
   negative_feedback,
   report,
   student_id,
-  k,
+  k
 ) {
   const positiveWordsSet = new Set(positive_feedback);
   const negativeTermsSet = new Set(negative_feedback);

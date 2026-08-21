@@ -1,5 +1,8 @@
 /**
  * Available Captures For Rook
+ * Intuition: From 'R', scan four rays. First 'p' is a capture; first 'B' blocks.
+ * Approach: 1. Locate rook. 2. For each of `moveDirections`, `checkDirectionForCapture` walks until off-board, returning 1 on pawn, 0 on bishop. 3. Sum captures.
+ * Dry Run: Rook at (0,0) with pawn at (0,3) and empty in between. East ray returns 1. Other rays 0. Answer 1.
  * Time Complexity: O(1)
  * Space Complexity: O(1)
  */
@@ -57,7 +60,7 @@ var numRookCaptures = function (board) {
       rookPositionRow,
       rookPositionCol,
       deltaRow,
-      deltaCol,
+      deltaCol
     );
   }
 

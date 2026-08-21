@@ -88,12 +88,12 @@ var maximumRows = function (matrix, numSelect) {
   function exploreColumnCombinations(
     currentColumnProcessingIndex,
     currentSelectionBitmask,
-    selectedColumnsCounter,
+    selectedColumnsCounter
   ) {
     if (selectedColumnsCounter === numSelect) {
       maxRowsCovered = Math.max(
         maxRowsCovered,
-        calculateCoveredRows(currentSelectionBitmask, rowMasksArray),
+        calculateCoveredRows(currentSelectionBitmask, rowMasksArray)
       );
       return;
     }
@@ -109,12 +109,12 @@ var maximumRows = function (matrix, numSelect) {
     exploreColumnCombinations(
       currentColumnProcessingIndex + 1,
       currentSelectionBitmask | (1 << currentColumnProcessingIndex),
-      selectedColumnsCounter + 1,
+      selectedColumnsCounter + 1
     );
     exploreColumnCombinations(
       currentColumnProcessingIndex + 1,
       currentSelectionBitmask,
-      selectedColumnsCounter,
+      selectedColumnsCounter
     );
   }
 

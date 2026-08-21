@@ -53,7 +53,7 @@ var minimumDeletions = function (nums) {
   const totalDeletionsResult = Math.min(
     frontOnlyDeletions,
     backOnlyDeletions,
-    mixedDeletions,
+    mixedDeletions
   );
 
   return totalDeletionsResult;

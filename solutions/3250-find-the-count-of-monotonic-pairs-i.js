@@ -11,7 +11,7 @@ var countOfPairs = function (nums) {
   const MAX_VALUE = 1000;
   const length = nums.length;
   const waysForValue = Array.from({ length }, () =>
-    Array(MAX_VALUE + 1).fill(0),
+    Array(MAX_VALUE + 1).fill(0)
   );
 
   for (let value = 0; value <= nums[0]; value++) {

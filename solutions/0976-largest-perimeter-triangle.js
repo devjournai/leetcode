@@ -1,5 +1,8 @@
 /**
  * Largest Perimeter Triangle
+ * Intuition: After sorting descending, the first triple that satisfies triangle inequality (`medium + shortest > longest`) is the largest perimeter.
+ * Approach: 1. Sort `inputArray` descending. 2. Slide windows of three. 3. Return their sum on the first valid triple. 4. Else 0.
+ * Dry Run: inputArray = [2,1,2]. Sorted [2,2,1]. 2+1>2. Perimeter 5.
  * Time Complexity: O(N log N)
  * Space Complexity: O(log N)
  */

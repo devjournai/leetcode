@@ -77,12 +77,12 @@ var countHighestScoreNodes = function (parents) {
 
     if (childConnections[currentProcessingNode].length > 0) {
       currentLeftSubtreeSize = calculateScoresRecursively(
-        childConnections[currentProcessingNode][0],
+        childConnections[currentProcessingNode][0]
       );
     }
     if (childConnections[currentProcessingNode].length > 1) {
       currentRightSubtreeSize = calculateScoresRecursively(
-        childConnections[currentProcessingNode][1],
+        childConnections[currentProcessingNode][1]
       );
     }
 

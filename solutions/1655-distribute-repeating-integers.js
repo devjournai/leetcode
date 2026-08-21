@@ -1,5 +1,8 @@
 /**
  * Distribute Repeating Integers
+ * Intuition: Each unique number's count is a bin that can satisfy at most one customer (a customer wants quantity[i] copies of one number). Backtrack customers onto bins, trying largest bins/needs first.
+ * Approach: 1. Count frequencies, sort them descending, sort quantity descending. 2. Recurse on customer index: assign them to any remaining bin with count ≥ need, subtract, recurse; backtrack on failure. 3. Success when all customers are assigned.
+ * Dry Run: nums=[1,2,3,4], quantity=[2] → no frequency ≥ 2 → false.
  * Time Complexity: O(U^M)
  * Space Complexity: O(U + M)
  */
@@ -10,10 +13,10 @@ var canDistribute = function (inputNumbers, customerRequirements) {
   }
 
   const sortedFrequencies = Array.from(itemFrequencies.values()).sort(
-    (firstFreq, secondFreq) => secondFreq - firstFreq,
+    (firstFreq, secondFreq) => secondFreq - firstFreq
   );
   const sortedRequirements = customerRequirements.sort(
-    (firstReq, secondReq) => secondReq - firstReq,
+    (firstReq, secondReq) => secondReq - firstReq
   );
 
   function evaluateDistribution(currentRequirementIndex, availableItemCounts) {
@@ -32,7 +35,7 @@ var canDistribute = function (inputNumbers, customerRequirements) {
         availableItemCounts[stockIterator] -= singleRequirement;
         const distributionPossible = evaluateDistribution(
           currentRequirementIndex + 1,
-          availableItemCounts,
+          availableItemCounts
         );
         if (distributionPossible) {
           return true;

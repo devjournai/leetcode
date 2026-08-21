@@ -70,7 +70,7 @@ var largestEvenSum = function (numbersArray, totalRequiredElements) {
 
   const maxEvenSelectionsAllowed = Math.min(
     totalRequiredElements,
-    sortedEvenNumbers.length,
+    sortedEvenNumbers.length
   );
   for (
     let currentEvenSelections = 0;
@@ -93,7 +93,7 @@ var largestEvenSum = function (numbersArray, totalRequiredElements) {
       oddSumsAccumulated[currentOddSelections];
     largestPossibleEvenSum = Math.max(
       largestPossibleEvenSum,
-      currentCombinationValue,
+      currentCombinationValue
     );
   }
 

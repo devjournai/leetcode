@@ -10,7 +10,7 @@
  */
 var maximumLength = function (nums, k) {
   const lengthByLastAndDesiredResidue = Array.from({ length: k }, () =>
-    Array(k).fill(0),
+    Array(k).fill(0)
   );
 
   for (const currentValue of nums) {

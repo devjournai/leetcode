@@ -1,5 +1,10 @@
 /**
  * Toeplitz Matrix
+ * Intuition: Every top-left to bottom-right diagonal must be constant. Walk each diagonal that starts on the first row or the first column (skipping 0,0 twice) and compare consecutive cells.
+ * Approach: 1. For `currentColumnStart` from 0 to `totalCols-1`, walk `(actualRow, actualColumn)` southeast; if `matrix[r][c] !== matrix[r+1][c+1]`, return false. 2. Repeat for `currentRowStart` from 1 to `totalRows-1` starting at column 0. 3. If no mismatch, return true.
+ * Dry Run: matrix = [[1,2,3,4],[5,1,2,3],[9,5,1,2]].
+ *   - First-row starts: 1=1=1, 2=2=2, 3=3, 4 — all match.
+ *   - First-column starts: 5=5, 9 — match. Return true.
  * Time Complexity: O(m * n)
  * Space Complexity: O(1)
  */

@@ -23,7 +23,7 @@ var minimumCost = function (target, words, costs) {
       ) {
         minCostToBuildPrefix[endIndex] = Math.min(
           minCostToBuildPrefix[endIndex],
-          minCostToBuildPrefix[endIndex - wordLength] + costs[wordIndex],
+          minCostToBuildPrefix[endIndex - wordLength] + costs[wordIndex]
         );
       }
     }

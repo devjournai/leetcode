@@ -1,5 +1,10 @@
 /**
  * Number Of Ways Of Cutting A Pizza
+ * Intuition: Suffix apple counts tell whether a cut leaves apples on the discarded piece. DP(row, col, cutsLeft) tries every valid horizontal/vertical cut of the remaining rectangle.
+ * Approach: 1. Build applesInSuffix from bottom-right. 2. Recurse from (0,0) with k-1 remaining cuts. 3. Skip pieces with 0 apples; if cutsRemaining is 0, count 1 if apples remain. 4. Try later start rows/cols that leave apples on the cut-off piece; memoize mod 1e9+7.
+ * Dry Run: pizza = ["A..","AAA","..."], k = 3
+ *   - suffix shows apples in the top-left 2x3
+ *   - valid sequences of 2 cuts that always leave apples. Result 3.
  * Time Complexity: O(rows * cols * k * (rows + cols))
  * Space Complexity: O(rows * cols * k)
  */
@@ -9,13 +14,13 @@ var ways = function (pizza, k) {
   const totalCols = pizza[0].length;
 
   const applesInSuffix = Array.from({ length: totalRows + 1 }, () =>
-    Array.from({ length: totalCols + 1 }, () => 0),
+    Array.from({ length: totalCols + 1 }, () => 0)
   );
 
   const memoizationTable = Array.from({ length: totalRows + 1 }, () =>
     Array.from({ length: totalCols + 1 }, () =>
-      Array.from({ length: k + 1 }, () => -1),
-    ),
+      Array.from({ length: k + 1 }, () => -1)
+    )
   );
 
   for (let rIndex = totalRows - 1; rIndex >= 0; rIndex--) {

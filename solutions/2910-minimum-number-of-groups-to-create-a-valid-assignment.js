@@ -30,6 +30,8 @@
  *    - Check whether those groups can have sizes x or x + 1.
  * 5. Keep the minimum total number of groups.
  *
+ * Dry Run: frequencies [3, 3], minFrequency=3. groupSize=1: ceil(3/2)=2 groups and 2*1<=3, total=4. groupSize=2: ceil(3/3)=1 and 1*2<=3, total=2. Answer=2.
+ *
  * Time Complexity: O(N * M)
  * Space Complexity: O(N)
  */

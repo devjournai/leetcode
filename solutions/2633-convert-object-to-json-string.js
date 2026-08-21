@@ -39,7 +39,7 @@ var jsonStringify = function (inputObject) {
 
   if (Array.isArray(inputObject)) {
     const arrayElementsConverted = inputObject.map((itemToConvert) =>
-      jsonStringify(itemToConvert),
+      jsonStringify(itemToConvert)
     );
     const arrayResultString = arrayElementsConverted.join(",");
     return `[${arrayResultString}]`;

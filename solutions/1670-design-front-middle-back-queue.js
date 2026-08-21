@@ -1,5 +1,8 @@
 /**
  * Design Front Middle Back Queue
+ * Intuition: An array can implement the six operations with unshift/splice/push and shift/splice/pop. Middle insert uses floor(n/2); middle pop uses floor((n-1)/2). Empty pops return -1.
+ * Approach: 1. pushFront: unshift. 2. pushMiddle: splice at floor(len/2). 3. pushBack: push. 4. popFront/popBack: shift/pop or -1. 5. popMiddle: splice at floor((len-1)/2).
+ * Dry Run: pushFront(1), pushBack(2), pushMiddle(3) → [1,3,2]; popMiddle → 3.
  * Time Complexity: O(1)
  * Space Complexity: O(N)
  */

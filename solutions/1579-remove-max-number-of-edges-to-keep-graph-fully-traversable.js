@@ -1,6 +1,10 @@
 /**
  * Remove Max Number Of Edges To Keep Graph Fully Traversable
- * Time Complexity: O(M * α(N))
+ * Intuition: Prefer type-3 edges for both Alice and Bob, then exclusive edges; redundant unions can be deleted. Both must end with one component on nodes 1..n.
+ * Approach: 1. Two UnionFinds. 2. Union type 3; count unused. 3. Union type 1 for Alice, type 2 for Bob. 4. If both graphs are connected, return removed else -1.
+ * Dry Run: n = 4 with mixed type-3 and exclusive edges.
+ *   - Keep a spanning pair of trees; leftover edges are removable.
+ * Time Complexity: O(M * ╬▒(N))
  * Space Complexity: O(N)
  */
 var maxNumEdgesToRemove = function (n, edges) {
@@ -16,7 +20,7 @@ var maxNumEdgesToRemove = function (n, edges) {
     findSet(elementNodeKey) {
       if (this.parentIdentifiers[elementNodeKey] !== elementNodeKey) {
         this.parentIdentifiers[elementNodeKey] = this.findSet(
-          this.parentIdentifiers[elementNodeKey],
+          this.parentIdentifiers[elementNodeKey]
         );
       }
       return this.parentIdentifiers[elementNodeKey];
@@ -59,11 +63,11 @@ var maxNumEdgesToRemove = function (n, edges) {
     if (edgeType === 3) {
       const aliceUnionResult = aliceManager.uniteElements(
         firstNodeIndex,
-        secondNodeIndex,
+        secondNodeIndex
       );
       const bobUnionResult = bobManager.uniteElements(
         firstNodeIndex,
-        secondNodeIndex,
+        secondNodeIndex
       );
       if (!aliceUnionResult && !bobUnionResult) {
         removedEdgesCount++;

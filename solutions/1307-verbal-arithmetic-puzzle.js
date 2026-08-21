@@ -1,5 +1,8 @@
 /**
  * Verbal Arithmetic Puzzle
+ * Intuition: Cryptarithm is unique digit assignment. Search column by column from the ones place, assigning unused digits and matching the result digit plus carry.
+ * Approach: 1. Reject addends longer than the result; record leading letters that cannot be 0. 2. Recurse on (column, wordIndex, carry): skip short words, reuse or try digits 0–9. 3. After all words in a column, the ones digit of the sum must match the result letter (assign if free). 4. Recurse with carry/10; succeed when past the last column with carry 0.
+ * Dry Run: words = ["SEND","MORE"], result = "MONEY". Column search assigns unique digits (e.g. 9567+1085=10652) and returns true.
  * Time Complexity: O(P(10, C) * L * W)
  * Space Complexity: O(L * W + C)
  */
@@ -26,7 +29,7 @@ var isSolvable = function (words, result) {
   function exploreEquation(
     currentColumnPosition,
     currentWordArrayIndex,
-    accumulatedCarrySum,
+    accumulatedCarrySum
   ) {
     if (currentColumnPosition === maxResultLength) {
       return accumulatedCarrySum === 0;
@@ -40,7 +43,7 @@ var isSolvable = function (words, result) {
         return exploreEquation(
           currentColumnPosition,
           currentWordArrayIndex + 1,
-          accumulatedCarrySum,
+          accumulatedCarrySum
         );
       }
 
@@ -52,7 +55,7 @@ var isSolvable = function (words, result) {
         return exploreEquation(
           currentColumnPosition,
           currentWordArrayIndex + 1,
-          accumulatedCarrySum + assignedNumber,
+          accumulatedCarrySum + assignedNumber
         );
       } else {
         const startDigitValue = noZeroStartCharacters.has(specificChar) ? 1 : 0;
@@ -72,7 +75,7 @@ var isSolvable = function (words, result) {
             exploreEquation(
               currentColumnPosition,
               currentWordArrayIndex + 1,
-              accumulatedCarrySum + chosenDigit,
+              accumulatedCarrySum + chosenDigit
             )
           ) {
             return true;
@@ -90,7 +93,7 @@ var isSolvable = function (words, result) {
 
       if (characterToDigitMapping.has(resultCharForPosition)) {
         const existingDigitForChar = characterToDigitMapping.get(
-          resultCharForPosition,
+          resultCharForPosition
         );
         if (existingDigitForChar !== targetDigit) {
           return false;
@@ -98,7 +101,7 @@ var isSolvable = function (words, result) {
         return exploreEquation(
           currentColumnPosition + 1,
           0,
-          (accumulatedCarrySum - targetDigit) / 10,
+          (accumulatedCarrySum - targetDigit) / 10
         );
       } else {
         const isLeadingZeroForbiddenHere =
@@ -115,7 +118,7 @@ var isSolvable = function (words, result) {
         const successfulAdvance = exploreEquation(
           currentColumnPosition + 1,
           0,
-          (accumulatedCarrySum - targetDigit) / 10,
+          (accumulatedCarrySum - targetDigit) / 10
         );
 
         characterToDigitMapping.delete(resultCharForPosition);

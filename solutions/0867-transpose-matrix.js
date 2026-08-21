@@ -1,5 +1,8 @@
 /**
  * Transpose Matrix
+ * Intuition: Result[j][i] = A[i][j]. Build each new row by walking down a column of A.
+ * Approach: 1. Empty rows or empty first row → []. 2. For each column index, collect A[row][col] into `tempRowCollector`, push as a row of `resultantMatrix`. 3. Return it.
+ * Dry Run: A=[[1,2,3],[4,5,6]] → rows [1,4], [2,5], [3,6].
  * Time Complexity: O(M * N)
  * Space Complexity: O(M * N)
  */

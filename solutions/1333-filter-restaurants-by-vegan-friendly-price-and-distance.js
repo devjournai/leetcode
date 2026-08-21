@@ -1,5 +1,8 @@
 /**
  * Filter Restaurants By Vegan Friendly Price And Distance
+ * Intuition: Filter by vegan/price/distance then sort by rating then id, both descending.
+ * Approach: 1. Keep restaurants with vegan >= filter, price and distance within caps. 2. Sort by rating desc, then id desc. 3. Map to ids.
+ * Dry Run: restaurants [[1,4,1,40,10],[2,8,0,50,5]], veganFriendly=0, maxPrice=50, maxDistance=10 → ids [2,1].
  * Time Complexity: O(N log N)
  * Space Complexity: O(N)
  */
@@ -7,7 +10,7 @@ var filterRestaurants = function (
   restaurants,
   veganFriendly,
   maxPrice,
-  maxDistance,
+  maxDistance
 ) {
   const eligiblePlaces = restaurants.filter((singlePlace) => {
     const placeVeganFriendlyStatus = singlePlace[2];

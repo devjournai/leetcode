@@ -1,5 +1,9 @@
 /**
  * Coordinate With Maximum Network Quality
+ * Intuition: Coordinates are in 0..50, so brute-force every integer point. Quality is the sum of floor(q/(1+d)) for towers within radius. Ties take the lexicographically smallest (x,y).
+ * Approach: 1. For x,y in 0..50, accumulate signal from each in-range tower. 2. If quality is strictly better, take this point. 3. If equal, keep the smaller (x,y) in dictionary order. 4. Return the best point (or [0,0] if all qualities are 0).
+ * Dry Run: towers=[[1,2,5],[2,1,7],[3,1,9]], radius=2.
+ *   - Point (2,1) yields the unique maximum quality.
  * Time Complexity: O(W * H * N)
  * Space Complexity: O(1)
  */
@@ -27,12 +31,12 @@ var bestCoordinate = function (towers, radius) {
           scanXPoint,
           scanYPoint,
           towerLocationX,
-          towerLocationY,
+          towerLocationY
         );
 
         if (calculatedDistance <= radius) {
           const signalContribution = Math.floor(
-            towerPower / (1 + calculatedDistance),
+            towerPower / (1 + calculatedDistance)
           );
           currentTotalSignal += signalContribution;
         }

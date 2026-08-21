@@ -69,7 +69,7 @@ var replaceValueInTree = function (root) {
   function updateNodeValues(
     nodeToModify,
     currentModificationDepth,
-    parentSiblingTotal,
+    parentSiblingTotal
   ) {
     if (!nodeToModify) {
       return;
@@ -91,12 +91,12 @@ var replaceValueInTree = function (root) {
     updateNodeValues(
       nodeToModify.left,
       nextModificationDepth,
-      rightChildOriginalValue,
+      rightChildOriginalValue
     );
     updateNodeValues(
       nodeToModify.right,
       nextModificationDepth,
-      leftChildOriginalValue,
+      leftChildOriginalValue
     );
   }
 

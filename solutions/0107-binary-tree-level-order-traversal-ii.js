@@ -1,5 +1,8 @@
 /**
  * Binary Tree Level Order Traversal II
+ * Intuition: Standard BFS already groups values by depth; reversing that list yields bottom-up order.
+ * Approach: 1. Empty root returns []. 2. Queue BFS: for each level, dequeue that many nodes, collect values, enqueue children. 3. Push each level array, then reverse the list of levels.
+ * Dry Run: Tree 3 / 9, 20 / 15, 7. Levels collected [[3],[9,20],[15,7]]. Reverse gives [[15,7],[9,20],[3]].
  * Time Complexity: O(N)
  * Space Complexity: O(N)
  */

@@ -1,5 +1,8 @@
 /**
  * Product Of Two Run Length Encoded Arrays
+ * Intuition: Merge two RLE streams like merging intervals: consume min remaining frequency of the current pair of segments, emit value1*value2, and merge adjacent equal products.
+ * Approach: 1. Track segment indices and remaining counts. 2. Take `sharedLength`, append or extend `productSegments`. 3. Advance whichever segment is exhausted.
+ * Dry Run: encoded1=[[1,3],[2,3]], encoded2=[[6,3],[3,3]]. Products 6×3 then 6×3 → [[6,6]].
  * Time Complexity: O(L1 + L2)
  * Space Complexity: O(L1 + L2)
  */
@@ -31,7 +34,7 @@ var findRLEArray = function (encoded1, encoded2) {
 
     const sharedLength = Math.min(
       currentFirstSegmentCount,
-      currentSecondSegmentCount,
+      currentSecondSegmentCount
     );
 
     const lastProductSegment = productSegments[productSegments.length - 1];

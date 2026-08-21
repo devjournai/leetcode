@@ -91,7 +91,9 @@ var getFinalState = function (nums, k, multiplier) {
 
   const factor = modPow(multiplier, multipliesPerNum);
   for (let i = 0; i < n; i++) {
-    sortedIndexedNums[i][0] = Number((BigInt(sortedIndexedNums[i][0]) * factor) % MOD);
+    sortedIndexedNums[i][0] = Number(
+      (BigInt(sortedIndexedNums[i][0]) * factor) % MOD
+    );
   }
 
   for (let i = 0; i < remainingK; i++) {

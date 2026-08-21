@@ -1,5 +1,8 @@
 /**
  * Longest Word In Dictionary
+ * Intuition: A valid word can be built one letter at a time from other dictionary words. A trie of `isWordEnd` nodes, BFS only through completed prefixes, finds the longest such word (lex smaller on ties).
+ * Approach: 1. Insert every word into a `TrieNode` map. 2. Enqueue root children that are word ends, keys sorted. 3. BFS: update `finalLongestWord` by length then lexicographic order. 4. Enqueue children that are also word ends. Return `finalLongestWord`.
+ * Dry Run: ["w","wo","wor","worl","world"]. BFS grows w→wo→wor→worl→world. Answer "world".
  * Time Complexity: O(S)
  * Space Complexity: O(S)
  */
@@ -56,7 +59,7 @@ var longestWord = function (words) {
     }
 
     const currentChildrenKeys = Array.from(
-      currentProcessingNode.children.keys(),
+      currentProcessingNode.children.keys()
     ).sort();
     for (const childSymbol of currentChildrenKeys) {
       const childReferenceNode =

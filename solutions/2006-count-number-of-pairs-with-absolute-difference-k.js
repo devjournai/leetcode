@@ -54,7 +54,7 @@ var countKDifference = function (nums, k) {
   for (const currentNumberElement of nums) {
     numberFrequencies.set(
       currentNumberElement,
-      (numberFrequencies.get(currentNumberElement) || 0) + 1,
+      (numberFrequencies.get(currentNumberElement) || 0) + 1
     );
   }
 
